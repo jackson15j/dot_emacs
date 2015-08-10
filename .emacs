@@ -1,9 +1,3 @@
-;;; .emacs --- emacs dot file.
-;;; Commentary:
-;; http://www.lunaryorn.com/2015/01/06/my-emacs-configuration-with-use-package.html
-;; https://github.com/lunaryorn/.emacs.d/blob/master/init.el
-;; To unset a key binding: M-x global-unset-key
-
 ;;;;;; .emacs --- emacs dot file.
 ;;; Commentary:
 ;; http://www.lunaryorn.com/2015/01/06/my-emacs-configuration-with-use-package.html
