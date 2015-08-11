@@ -351,6 +351,7 @@
 ;; ========================
 (defun my-scratch-mode-config ()
   "Disabling config for *scratch* buffer."
+  (interactive)
   (fci-mode -1)
   (linum-mode -1)
   )
