@@ -513,9 +513,9 @@
     (add-hook 'python-mode-hook (lambda () (pyvenv-mode t)))
     (add-hook 'python-mode-hook (lambda () (pyvenv-tracking-mode t)))
     (add-hook 'python-mode-hook (lambda () (jedi-mode t)))
-    (setq
-     python-indent-offset 4
-     )
+    ;; (setq
+    ;;  python-indent-offset 4  ;; FIXME: With this all indenting is broken. Without a package moans that it is missing.
+    ;;  )
     ; http://www.emacswiki.org/emacs/ProgrammingWithPythonDotEl#toc1
     ;; (add-hook 'python-mode-hook '(lambda () (define-key python-mode-map "\C-m" 'newline-and-indent)))  ; maintain indentation on newline
     (use-package auto-complete
