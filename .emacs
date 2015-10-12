@@ -484,6 +484,10 @@
 ;; *****************************************************
 (use-package php-mode
   :ensure t
+  :config
+  (progn
+    (add-hook 'php-mode-hook 'my-programming-defaults-config)
+    )
   )
 
 
