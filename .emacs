@@ -320,6 +320,7 @@
 ;; ========================
 (defun my-text-mode-config ()
   "All of my 'text-mode' config in one place."
+  (interactive)
   (whitespace-mode)  ;; highlights whitespace.
   (my_highlighted_words)  ;; highlights specific words in red & bold.
   (lambda () (font-lock-add-keywords nil my-extra-keywords))  ;; highlight tabs
@@ -336,6 +337,7 @@
 ;; ========================
 (defun my-programming-defaults-config ()
   "All of my programming defaults  in one place."
+  (interactive)
   (whitespace-mode)  ;; highlights whitespace.
   (my_highlighted_words)  ;; highlights specific words in red & bold.
   (lambda () (font-lock-add-keywords nil my-extra-keywords))  ;; highlight tabs
