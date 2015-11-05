@@ -3,6 +3,10 @@
 ;; http://www.lunaryorn.com/2015/01/06/my-emacs-configuration-with-use-package.html
 ;; https://github.com/lunaryorn/.emacs.d/blob/master/init.el
 ;; To unset a key binding: M-x global-unset-key
+;;
+;; To remove all hooks from a mode during testing, evaulate:
+;; (setq <mode-hook> nil)
+;; as per: https://www.gnu.org/software/emacs/manual/html_node/emacs/Hooks.html
 
 ;;; Code:
 ;; Please don't load outdated byte code
@@ -316,6 +320,7 @@
 ;; ========================
 (defun my-text-mode-config ()
   "All of my 'text-mode' config in one place."
+  (interactive)
   (whitespace-mode)  ;; highlights whitespace.
   (my_highlighted_words)  ;; highlights specific words in red & bold.
   (lambda () (font-lock-add-keywords nil my-extra-keywords))  ;; highlight tabs
@@ -332,6 +337,7 @@
 ;; ========================
 (defun my-programming-defaults-config ()
   "All of my programming defaults  in one place."
+  (interactive)
   (whitespace-mode)  ;; highlights whitespace.
   (my_highlighted_words)  ;; highlights specific words in red & bold.
   (lambda () (font-lock-add-keywords nil my-extra-keywords))  ;; highlight tabs
@@ -478,6 +484,10 @@
 ;; *****************************************************
 (use-package php-mode
   :ensure t
+  :config
+  (progn
+    (add-hook 'php-mode-hook 'my-programming-defaults-config)
+    )
   )
 
 
