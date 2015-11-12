@@ -500,6 +500,10 @@
 (use-package groovy-mode
   ; https://github.com/Groovy-Emacs-Modes/groovy-emacs-modes
   :ensure t
+  :config
+  (progn
+    (add-hook 'groovy-mode-hook 'my-programming-defaults-config)
+    )
   )
 
 
