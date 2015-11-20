@@ -352,6 +352,7 @@
   (linum-mode)  ; Line Numbers Mode
   (my_highlighted_words)  ;; highlight specific words
   )
+(add-hook 'sh-mode-hook 'my-programming-defaults-config)
 
 ;; ========================
 ;; *SCRATCH* BUFFER DEFAULTS
