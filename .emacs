@@ -533,6 +533,7 @@
   :config
   (progn
     (add-hook 'json-mode-hook 'my-programming-defaults-config)
+    (add-hook 'json-mode-hook (lambda () (auto-fill-mode -1)))  ;; disables auto fill at column.
     )
   )
 
