@@ -152,7 +152,16 @@
     (with-current-buffer buf
       (when (and (buffer-file-name) (file-exists-p (buffer-file-name)) (not (buffer-modified-p)))
         (revert-buffer t t t) )))
-      (message "Refreshed open files.") )
+  (message "Refreshed open files.") )
+
+
+(defun go-to-column (column)
+  "GoTo column. Was getting annoyed seeing errors that point to a column number
+   so grabbed this code:
+   - http://emacsredux.com/blog/2013/07/09/go-to-column/"
+  (interactive "nColumn: ")
+  (move-to-column column t))
+(global-set-key (kbd "M-g M-c") 'go-to-column)
 
 ;; ========================
 ;; Find Non ASCII
