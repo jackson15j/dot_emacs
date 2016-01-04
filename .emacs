@@ -711,6 +711,10 @@
     (use-package xcscope
       :ensure t
       :config
+      (progn
+        ;; Setup auto-magically hooks into c/c++ modes.
+        (cscope-setup)
+        )
       (define-key c++-mode-map [remap c-set-style] 'cscope-find-this-symbol)  ;; C-c .
       ;; Note etags search defaults to: M-.
       )
