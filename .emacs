@@ -709,6 +709,8 @@
     (use-package smart-compile
       :ensure t)
     (use-package xcscope
+      ;; Use cscope files within emacs, to jump around C/C++ code.
+      ;; https://github.com/dkogan/xcscope.el
       :ensure t
       :config
       (progn
