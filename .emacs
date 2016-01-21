@@ -590,7 +590,13 @@
         (setq
          ac-candidate-limit 20
          auto-complete-mode t
-         ac-flyspell-workaround
+         ;; TODO: I think latest auto-complete no longer needs the ac-flyspell-workaround.
+         ;; Need to find out if this is stated in the auto-complete changelogs. Was getting
+         ;; an incorrect number of arguments 'setq 5'.
+         ;; Or it could possibly be a use-package change and it just needs to be changed to
+         ;; 'ac-flyspell-workaround t'.
+         ;; Not in python code atm, so on the backburner for now.
+         ;; ac-flyspell-workaround
          ; https://stackoverflow.com/questions/11484225/fix-an-auto-complete-mode-and-linum-mode-annoyance
          ;; ac-linum-workaround   ; fix linum jumping characters around.
          )
