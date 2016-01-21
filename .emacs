@@ -523,6 +523,8 @@
 ;; *****************************************************
 ;; *****************************************************
 (use-package markdown-mode
+  ; NOTE: 'M-x markdown-preview', requires: 'markdown', to be installed with
+  ; system package manager.
   :ensure t
   :init
   (progn
