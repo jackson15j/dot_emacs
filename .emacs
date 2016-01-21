@@ -194,7 +194,7 @@
 ;; File/Buffer Management.
 ;; *****************************************************
 ;; *****************************************************
-(setq large-file-warning-threshold (* 25 1024 1024))  ;; large files shouting from 25MB's
+(setq large-file-warning-threshold (* 40 1024 1024))  ;; large files shouting from 40MB's
 
 ;; ========================
 ;; Ido (easily find files & open buffers with fuzzy matching)
