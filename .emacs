@@ -950,6 +950,7 @@
  ;; If there is more than one, they won't work right.
  '(browse-url-browser-function (quote eww-browse-url))
  '(calendar-week-start-day 1)
+ '(markdown-preview-port 8080)
  '(package-selected-packages
    (quote
     (sos log4j-mode org-jekyll nose magit-svn magit xcscope smart-compile company-c-headers company-statistics company sphinx-doc jedi auto-complete php-mode erlang flycheck smart-mode-line smex fill-column-indicator use-package))))
