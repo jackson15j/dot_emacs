@@ -338,6 +338,7 @@
   (fci-mode)  ;; adds fill column indicator.
   (auto-fill-mode)  ;; wraps at auto fill column.
   (flyspell-mode)
+  (linum-mode)  ; Line Numbers Mode
   (my_highlighted_words)  ;; highlight specific words
   )
 
@@ -531,7 +532,7 @@
   (progn
     (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
     (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-    (add-hook 'markdown-mode-hook 'my-programming-defaults-config)
+    (add-hook 'markdown-mode-hook 'my-text-mode-config)
     )
   )
 
@@ -774,6 +775,7 @@
     )
     (global-set-key "\C-cr" (lambda () (interactive) (org-capture nil "t")))
     (global-set-key "\C-cn" (lambda () (interactive) (org-capture nil "n")))
+    (add-hook 'org-mode-hook '(linum-mode -1))
   )
 )
 
