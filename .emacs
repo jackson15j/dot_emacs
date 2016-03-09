@@ -714,6 +714,7 @@
   :ensure t
   ;; :bind (
   ;;        ("<f9>" . compile)
+  ;;        ("C-c C-c" . compile)
   ;;        ;; ("M-." . semantic-ia-fast-jump)
   ;;        )
   :config
@@ -741,6 +742,7 @@
     (setq-default c-basic-offset 4)  ;; http://emacswiki.org/emacs/IndentingC
     (setq c-default-style "linux")  ;; http://cc-mode.sourceforge.net/html-manual/Built_002din-Styles.html#Built_002din-Styles
     )
+  (define-key c++-mode-map [remap comment-region] 'compile)  ;; C-c C-c
   )
 
 
