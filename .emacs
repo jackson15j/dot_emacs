@@ -374,10 +374,9 @@
   "Disabling config for *scratch* buffer."
   (interactive)
   (fci-mode -1)
-  (linum-mode -1)
   )
 (add-hook 'lisp-interaction-mode-hook 'my-scratch-mode-config)
-
+(add-hook 'my-scratch-mode-config-hook (lambda() (linum-mode 0)))
 
 ;; *****************************************************
 ;; *****************************************************
@@ -779,7 +778,7 @@
     )
     (global-set-key "\C-cr" (lambda () (interactive) (org-capture nil "t")))
     (global-set-key "\C-cn" (lambda () (interactive) (org-capture nil "n")))
-    (add-hook 'org-mode-hook '(linum-mode -1))
+    (add-hook 'org-mode-hook (lambda() (linum-mode 0)))
   )
 )
 
