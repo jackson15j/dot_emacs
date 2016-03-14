@@ -53,7 +53,7 @@
 '(flycheck-error-list-column-number ((t (:inherit font-lock-constant-face :background "blue"))))
 '(flycheck-warning ((t (:background "color-17" :underline (:color "DarkOrange" :style wave)))))
 '(calendar-week-start-day 1)
-'(compilation-scroll-output (quote first-error))
+(setq compilation-scroll-output 'first-error)
 
 ;; *****************************************************
 ;; *****************************************************
