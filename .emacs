@@ -756,6 +756,17 @@
   (define-key c++-mode-map [remap comment-region] 'compile)  ;; C-c C-c
   )
 
+(use-package clang-format
+  ;; Applies clang-format to C++ files based on a .clang-format file in the
+  ;; project.
+  ;; requires `clang-format` to be installed from system package manger.
+  :ensure t
+  :config
+  (progn
+    (define-key c++-mode-map (kbd "C-c #") 'clang-format-region)
+    )
+  )
+
 
 ;; *****************************************************
 ;; *****************************************************
