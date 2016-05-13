@@ -374,6 +374,7 @@
   "Disabling config for *scratch* buffer."
   (interactive)
   (fci-mode -1)
+  (auto-fill-mode -1)
   )
 (add-hook 'lisp-interaction-mode-hook 'my-scratch-mode-config)
 (add-hook 'my-scratch-mode-config-hook (lambda() (linum-mode 0)))
