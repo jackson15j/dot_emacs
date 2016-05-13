@@ -550,6 +550,27 @@
     (add-hook 'dockerfile-mode-hook 'my-programming-defaults-config)
     )
   )
+
+;; *****************************************************
+;; *****************************************************
+;; YAML
+;; *****************************************************
+;; *****************************************************
+(use-package yaml-mode
+  :ensure t
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+    )
+  :init
+  (progn
+    (add-hook 'yaml-mode-hook 'my-programming-defaults-config)
+    (add-hook 'yaml-mode-hook
+              '(lambda ()
+                 (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+    )
+  )
+
 ;; *****************************************************
 ;; *****************************************************
 ;; Json programming
