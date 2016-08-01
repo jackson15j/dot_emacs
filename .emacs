@@ -517,6 +517,7 @@
   :config
   (progn
     (add-hook 'groovy-mode-hook 'my-programming-defaults-config)
+    (add-to-list 'auto-mode-alist '("jenkinsfile\\'" . groovy-mode))
     )
   )
 
