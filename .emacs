@@ -762,7 +762,7 @@
     ;; clang++ -g3 -Wall -std=c++11 -stdlib=libc++ -lc++ *.cpp
     (add-to-list 'smart-compile-alist '("\\.[Cc]+[Pp]*\\'" . "clang++ -g3 -Wall -std=c++11 -stdlib=libc++ -lc++ -o %n.out *.cpp"))
     (add-hook 'c++-mode-hook 'my-programming-defaults-config)
-    (setq-default c-basic-offset 4)  ;; http://emacswiki.org/emacs/IndentingC
+    (setq c-basic-offset 4)  ;; http://emacswiki.org/emacs/IndentingC
     (setq c-default-style "linux")  ;; http://cc-mode.sourceforge.net/html-manual/Built_002din-Styles.html#Built_002din-Styles
     )
   (define-key c++-mode-map [remap comment-region] 'compile)  ;; C-c C-c
