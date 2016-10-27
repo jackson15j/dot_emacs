@@ -975,6 +975,19 @@
 
 
 ;; ========================
+;; iRFC (Download & View RFC's)
+;; ========================
+(use-package irfc
+  :ensure t
+  :config
+  (progn
+    (setq
+     irfc-directory "~/Downloads/rfcs/"
+     irfc-assoc-mode t)
+    )
+  )
+
+;; ========================
 ;; Load extra dot files (if they exist)
 ;; ========================
 (let () (dolist (dot_emacs '("~/configs/emacs/private_dot_emacs.el"
