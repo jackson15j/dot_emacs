@@ -440,6 +440,39 @@
 '(magit-item-highlight ((t nil)) t)
 
 
+
+;; *****************************************************
+;; *****************************************************
+;; Code Completion.
+;; *****************************************************
+;; *****************************************************
+(use-package company
+  ;; Completion
+  :ensure t
+  :config
+  (progn
+    ;; Enable company mode in every programming mode.
+    (add-hook 'prog-mode-hook 'global-company-mode)
+    (setq company-tooltip-limit 20) ; bigger popup window
+    (setq company-idle-delay .3)    ; decrease delay before autocompletion popup shows
+
+    (bind-keys :map company-active-map
+               ("C-n" . company-select-next)
+               ([(tab)] . company-complete)
+               )
+    ;; (setq company-backends (delete 'company-semantic company-backends))
+
+    (use-package company-statistics
+      ;; Rate completions by use.
+      :ensure t
+      :config
+      (add-hook 'after-init-hook 'company-statistics-mode)
+      )
+    )
+  )
+
+
+
 ;; *****************************************************
 ;; *****************************************************
 ;; Lisp programming
@@ -623,48 +656,7 @@
     ;;  )
     ; http://www.emacswiki.org/emacs/ProgrammingWithPythonDotEl#toc1
     ;; (add-hook 'python-mode-hook '(lambda () (define-key python-mode-map "\C-m" 'newline-and-indent)))  ; maintain indentation on newline
-    (use-package auto-complete
-      :ensure t
-      :config
-      (progn
-        (setq
-         ac-candidate-limit 20
-         auto-complete-mode t
-         ;; TODO: I think latest auto-complete no longer needs the ac-flyspell-workaround.
-         ;; Need to find out if this is stated in the auto-complete changelogs. Was getting
-         ;; an incorrect number of arguments 'setq 5'.
-         ;; Or it could possibly be a use-package change and it just needs to be changed to
-         ;; 'ac-flyspell-workaround t'.
-         ;; Not in python code atm, so on the backburner for now.
-         ;; ac-flyspell-workaround
-         ; https://stackoverflow.com/questions/11484225/fix-an-auto-complete-mode-and-linum-mode-annoyance
-         ;; ac-linum-workaround   ; fix linum jumping characters around.
-         )
-        (add-to-list 'ac-sources 'ac-source-jedi-direct)
-        (add-hook 'python-mode-hook 'jedi:setup)
-        )
-      )
-    (use-package jedi
-      :ensure t
-      :init
-      (progn
-        (jedi:install-server)
-        )
-      :config
-      (progn
-        (jedi:setup)
-        (jedi:ac-setup)
-        (setq
-         jedi:tooltip-method nil
-         jedi:get-in-function-call-delay 100
-         jedi:complete-on-dot t)
-        (set-face-attribute 'jedi:highlight-function-argument nil
-                            :foreground "green")
-        (define-key python-mode-map (kbd "C-c C-d") 'jedi:show-doc)
-        (define-key python-mode-map (kbd "C-c C-l") 'jedi:get-in-function-call)
-        (define-key python-mode-map (kbd "C-c .") 'jedi:key-goto-definition)
-        )
-      )
+
     (use-package sphinx-doc
       ; https://github.com/naiquevin/sphinx-doc.el
       ; C-c M-d, to auto generate sphinx docs for current function.
@@ -676,6 +668,28 @@
                                       (sphinx-doc-mode t)))
         )
       )
+
+    (use-package company-jedi
+      ;; Complete python via jedi-core and company.
+      ;; Since we're using this package we don't need `jedi`, which is based
+      ;; on `auto-complete`. Now we're fully `company-mode`.
+      :ensure t
+      :init
+      (add-hook 'python-mode-hook (lambda() (add-to-list 'company-backends 'company-jedi)))
+      :config
+      (progn
+        (setq
+         jedi:tooltip-method nil
+         jedi:get-in-function-call-delay 100
+         jedi:complete-on-dot t)
+        (set-face-attribute 'jedi:highlight-function-argument nil
+                            :foreground "green")
+        (define-key python-mode-map (kbd "C-c C-d") 'jedi:show-doc)
+        (define-key python-mode-map (kbd "C-c C-l") 'jedi:get-in-function-call)
+        (define-key python-mode-map (kbd "C-c .") 'jedi:key-goto-definition)
+        )
+      )
+
     )
   )
 ;; ========================
@@ -706,41 +720,6 @@
     (split-string (buffer-string) "\n" t)))
 
 
-(use-package company
-  ;; Completion
-  :ensure t
-  :config
-  (progn
-    (add-hook 'c-mode-hook 'company-mode)
-    (add-hook 'c++-mode-hook 'company-mode)
-    (setq company-tooltip-limit 20) ; bigger popup window
-    (setq company-idle-delay .3)    ; decrease delay before autocompletion popup shows
-
-    (bind-keys :map company-active-map
-               ("C-n" . company-select-next)
-               ([(tab)] . company-complete)
-               )
-    ;; (setq company-backends (delete 'company-semantic company-backends))
-
-    (use-package company-c-headers
-      ;; Complete c-headers
-      :ensure t
-      :config
-      (progn
-        ;; (add-to-list 'company-c-headers-path-system "/usr/include/c++/4.8.2/")
-        ;; (add-to-list 'company-c-headers-path-system "/usr/include/c++/4.8/")
-        (add-to-list 'company-backends 'company-c-headers)
-      )
-    (use-package company-statistics
-      ;; Rate completions by use.
-      :ensure t
-      :config
-      (add-hook 'after-init-hook 'company-statistics-mode)
-      )
-    )
-  )
-)
-
 (use-package cc-mode
   ;; gdb on mac:
   ;; brew tap homebrew/dupes && brew install gdb
@@ -753,8 +732,10 @@
   ;;        )
   :config
   (progn
+
     (use-package smart-compile
       :ensure t)
+
     (use-package xcscope
       ;; Use cscope files within emacs, to jump around C/C++ code.
       ;; https://github.com/dkogan/xcscope.el
@@ -767,6 +748,14 @@
       (define-key c++-mode-map [remap c-set-style] 'cscope-find-this-symbol)  ;; C-c .
       ;; Note etags search defaults to: M-.
       )
+
+    (use-package company-c-headers
+      ;; Complete c-headers
+      :ensure t
+      :config
+      (push 'company-c-headers company-backends)
+      )
+
     ;; cc-mode general settings.
 
     ;; g++-4.9 -g3 -Wall -std=c++11 -stdlib=libc++ -lc++ *.cpp
