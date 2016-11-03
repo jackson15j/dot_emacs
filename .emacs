@@ -500,9 +500,10 @@
 ; ibuffer to get full list.
 (use-package projectile
   :ensure t
-  :init (
-         projectile-mode
-         recentf-mode)  ; enables projectile-recentf mode for recent files.
+  :init
+  (progn
+    (projectile-mode)
+    (recentf-mode))  ; enables projectile-recentf mode for recent files.
   :config
   (progn
 
