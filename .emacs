@@ -472,6 +472,48 @@
   )
 
 
+;; *****************************************************
+;; *****************************************************
+;; Handle Projects.
+;; *****************************************************
+;; *****************************************************
+; Been getting more annoyed at not using daemon mode on my main box and
+; connecting with emacsclients. Due to work, I use quite a few git-worktree's
+; of the same repo. The problem would be accidentally cross editing files
+; across the different worktree's (Hence not using daemon mode, and instead
+; just running up multiple `emacs --debug-init` sessions for each worktree.
+;
+; Let's have a go at banishing this behaviour:
+;
+; * Projectile: Allows for project focus (git repo), whilst also doing fuzzy
+;   file searching across the entire project (Nice!)
+; * Perspective: Allows for workspaces that when switched to, return the
+;   buffers to their original state. Also focuses down the `ido` buffer to the
+;   open buffers in that workspace (Nice!)
+; * persp-projectile: Combines Projectile and Perspective so that switching
+;   projects gives you the Perspective buffer change behaviour (Much nicer than
+;   Projectile's insistence that you want to always open a new file but also
+;   keep old buffers hanging around).
+;
+; NOTE: Projectile state is not saved in `desktop-save`.
+; NOTE: Perspective mode with IDO only show's files in project, so have to use
+; ibuffer to get full list.
+(use-package projectile
+  :ensure t
+  :init (recentf-mode)  ; enables projectile-recentf mode for recent files.
+  :config
+  (progn
+
+    (use-package perspective
+      :ensure t
+      :init (persp-mode)
+      )
+
+    (use-package persp-projectile
+      :ensure t)
+    )
+  )
+
 
 ;; *****************************************************
 ;; *****************************************************
