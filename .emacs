@@ -990,6 +990,7 @@
 ;; email support (mu4e, with mbsync for maildir syncing.
 ;; *****************************************************
 ;; *****************************************************
+;; NOTE: Pushed out account contexts to personal file.
 ;; Incomplete list of sources:
 ;;
 ;; * http://www.djcbsoftware.nl/code/mu/mu4e.html
@@ -1011,30 +1012,17 @@
 (setq
  mu4e-maildir "~/mail"
  ;; mu4e-maildir (expand-file-name "~/mail")
- mu4e-drafts-folder "/Drafts"
- mu4e-sent-folder "/Sent Items"
- mu4e-trash-folder "/Deleted Items"
  ;;rename files when moving
  ;;NEEDED FOR MBSYNC
  mu4e-change-filenames-when-moving t
- mu4e-get-mail-command "mbsync -a"
  ;; General config.
  mu4e-update-interval 120
  mu4e-headers-auto-update t
  mu4e-view-show-images t
- ;; Shortcuts ("j<shortcut>", j=Jump).
- mu4e-maildir-shortcuts
- '(
-   ("/INBOX" . ?i)
-   ("/Sent Items" . ?s)
-   ("/Drafts" . ?d)
-   ("/Deleted Items" . ?t)
-   )
 ;; show full addresses in view message (instead of just names)
 ;; toggle per name with M-RET
  mu4e-view-show-addresses t
  )
-
 (add-to-list 'mu4e-view-actions '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 (add-hook 'mu4e-index-updated-hook
     (lambda()
@@ -1045,6 +1033,7 @@
 ;; uncomment one of these on old mu/emacs versions (0.9.9.6, 24.x).
 ;; (setq mu4e-html2text-command "html2text -utf8 -width 120")  ;; requires apt-get html2text
 ;; (setq mu4e-html2text-command "w3m -T text/html")
+
 
 
 ;; *****************************************************
