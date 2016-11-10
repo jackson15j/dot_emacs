@@ -997,13 +997,19 @@
 ;; * http://pragmaticemacs.com/emacs/migrating-from-offlineimap-to-mbsync-for-mu4e/ - old style mbsync config.
 ;; * http://www.macs.hw.ac.uk/~rs46/posts/2014-01-13-mu4e-email-client.html
 
+;; First Steps:
+;; * Download mail via mbsync.
+;; * run: mu index -m ~/mail/<account>
+;; * Now you can use mu4e.
 ;; TODO: find a package manager with mu/mu4e in it (if there is a non-system level way).
 ;; TODO: Swap for use-package format.
 ;; uncomment on old ubuntu installs.
 ;; (add-to-list 'load-path "/usr/share/emacs24/site-lisp/mu4e")  ;; requires apt-get maildir-utils mu4e
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")  ;; arch location.
 (require 'mu4e)
 ;; location of my maildir.
 (setq
+ mu4e-maildir "~/mail"
  ;; mu4e-maildir (expand-file-name "~/mail")
  mu4e-drafts-folder "/Drafts"
  mu4e-sent-folder "/Sent Items"
@@ -1024,8 +1030,12 @@
    ("/Drafts" . ?d)
    ("/Deleted Items" . ?t)
    )
+;; show full addresses in view message (instead of just names)
+;; toggle per name with M-RET
+ mu4e-view-show-addresses t
  )
 
+(add-to-list 'mu4e-view-actions '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 ;; FIXME: html2text is garbage for bitbucket emails. Latest version is native eww.
 ;; uncomment one of these on old mu/emacs versions (0.9.9.6, 24.x).
 ;; (setq mu4e-html2text-command "html2text -utf8 -width 120")  ;; requires apt-get html2text
