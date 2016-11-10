@@ -1000,7 +1000,7 @@
 
 ;; First Steps:
 ;; * Download mail via mbsync.
-;; * run: mu index -m ~/mail/<account>
+;; * run: mu index -m ~/mail/  ; need to do root folder for mu/mu4e to separate out the accounts!!
 ;; * Now you can use mu4e.
 ;; TODO: find a package manager with mu/mu4e in it (if there is a non-system level way).
 ;; TODO: Swap for use-package format.
@@ -1008,6 +1008,11 @@
 ;; (add-to-list 'load-path "/usr/share/emacs24/site-lisp/mu4e")  ;; requires apt-get maildir-utils mu4e
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")  ;; arch location.
 (require 'mu4e)
+;; Show mu4e maildirs summary in mu4e-main-view
+;; https://github.com/agpchil/mu4e-maildirs-extension
+(use-package mu4e-maildirs-extension
+  :ensure t
+  :init (mu4e-maildirs-extension))
 ;; location of my maildir.
 (setq
  mu4e-maildir "~/mail"
