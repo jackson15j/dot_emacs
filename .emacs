@@ -1031,7 +1031,7 @@
 (add-to-list 'mu4e-view-actions '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 (add-hook 'mu4e-index-updated-hook
     (lambda()
-      (djcb-popup "mu4e" "You have new mail!"
+      (djcb-popup "mu4e" (concat "You have new mail at: " user-mail-address)
         "/usr/share/icons/gnome/32x32/status/mail-unread.png"
         "/usr/share/sounds/purple/alert.wav")))
 ;; FIXME: html2text is garbage for bitbucket emails. Latest version is native eww.
