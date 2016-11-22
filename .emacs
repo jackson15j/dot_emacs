@@ -1024,9 +1024,12 @@
  mu4e-update-interval 120
  mu4e-headers-auto-update t
  mu4e-view-show-images t
-;; show full addresses in view message (instead of just names)
-;; toggle per name with M-RET
+ ;; show full addresses in view message (instead of just names)
+ ;; toggle per name with M-RET
  mu4e-view-show-addresses t
+ ;; If you’re using a dark theme, and the messages are hard to read, it can
+ ;; help to change the luminosity, e.g.:
+ shr-color-visible-luminance-min 80
  )
 (add-to-list 'mu4e-view-actions '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 (add-hook 'mu4e-index-updated-hook
