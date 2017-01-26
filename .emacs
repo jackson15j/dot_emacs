@@ -463,6 +463,7 @@
     (add-hook 'prog-mode-hook 'global-company-mode)
     (setq company-tooltip-limit 20) ; bigger popup window
     (setq company-idle-delay .3)    ; decrease delay before autocompletion popup shows
+    (setq company-auto-complete nil) ; don't auto complete words when I'm hitting space to move on.
 
     (bind-keys :map company-active-map
                ("C-n" . company-select-next)
@@ -1097,6 +1098,7 @@
     (setq
      irfc-directory "~/Downloads/rfcs/"
      irfc-assoc-mode t)
+    (add-to-list 'auto-mode-alist '(".*rfc\\d+\\.txt\\'" . irfc-mode))
     )
   )
 
