@@ -1049,7 +1049,12 @@
 ;; (setq mu4e-html2text-command "html2text -utf8 -width 120")  ;; requires apt-get html2text
 ;; (setq mu4e-html2text-command "w3m -T text/html")
 
-
+;; bookmarks
+(add-to-list 'mu4e-bookmarks
+  (make-mu4e-bookmark
+    :name  "Big messages"
+    :query "size:5M..500M"
+    :key ?b))
 
 ;; *****************************************************
 ;; *****************************************************
