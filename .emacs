@@ -1141,6 +1141,10 @@ a sound to be played"
 ;; ========================
 ;; Mingus (MPD client)
 ;; ========================
+;; MPD references:
+;; * https://github.com/dakrone/eos/blob/master/eos-music.org
+;; * https://wiki.archlinux.org/index.php/Music_Player_Daemon
+;; * https://wiki.archlinux.org/index.php/Ncmpcpp
 (use-package mingus
   :ensure t
   :bind (("<f9>" . mingus-toggle)))
