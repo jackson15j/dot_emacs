@@ -1135,6 +1135,13 @@ a sound to be played"
 ;;             "/usr/share/sounds/purple/alert.wav")
 
 
+
+;; ========================
+;; Mingus (MPD client)
+;; ========================
+(use-package mingus
+  :ensure t)
+
 ;; *****************************************************
 ;; *****************************************************
 ;; emacs auto configured items from: M-x customize (DON'T TOUCH!!)
