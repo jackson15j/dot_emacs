@@ -1142,7 +1142,8 @@ a sound to be played"
 ;; Mingus (MPD client)
 ;; ========================
 (use-package mingus
-  :ensure t)
+  :ensure t
+  :bind (("<f9>" . mingus-toggle)))
 
 ;; *****************************************************
 ;; *****************************************************
