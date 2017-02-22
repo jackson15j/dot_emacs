@@ -1104,7 +1104,6 @@
     (setq
      irfc-directory "~/Downloads/rfcs/"
      irfc-assoc-mode t)
-    (add-to-list 'auto-mode-alist '(".*rfc\\d+\\.txt\\'" . irfc-mode))
     )
   )
 
