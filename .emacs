@@ -148,6 +148,12 @@
 (setq ispell-list-command "list")
 ; #TODO: ispell integration to auto-complete
 
+;; ========================
+;; Lookup dictionary definitions.
+;; ========================
+;; `M-x dictionary-search` look up word definition.
+(use-package dictionary
+  :ensure t)
 
 
 
