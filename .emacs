@@ -1049,8 +1049,8 @@
 (add-hook 'mu4e-index-updated-hook
     (lambda()
       (djcb-popup "mu4e" (concat "You have new mail at: " user-mail-address)
-        "/usr/share/icons/gnome/32x32/status/mail-unread.png"
-        "/usr/share/sounds/purple/alert.wav")))
+                  nil
+                  "/usr/share/icons/gnome/32x32/status/mail-unread.png")))
 ;; FIXME: html2text is garbage for bitbucket emails. Latest version is native eww.
 ;; uncomment one of these on old mu/emacs versions (0.9.9.6, 24.x).
 ;; (setq mu4e-html2text-command "html2text -utf8 -width 120")  ;; requires apt-get html2text
@@ -1122,22 +1122,30 @@
 
 ;; Showing pop-ups
 ;; http://emacs-fu.blogspot.com/2009/11/showing-pop-ups.html
-(defun djcb-popup (title msg &optional icon sound)
-  "Show a popup if we're on X, or echo it otherwise; TITLE is the title
-of the message, MSG is the context. Optionally, you can provide an ICON and
-a sound to be played"
+(defun djcb-popup (title msg &optional timeout icon sound)
+  "Show a popup if we're on X, or echo it otherwise; TITLE is the
+title of the message, MSG is the context. Optionally, you can
+provide a timeout (milliseconds, default=5000) an ICON and a
+sound to be played (default=/../alert.wav)"
   (interactive)
-  (when sound (shell-command
-               (concat "mplayer -really-quiet " sound " 2> /dev/null")))
-  (if (eq window-system 'x)
-      (shell-command (concat "notify-send "
-                             (if icon (concat "-i " icon) "")
-                             " '" title "' '" msg "'"))
-    ;; text only version
-    (message (concat title ": " msg))))
+  (shell-command
+   (concat "mplayer -really-quiet "
+           (if sound sound "/usr/share/sounds/purple/alert.wav")
+           " 2> /dev/null"))
+  ;; Removed `(if (eq window-system 'x)` check since it wasn't doing the
+  ;; notify-send on my terminal emacs session nested in tmux in a terminal
+  ;; under cinnamon.
+  (shell-command (concat "notify-send"
+                         (if icon (concat " -i " icon) "")
+                         (if timeout (concat " -t " timeout) " -t 5000")
+                         " '" title "' '" msg "'"))
+  ;; text only version
+  (message (concat title ": " msg)))
+
 
 ;; Run example:
 ;; (djcb-popup "Warning" "The end is near"
+;;             nil
 ;;             "/usr/share/icons/gnome/128x128/apps/libreoffice-base.png"
 ;;             "/usr/share/sounds/purple/alert.wav")
 
