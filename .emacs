@@ -1122,6 +1122,11 @@
 
 ;; Showing pop-ups
 ;; http://emacs-fu.blogspot.com/2009/11/showing-pop-ups.html
+;;
+;; TODO: figure out why the built in `notifications` package doesn't play
+;; sounds:
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Desktop-Notifications.html,
+;; since this would be nicer to move to a standardised package.
 (defun djcb-popup (title msg &optional timeout icon sound)
   "Show a popup if we're on X, or echo it otherwise; TITLE is the
 title of the message, MSG is the context. Optionally, you can
