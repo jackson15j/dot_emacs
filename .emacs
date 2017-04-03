@@ -1062,62 +1062,55 @@
 ;; * Now you can use mu4e.
 ;; TODO: find a package manager with mu/mu4e in it (if there is a non-system level way).
 ;; Ubuntu requires apt-get maildir-utils mu4e.
-(dolist
-    ;; Check we have mu4e on the system before we try to configure it in emacs.
-    ;; Real DIRTY code that returns true on **all** found paths. Good enough
-    ;; for now since I'm only planning to put in a path for each OS I use.
-    (my-mu4e-paths
-     '("/usr/share/emacs24/site-lisp/mu4e"  ;; ubuntu.
-       "/usr/share/emacs/site-lisp/mu4e"  ;; arch.
-       ))
-  (when (file-directory-p my-mu4e-paths)
-    (use-package mu4e
-      :load-path my-mu4e-paths
-      :config
-      (progn
-        (setq
-         mu4e-maildir "~/mail"  ;; location of my maildir.
-         ;; mu4e-maildir (expand-file-name "~/mail")
-         ;;rename files when moving
-         ;;NEEDED FOR MBSYNC
-         mu4e-change-filenames-when-moving t
-         ;; General config.
-         mu4e-update-interval 120
-         mu4e-headers-auto-update t
-         mu4e-view-show-images t
-         ;; show full addresses in view message (instead of just names)
-         ;; toggle per name with M-RET
-         mu4e-view-show-addresses t
-         ;; If you’re using a dark theme, and the messages are hard to read, it can
-         ;; help to change the luminosity, e.g.:
-         shr-color-visible-luminance-min 80
-         )
-        )
-      (add-to-list 'mu4e-view-actions '("ViewInBrowser" . mu4e-action-view-in-browser) t)
-      (add-hook 'mu4e-index-updated-hook
-                (lambda()
-                  (djcb-popup "mu4e" (concat "You have new mail at: " user-mail-address)
-                              nil
-                              "/usr/share/icons/gnome/32x32/status/mail-unread.png")))
-      ;; FIXME: html2text is garbage for bitbucket emails. Latest version is native eww.
-      ;; uncomment one of these on old mu/emacs versions (0.9.9.6, 24.x).
-      ;; (setq mu4e-html2text-command "html2text -utf8 -width 120")  ;; requires apt-get html2text
-      ;; (setq mu4e-html2text-command "w3m -T text/html")
+(use-package mu4e
+  :load-path "/usr/share/emacs/site-lisp/mu4e"  ;; arch.
+  :config
+  (progn
+    (setq
+     mu4e-maildir "~/mail"  ;; location of my maildir.
+     ;; mu4e-maildir (expand-file-name "~/mail")
+     ;;rename files when moving
+     ;;NEEDED FOR MBSYNC
+     mu4e-change-filenames-when-moving t
+     ;; General config.
+     mu4e-update-interval 120
+     mu4e-headers-auto-update t
+     mu4e-view-show-images t
+     ;; show full addresses in view message (instead of just names)
+     ;; toggle per name with M-RET
+     mu4e-view-show-addresses t
+     ;; If you’re using a dark theme, and the messages are hard to read, it can
+     ;; help to change the luminosity, e.g.:
+     shr-color-visible-luminance-min 80
+     )
+    )
+  (add-to-list 'mu4e-view-actions '("ViewInBrowser" . mu4e-action-view-in-browser) t)
+  (add-hook 'mu4e-index-updated-hook
+            (lambda()
+              (djcb-popup "mu4e" (concat "You have new mail at: " user-mail-address)
+                          nil
+                          "/usr/share/icons/gnome/32x32/status/mail-unread.png")))
+  ;; FIXME: html2text is garbage for bitbucket emails. Latest version is native eww.
+  ;; uncomment one of these on old mu/emacs versions (0.9.9.6, 24.x).
+  ;; (setq mu4e-html2text-command "html2text -utf8 -width 120")  ;; requires apt-get html2text
+  ;; (setq mu4e-html2text-command "w3m -T text/html")
 
-      ;; bookmarks
+  ;; bookmarks
+  (if (fboundp 'make-mu4e-bookmark)
+      ;; if `mu/mu4e` is modern enough that it has the `make-mu4e-bookmark`
+      ;; variable, then add my custom bookmark.
+      ;; http://ergoemacs.org/emacs/elisp_check_defined.html.
       (add-to-list 'mu4e-bookmarks
                    (make-mu4e-bookmark
                     :name  "Big messages"
                     :query "size:5M..500M"
-                    :key ?b))
+                    :key ?b)))
 
-      (use-package mu4e-maildirs-extension
-        ;; Show mu4e maildirs summary in mu4e-main-view
-        ;; https://github.com/agpchil/mu4e-maildirs-extension
-        :ensure t
-        :init (mu4e-maildirs-extension))
-      )
-    )
+  (use-package mu4e-maildirs-extension
+    ;; Show mu4e maildirs summary in mu4e-main-view
+    ;; https://github.com/agpchil/mu4e-maildirs-extension
+    :ensure t
+    :init (mu4e-maildirs-extension))
   )
 
 
