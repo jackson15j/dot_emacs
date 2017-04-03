@@ -685,6 +685,22 @@
 
 ;; *****************************************************
 ;; *****************************************************
+;; REST Client
+;; *****************************************************
+;; *****************************************************
+;; Run up a rest client in emacs to quickly test APIs
+;; * http://emacsrocks.com/e15.html
+;; * https://github.com/pashky/restclient.el
+;;
+;; Eg. Run (`C-cC-c`) the following in an empty buffer with restclient-mode on:
+;; GET https://api.github.com
+;; User-Agent: Emacs Restclient
+(use-package restclient
+  :ensure t
+    :mode ("\\.restclient\\'" . restclient-mode))
+
+;; *****************************************************
+;; *****************************************************
 ;; Python IDE stuff
 ;; *****************************************************
 ;; *****************************************************
