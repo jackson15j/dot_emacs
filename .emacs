@@ -626,6 +626,10 @@
     )
   )
 
+;; Convert html code to markdown.
+(use-package html-to-markdown
+  :ensure t)
+
 ;; *****************************************************
 ;; *****************************************************
 ;; Dockerfile
