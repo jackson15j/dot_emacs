@@ -899,10 +899,6 @@
     (setq
      org-directory "~/org/"
      org-default-notes-file "~/org/notes.org"
-     ;; agenda items. (http://orgmode.org/worg/org-tutorials/orgtutorial_dto.html).
-     my-agendas (list "~/org/projects.org"
-                      "~/org/todo.org"
-                      "~/org/notes.org")
      ;; refile level.
      ;; http://www.millingtons.eclipse.co.uk/glyn/dotemacs.html
      org-refile-targets (quote
@@ -910,10 +906,14 @@
                           ("~/org/projects.org" :maxlevel . 2)))
      org-log-done t
      )
-    (loop for agenda in my-agendas do
-      (if (file-exists-p agenda)
-          (add-to-list 'org-agenda-files agenda)
-        (message "Could not find: %s" agenda)))
+    ;; agenda items. (http://orgmode.org/worg/org-tutorials/orgtutorial_dto.html).
+    (dolist (my-agendas '("~/org/projects.org"
+                          "~/org/todo.org"
+                          "~/org/notes.org"))
+      (loop for agenda in my-agendas do
+            (if (file-exists-p agenda)
+                (add-to-list 'org-agenda-files agenda)
+              (message "Could not find: %s" agenda))))
 
     (global-set-key "\C-cr" (lambda () (interactive) (org-capture nil "t")))
     (global-set-key "\C-cn" (lambda () (interactive) (org-capture nil "n")))
