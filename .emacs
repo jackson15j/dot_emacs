@@ -148,6 +148,12 @@
 (setq ispell-list-command "list")
 ; #TODO: ispell integration to auto-complete
 
+;; ========================
+;; Lookup dictionary definitions.
+;; ========================
+;; `M-x dictionary-search` look up word definition.
+(use-package dictionary
+  :ensure t)
 
 
 
@@ -1082,14 +1088,19 @@
 (add-hook 'mu4e-index-updated-hook
     (lambda()
       (djcb-popup "mu4e" (concat "You have new mail at: " user-mail-address)
-        "/usr/share/icons/gnome/32x32/status/mail-unread.png"
-        "/usr/share/sounds/purple/alert.wav")))
+                  nil
+                  "/usr/share/icons/gnome/32x32/status/mail-unread.png")))
 ;; FIXME: html2text is garbage for bitbucket emails. Latest version is native eww.
 ;; uncomment one of these on old mu/emacs versions (0.9.9.6, 24.x).
 ;; (setq mu4e-html2text-command "html2text -utf8 -width 120")  ;; requires apt-get html2text
 ;; (setq mu4e-html2text-command "w3m -T text/html")
 
-
+;; bookmarks
+(add-to-list 'mu4e-bookmarks
+  (make-mu4e-bookmark
+    :name  "Big messages"
+    :query "size:5M..500M"
+    :key ?b))
 
 ;; *****************************************************
 ;; *****************************************************
@@ -1132,7 +1143,6 @@
     (setq
      irfc-directory "~/Downloads/rfcs/"
      irfc-assoc-mode t)
-    (add-to-list 'auto-mode-alist '(".*rfc\\d+\\.txt\\'" . irfc-mode))
     )
   )
 
@@ -1151,25 +1161,50 @@
 
 ;; Showing pop-ups
 ;; http://emacs-fu.blogspot.com/2009/11/showing-pop-ups.html
-(defun djcb-popup (title msg &optional icon sound)
-  "Show a popup if we're on X, or echo it otherwise; TITLE is the title
-of the message, MSG is the context. Optionally, you can provide an ICON and
-a sound to be played"
+;;
+;; TODO: figure out why the built in `notifications` package doesn't play
+;; sounds:
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Desktop-Notifications.html,
+;; since this would be nicer to move to a standardised package.
+(defun djcb-popup (title msg &optional timeout icon sound)
+  "Show a popup if we're on X, or echo it otherwise; TITLE is the
+title of the message, MSG is the context. Optionally, you can
+provide a timeout (milliseconds, default=5000) an ICON and a
+sound to be played (default=/../alert.wav)"
   (interactive)
-  (when sound (shell-command
-               (concat "mplayer -really-quiet " sound " 2> /dev/null")))
-  (if (eq window-system 'x)
-      (shell-command (concat "notify-send "
-                             (if icon (concat "-i " icon) "")
-                             " '" title "' '" msg "'"))
-    ;; text only version
-    (message (concat title ": " msg))))
+  (shell-command
+   (concat "mplayer -really-quiet "
+           (if sound sound "/usr/share/sounds/purple/alert.wav")
+           " 2> /dev/null"))
+  ;; Removed `(if (eq window-system 'x)` check since it wasn't doing the
+  ;; notify-send on my terminal emacs session nested in tmux in a terminal
+  ;; under cinnamon.
+  (shell-command (concat "notify-send"
+                         (if icon (concat " -i " icon) "")
+                         (if timeout (concat " -t " timeout) " -t 5000")
+                         " '" title "' '" msg "'"))
+  ;; text only version
+  (message (concat title ": " msg)))
+
 
 ;; Run example:
 ;; (djcb-popup "Warning" "The end is near"
+;;             nil
 ;;             "/usr/share/icons/gnome/128x128/apps/libreoffice-base.png"
 ;;             "/usr/share/sounds/purple/alert.wav")
 
+
+
+;; ========================
+;; Mingus (MPD client)
+;; ========================
+;; MPD references:
+;; * https://github.com/dakrone/eos/blob/master/eos-music.org
+;; * https://wiki.archlinux.org/index.php/Music_Player_Daemon
+;; * https://wiki.archlinux.org/index.php/Ncmpcpp
+(use-package mingus
+  :ensure t
+  :bind (("<f9>" . mingus-toggle)))
 
 ;; *****************************************************
 ;; *****************************************************
