@@ -1,0 +1,53 @@
+---
+- hosts: 0.0.0.0
+  connection: local
+  tasks:
+    - name: Get repo base path
+      command: git rev-parse --show-toplevel
+      register: repo_base_path
+
+    - set_fact:
+        base_path: '{{repo_base_path.stdout}}/'
+
+    - name: Symlink .emacs config to user home directory
+      file:
+        src: '{{base_path}}.emacs'
+        dest: '~/.emacs'
+        state: link
+        force: yes  # See: https://github.com/ansible/ansible/issues/7627
+
+    - name: Update & upgrade pacman once at start of ansible
+      # http://docs.ansible.com/ansible/become.html
+      become: true
+      become_method: sudo  # requires running with --ask-become-pass.
+      # https://docs.ansible.com/ansible/pacman_module.html
+      pacman:
+        update_cache: yes
+        upgrade: yes
+
+    - name: Install Emacs package
+      become: true
+      become_method: sudo
+      pacman:
+        name: emacs
+        state: latest
+
+    - name: Install dependencies in .emacs
+      become: true
+      become_method: sudo
+      pacman:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - aspell  # spell checking.
+        - aspell-en  # spell checking.
+        - html2text  # mu4e.
+        - mplayer  # djcb-popup notifications.
+        - libnotify  # djcb-popup notifications.
+
+    - name: Install AUR dependencies in .emacs
+      become: true
+      become_method: sudo
+      aur: name="{{item}}" tool=yaourt
+      with_items:
+        - mu-git  # mu4e. Pacman AUR.
