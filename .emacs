@@ -43,6 +43,10 @@
   (nconc load-path orig-load-path))
 
 
+(use-package server
+  :config
+  (server-start))
+
 ;; *****************************************************
 ;; Bug-Hunter: Debug lisp files
 ;; *****************************************************
