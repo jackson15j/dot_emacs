@@ -1,6 +1,6 @@
 ---
-- hosts: 0.0.0.0
-  connection: local
+- name: Running Emacs ansible playbook...
+  hosts: localhost
   tasks:
     - name: Get repo base path
       command: git rev-parse --show-toplevel
