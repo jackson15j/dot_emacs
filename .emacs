@@ -634,11 +634,29 @@
     (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
     (add-hook 'markdown-mode-hook 'my-text-mode-config)
     )
-  )
 
-;; Convert html code to markdown.
-(use-package html-to-markdown
-  :ensure t)
+  (use-package flymd
+    ; https://github.com/mola-T/flymd/blob/master/browser.md. Live preview
+    ; markdown changes in the browser. Much better than `markdown-preview`.
+    :ensure t
+    :init
+    (defun my-flymd-browser-function (url)
+      "flymd is broken on Chrome based browsers so going with
+Option 1: use Firefox
+instead. https://github.com/mola-T/flymd/blob/master/browser.md"
+      (let ((browse-url-browser-function 'browse-url-firefox))
+        (browse-url url)))
+    :config
+    (setq flymd-browser-open-function 'my-flymd-browser-function)
+    (add-hook 'markdown-mode-hook 'flymd-flyit)
+    )
+
+
+  (use-package html-to-markdown
+    ;; Convert html code to markdown.
+    :ensure t)
+
+  )
 
 ;; *****************************************************
 ;; *****************************************************
