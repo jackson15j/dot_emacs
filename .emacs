@@ -931,7 +931,8 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
   :ensure t
   :bind (
 	 ("C-c l" . org-store-link)
-	 ("C-c a" . org-agenda))
+	 ("C-c a" . org-agenda)
+     ("C-c c" . org-capture))
   :init
   (progn
     (setq
