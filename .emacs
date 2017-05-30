@@ -1118,9 +1118,15 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
      ;; show full addresses in view message (instead of just names)
      ;; toggle per name with M-RET
      mu4e-view-show-addresses t
+     ;; http://www.djcbsoftware.nl/code/mu/mu4e/Displaying-rich_002dtext-messages.html
      ;; If you’re using a dark theme, and the messages are hard to read, it can
      ;; help to change the luminosity, e.g.:
-     shr-color-visible-luminance-min 80
+     ;; shr-color-visible-luminance-min 80
+     ;;
+     ;; Occasionally got emails that were completely white, so had to tend to
+     ;; 0 to make them legibly, however this made other html emails white. 20
+     ;; seems a good compromise.
+     shr-color-visible-luminance-min 20
      )
     )
   (add-to-list 'mu4e-view-actions '("ViewInBrowser" . mu4e-action-view-in-browser) t)
