@@ -647,7 +647,11 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
       (let ((browse-url-browser-function 'browse-url-firefox))
         (browse-url url)))
     :config
-    (setq flymd-browser-open-function 'my-flymd-browser-function)
+    (setq
+     flymd-browser-open-function 'my-flymd-browser-function
+     flymd-close-buffer-delete-temp-files t
+     flymd-output-directory "/tmp/"
+     )
     (add-hook 'markdown-mode-hook 'flymd-flyit)
     )
 
