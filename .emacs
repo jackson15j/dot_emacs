@@ -923,6 +923,38 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
 
 ;; *****************************************************
 ;; *****************************************************
+;; Java IDE stuff
+;; *****************************************************
+;; *****************************************************
+;; https://writequit.org/eos/eos-java.html
+;; https://github.com/dakrone/emacs-java-imports
+;; https://github.com/mopemope/meghanada-emacs
+(use-package meghanada
+  :ensure t
+  :init
+  (add-hook 'java-mode-hook #'meghanada-mode)
+  (add-hook 'java-mode-hook 'flycheck-mode)
+  (add-hook 'java-mode-hook 'my-programming-defaults-config)
+  )
+
+(use-package mvn
+  :ensure t
+  :init
+  ;; Correctly colourise the compilation buffer for maven calls.
+  ;; https://github.com/apg/mvn-el
+  (ignore-errors
+    (require 'ansi-color)
+    (defun colorize-compilation-buffer ()
+      (when (eq major-mode 'compilation-mode)
+        (let ((inhibit-read-only t))
+          (if (boundp 'compilation-filter-start)
+              (ansi-color-apply-on-region compilation-filter-start (point))))))
+    (add-hook 'compilation-filter-hook 'colorize-compilation-buffer))
+  )
+
+
+;; *****************************************************
+;; *****************************************************
 ;; Org Mode
 ;; *****************************************************
 ;; *****************************************************
