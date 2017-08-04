@@ -263,15 +263,14 @@
 (use-package smart-mode-line
   :ensure t
   :init
-  (progn
-    (setq sml/no-confirm-load-theme t)
-    (setq sml/theme 'dark)
-    (sml/setup)
-    (setq sml/name-width `55)
-    (setq sml/mode-width `full)
-    (column-number-mode 1)
+  (setq
+   sml/no-confirm-load-theme t
+   sml/theme 'dark
+   sml/mode-width `full
+   )
+  (sml/setup)
+  (column-number-mode t)
   )
-)
 
 
 
