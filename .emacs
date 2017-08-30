@@ -651,7 +651,9 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
      flymd-close-buffer-delete-temp-files t
      flymd-output-directory "/tmp/"
      )
-    (add-hook 'markdown-mode-hook 'flymd-flyit)
+    ;; Removed hook, since I don't want every markdown file to open in the
+    ;; browser.
+    ;; (add-hook 'markdown-mode-hook 'flymd-flyit)
     )
 
 
