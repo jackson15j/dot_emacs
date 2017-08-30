@@ -661,6 +661,10 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
     ;; Convert html code to markdown.
     :ensure t)
 
+  (use-package markdown-toc
+    ;; https://github.com/ardumont/markdown-toc
+    ;; Used to generate a table of contents in a markdown file.
+    :ensure t)
   )
 
 ;; *****************************************************
