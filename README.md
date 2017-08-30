@@ -12,7 +12,10 @@ to the `-K` or `--ask-become-pass` flag:
 
 ```bash
 cd ansible/
- ansible-playbook main.yml -i hosts -K
+ ansible-playbook main.yml -K
 ```
+
+You can add `-i hosts` if you want to run against remote hosts instead of
+locally.
 
 **Note:** Hard-coded to ArchLinux and my own needs.
