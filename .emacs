@@ -516,22 +516,16 @@
 ; NOTE: Projectile state is not saved in `desktop-save`.
 ; NOTE: Perspective mode with IDO only show's files in project, so have to use
 ; ibuffer to get full list.
+;
+; https://github.com/bbatsov/projectile
+; https://github.com/nex3/perspective-el
+; https://github.com/bbatsov/persp-projectile
 (use-package projectile
   :ensure t
   :init
   (progn
     (projectile-mode)
-    (recentf-mode))  ; enables projectile-recentf mode for recent files.
-  :config
-  (progn
-
-    (use-package perspective
-      :ensure t
-      :init (persp-mode)
-      )
-
-    (use-package persp-projectile
-      :ensure t)
+    (recentf-mode)  ; enables projectile-recentf mode for recent files.
     )
   )
 
