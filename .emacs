@@ -934,6 +934,8 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
   (add-hook 'java-mode-hook #'meghanada-mode)
   (add-hook 'java-mode-hook 'flycheck-mode)
   (add-hook 'java-mode-hook 'my-programming-defaults-config)
+  ;; Java warnings stop compilation scrolling, so let's always scroll.
+  (add-hook 'java-mode-hook (lambda() compilation-scroll-output t))
   )
 
 (use-package mvn
