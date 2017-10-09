@@ -1305,6 +1305,23 @@ sound to be played (default=/../alert.wav)"
   :ensure t
   :bind (("<f9>" . mingus-toggle)))
 
+
+;; wiki.archlinux.org/index.php/EXWM
+;; FIXME: convert to `use-package` format.
+(require 'exwm)
+(require 'exwm-config)
+(exwm-config-default)
+
+(require 'exwm-randr)
+(setq exwm-randr-workspace-output-plist '(1 "eDP1" 2 "HDMI2"))
+(add-hook 'exwm-randr-screen-change-hook
+          (lambda ()
+            (start-process-shell-command
+             "xrandr" nil "xrandr --output eDP1 --below HDMI2 --auto")))
+(exwm-randr-enable)
+
+(exwm-enable)
+
 ;; *****************************************************
 ;; *****************************************************
 ;; emacs auto configured items from: M-x customize (DON'T TOUCH!!)
