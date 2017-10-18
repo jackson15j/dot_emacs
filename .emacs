@@ -555,6 +555,13 @@
   (progn
     (projectile-mode)
     (recentf-mode)  ; enables projectile-recentf mode for recent files.
+    ; https://github.com/bbatsov/projectile/issues/1183
+    ; Projectile now scrapes all files to discover project type for modeline.
+    ; This is calculated on every cursor movement, so lags emacs like crazy.
+    ; Below is the workaround to disable this until it is fixed.
+    (setq projectile-mode-line
+         '(:eval (format " Projectile[%s]"
+                        (projectile-project-name))))
     )
   )
 
