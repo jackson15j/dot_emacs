@@ -381,6 +381,7 @@
   (which-function-mode)  ;; Display current function in mode line. (http://emacsredux.com/blog/2014/04/05/which-function-mode/)
   (linum-mode)  ; Line Numbers Mode
   (my_highlighted_words)  ;; highlight specific words
+  (show-paren-mode 1)  ;; highlight matching brackets
   )
 (add-hook 'sh-mode-hook 'my-programming-defaults-config)
 
