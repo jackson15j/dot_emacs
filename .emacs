@@ -64,7 +64,7 @@
 '(flycheck-error-list-column-number ((t (:inherit font-lock-constant-face :background "blue"))))
 '(flycheck-warning ((t (:background "color-17" :underline (:color "DarkOrange" :style wave)))))
 '(calendar-week-start-day 1)
-(setq compilation-scroll-output 'first-error)
+(setq compilation-scroll-output 't)
 '(browse-url-browser-function (quote browse-url-default-browser))  ; Use system default browser instead of eww.
 
 ;; *****************************************************
