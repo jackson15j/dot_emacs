@@ -1339,7 +1339,18 @@ sound to be played (default=/../alert.wav)"
 ;; * https://wiki.archlinux.org/index.php/Ncmpcpp
 (use-package mingus
   :ensure t
-  :bind (("<f9>" . mingus-toggle)))
+  :bind
+  (
+   ("C-c m" . mingus)
+   ("<f9>" . mingus-toggle)
+   ("C-<f12>" . mingus-prev)
+   ("<f12>" . mingus-next)
+   ; "C-<f2>
+   ("M-[ 1 ; 5 q" . mingus-vol-down)
+   ; "C-<f3>
+   ("M-[ 1 ; 5 r" . mingus-vol-up)
+   )
+  )
 
 
 ;; wiki.archlinux.org/index.php/EXWM
