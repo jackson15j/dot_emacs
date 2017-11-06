@@ -972,6 +972,8 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
   (add-hook 'java-mode-hook 'my-programming-defaults-config)
   ;; Java warnings stop compilation scrolling, so let's always scroll.
   (add-hook 'java-mode-hook (lambda() compilation-scroll-output t))
+  ;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Indenting-switch-statements.html
+  (c-set-offset 'case-label '+)
   )
 
 (use-package mvn
