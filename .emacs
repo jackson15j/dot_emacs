@@ -961,6 +961,14 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
 ;; Java IDE stuff
 ;; *****************************************************
 ;; *****************************************************
+(defun my-java-mode-syntax ()
+  "Hook for my tweaks to 'java-mode'."
+  (interactive)
+  ;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Indenting-switch-statements.html
+  (c-set-offset 'case-label '+)  ; A "case" or "default" label.
+  (c-set-offset 'brace-list-entry '++)  ; Subsequent lines in an enum or static array list.
+  )
+
 ;; https://writequit.org/eos/eos-java.html
 ;; https://github.com/dakrone/emacs-java-imports
 ;; https://github.com/mopemope/meghanada-emacs
@@ -972,8 +980,7 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
   (add-hook 'java-mode-hook 'my-programming-defaults-config)
   ;; Java warnings stop compilation scrolling, so let's always scroll.
   (add-hook 'java-mode-hook (lambda() compilation-scroll-output t))
-  ;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Indenting-switch-statements.html
-  (c-set-offset 'case-label '+)
+  (add-hook 'java-mode-hook 'my-java-mode-syntax)
   )
 
 (use-package mvn
