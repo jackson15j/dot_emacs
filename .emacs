@@ -1360,6 +1360,14 @@ sound to be played (default=/../alert.wav)"
    )
   )
 
+;; ========================
+;; md4rd (Reddit client)
+;; ========================
+;; https://github.com/ahungry/md4rd
+(use-package md4rd
+  :ensure t
+  )
+
 
 ;; wiki.archlinux.org/index.php/EXWM
 ;; FIXME: convert to `use-package` format.
