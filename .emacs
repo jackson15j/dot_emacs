@@ -1045,6 +1045,30 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
 )
 
 
+
+;; http://cestlaz.github.io/posts/using-emacs-26-gcal/
+(use-package calfw
+  :ensure t
+  :bind
+  (
+   ("<f8>" . cfw:open-org-calendar)
+   )
+  :config
+  (progn
+    (use-package calfw-gcal
+      :ensure t)
+
+    (use-package calfw-ical
+      :ensure t)
+
+    (use-package calfw-org
+      :ensure t)
+    )
+  ;; FIXME: what does this do??
+  (setq cfw:org-overwrite-default-keybinding t)
+  )
+
+
 ;; ========================
 ;; Github blog
 ;; ========================
