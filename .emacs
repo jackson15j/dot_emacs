@@ -964,6 +964,7 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
   (add-hook 'java-mode-hook 'my-programming-defaults-config)
   ;; Java warnings stop compilation scrolling, so let's always scroll.
   (add-hook 'java-mode-hook (lambda() compilation-scroll-output t))
+  (add-hook 'java-mode-hook (lambda () compile-command "cd $(git rev-parse --show-toplevel) && mvn clean verify"))
   (add-hook 'java-mode-hook 'my-java-mode-syntax)
   )
 
