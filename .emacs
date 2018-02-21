@@ -951,6 +951,7 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
   ;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Indenting-switch-statements.html
   (c-set-offset 'case-label '+)  ; A "case" or "default" label.
   (c-set-offset 'brace-list-entry '++)  ; Subsequent lines in an enum or static array list.
+  (c-set-offset `arglist-intro `+)  ; function fields on a new line.
   )
 
 ;; https://writequit.org/eos/eos-java.html
