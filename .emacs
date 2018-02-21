@@ -1170,6 +1170,7 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
 ;; Ubuntu requires apt-get maildir-utils mu4e.
 (use-package mu4e
   :load-path "/usr/share/emacs/site-lisp/mu4e"  ;; arch.
+  :bind (("<f7>" . mu4e))
   :config
   (progn
     (setq
