@@ -462,22 +462,6 @@
       :ensure t
       :config
       (magithub-feature-autoinject t)
-      ;; Handle both Github and Github Enterprise repos.
-      ;; Also requires:
-      ;; * github and github-enterprise creds in `~/.authinfo.gpg`.
-      ;; * `[hub]\n    host = "github-enterpise.domain.com"` in github-enterprise
-      ;;   `.git/config`. See:
-      ;;     * `magithub-github-repository-p` in `magithub-core.el`.
-      ;;     * https://github.com/vermiculus/magithub/issues/119.
-      ;;     * https://github.com/vermiculus/magithub/pull/123.
-      ;;     * https://github.com/magit/ghub/issues/26.
-      (add-hook 'magit-status-mode-hook '(lambda ()
-                                           (if (magithub-github-repository-p)
-                                               (let-alist (magithub--parse-url (magit-get "remote" (magithub-source--remote) "url"))
-                                                 (if (string-equal "github.com" .domain)
-                                                     (setq ghub-base-url "https://api.github.com")
-                                                   (setq ghub-base-url (concat "https://" .domain "/api/v3")))))))
-
       (add-hook 'magithub-issue-post-mode-hook 'flyspell-mode)
       )
 
