@@ -1276,17 +1276,6 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
     )
   )
 
-;; ========================
-;; Load extra dot files (if they exist)
-;; ========================
-(let () (dolist (dot_emacs '("~/configs/emacs/private_dot_emacs.el"
-                             "~/configs/emacs/unstable_config_dot_emacs.el"
-                             "~/configs/emacs/work_specific_dot_emacs.el"))
-          "Loading my extra emacs dot files if they exist."
-          (when (file-exists-p dot_emacs)
-            (message (concat "Loading external dot file: " dot_emacs))
-            (load-file dot_emacs))))
-
 
 
 ;; Showing pop-ups
@@ -1363,6 +1352,19 @@ sound to be played (default=/../alert.wav)"
 (exwm-randr-enable)
 
 (exwm-enable)
+
+
+;; ========================
+;; Finally; Load extra dot files (if they exist)
+;; ========================
+(let () (dolist (dot_emacs '("~/configs/emacs/private_dot_emacs.el"
+                             "~/configs/emacs/unstable_config_dot_emacs.el"
+                             "~/configs/emacs/work_specific_dot_emacs.el"))
+          "Loading my extra emacs dot files if they exist."
+          (when (file-exists-p dot_emacs)
+            (message (concat "Loading external dot file: " dot_emacs))
+            (load-file dot_emacs))))
+
 
 ;; *****************************************************
 ;; *****************************************************
