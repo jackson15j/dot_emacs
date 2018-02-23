@@ -1195,7 +1195,9 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
 ;; Ubuntu requires apt-get maildir-utils mu4e.
 (use-package mu4e
   :load-path "/usr/share/emacs/site-lisp/mu4e"  ;; arch.
-  :bind (("<f7>" . mu4e))
+  ;; FIXME: Cannot set keyboard variable like this, whilst my mu4e-contexts are
+  ;; in a private file. Dies on startup with (void-function make-mu4e-context).
+  ; :bind (("<f7>" . mu4e))
   :config
   (progn
     (setq
