@@ -1263,18 +1263,19 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
   )
 
 
-;; ========================
-;; iRFC (Download & View RFC's)
-;; ========================
-(use-package irfc
-  :ensure t
-  :config
-  (progn
-    (setq
-     irfc-directory "~/Downloads/rfcs/"
-     irfc-assoc-mode t)
-    )
-  )
+;; FIXME: appears to not exist anymore.
+;; ;; ========================
+;; ;; iRFC (Download & View RFC's)
+;; ;; ========================
+;; (use-package irfc
+;;   :ensure t
+;;   :config
+;;   (progn
+;;     (setq
+;;      irfc-directory "~/Downloads/rfcs/"
+;;      irfc-assoc-mode t)
+;;     )
+;;   )
 
 
 
