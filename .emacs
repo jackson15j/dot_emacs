@@ -1088,33 +1088,6 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
 (org-add-link-type "img" 'org-custom-link-img-follow 'org-custom-link-img-export)
 
 
-(use-package org-jekyll
-  :ensure org-jekyll)
-
-(setq org-publish-project-alist
-      `(
-        ("jackson15j-org"
-         :base-directory "~/org/github_blog/"
-         :base-extension "org"
-         :publishing-directory "~/github_blog/"
-         :recursive t
-         :site-root "http://jackson15j.github.io/"
-         :publishing-function org-html-publish-to-html ;org-publish-org-to-html
-         :headline-levels 6
-         :html-extension "html"
-         :body-only t
-         :section-numbers nil
-         :table-of-contents nil
-         :author "Craig Astill")
-        ("jackson15j-static"
-         :base-directory "~/org/github_blog/"
-         :base-extension "css\\|js\\|png\\|jpg\\|jpeg\\|ico\\|gif\\|pdf\\|mp3\\|flac\\|ogg\\|swf\\|php\\|markdown\\|md\\|html\\|htm\\|sh\\|xml\\|gz\\|bz2\\|vcf\\|zip\\|txt\\|tex\\|otf\\|ttf\\|eot\\|rb\\|yml\\|htaccess\\|gitignore"
-         :publishing-directory "~/github_blog/"
-         :recursive t
-         :publishing-function org-publish-attachment)
-        ("jackson15j-blog" :components ("jackson15j-org" "jackson15j-static"))
-        )
-      )
 
 ; TODO: fix up, or move to beamer??
 ;; ========================
