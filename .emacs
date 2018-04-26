@@ -1005,6 +1005,7 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
   (progn
     (setq
      org-directory "~/org/"
+     org-agenda-files (list "~/org/")
      org-default-notes-file "~/org/notes.org"
      ;; refile level.
      ;; http://www.millingtons.eclipse.co.uk/glyn/dotemacs.html
@@ -1012,39 +1013,23 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
                          ((org-agenda-files :maxlevel . 5)
                           ("~/org/projects.org" :maxlevel . 2)))
      org-log-done t
+     org-capture-templates '(
+                             ("t" "Todo" entry (file+headline "~/org/todo.org" "UNSORTED")
+                              "* TODO %?\n %U - %i\n  %a")
+                             ("p" "Project" entry (file+headline "~/org/projects.org" "UNSORTED")
+                              "* TODO %?\n %U - %i\n  %a")
+                             ("b" "Buy" entry (file+headline "~/org/buy.org" "UNSORTED")
+                              "* TODO %?\n %U - %i\n  %a")
+                             ("n" "Notes" entry (file+headline "~/org/notes.org" "UNSORTED")
+                              "* TODO %?\n %U - %i\n  %a")
+                             )
      )
-    ;; agenda items. (http://orgmode.org/worg/org-tutorials/orgtutorial_dto.html).
-    (dolist (my-agendas '("~/org/projects.org"
-                          "~/org/todo.org"
-                          "~/org/notes.org"))
-      (loop for agenda in my-agendas do
-            (if (file-exists-p agenda)
-                (add-to-list 'org-agenda-files agenda)
-              (message "Could not find: %s" agenda))))
 
     (global-set-key "\C-cr" (lambda () (interactive) (org-capture nil "t")))
     (global-set-key "\C-cn" (lambda () (interactive) (org-capture nil "n")))
     (add-hook 'org-mode-hook (lambda() (linum-mode 0)))
   )
 )
-
-(use-package remember
-  :ensure t
-  :init
-  (progn
-    ;; remember templates.
-    (setq org-capture-templates
-	  '(("t" "Todo" entry (file+headline "~/org/todo.org" "INBOX")
-	     "* TODO %?\n %U - %i\n  %a")
-	    ("p" "Project" entry (file+headline "~/org/projects.org" "INBOX")
-	     "* TODO %?\n %U - %i\n  %a")
-	    ("n" "Notes" entry (file+headline "~/org/notes.org" "Tasks")
-	     "* TODO %?\n %U - %i\n  %a")
-	    )
-     )
-  )
-)
-
 
 
 ;; http://cestlaz.github.io/posts/using-emacs-26-gcal/
