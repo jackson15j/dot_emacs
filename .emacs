@@ -226,6 +226,7 @@
 ;; Desktop - Auto save tabs.
 ;; ========================
 (use-package desktop                    ; Save buffers, windows and frames
+  :ensure t
   :init (desktop-save-mode)
   :config
   (progn
