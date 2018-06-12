@@ -70,6 +70,8 @@
 (menu-bar-mode -1)  ;; Disable Menu Bar
 (fset 'yes-or-no-p 'y-or-n-p)  ;; yes/no -> y/n
 (load-theme 'wombat t)
+; (display-time)  ;; Time in modeline. Un-comment to enable.
+(display-battery-mode t)  ;; Battery in modeline. Un-comment to enable.
 (setq large-file-warning-threshold (* 40 1024 1024))  ;; large files shouting from 40MB's
 
 ;; Temp directories
