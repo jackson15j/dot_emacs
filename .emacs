@@ -9,28 +9,21 @@
 ;; as per: https://www.gnu.org/software/emacs/manual/html_node/emacs/Hooks.html
 
 ;;; Code:
+
+;; *****************************************************
+;; *****************************************************
+;; use-package, melpa and debugging bootstrapping.
+;; *****************************************************
+;; *****************************************************
+
 ;; Please don't load outdated byte code
 (setq load-prefer-newer t)
 
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-
 (package-initialize)
-
-;; Bootstrap `use-package'
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-(require 'use-package)
-
-
-
-(setq debug-on-error t)
-;; *****************************************************
 ;; Elisp file paths
-;; *****************************************************
 ;; http://www.emacswiki.org/emacs/InstallingPackages
 ;; http://xahlee.org/emacs/emacs_installing_packages.html
 (add-to-list 'load-path "~/.emacs.d/elpa/")
@@ -42,17 +35,26 @@
   (normal-top-level-add-subdirs-to-load-path)
   (nconc load-path orig-load-path))
 
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
 
-(use-package server
-  :config
-  (server-start))
-
+(setq debug-on-error t)
 ;; *****************************************************
 ;; Bug-Hunter: Debug lisp files
 ;; *****************************************************
 ;; https://github.com/Malabarba/elisp-bug-hunter
 (use-package bug-hunter
   :ensure t)
+
+(use-package server
+  :ensure t
+  :config
+  (server-start))
+
+
 
 ;; *****************************************************
 ;; *****************************************************
@@ -65,14 +67,18 @@
 '(flycheck-warning ((t (:background "color-17" :underline (:color "DarkOrange" :style wave)))))
 (setq calendar-week-start-day 1)
 (setq compilation-scroll-output 't)
+(menu-bar-mode -1)  ;; Disable Menu Bar
+(fset 'yes-or-no-p 'y-or-n-p)  ;; yes/no -> y/n
+(load-theme 'wombat t)
+(setq large-file-warning-threshold (* 40 1024 1024))  ;; large files shouting from 40MB's
 
-;; *****************************************************
-;; *****************************************************
-;; Text mode functions
-;; *****************************************************
-;; *****************************************************
-;; Highlight specific words.
-;; ========================
+;; Temp directories
+(setq temporary-file-directory "/tmp/")  ;; This lets me say where my temp dir is.
+(setq backup-directory-alist `((".*" . ,temporary-file-directory)))  ; http://www.emacswiki.org/emacs/BackupDirectory
+(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+
+;; Highlights
+(global-hl-line-mode 1)  ;; horizontal highlighted line on cursor.
 ;; http://www.emacswiki.org/emacs/EmacsNiftyTricks
 ;; http://emacs-fu.blogspot.com/2008/12/highlighting-todo-fixme-and-friends.html
 (defun my_highlighted_words ()
@@ -80,35 +86,25 @@
  (interactive)
   (font-lock-add-keywords nil
    '(("\\<\\(Note\\|NOTE\\|FIXME\\|Todo\\|TODO\\|BUG\\|Bug\\):" 1 '(:foreground "red" :weight bold) t))))
-
-
-(load-theme 'wombat t)
-;; ========================
-;; Highlight tabs in green.
-;; ========================
-;; http://emacswiki.org/emacs/ShowWhiteSpace#toc9
 (defface extra-whitespace-face '((t (:background "pale green")))
-  "Used for tabs and such.")
+  "Highlight in green. Used for tabs and such.
+
+   http://emacswiki.org/emacs/ShowWhiteSpace#toc9")
 (defvar my-extra-keywords '(("\t" . 'extra-whitespace-face)))
 
+;; White Space Mode
+;; http://ergoemacs.org/emacs/whitespace-mode.html
+;; make whitespace-mode use just basic coloring
+;(setq whitespace-style (quote (spaces tabs newline space-mark tab-mark newline-mark)))
+(setq whitespace-style (quote (trailing face)))
+(setq whitespace-display-mappings
+      '(
+        (space-mark 32 [183] [46]) ; normal space, ·
+        (newline-mark 10 [182 10]) ; newlne, ¶
+        (tab-mark 9 [9655 9] [92 9]) ; tab, ▷
+        ))
 
-;; ========================
-;; Temp directories.
-;; ========================
-(setq temporary-file-directory "/tmp/")  ;; This lets me say where my temp dir is.
-;; move backups & autosaves to system temp directory (http://www.emacswiki.org/emacs/BackupDirectory).
-(setq backup-directory-alist `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
-(menu-bar-mode -1)  ;; Disable Menu Bar
-(fset 'yes-or-no-p 'y-or-n-p)  ;; yes/no -> y/n
-
-;; ========================
-;; Higlight Line
-;; ========================
-(global-hl-line-mode 1)
-;; http://stackoverflow.com/questions/9990370/how-to-disable-hl-line-feature-in-specified-mode
-(add-hook 'ansi-term-hook (lambda () (global-hl-line-mode 0)))
 
 ;; ========================
 ;; Fill Column (used to reflow text automatically & highlight margins)
@@ -127,19 +123,6 @@
     (setq-default git-commit-fill-column 79))
 )
 
-;; ========================
-;; White Space Mode
-;; ========================
-;; http://ergoemacs.org/emacs/whitespace-mode.html
-;; make whitespace-mode use just basic coloring
-;(setq whitespace-style (quote (spaces tabs newline space-mark tab-mark newline-mark)))
-(setq whitespace-style (quote (trailing face)))
-(setq whitespace-display-mappings
-'(
-  (space-mark 32 [183] [46]) ; normal space, ·
-  (newline-mark 10 [182 10]) ; newlne, ¶
-  (tab-mark 9 [9655 9] [92 9]) ; tab, ▷
-))
 
 ;; ========================
 ;; spell checking (aspell)
@@ -149,7 +132,6 @@
 ; brew install aspell --with-lang-es --with-lang-uk --with-lang-en
 (setq ispell-program-name "aspell")
 (setq ispell-list-command "list")
-; #TODO: ispell integration to auto-complete
 
 ;; ========================
 ;; Lookup dictionary definitions.
@@ -214,7 +196,6 @@
 ;; File/Buffer Management.
 ;; *****************************************************
 ;; *****************************************************
-(setq large-file-warning-threshold (* 40 1024 1024))  ;; large files shouting from 40MB's
 
 ;; ========================
 ;; Ido (easily find files & open buffers with fuzzy matching)
@@ -335,6 +316,8 @@
             (kill-buffer buffer))
         ad-do-it))
     (ad-activate 'term-sentinel))
+
+  (add-hook 'ansi-term-hook (lambda () (global-hl-line-mode 0)))  ; http://stackoverflow.com/questions/9990370/how-to-disable-hl-line-feature-in-specified-mode
   )
 
 
