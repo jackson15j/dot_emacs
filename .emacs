@@ -483,6 +483,12 @@
       :config
       (add-hook 'after-init-hook 'company-statistics-mode)
       )
+
+    (use-package company-ansible
+      :ensure t
+      :config
+      (add-to-list 'company-backends 'company-ansible)
+      )
     )
   )
 
