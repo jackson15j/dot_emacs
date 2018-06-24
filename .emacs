@@ -936,14 +936,22 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
 ;; C# IDE stuff
 ;; *****************************************************
 ;; *****************************************************
-(use-package omnisharp
-  ;; github.com/OmniSharp/omnisharp-emacs
+(use-package csharp-mode
+  ;; https://jamiecollinson.com/blog/my-emacs-config/#c-1
   :ensure t
-  :init
-  (add-hook 'csharp-mode-hook 'omnisharp-mode)
-  :config
-  (push 'company-omnisharp company-backends)
+  :hook my-programming-defaults-config
   )
+
+(use-package omnisharp
+  ;; https://github.com/OmniSharp/omnisharp-emacs
+  ;; https://jamiecollinson.com/blog/my-emacs-config/#c-1
+  ;; https://www.tuicool.com/articles/22a2Ejb
+  ;; NOTE: Needs a project with a `.csproj` file to do completions. Done with:
+  ;; `dotnet new <project_type>`
+  :after company
+  :config
+  (add-hook 'csharp-mode-hook 'omnisharp-mode)
+  (add-to-list 'company-backends 'company-omnisharp))
 
 ;; *****************************************************
 ;; *****************************************************
