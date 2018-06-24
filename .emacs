@@ -939,7 +939,8 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
 (use-package csharp-mode
   ;; https://jamiecollinson.com/blog/my-emacs-config/#c-1
   :ensure t
-  :hook my-programming-defaults-config
+  :init
+  (add-hook 'csharp-mode-hook 'my-programming-defaults-config)
   )
 
 (use-package omnisharp
