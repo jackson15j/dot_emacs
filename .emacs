@@ -936,11 +936,22 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
 ;; C# IDE stuff
 ;; *****************************************************
 ;; *****************************************************
+(defun my-csharp-mode-syntax ()
+  "Hook for my tweaks to 'csharp-mode'."
+  (interactive)
+  ;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Indenting-switch-statements.html
+  ;; https://stackoverflow.com/questions/3954607/c-sharp-emacs-mode-questions-indentation-and-build#3956173
+  ;; http://kirste.userpage.fu-berlin.de/chemnet/use/info/cc-mode/cc-mode_6.html
+  ;; `C-cC-s` to see indent at point.
+  (c-set-offset `inline-open 0)  ; Stop brackets being indented further on a method.
+  )
+
 (use-package csharp-mode
   ;; https://jamiecollinson.com/blog/my-emacs-config/#c-1
   :ensure t
   :init
   (add-hook 'csharp-mode-hook 'my-programming-defaults-config)
+  (add-hook 'csharp-mode-hook 'my-csharp-mode-syntax)
   )
 
 (use-package omnisharp
