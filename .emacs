@@ -961,6 +961,11 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
   ;; NOTE: Needs a project with a `.csproj` file to do completions. Done with:
   ;; `dotnet new <project_type>`
   :after company
+  :bind
+  (
+   ("C-c f" . 'omnisharp-run-code-action-refactoring)  ; Refactor/missing_imports/etc...
+   ("C-c C-c" . 'recompile)
+   )
   :config
   (add-hook 'csharp-mode-hook 'omnisharp-mode)
   (add-to-list 'company-backends 'company-omnisharp))
