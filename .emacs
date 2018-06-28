@@ -965,6 +965,16 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
     :config
     (add-hook 'csharp-mode-hook 'omnisharp-mode)
     (add-to-list 'company-backends 'company-omnisharp))
+
+  (use-package coverlay
+    ;; https://github.com/twada/coverlay.el
+    ;; Coverage from an LCOV file.
+    ;; Watch a file via: `M-x coverlay-watch-file /path/to/lcov-file`. or:
+    ;; `C-c C-l w`.
+    :ensure t
+    :init
+    (setq coverlay:mark-tested-lines nil)
+    )
   )
 
 
