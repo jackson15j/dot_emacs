@@ -953,19 +953,20 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
   (add-hook 'csharp-mode-hook 'my-csharp-mode-syntax)
   ;; https://stackoverflow.com/questions/4608679/can-i-change-emacs-default-compile-command
   (add-hook 'csharp-mode-hook (lambda () (set (make-local-variable 'compile-command) "dotnet run")))
+
+  (use-package omnisharp
+    ;; https://github.com/OmniSharp/omnisharp-emacs
+    ;; https://jamiecollinson.com/blog/my-emacs-config/#c-1
+    ;; https://www.tuicool.com/articles/22a2Ejb
+    ;; NOTE: Needs a project with a `.csproj` file to do completions. Done with:
+    ;; `dotnet new <project_type>`
+    :after company
+    :bind ("C-c f" . 'omnisharp-run-code-action-refactoring)  ; Refactor/missing_imports/etc...
+    :config
+    (add-hook 'csharp-mode-hook 'omnisharp-mode)
+    (add-to-list 'company-backends 'company-omnisharp))
   )
 
-(use-package omnisharp
-  ;; https://github.com/OmniSharp/omnisharp-emacs
-  ;; https://jamiecollinson.com/blog/my-emacs-config/#c-1
-  ;; https://www.tuicool.com/articles/22a2Ejb
-  ;; NOTE: Needs a project with a `.csproj` file to do completions. Done with:
-  ;; `dotnet new <project_type>`
-  :after company
-  :bind ("C-c f" . 'omnisharp-run-code-action-refactoring)  ; Refactor/missing_imports/etc...
-  :config
-  (add-hook 'csharp-mode-hook 'omnisharp-mode)
-  (add-to-list 'company-backends 'company-omnisharp))
 
 ;; *****************************************************
 ;; *****************************************************
