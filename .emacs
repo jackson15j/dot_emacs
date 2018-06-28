@@ -680,9 +680,8 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
 (use-package dockerfile-mode
   :ensure t
   :init
-  (progn
-    (add-hook 'dockerfile-mode-hook 'my-programming-defaults-config)
-    )
+  (add-hook 'dockerfile-mode-hook 'my-programming-defaults-config)
+  (add-hook 'dockerfile-mode-hook (lambda () (set (make-local-variable 'compile-command) "docker build .")))
   )
 
 ;; *****************************************************
