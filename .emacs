@@ -952,7 +952,7 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
   (add-hook 'csharp-mode-hook 'my-programming-defaults-config)
   (add-hook 'csharp-mode-hook 'my-csharp-mode-syntax)
   ;; https://stackoverflow.com/questions/4608679/can-i-change-emacs-default-compile-command
-  (add-hook 'csharp-mode-hook (lambda () (set (make-local-variable 'compile-command) "dotnet run")))
+  (add-hook 'csharp-mode-hook (lambda () (set (make-local-variable 'compile-command) "cd $(git rev-parse --show-toplevel) && dotnet run")))
 
   (use-package omnisharp
     ;; https://github.com/OmniSharp/omnisharp-emacs
