@@ -751,7 +751,6 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
   :config
   (progn
     (add-hook 'python-mode-hook 'my-programming-defaults-config)
-    (add-hook 'python-mode-hook (lambda () (jedi-mode t)))
     ;; (setq
     ;;  python-indent-offset 4  ;; FIXME: With this all indenting is broken. Without a package moans that it is missing.
     ;;  )
@@ -777,30 +776,26 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
       :ensure t
       :hook (python-mode . pipenv-mode)
       :init
-      (add-hook 'python-mode-hook (lambda() (add-to-list 'company-backends 'company-jedi)))
       (setq
        pipenv-projectile-after-switch-function
        #'pipenv-projectile-after-switch-extended))
 
-    (use-package company-jedi
-      ;; Complete python via jedi-core and company.
-      ;; Since we're using this package we don't need `jedi`, which is based
-      ;; on `auto-complete`. Now we're fully `company-mode`.
+    (use-package anaconda-mode
+      ;; https://github.com/proofit404/anaconda-mode/
+      ;; Even though Anaconda is based off Jedi, it seems to _"just work"_ for
+      ;; me on my current latest python3, compared to `jedi` + `company-jedi.`
       :ensure t
-      :init
-      (add-hook 'python-mode-hook (lambda() (add-to-list 'company-backends 'company-jedi)))
+      )
+
+    (use-package company-anaconda
+      ;; https://github.com/proofit404/company-anaconda
+      ;; `M-?` for docs.
+      :ensure t
+      :after company
       :config
-      (progn
-        (setq
-         jedi:tooltip-method nil
-         jedi:get-in-function-call-delay 100
-         jedi:complete-on-dot t)
-        (set-face-attribute 'jedi:highlight-function-argument nil
-                            :foreground "green")
-        (define-key python-mode-map (kbd "C-c C-d") 'jedi:show-doc)
-        (define-key python-mode-map (kbd "C-c C-l") 'jedi:get-in-function-call)
-        (define-key python-mode-map (kbd "C-c .") 'jedi:key-goto-definition)
-        )
+      (add-hook 'python-mode-hook 'anaconda-mode)
+      (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+      (add-to-list 'company-backends 'company-anaconda)
       )
 
     )
