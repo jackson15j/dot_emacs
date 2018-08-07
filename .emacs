@@ -740,53 +740,6 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
 ;; *****************************************************
 ;; *****************************************************
 ;; ========================
-;; Python Virtual Env
-;; ========================
-;; https://github.com/jorgenschaefer/pyvenv
-;; for tracking and auto virt_env loading, I need to add the following to a
-;; .dir-locals.el file at the root of a project:
-;; ((python-mode . ((pyvenv-workon . "<virt_env>))))
-;; (use-package pyvenv
-;;   :ensure t
-;;   ;; FIXME: Need to do a buffer reload after pyvenv-workon. Add a hook.
-;;   )
-
-;; ;; http://cestlaz.github.io/posts/using-emacs-27-shell/#.WL2fFV7iphH
-;; (use-package virtualenvwrapper
-;;   :ensure t
-;;   :config
-;;   (progn
-;;     (setq
-;;      venv-location "~/virt_envs/"
-;;      ; Show virtualenv in eshell.
-;;      eshell-prompt-function 'my-eshell-prompt
-;;      )
-;;     )
-;;   (venv-initialize-interactive-shells)
-;;   (venv-initialize-eshell)
-;;   )
-
-;; (defun pwd-replace-home (pwd)
-;;   "Replace home in PWD with tilde (~) character."
-;;   (interactive)
-;;   (let* ((home (expand-file-name (getenv "HOME")))
-;;          (home-len (length home)))
-;;     (if (and
-;;          (>= (length pwd) home-len)
-;;          (equal home (substring pwd 0 home-len)))
-;;         (concat "~" (substring pwd home-len))
-;;       pwd)))
-
-;; (defun my-eshell-prompt ()
-;;   "Change prompt to from default of: `~/path/ $ `, to also have virtualenv."
-;;   (concat
-;;    (pwd-replace-home(eshell/pwd))
-;;    (if venv-current-name (concat " [" venv-current-name "]"))
-;;    " $ "
-;;    )
-;;   )
-
-;; ========================
 ;; python.el
 ;; ========================
 ;; http://www.emacswiki.org/emacs/ProgrammingWithPythonDotEl
@@ -798,8 +751,6 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
   :config
   (progn
     (add-hook 'python-mode-hook 'my-programming-defaults-config)
-    (add-hook 'python-mode-hook (lambda () (pyvenv-mode t)))
-    (add-hook 'python-mode-hook (lambda () (pyvenv-tracking-mode t)))
     (add-hook 'python-mode-hook (lambda () (jedi-mode t)))
     ;; (setq
     ;;  python-indent-offset 4  ;; FIXME: With this all indenting is broken. Without a package moans that it is missing.
@@ -818,6 +769,18 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
                                       (sphinx-doc-mode t)))
         )
       )
+
+    (use-package pipenv
+      ;; https://github.com/pwalsh/pipenv.el
+      ;; The replacement to `virtualenv`.
+      ;; Do `C-cC-pa` or `M-x pipenv-activate` to start a projects pipenv.
+      :ensure t
+      :hook (python-mode . pipenv-mode)
+      :init
+      (add-hook 'python-mode-hook (lambda() (add-to-list 'company-backends 'company-jedi)))
+      (setq
+       pipenv-projectile-after-switch-function
+       #'pipenv-projectile-after-switch-extended))
 
     (use-package company-jedi
       ;; Complete python via jedi-core and company.
