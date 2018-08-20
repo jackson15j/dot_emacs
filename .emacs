@@ -526,6 +526,7 @@
 ; https://github.com/bbatsov/persp-projectile
 (use-package projectile
   :ensure t
+  :bind ("C-c p" . 'projectile-command-map)
   :init
   (progn
     (projectile-mode)
