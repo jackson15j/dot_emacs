@@ -1189,15 +1189,16 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
   ;; (setq mu4e-html2text-command "w3m -T text/html")
 
   ;; bookmarks
-  (if (fboundp 'make-mu4e-bookmark)
-      ;; if `mu/mu4e` is modern enough that it has the `make-mu4e-bookmark`
-      ;; variable, then add my custom bookmark.
-      ;; http://ergoemacs.org/emacs/elisp_check_defined.html.
-      (add-to-list 'mu4e-bookmarks
-                   (make-mu4e-bookmark
-                    :name  "Big messages"
-                    :query "size:5M..500M"
-                    :key ?b)))
+  (add-to-list 'mu4e-bookmarks
+               (make-mu4e-bookmark
+                :name  "Big messages"
+                :query "size:5M..500M"
+                :key ?b))
+  (add-to-list 'mu4e-bookmarks
+               (make-mu4e-bookmark
+                :name  "Starred messages"
+                :query "flag:flagged"
+                :key ?s))
 
   (use-package mu4e-maildirs-extension
     ;; Show mu4e maildirs summary in mu4e-main-view
