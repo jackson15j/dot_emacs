@@ -404,6 +404,7 @@
      flycheck-highlighting-mode 'lines
      flycheck-display-errors-delay 0.0
      flycheck-flake8-maximum-complexity 10
+     flycheck-flake8rc "setup.cfg"
      flycheck-highlighting-mode (quote lines)
      ;; Set the standard library to libc++ so that C++11 headers will work
      flycheck-clang-standard-library "libc++"
