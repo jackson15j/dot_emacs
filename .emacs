@@ -838,7 +838,7 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
   :bind (
          ;; ("<f9>" . compile)
          ([remap comment-region] . 'recompile)  ; "C-c C-c"
-         ;; ("M-." . semantic-ia-fast-jump)
+         ("M-." . 'xref-find-definitions)  ; https://www.emacswiki.org/emacs/EmacsTags
          )
   :config
   (progn
@@ -922,6 +922,7 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
     ;; `dotnet new <project_type>`
     :after company
     :bind (
+           # FIXME: Make these not global to C++ !!
            ("C-c f" . 'omnisharp-run-code-action-refactoring)  ; Refactor/missing_imports/etc...
            ("M-." . 'omnisharp-go-to-definition)
            )
