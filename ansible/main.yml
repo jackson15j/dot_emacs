@@ -44,10 +44,4 @@
         - html2text  # mu4e.
         - mplayer  # djcb-popup notifications.
         - libnotify  # djcb-popup notifications.
-
-    - name: Install AUR dependencies in .emacs
-      # become: true
-      # become_method: sudo
-      aur: name="{{item}}" tool=yaourt
-      with_items:
-        - mu-git  # mu4e. Pacman AUR.
+        - mu  # mu4e. Pacman AUR.
