@@ -88,16 +88,14 @@
  (interactive)
   (font-lock-add-keywords nil
    '(("\\<\\(Note\\|NOTE\\|FIXME\\|Todo\\|TODO\\|BUG\\|Bug\\):" 1 '(:foreground "red" :weight bold) t))))
-(defface extra-whitespace-face '((t (:background "pale green")))
-  "Highlight in green. Used for tabs and such.
-
-   http://emacswiki.org/emacs/ShowWhiteSpace#toc9")
-(defvar my-extra-keywords '(("\t" . 'extra-whitespace-face)))
 
 ;; White Space Mode
 ;; http://ergoemacs.org/emacs/whitespace-mode.html
 ;; make whitespace-mode use just basic coloring
 ;(setq whitespace-style (quote (spaces tabs newline space-mark tab-mark newline-mark)))
+; Highlight tabs green.
+(modify-face whitespace-tab nil "color-22")
+(setq whitespace-style '(face tabs))
 (setq whitespace-style (quote (trailing face)))
 (setq whitespace-display-mappings
       '(
@@ -338,7 +336,6 @@
   (interactive)
   (whitespace-mode)  ;; highlights whitespace.
   (my_highlighted_words)  ;; highlights specific words in red & bold.
-  (lambda () (font-lock-add-keywords nil my-extra-keywords))  ;; highlight tabs
   (fci-mode)  ;; adds fill column indicator.
   (auto-fill-mode)  ;; wraps at auto fill column.
   (flyspell-mode)
@@ -356,7 +353,6 @@
   (interactive)
   (whitespace-mode)  ;; highlights whitespace.
   (my_highlighted_words)  ;; highlights specific words in red & bold.
-  (lambda () (font-lock-add-keywords nil my-extra-keywords))  ;; highlight tabs
   (fci-mode)  ;; adds fill column indicator.
   ;; (auto-fill-mode nil)  ;; disables auto fill at column.
   (flyspell-mode)
