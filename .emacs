@@ -885,6 +885,11 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
     )
   )
 
+  (defun create-tags (dir-name)
+     "Create tags file."
+     (interactive "DDirectory: ")
+     (eshell-command
+      (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name)))
 
 ;; *****************************************************
 ;; *****************************************************
