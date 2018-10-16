@@ -363,6 +363,7 @@
   (linum-mode)  ; Line Numbers Mode
   (my_highlighted_words)  ;; highlight specific words
   (show-paren-mode 1)  ;; highlight matching brackets
+  (setq tags-revert-without-query t)
   )
 (add-hook 'sh-mode-hook 'my-programming-defaults-config)
 
