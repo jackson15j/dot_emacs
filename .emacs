@@ -95,8 +95,8 @@
 ;(setq whitespace-style (quote (spaces tabs newline space-mark tab-mark newline-mark)))
 ; Highlight tabs green.
 (modify-face whitespace-tab nil "color-22")
-(setq whitespace-style '(face tabs))
-(setq whitespace-style (quote (trailing face)))
+(setq whitespace-style (quote (face trailing tabs)))
+
 (setq whitespace-display-mappings
       '(
         (space-mark 32 [183] [46]) ; normal space, ·
