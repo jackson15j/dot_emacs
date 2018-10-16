@@ -890,7 +890,8 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
      "Create tags file."
      (interactive "DDirectory: ")
      (eshell-command
-      (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name)))
+      ; (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name))) ;; `.c`/`.h` in a non-git repo.
+      (format "cd $(git rev-parse --show-toplevel) && git ls-files | etags -" dir-name)))  ;; tag all files.
 
 ;; *****************************************************
 ;; *****************************************************
@@ -924,7 +925,7 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
     ;; `dotnet new <project_type>`
     :after company
     :bind (
-           # FIXME: Make these not global to C++ !!
+           ;; FIXME: Make these not global to C++ !!
            ("C-c f" . 'omnisharp-run-code-action-refactoring)  ; Refactor/missing_imports/etc...
            ("M-." . 'omnisharp-go-to-definition)
            )
