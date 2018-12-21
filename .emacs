@@ -89,21 +89,16 @@
   (font-lock-add-keywords nil
    '(("\\<\\(Note\\|NOTE\\|FIXME\\|Todo\\|TODO\\|BUG\\|Bug\\):" 1 '(:foreground "red" :weight bold) t))))
 
-;; White Space Mode
-;; http://ergoemacs.org/emacs/whitespace-mode.html
-;; make whitespace-mode use just basic coloring
-;(setq whitespace-style (quote (spaces tabs newline space-mark tab-mark newline-mark)))
-; Highlight tabs green.
-(modify-face whitespace-tab nil "color-22")
-(setq whitespace-style (quote (face trailing tabs)))
 
-(setq whitespace-display-mappings
-      '(
-        (space-mark 32 [183] [46]) ; normal space, ·
-        (newline-mark 10 [182 10]) ; newlne, ¶
-        (tab-mark 9 [9655 9] [92 9]) ; tab, ▷
-        ))
-
+(use-package whitespace
+  ;; White Space Mode
+  ;; http://ergoemacs.org/emacs/whitespace-mode.html
+  :ensure t
+  :config
+  (global-whitespace-mode)
+  ;; make whitespace-mode use just basic coloring
+  (setq whitespace-style (quote (face trailing tabs)))
+  )
 
 
 ;; ========================
@@ -1403,4 +1398,4 @@ sound to be played (default=/../alert.wav)"
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(whitespace-tab ((t (:background "color-22" :foreground "darkgray")))))
