@@ -336,6 +336,7 @@
   (flyspell-mode)
   (linum-mode)  ; Line Numbers Mode
   (my_highlighted_words)  ;; highlight specific words
+  (setq indent-tabs-mode nil)  ;; spaces instead of tabs
   )
 
 (add-hook 'text-mode-hook 'my-text-mode-config)  ;; singular text-mode-hook
