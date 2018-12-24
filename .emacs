@@ -627,10 +627,14 @@
 ;; Markdown
 ;; *****************************************************
 ;; *****************************************************
+(fset 'convert-markdown-ref-to-list
+   "\C-[xreplace-regexp\C-m\\[\\(.*\\)\\].*\C-m* [\\1].\C-m")
+
 (use-package markdown-mode
   ; NOTE: 'M-x markdown-preview', requires: 'markdown', to be installed with
   ; system package manager.
   :ensure t
+  :bind ("C-c C-a b" . convert-markdown-ref-to-list)
   :init
   (progn
     (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
