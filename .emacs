@@ -482,12 +482,6 @@
       :config
       (add-hook 'after-init-hook 'company-statistics-mode)
       )
-
-    (use-package company-ansible
-      :ensure t
-      :config
-      (add-to-list 'company-backends 'company-ansible)
-      )
     )
   )
 
@@ -706,6 +700,31 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
                  (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
     )
   )
+
+(use-package ansible
+  ; https://github.com/k1LoW/emacs-ansible
+  :ensure t
+  :init
+  (progn
+    (add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
+    )
+
+  (use-package ansible-doc
+    ; https://github.com/lunaryorn/ansible-doc.el
+    :ensure t
+    :hook (yaml-mode . ansible-doc-mode)
+    )
+
+  (use-package company-ansible
+    ; https://github.com/krzysztof-magosa/company-ansible
+    :ensure t
+    :after (company)
+    :config
+    (add-to-list 'company-backends 'company-ansible)
+    )
+
+  )
+
 
 ;; *****************************************************
 ;; *****************************************************
