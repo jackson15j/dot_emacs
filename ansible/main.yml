@@ -36,12 +36,11 @@
       become: true
       become_method: sudo
       pacman:
-        name: "{{ item }}"
+        name:
+          - aspell  # spell checking.
+          - aspell-en  # spell checking.
+          - html2text  # mu4e.
+          - mplayer  # djcb-popup notifications.
+          - libnotify  # djcb-popup notifications.
+          - mu  # mu4e. Pacman AUR.
         state: latest
-      with_items:
-        - aspell  # spell checking.
-        - aspell-en  # spell checking.
-        - html2text  # mu4e.
-        - mplayer  # djcb-popup notifications.
-        - libnotify  # djcb-popup notifications.
-        - mu  # mu4e. Pacman AUR.
