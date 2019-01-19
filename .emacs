@@ -927,6 +927,9 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
     ;; https://www.tuicool.com/articles/22a2Ejb
     ;; NOTE: Needs a project with a `.csproj` file to do completions. Done with:
     ;; `dotnet new <project_type>`
+    ;; FIXME: Deferring since I don't have omnisharp installed. Currently not
+    ;; doing csharp. Should do a check of packages installed.
+    :defer t
     :after company
     :bind (
            ;; FIXME: Make these not global to C++ !!
