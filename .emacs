@@ -426,9 +426,9 @@
 (use-package magit
   :ensure t
   :bind (
-	 ("<f3>" . magit-status)
-	 ("\C-cg" . vc-git-grep)
-	 ("\C-cb" . magit-blame-mode))
+     ("<f3>" . magit-status)
+     ("\C-cg" . vc-git-grep)
+     ("\C-cb" . magit-blame-mode))
   :config
   (progn
     (setq magit-auto-revert-mode t)
