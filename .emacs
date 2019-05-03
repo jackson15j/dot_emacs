@@ -420,6 +420,13 @@
 ;; ========================
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/General-VC-Options.html
 (setq vc-follow-symlinks t)
+;; https://github.com/magit/magit/issues/3749
+;; `magit` moved to using `transient` but some packages (`magithub` -
+;; https://github.com/vermiculus/magithub/issues/402) haven't updated, hence
+;; explicit definition of `magit-popup`
+(use-package magit-popup
+  :ensure t
+  )
 ;; magit - a pretty good git package with more features than the built in emacs "vc" package.
 ;; http://magit.github.com/magit/
 ; (add-to-list 'load-path "~/elisp/magit/")
@@ -444,7 +451,8 @@
       :after magit
       :ensure t
       :config
-      (magithub-feature-autoinject t)
+      ;; see: https://github.com/vermiculus/magithub/issues/402
+      ; (magithub-feature-autoinject t)
       (add-hook 'magithub-issue-post-mode-hook 'flyspell-mode)
       )
 
