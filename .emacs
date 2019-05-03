@@ -904,7 +904,7 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
     ;; g++-4.9 -g3 -Wall -std=c++11 -stdlib=libc++ -lc++ *.cpp
     ;; clang++ -g3 -Wall -std=c++11 -stdlib=libc++ -lc++ *.cpp
     (add-to-list 'smart-compile-alist '("\\.[Cc]+[Pp]*\\'" . "clang++ -g3 -Wall -std=c++11 -stdlib=libc++ -lc++ -o %n.out *.cpp"))
-    (add-hook 'c-mode-hook 'my-programming-defaults-config)
+    (add-hook 'c-mode-common-hook 'my-programming-defaults-config)
     (setq c-basic-offset 4)  ;; http://emacswiki.org/emacs/IndentingC
     (setq c-default-style "linux")  ;; http://cc-mode.sourceforge.net/html-manual/Built_002din-Styles.html#Built_002din-Styles
     )
