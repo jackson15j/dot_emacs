@@ -950,7 +950,7 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
     ;; doing csharp. Should do a check of packages installed.
     :defer t
     :after company
-    :bind (
+    :bind (:map omnisharp-command-map
            ;; FIXME: Make these not global to C++ !!
            ("C-c f" . 'omnisharp-run-code-action-refactoring)  ; Refactor/missing_imports/etc...
            ("M-." . 'omnisharp-go-to-definition)
