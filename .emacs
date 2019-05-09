@@ -1401,6 +1401,14 @@ sound to be played (default=/../alert.wav)"
 
 
 ;; ========================
+;; el-get (External Package manager)
+;; ========================
+;; https://www.emacswiki.org/emacs/el-get
+(use-package el-get
+  :ensure t)
+
+
+;; ========================
 ;; Finally; Load extra dot files (if they exist)
 ;; ========================
 (let () (dolist (dot_emacs '("~/configs/emacs/private_dot_emacs.el"
