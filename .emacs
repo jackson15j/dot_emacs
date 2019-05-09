@@ -1408,6 +1408,11 @@ sound to be played (default=/../alert.wav)"
   :ensure t)
 
 
+(use-package alert
+  :commands (alert)
+  :init
+  (setq alert-default-style 'notifier))
+
 ;; ========================
 ;; Finally; Load extra dot files (if they exist)
 ;; ========================
