@@ -894,6 +894,10 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
     (add-hook 'c-mode-common-hook 'my-programming-defaults-config)
     (setq c-basic-offset 4)  ;; http://emacswiki.org/emacs/IndentingC
     (setq c-default-style "linux")  ;; http://cc-mode.sourceforge.net/html-manual/Built_002din-Styles.html#Built_002din-Styles
+    ;; FIXME: Either bound this to `*compilation*` window only, so it stops
+    ;; jumping when I grep, or find the old stop-on-first-error behaviour I
+    ;; used to use.
+    (setq compilation-auto-jump-to-first-error nil)
     )
   (define-key c++-mode-map [remap comment-region] 'compile)  ;; C-c C-c
   )
