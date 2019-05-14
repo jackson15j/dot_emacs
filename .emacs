@@ -1426,6 +1426,17 @@ sound to be played (default=/../alert.wav)"
   :init
   (setq alert-default-style 'notifier))
 
+
+
+;; ========================
+;; speed-type
+;; ========================
+;; https://github.com/hagleitn/speed-type
+;; Touch typing practice.
+;; Call: `M-x speed-type-text`.
+(use-package speed-type
+  :ensure t)
+
 ;; ========================
 ;; Finally; Load extra dot files (if they exist)
 ;; ========================
