@@ -1431,7 +1431,7 @@ sound to be played (default=/../alert.wav)"
 ;; ========================
 ;; speed-type
 ;; ========================
-;; https://github.com/hagleitn/speed-type
+;; https://github.com/parkouss/speed-type/ (was: https://github.com/hagleitn/speed-type).
 ;; Touch typing practice.
 ;; Call: `M-x speed-type-text`.
 (use-package speed-type
