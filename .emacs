@@ -434,6 +434,7 @@
   :ensure t
   :bind (
      ("<f3>" . magit-status)
+     ("\C-c\C-s" . magit-status)
      ("\C-cg" . vc-git-grep)
      ("\C-cb" . magit-blame-mode))
   :config
