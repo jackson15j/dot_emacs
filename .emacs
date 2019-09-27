@@ -344,6 +344,7 @@
   )
 
 (add-hook 'text-mode-hook 'my-text-mode-config)  ;; singular text-mode-hook
+(add-hook 'conf-mode-hook 'my-text-mode-config)  ;; *.conf
 
 ;; ========================
 ;; PROGRAMMING DEFAULTS
