@@ -1078,7 +1078,36 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
     (global-set-key "\C-cr" (lambda () (interactive) (org-capture nil "t")))
     (global-set-key "\C-cn" (lambda () (interactive) (org-capture nil "n")))
     (add-hook 'org-mode-hook (lambda() (linum-mode 0)))
-  )
+    )
+  :config
+  (progn
+    ;; This is an Emacs package that creates graphviz directed graphs from
+    ;; the headings of an org file
+    ;; https://github.com/theodorewiles/org-mind-map
+    (use-package org-mind-map
+      :init
+      (require 'ox-org)
+      :ensure t
+      ;; Uncomment the below if 'ensure-system-packages` is installed
+      ;;:ensure-system-package (gvgen . graphviz)
+      :config
+      (setq org-mind-map-default-graph-attribs
+            '(("autosize" . "false")
+              ("size" . "9,12")
+              ("resolution" . "200")
+              ("nodesep" . "0.75")
+              ("overlap" . "false")
+              ("spline" . "true")
+              ("rankdir" . "LR")))
+      ;; (setq org-mind-map-engine "dot")       ; Default. Directed Graph
+      ;; (setq org-mind-map-engine "neato")  ; Undirected Spring Graph
+      (setq org-mind-map-engine "twopi")  ; Radial Layout
+      ;; (setq org-mind-map-engine "fdp")    ; Undirected Spring Force-Directed
+      ;; (setq org-mind-map-engine "sfdp")   ; Multiscale version of fdp for the layout of large graphs
+      ;; (setq org-mind-map-engine "twopi")  ; Radial layouts
+      ;; (setq org-mind-map-engine "circo")  ; Circular Layout
+      )
+    )
 )
 
 
