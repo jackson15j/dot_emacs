@@ -1468,6 +1468,32 @@ sound to be played (default=/../alert.wav)"
 (use-package speed-type
   :ensure t)
 
+
+;; ========================
+;; MscGen mode (Custom)
+;; ========================
+;; http://www.mcternan.me.uk/mscgen/
+;; https://emacs-fu.blogspot.com/2010/04/creating-custom-modes-easy-way-with.html
+(define-generic-mode
+    'mscgen-mode                        ;; name of the mode to create
+  '("#")                           ;; comments start with '#'
+  '("label" "note" "width"
+    "textcolour" "linecolour" "textbgcolour")                     ;; some keywords
+  '(("=" . 'font-lock-operator)     ;; '=' is an operator
+    ("=>" . 'font-lock-operator)
+    ("->" . 'font-lock-operator)
+    (";" . 'font-lock-builtin)     ;; ';' is a a built-in
+    ("[" . 'font-lock-builtin)
+    ("]" . 'font-lock-builtin)
+    ("|" . 'font-lock-builtin)
+    )
+  '("\\.msc$")                      ;; files for which to activate this mode
+  nil                         ;; other functions to call
+  "A mode for mscgen files"            ;; doc string for this mode
+  )
+(add-hook 'mscgen-mode-hook 'my-programming-defaults-config)
+
+
 ;; ========================
 ;; Finally; Load extra dot files (if they exist)
 ;; ========================
