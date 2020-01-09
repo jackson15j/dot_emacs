@@ -437,7 +437,7 @@
      ("<f3>" . magit-status)
      ("\C-c\C-s" . magit-status)
      ("\C-cg" . vc-git-grep)
-     ("\C-cb" . magit-blame-mode))
+     ("\C-cb" . magit-blame))
   :config
   (progn
     (setq magit-auto-revert-mode t)
