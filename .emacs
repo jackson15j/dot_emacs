@@ -1040,12 +1040,24 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
 ;; Javascript IDE stuff
 ;; *****************************************************
 ;; *****************************************************
+; https://emacs.cafe/emacs/javascript/setup/2017/05/09/emacs-setup-javascript-2.html
 (use-package js2-mode
   :ensure t
   :init
   (add-hook 'js2-mode-hook 'my-programming-defaults-config)
+  (add-hook 'js2-mode-hook (lambda () (tern-mode) (company-mode)))
   :config
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+  (use-package company-tern
+    ; https://github.com/proofit404/company-tern
+    :ensure t
+    :after (company)
+    :config
+    ; Requires `npm install tern`.
+    ; https://ternjs.net/doc/manual.html#emacs
+    (add-to-list 'company-backends 'company-tern)
+    )
   )
 
 
