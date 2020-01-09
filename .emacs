@@ -1494,6 +1494,12 @@ sound to be played (default=/../alert.wav)"
 (use-package speed-type
   :ensure t)
 
+;; ========================
+;; spray (spritz clone - speed reading)
+;; ========================
+;; https://github.com/ian-kelling/spray
+(use-package spray
+  :ensure )
 
 ;; ========================
 ;; MscGen mode (Custom)
