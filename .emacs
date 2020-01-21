@@ -367,6 +367,9 @@
   (setq tags-revert-without-query t)
   )
 (add-hook 'sh-mode-hook 'my-programming-defaults-config)
+;; Don't line-wrap in html files.
+;; https://stackoverflow.com/questions/9294437/emacs-disable-wordwrapping-in-html-mode
+(add-hook 'html-mode-hook (lambda () (auto-fill-mode -1)))
 
 ;; ========================
 ;; *SCRATCH* BUFFER DEFAULTS
