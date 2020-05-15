@@ -777,6 +777,10 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
   :ensure t
     :mode ("\\.restclient\\'" . restclient-mode))
 
+
+
+(use-package realgud
+  :ensure t)
 ;; *****************************************************
 ;; *****************************************************
 ;; Python IDE stuff
@@ -839,6 +843,11 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
       (add-hook 'python-mode-hook 'anaconda-mode)
       (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
       (add-to-list 'company-backends 'company-anaconda)
+      )
+
+    (use-package realgud-ipdb
+      :ensure t
+      ;:after realgud
       )
 
     )
