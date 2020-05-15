@@ -450,21 +450,24 @@
       :ensure t
       )
 
-    (use-package magithub
-      ;; https://github.com/vermiculus/magithub
-      ;; Uses ~/.authinfo.gpg for token.
-      :after magit
-      :ensure t
-      :config
-      ;; see: https://github.com/vermiculus/magithub/issues/402
-      ; (magithub-feature-autoinject t)
-      (add-hook 'magithub-issue-post-mode-hook 'flyspell-mode)
-      )
+    ;; (use-package magithub
+    ;;   ;; https://github.com/vermiculus/magithub
+    ;;   ;; Uses ~/.authinfo.gpg for token.
+    ;;   :after magit
+    ;;   :ensure t
+    ;;   :config
+    ;;   ;; see: https://github.com/vermiculus/magithub/issues/402
+    ;;   ; (magithub-feature-autoinject t)
+    ;;   (add-hook 'magithub-issue-post-mode-hook 'flyspell-mode)
+    ;;   )
 
     )
   )
 '(magit-item-highlight ((t nil)) t)
 
+(use-package forge
+  :ensure t)
+(add-to-list 'forge-alist '("git-scm.clinithink.com:2009" "git-scm.clinithink.com/api/v4" "git-scm.clinithink.com" forge-gitlab-repository))
 
 
 ;; *****************************************************
