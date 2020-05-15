@@ -850,6 +850,26 @@ instead. https://github.com/mola-T/flymd/blob/master/browser.md"
       ;:after realgud
       )
 
+    ;; (use-package cov
+    ;;   :ensure t
+    ;;   )
+    ;; (setq cov-coverage-file-paths '("." "~/work/exchange/" "~/work/exchange/build/test-reports" cov--locate-coveralls cov--locate-clover))
+    ;; (setq cov-coverage-file "coverage.xml")
+
+    ;; (use-package coverage
+    ;;   :ensure t
+    ;;   )
+    ;; (setq coverage-dir "~/work/exchange/")
+    ;; (setq coverage-dir "~/work/exchange/build/test-reports/")
+
+    ;; (use-package undercover
+    ;;   :ensure t
+    ;;   )
+
+    ;; (use-package pycoverage
+    ;;   :ensure t
+    ;;   )
+
     )
   )
 ;; ========================
