@@ -1074,6 +1074,29 @@
     )
   )
 
+;; *****************************************************
+;; *****************************************************
+;; HTML IDE stuff
+;; *****************************************************
+;; *****************************************************
+; https://github.com/skeeto/impatient-mode
+(use-package impatient-mode
+  ; start webserver with: `M-x httpd-start`.
+  ; Then set the mode on the buffer: `M-x impatient-mode`.
+  :ensure t
+  )
+
+; https://stackoverflow.com/questions/36183071/how-can-i-preview-markdown-in-emacs-in-real-time
+(defun markdown-html (buffer)
+  "Function to allow `impatient-mode` to preview markdown.  Usage:
+
+* `M-x httpd-start`
+* Go to required BUFFER.
+* `M-x impatient-mode`
+* `M-x imp-set-user-filter RET markdown-html RET`"
+  (princ (with-current-buffer buffer
+           (format "<!DOCTYPE html><html><title>Impatient Markdown</title><xmp theme=\"united\" style=\"display:none;\"> %s  </xmp><script src=\"http://strapdownjs.com/v/0.2/strapdown.js\"></script></html>" (buffer-substring-no-properties (point-min) (point-max))))
+         (current-buffer)))
 
 ;; *****************************************************
 ;; *****************************************************
