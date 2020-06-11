@@ -637,6 +637,8 @@
 ;; Markdown
 ;; *****************************************************
 ;; *****************************************************
+;; NOTE: `flymd` looks to be broken and unmaintained. Use `impatient-mode` for
+;; live previews.
 (fset 'convert-markdown-ref-to-list
    "\C-[xreplace-regexp\C-m\\[\\(.*\\)\\].*\C-m* [\\1].\C-m")
 (fset 'convert-markdown-github-url-to-ref
@@ -656,29 +658,6 @@
     (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
     (add-hook 'markdown-mode-hook 'my-text-mode-config)
     )
-
-  (use-package flymd
-    ; https://github.com/mola-T/flymd/blob/master/browser.md. Live preview
-    ; markdown changes in the browser. Much better than `markdown-preview`.
-    :ensure t
-    :init
-    (defun my-flymd-browser-function (url)
-      "flymd is broken on Chrome based browsers so going with
-Option 1: use Firefox
-instead. https://github.com/mola-T/flymd/blob/master/browser.md"
-      (let ((browse-url-browser-function 'browse-url-firefox))
-        (browse-url url)))
-    :config
-    (setq
-     flymd-browser-open-function 'my-flymd-browser-function
-     flymd-close-buffer-delete-temp-files t
-     flymd-output-directory "/tmp/"
-     )
-    ;; Removed hook, since I don't want every markdown file to open in the
-    ;; browser.
-    ;; (add-hook 'markdown-mode-hook 'flymd-flyit)
-    )
-
 
   (use-package html-to-markdown
     ;; Convert html code to markdown.
