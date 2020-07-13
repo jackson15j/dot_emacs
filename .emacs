@@ -16,21 +16,13 @@
 ;; *****************************************************
 ;; *****************************************************
 
-;; Please don't load outdated byte code
-(setq load-prefer-newer t)
-
-(require 'package)
-(setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(package-initialize)
 ;; Elisp file paths
 ;; http://www.emacswiki.org/emacs/InstallingPackages
 ;; http://xahlee.org/emacs/emacs_installing_packages.html
 ; (add-to-list 'load-path "~/.emacs.d/elpa/")
 ;; http://stackoverflow.com/questions/221365/emacs-lisp-how-to-add-a-folder-and-all-its-first-level-sub-folders-to-the-load
 (ignore-errors
-  (make-directory "~/.emacs.d")
-  (make-directory "~/.emacs.d/elpa"))
+ (make-directory "~/.emacs.d/elpa"))
 
 (let* ((my-emacsd-dir "~/.emacs.d/elpa/")
        (default-directory my-emacsd-dir)
@@ -38,6 +30,14 @@
   (setq load-path (cons my-emacsd-dir nil))
   (normal-top-level-add-subdirs-to-load-path)
   (nconc load-path orig-load-path))
+
+;; Please don't load outdated byte code
+(setq load-prefer-newer t)
+
+(require 'package)
+(setq package-eanable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(package-initialize)
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
