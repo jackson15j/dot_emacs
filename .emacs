@@ -1015,6 +1015,9 @@
       ; (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name))) ;; `.c`/`.h` in a non-git repo.
       (format "cd $(git rev-parse --show-toplevel) && git ls-files | etags -" dir-name)))  ;; tag all files.
 
+(use-package cmake-mode
+  :ensure t)
+
 ;; *****************************************************
 ;; *****************************************************
 ;; C# IDE stuff
