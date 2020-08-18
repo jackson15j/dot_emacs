@@ -837,99 +837,88 @@
 ;; http://www.emacswiki.org/emacs/ProgrammingWithPythonDotEl
 ;; https://github.com/fgallina/python.el
 ;; http://www.saltycrane.com/blog/2010/05/my-emacs-python-environment/
-(use-package python
-  :defer t
-  :bind ("\C-m" . newline-and-indent)
-  :config
-  (progn
-    (add-hook 'python-mode-hook 'my-programming-defaults-config)
-    ;; (setq
-    ;;  python-indent-offset 4  ;; FIXME: With this all indenting is broken. Without a package moans that it is missing.
-    ;;  )
-    ; http://www.emacswiki.org/emacs/ProgrammingWithPythonDotEl#toc1
-    ;; (add-hook 'python-mode-hook '(lambda () (define-key python-mode-map "\C-m" 'newline-and-indent)))  ; maintain indentation on newline
+;; (use-package python
+;;   :defer t
+;;   :bind ("\C-m" . newline-and-indent)
+;;   :config
+;;   (progn
+;;     (add-hook 'python-mode-hook 'my-programming-defaults-config)
+;;     ;; (setq
+;;     ;;  python-indent-offset 4  ;; FIXME: With this all indenting is broken. Without a package moans that it is missing.
+;;     ;;  )
+;;     ; http://www.emacswiki.org/emacs/ProgrammingWithPythonDotEl#toc1
+;;     ;; (add-hook 'python-mode-hook '(lambda () (define-key python-mode-map "\C-m" 'newline-and-indent)))  ; maintain indentation on newline
 
-    (use-package sphinx-doc
-      ; https://github.com/naiquevin/sphinx-doc.el
-      ; C-c M-d, to auto generate sphinx docs for current function.
-      :ensure t
-      :config
-      (progn
-        (add-hook 'python-mode-hook (lambda ()
-                                      (require 'sphinx-doc)
-                                      (sphinx-doc-mode t)))
-        )
-      )
+;;     (use-package sphinx-doc
+;;       ; https://github.com/naiquevin/sphinx-doc.el
+;;       ; C-c M-d, to auto generate sphinx docs for current function.
+;;       :ensure t
+;;       :config
+;;       (progn
+;;         (add-hook 'python-mode-hook (lambda ()
+;;                                       (require 'sphinx-doc)
+;;                                       (sphinx-doc-mode t)))
+;;         )
+;;       )
 
-    (use-package pipenv
-      ;; https://github.com/pwalsh/pipenv.el
-      ;; The replacement to `virtualenv`.
-      ;; Do `C-cC-pa` or `M-x pipenv-activate` to start a projects pipenv.
-      :ensure t
-      :hook (python-mode . pipenv-mode)
-      :init
-      (setq
-       pipenv-projectile-after-switch-function
-       #'pipenv-projectile-after-switch-extended))
+;;     (use-package anaconda-mode
+;;       ;; https://github.com/proofit404/anaconda-mode/
+;;       ;; Even though Anaconda is based off Jedi, it seems to _"just work"_ for
+;;       ;; me on my current latest python3, compared to `jedi` + `company-jedi.`
+;;       :ensure t
+;;       )
 
-    (use-package anaconda-mode
-      ;; https://github.com/proofit404/anaconda-mode/
-      ;; Even though Anaconda is based off Jedi, it seems to _"just work"_ for
-      ;; me on my current latest python3, compared to `jedi` + `company-jedi.`
-      :ensure t
-      )
+;;     (use-package company-anaconda
+;;       ;; https://github.com/proofit404/company-anaconda
+;;       ;; `M-?` for docs.
+;;       :ensure t
+;;       :after company
+;;       :config
+;;       (add-hook 'python-mode-hook 'anaconda-mode)
+;;       (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+;;       (add-to-list 'company-backends 'company-anaconda)
+;;       )
 
-    (use-package company-anaconda
-      ;; https://github.com/proofit404/company-anaconda
-      ;; `M-?` for docs.
-      :ensure t
-      :after company
-      :config
-      (add-hook 'python-mode-hook 'anaconda-mode)
-      (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-      (add-to-list 'company-backends 'company-anaconda)
-      )
+;;     (use-package realgud-ipdb
+;;       :ensure t
+;;       ;:after realgud
+;;       )
 
-    (use-package realgud-ipdb
-      :ensure t
-      ;:after realgud
-      )
+;;     ;; (use-package cov
+;;     ;;   :ensure t
+;;     ;;   )
+;;     ;; (setq cov-coverage-file-paths '("." "~/work/exchange/" "~/work/exchange/build/test-reports" cov--locate-coveralls cov--locate-clover))
+;;     ;; (setq cov-coverage-file "coverage.xml")
 
-    ;; (use-package cov
-    ;;   :ensure t
-    ;;   )
-    ;; (setq cov-coverage-file-paths '("." "~/work/exchange/" "~/work/exchange/build/test-reports" cov--locate-coveralls cov--locate-clover))
-    ;; (setq cov-coverage-file "coverage.xml")
+;;     ;; (use-package coverage
+;;     ;;   :ensure t
+;;     ;;   )
+;;     ;; (setq coverage-dir "~/work/exchange/")
+;;     ;; (setq coverage-dir "~/work/exchange/build/test-reports/")
 
-    ;; (use-package coverage
-    ;;   :ensure t
-    ;;   )
-    ;; (setq coverage-dir "~/work/exchange/")
-    ;; (setq coverage-dir "~/work/exchange/build/test-reports/")
+;;     ;; (use-package undercover
+;;     ;;   :ensure t
+;;     ;;   )
 
-    ;; (use-package undercover
-    ;;   :ensure t
-    ;;   )
+;;     ;; (use-package pycoverage
+;;     ;;   :ensure t
+;;     ;;   )
 
-    ;; (use-package pycoverage
-    ;;   :ensure t
-    ;;   )
-
-    )
-  )
+;;     )
+;;   )
 ;; ========================
 ;; nosetests
 ;; ========================
-(use-package nose
-  :ensure t
-  :config
-  (progn
-    (define-key nose-mode-map "\C-cn" 'nosetests-all)
-    ;; (define-key python-mode-map "\C-cn" 'nosetests-all)
-    ;; (define-key python-mode-map "\C-cm" 'nosetests-one)
-    (setq nose-use-verbose nil) ; default is t  ; nil = dots as output.
-  )
-)
+;; (use-package nose
+;;   :ensure t
+;;   :config
+;;   (progn
+;;     (define-key nose-mode-map "\C-cn" 'nosetests-all)
+;;     ;; (define-key python-mode-map "\C-cn" 'nosetests-all)
+;;     ;; (define-key python-mode-map "\C-cm" 'nosetests-one)
+;;     (setq nose-use-verbose nil) ; default is t  ; nil = dots as output.
+;;   )
+;; )
 
 
 
