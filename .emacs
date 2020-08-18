@@ -254,6 +254,9 @@
 
 
 
+(use-package vterm
+  :ensure t)
+
 ;; ========================
 ;; ansi-term (terminal emulator. Prefer it to multi-term/eshell/shell)
 ;; ========================
