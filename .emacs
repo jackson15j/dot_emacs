@@ -565,6 +565,15 @@
    #'pipenv-projectile-after-switch-extended))
 
 
+;; which-key integration, to show keyboard shortcuts.
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
+
+
+
+
 ;; *****************************************************
 ;; *****************************************************
 ;; Lisp programming
