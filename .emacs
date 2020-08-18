@@ -576,6 +576,48 @@
 
 ;; *****************************************************
 ;; *****************************************************
+;; Lsp Client/Server for programming
+;; *****************************************************
+;; *****************************************************
+;; https://github.com/emacs-lsp/lsp-mode
+;; https://emacs-lsp.github.io/lsp-mode
+
+;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+(setq lsp-keymap-prefix "s-l")
+
+;; optionally if you want to use debugger
+(use-package dap-mode
+  :ensure t
+  )
+;; (use-package dap-LANGUAGE) to load the dap adapter for your language
+
+(use-package lsp-mode
+  :ensure t
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+
+         ;; Python workflow:
+         ;; * `pipenv install --dev python-language-server[all]`.
+         ;; * Start pipenv: `C-cC-pa`.
+         ;; * Start lsp: `M-x lsp`.
+         (python-mode . lsp)
+         (rust-mode . lsp)
+         ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration)
+         (lsp-mode . my-programming-defaults-config)
+         )
+  :commands lsp
+  )
+
+;; optionally
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
+
+
+
+
+;; *****************************************************
+;; *****************************************************
 ;; Lisp programming
 ;; *****************************************************
 ;; *****************************************************
