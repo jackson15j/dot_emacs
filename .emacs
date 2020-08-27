@@ -928,56 +928,62 @@
 ;; *****************************************************
 ;; *****************************************************
 (use-package cc-mode
-  ;; gdb on mac:
-  ;; brew tap homebrew/dupes && brew install gdb
-  ;; Note: gdb keybinding is: C-x C-a C-l, which I did have my rename term windows as.
+  ;; https://emacs-lsp.github.io/lsp-mode/page/lsp-clangd/
   :ensure t
-  :bind (
-         ;; ("<f9>" . compile)
-         ([remap comment-region] . 'recompile)  ; "C-c C-c"
-         ("M-." . 'xref-find-definitions)  ; https://www.emacswiki.org/emacs/EmacsTags
-         )
-  :config
-  (progn
-
-    (use-package smart-compile
-      :ensure t)
-
-    (use-package xcscope
-      ;; Use cscope files within emacs, to jump around C/C++ code.
-      ;; https://github.com/dkogan/xcscope.el
-      :ensure t
-      :config
-      (progn
-        ;; Setup auto-magically hooks into c/c++ modes.
-        (cscope-setup)
-        )
-      (define-key c++-mode-map [remap c-set-style] 'cscope-find-this-symbol)  ;; C-c .
-      ;; Note etags search defaults to: M-.
-      )
-
-    (use-package company-c-headers
-      ;; Complete c-headers
-      :ensure t
-      :config
-      (push 'company-c-headers company-backends)
-      )
-
-    ;; cc-mode general settings.
-
-    ;; g++-4.9 -g3 -Wall -std=c++11 -stdlib=libc++ -lc++ *.cpp
-    ;; clang++ -g3 -Wall -std=c++11 -stdlib=libc++ -lc++ *.cpp
-    (add-to-list 'smart-compile-alist '("\\.[Cc]+[Pp]*\\'" . "clang++ -g3 -Wall -std=c++11 -stdlib=libc++ -lc++ -o %n.out *.cpp"))
-    (add-hook 'c-mode-common-hook 'my-programming-defaults-config)
-    (setq c-basic-offset 4)  ;; http://emacswiki.org/emacs/IndentingC
-    (setq c-default-style "linux")  ;; http://cc-mode.sourceforge.net/html-manual/Built_002din-Styles.html#Built_002din-Styles
-    ;; FIXME: Either bound this to `*compilation*` window only, so it stops
-    ;; jumping when I grep, or find the old stop-on-first-error behaviour I
-    ;; used to use.
-    (setq compilation-auto-jump-to-first-error nil)
-    )
-  (define-key c++-mode-map [remap comment-region] 'compile)  ;; C-c C-c
+  :hook (cc-mode . lsp)
   )
+
+;; (use-package cc-mode
+;;   ;; gdb on mac:
+;;   ;; brew tap homebrew/dupes && brew install gdb
+;;   ;; Note: gdb keybinding is: C-x C-a C-l, which I did have my rename term windows as.
+;;   :ensure t
+;;   :bind (
+;;          ;; ("<f9>" . compile)
+;;          ([remap comment-region] . 'recompile)  ; "C-c C-c"
+;;          ("M-." . 'xref-find-definitions)  ; https://www.emacswiki.org/emacs/EmacsTags
+;;          )
+;;   :config
+;;   (progn
+
+;;     (use-package smart-compile
+;;       :ensure t)
+
+;;     (use-package xcscope
+;;       ;; Use cscope files within emacs, to jump around C/C++ code.
+;;       ;; https://github.com/dkogan/xcscope.el
+;;       :ensure t
+;;       :config
+;;       (progn
+;;         ;; Setup auto-magically hooks into c/c++ modes.
+;;         (cscope-setup)
+;;         )
+;;       (define-key c++-mode-map [remap c-set-style] 'cscope-find-this-symbol)  ;; C-c .
+;;       ;; Note etags search defaults to: M-.
+;;       )
+
+;;     (use-package company-c-headers
+;;       ;; Complete c-headers
+;;       :ensure t
+;;       :config
+;;       (push 'company-c-headers company-backends)
+;;       )
+
+;;     ;; cc-mode general settings.
+
+;;     ;; g++-4.9 -g3 -Wall -std=c++11 -stdlib=libc++ -lc++ *.cpp
+;;     ;; clang++ -g3 -Wall -std=c++11 -stdlib=libc++ -lc++ *.cpp
+;;     (add-to-list 'smart-compile-alist '("\\.[Cc]+[Pp]*\\'" . "clang++ -g3 -Wall -std=c++11 -stdlib=libc++ -lc++ -o %n.out *.cpp"))
+;;     (add-hook 'c-mode-common-hook 'my-programming-defaults-config)
+;;     (setq c-basic-offset 4)  ;; http://emacswiki.org/emacs/IndentingC
+;;     (setq c-default-style "linux")  ;; http://cc-mode.sourceforge.net/html-manual/Built_002din-Styles.html#Built_002din-Styles
+;;     ;; FIXME: Either bound this to `*compilation*` window only, so it stops
+;;     ;; jumping when I grep, or find the old stop-on-first-error behaviour I
+;;     ;; used to use.
+;;     (setq compilation-auto-jump-to-first-error nil)
+;;     )
+;;   (define-key c++-mode-map [remap comment-region] 'compile)  ;; C-c C-c
+;;   )
 
 (use-package clang-format
   ;; Applies clang-format to C++ files based on a .clang-format file in the
