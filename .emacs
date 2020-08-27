@@ -1005,7 +1005,13 @@
       (format "cd $(git rev-parse --show-toplevel) && git ls-files | etags -" dir-name)))  ;; tag all files.
 
 (use-package cmake-mode
-  :ensure t)
+  ;; https://emacs-lsp.github.io/lsp-mode/page/lsp-cmake/
+  ;; pipenv install --dev cmake-language-server
+  ;; Bit weird, but need to activate pipenv on a python file in the repo, then
+  ;; reload the CMakeList.txt`.
+  :ensure t
+  :hook (cmake-mode . lsp)
+  )
 
 ;; *****************************************************
 ;; *****************************************************
