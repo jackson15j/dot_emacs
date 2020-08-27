@@ -927,13 +927,6 @@
 ;; C++ IDE stuff
 ;; *****************************************************
 ;; *****************************************************
-(defun read-lines (filePath)
-  "Return a list of lines of a file at FILEPATH."
-  (with-temp-buffer
-    (insert-file-contents filePath)
-    (split-string (buffer-string) "\n" t)))
-
-
 (use-package cc-mode
   ;; gdb on mac:
   ;; brew tap homebrew/dupes && brew install gdb
