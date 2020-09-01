@@ -930,7 +930,10 @@
 (use-package cc-mode
   ;; https://emacs-lsp.github.io/lsp-mode/page/lsp-clangd/
   :ensure t
-  :hook (cc-mode . lsp)
+  :hook (
+         (cc-mode . lsp)
+         (c++-mode . lsp)
+         )
   )
 
 ;; (use-package cc-mode
