@@ -1157,7 +1157,10 @@
 ;; HTML IDE stuff
 ;; *****************************************************
 ;; *****************************************************
-; https://github.com/skeeto/impatient-mode
+; https://emacs-lsp.github.io/lsp-mode/page/lsp-html/
+(add-hook 'html-mode-hook (lambda () .lsp))
+
+;https://github.com/skeeto/impatient-mode
 (use-package impatient-mode
   ; start webserver with: `M-x httpd-start`.
   ; Then set the mode on the buffer: `M-x impatient-mode`.
