@@ -837,6 +837,17 @@
 ;; http://www.emacswiki.org/emacs/ProgrammingWithPythonDotEl
 ;; https://github.com/fgallina/python.el
 ;; http://www.saltycrane.com/blog/2010/05/my-emacs-python-environment/
+(use-package python
+  :ensure t
+  ;; Python workflow:
+  ;; * `pipenv install --dev python-language-server[all]`.
+  ;; * Start pipenv: `C-cC-pa`.
+  ;; * Start lsp: `M-x lsp`.
+  :hook (python-mode . lsp-mode)
+  )
+
+
+
 ;; (use-package python
 ;;   :defer t
 ;;   :bind ("\C-m" . newline-and-indent)
