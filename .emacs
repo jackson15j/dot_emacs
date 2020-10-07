@@ -1158,7 +1158,7 @@
 ;; *****************************************************
 ;; *****************************************************
 ; https://emacs-lsp.github.io/lsp-mode/page/lsp-html/
-(add-hook 'html-mode-hook (lambda () .lsp))
+(add-hook 'html-mode-hook 'lsp)
 
 ;https://github.com/skeeto/impatient-mode
 (use-package impatient-mode
