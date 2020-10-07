@@ -942,6 +942,7 @@
   ;; https://emacs-lsp.github.io/lsp-mode/page/lsp-clangd/
   :ensure t
   :hook (
+         (c-mode . lsp)
          (cc-mode . lsp)
          (c++-mode . lsp)
          )
