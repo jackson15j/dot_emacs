@@ -1159,6 +1159,11 @@
 ;; *****************************************************
 ; https://emacs-lsp.github.io/lsp-mode/page/lsp-html/
 (add-hook 'html-mode-hook 'lsp)
+(use-package css-mode
+  ; https://emacs-lsp.github.io/lsp-mode/page/lsp-css/
+  :ensure t
+  :hook (css-mode . lsp)
+  )
 
 ;https://github.com/skeeto/impatient-mode
 (use-package impatient-mode
