@@ -753,27 +753,19 @@
 ;; *****************************************************
 ;; *****************************************************
 (use-package yaml-mode
+  ; https://emacs-lsp.github.io/lsp-mode/page/lsp-yaml/
   :ensure t
+  :hook (yaml-mode . lsp)
   :config
   (progn
     (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
-    )
-  :init
-  (progn
-    (add-hook 'yaml-mode-hook 'my-programming-defaults-config)
-    (add-hook 'yaml-mode-hook
-              '(lambda ()
-                 (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
     )
   )
 
 (use-package ansible
   ; https://github.com/k1LoW/emacs-ansible
   :ensure t
-  :init
-  (progn
-    (add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
-    )
+  :hook (yaml-mode . (lambda () (ansible 1)))
 
   (use-package ansible-doc
     ; https://github.com/lunaryorn/ansible-doc.el
