@@ -1669,7 +1669,18 @@ sound to be played (default=/../alert.wav)"
   nil                         ;; other functions to call
   "A mode for mscgen files"            ;; doc string for this mode
   )
+(defun mscgen-compile-buffer-hook()
+  "Compile command to generate a PNG from the current mscgen buffer.
+
+  See: https://stackoverflow.com/questions/6138029/how-to-add-a-hook-to-only-run-in-a-particular-mode
+  for the use of the hook."
+  (compile (concat "mscgen -T png " buffer-file-name))
+  (message (concat "Generated PNG for: " buffer-file-name))
+  )
 (add-hook 'mscgen-mode-hook 'my-programming-defaults-config)
+(add-hook 'mscgen-mode-hook
+          (lambda ()
+            (add-hook 'after-save-hook 'mscgen-compile-buffer-hook nil 'make-it-local)))
 
 
 ;; ========================
