@@ -1674,8 +1674,8 @@ sound to be played (default=/../alert.wav)"
 
   See: https://stackoverflow.com/questions/6138029/how-to-add-a-hook-to-only-run-in-a-particular-mode
   for the use of the hook."
-  (compile (concat "mscgen -T png " buffer-file-name))
-  (message (concat "Generated PNG for: " buffer-file-name))
+  (compile (concat "mscgen -T png " buffer-file-name " && mscgen -T svg " buffer-file-name))
+  (message (concat "Generated PNG/SVG for: " buffer-file-name))
   )
 (add-hook 'mscgen-mode-hook 'my-programming-defaults-config)
 (add-hook 'mscgen-mode-hook
