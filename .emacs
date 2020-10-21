@@ -765,7 +765,10 @@
 (use-package ansible
   ; https://github.com/k1LoW/emacs-ansible
   :ensure t
-  :hook (yaml-mode . (lambda () (ansible 1)))
+  :config
+  (progn
+    (add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
+    )
 
   (use-package ansible-doc
     ; https://github.com/lunaryorn/ansible-doc.el
