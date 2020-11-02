@@ -841,7 +841,13 @@
   :hook (python-mode . lsp-mode)
   )
 
-
+(use-package blacken
+  ; https://github.com/pythonic-emacs/blacken
+  :ensure t
+  :hook (python-mode . blacken-mode)
+  :init
+  (setq blacken-only-if-project-is-blackened t)
+  )
 
 ;; (use-package python
 ;;   :defer t
