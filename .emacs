@@ -1690,6 +1690,9 @@ sound to be played (default=/../alert.wav)"
             (add-hook 'after-save-hook 'mscgen-compile-buffer-hook nil 'make-it-local)))
 
 
+(use-package i3wm-config-mode
+  :ensure t)
+
 ;; ========================
 ;; Finally; Load extra dot files (if they exist)
 ;; ========================
