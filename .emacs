@@ -1693,34 +1693,15 @@ sound to be played (default=/../alert.wav)"
 ;; ========================
 ;; Finally; Load extra dot files (if they exist)
 ;; ========================
-(let () (dolist (dot_emacs '("~/configs/emacs/private_dot_emacs.el"
+(use-package cus-edit
+  :custom (custom-file "~/configs/emacs/custom_set_variables.el" "Moved custom-set-variables to it's own file")
+  )
+
+(let () (dolist (dot_emacs '("~/configs/emacs/custom_set_variables.el"
+                             "~/configs/emacs/private_dot_emacs.el"
                              "~/configs/emacs/unstable_config_dot_emacs.el"
                              "~/configs/emacs/work_specific_dot_emacs.el"))
           "Loading my extra emacs dot files if they exist."
           (when (file-exists-p dot_emacs)
             (message (concat "Loading external dot file: " dot_emacs))
             (load-file dot_emacs))))
-
-
-;; *****************************************************
-;; *****************************************************
-;; emacs auto configured items from: M-x customize (DON'T TOUCH!!)
-;; *****************************************************
-;; *****************************************************
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(calendar-week-start-day 1)
- '(markdown-preview-port 8080)
- '(package-selected-packages
-   (quote
-    (sos log4j-mode org-jekyll nose magit-svn magit xcscope smart-compile company-c-headers company-statistics company sphinx-doc jedi auto-complete php-mode erlang flycheck smart-mode-line smex fill-column-indicator use-package))))
-;;; .emacs ends here
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(whitespace-tab ((t (:background "color-22" :foreground "darkgray")))))
