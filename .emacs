@@ -1139,19 +1139,22 @@
   :ensure t
   :init
   (add-hook 'js2-mode-hook 'my-programming-defaults-config)
-  (add-hook 'js2-mode-hook (lambda () (tern-mode) (company-mode)))
+  ;; FIXME: Can't remember why I commented this out, but guessing I'll just
+  ;; move over to `lsp-mode` the next time I'm editing javascript code.
+
+  ;; (add-hook 'js2-mode-hook (lambda () (tern-mode) (company-mode)))
   :config
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
-  (use-package company-tern
-    ; https://github.com/proofit404/company-tern
-    :ensure t
-    :after (company)
-    :config
-    ; Requires `npm install tern`.
-    ; https://ternjs.net/doc/manual.html#emacs
-    (add-to-list 'company-backends 'company-tern)
-    )
+  ;; (use-package company-tern
+  ;;   ; https://github.com/proofit404/company-tern
+  ;;   :ensure t
+  ;;   :after (company)
+  ;;   :config
+  ;;   ; Requires `npm install tern`.
+  ;;   ; https://ternjs.net/doc/manual.html#emacs
+  ;;   (add-to-list 'company-backends 'company-tern)
+  ;;   )
   )
 
 ;; *****************************************************
