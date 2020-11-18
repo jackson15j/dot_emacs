@@ -1693,6 +1693,10 @@ sound to be played (default=/../alert.wav)"
             (add-hook 'after-save-hook 'mscgen-compile-buffer-hook nil 'make-it-local)))
 
 
+
+(use-package csv-mode
+  :ensure t)
+
 (use-package i3wm-config-mode
   :ensure t)
 
