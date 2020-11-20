@@ -439,41 +439,40 @@
      ("\C-cg" . vc-git-grep)
      ("\C-cb" . magit-blame))
   :config
-  (progn
-    (setq magit-auto-revert-mode t)
-    ;; `M-x magit-describe-section-briefly`, then check the square brackets in:
-    ;; `<magit-section ... [<section_name> status] ...>`.
-    (setq magit-section-initial-visibility-alist '(
-                                                    (stashes . hide)
-                                                    (unpulled . show)
-                                                    (unpushed . show)
-                                                    (pullreqs . show)
-                                                    ))
+  (setq magit-auto-revert-mode t)
+  ;; `M-x magit-describe-section-briefly`, then check the square brackets in:
+  ;; `<magit-section ... [<section_name> status] ...>`.
+  (setq magit-section-initial-visibility-alist '(
+                                                 (stashes . hide)
+                                                 (unpulled . show)
+                                                 (unpushed . show)
+                                                 (pullreqs . show)
+                                                 ))
 
-    (use-package magit-popup
-      ;; https://github.com/magit/magit/issues/3749
-      ;; `magit` moved to using `transient` but some packages (`magithub` -
-      ;; https://github.com/vermiculus/magithub/issues/402) haven't updated,
-      ;; hence explicit definition of `magit-popup`
-      :ensure t
-      )
-
-    (use-package magit-svn
-      :ensure t
-      )
-
-    (use-package forge
-      ;; https://github.com/magit/forge
-      ;; Replacement for `magithub` (https://github.com/vermiculus/magithub),
-      ;; which works with Gitlab/Github.
-      ;; See old commits for my old `magithub` config.
-      :ensure t
-      :config
-      (add-to-list 'forge-alist '("git-scm.clinithink.com:2009" "git-scm.clinithink.com/api/v4" "git-scm.clinithink.com" forge-gitlab-repository))
-      )
-
+  (use-package magit-popup
+    ;; https://github.com/magit/magit/issues/3749
+    ;; `magit` moved to using `transient` but some packages (`magithub` -
+    ;; https://github.com/vermiculus/magithub/issues/402) haven't updated,
+    ;; hence explicit definition of `magit-popup`
+    :ensure t
     )
+
+  (use-package magit-svn
+    :ensure t
+    )
+
+  (use-package forge
+    ;; https://github.com/magit/forge
+    ;; Replacement for `magithub` (https://github.com/vermiculus/magithub),
+    ;; which works with Gitlab/Github.
+    ;; See old commits for my old `magithub` config.
+    :ensure t
+    :config
+    (add-to-list 'forge-alist '("git-scm.clinithink.com:2009" "git-scm.clinithink.com/api/v4" "git-scm.clinithink.com" forge-gitlab-repository))
+    )
+
   )
+
 
 
 
