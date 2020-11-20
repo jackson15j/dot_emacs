@@ -443,12 +443,14 @@
   (setq magit-auto-revert-mode t)
   ;; `M-x magit-describe-section-briefly`, then check the square brackets in:
   ;; `<magit-section ... [<section_name> status] ...>`.
-  (setq magit-section-initial-visibility-alist '(
-                                                 (stashes . hide)
-                                                 (unpulled . show)
-                                                 (unpushed . show)
-                                                 (pullreqs . show)
-                                                 ))
+  (setq
+   magit-section-initial-visibility-alist
+   '(
+     (stashes . hide)
+     (unpulled . show)
+     (unpushed . show)
+     (pullreqs . show)
+     ))
 
   (use-package magit-popup
     ;; https://github.com/magit/magit/issues/3749
