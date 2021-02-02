@@ -257,6 +257,7 @@
 
 
 (use-package vterm
+  :if (not (eq system-type 'windows-nt))  ;; FIXME: compiling on Windows.
   :ensure t)
 
 ;; ========================
@@ -469,6 +470,7 @@
     ;; Replacement for `magithub` (https://github.com/vermiculus/magithub),
     ;; which works with Gitlab/Github.
     ;; See old commits for my old `magithub` config.
+    :if (not (eq system-type 'windows-nt))  ;; FIXME: Needs `cc` compiler defined.
     :ensure t
     :config
     (add-to-list 'forge-alist '("git-scm.clinithink.com:2009" "git-scm.clinithink.com/api/v4" "git-scm.clinithink.com" forge-gitlab-repository))
