@@ -724,14 +724,16 @@
   ; NOTE: 'M-x markdown-preview', requires: 'markdown', to be installed with
   ; system package manager.
   :ensure t
+  :mode (
+         ("\\.markdown\\'")
+         ("\\.md\\'")
+         )
   :bind (
          ("C-c C-a b" . convert-markdown-ref-to-list)
          ("C-c C-a g" . convert-markdown-github-url-to-ref)
          )
   :init
   (progn
-    (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-    (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
     (add-hook 'markdown-mode-hook 'my-text-mode-config)
     )
 
@@ -765,11 +767,8 @@
 (use-package yaml-mode
   ; https://emacs-lsp.github.io/lsp-mode/page/lsp-yaml/
   :ensure t
+  :mode "\\.yml\\'"
   :hook (yaml-mode . lsp)
-  :config
-  (progn
-    (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
-    )
   )
 
 (use-package ansible
@@ -825,7 +824,8 @@
 ;; User-Agent: Emacs Restclient
 (use-package restclient
   :ensure t
-    :mode ("\\.restclient\\'" . restclient-mode))
+  :mode ("\\.restclient\\'" . restclient-mode)
+  )
 
 
 
@@ -1146,14 +1146,13 @@
 ; https://emacs.cafe/emacs/javascript/setup/2017/05/09/emacs-setup-javascript-2.html
 (use-package js2-mode
   :ensure t
+  :mode "\\.js\\'"
   :init
   (add-hook 'js2-mode-hook 'my-programming-defaults-config)
   ;; FIXME: Can't remember why I commented this out, but guessing I'll just
   ;; move over to `lsp-mode` the next time I'm editing javascript code.
 
   ;; (add-hook 'js2-mode-hook (lambda () (tern-mode) (company-mode)))
-  :config
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
   ;; (use-package company-tern
   ;;   ; https://github.com/proofit404/company-tern
@@ -1386,10 +1385,7 @@
 ;; *****************************************************
 (use-package log4j-mode
   :ensure t
-  :config
-  (progn
-    (add-to-list 'auto-mode-alist '("\\.log\\'" . log4j-mode))
-    )
+  :mode "\\.log\\'"
   )
 '(log4j-font-lock-fatal-face ((t (:foreground "darkred" :weight bold))))
 '(log4j-font-lock-info-face ((t (:foreground "ForestGreen"))))
