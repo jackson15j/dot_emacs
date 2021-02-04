@@ -1723,7 +1723,7 @@ sound to be played (default=/../alert.wav)"
   :mode "\\.iss\\'"
   :ensure t
   :init
-  (setq iss-compiler-path "C:\Program Files (x86)\Inno Setup 6")
+  (setq iss-compiler-path "C:/Program Files (x86)/Inno Setup 6")
   )
 
 ;; ========================
