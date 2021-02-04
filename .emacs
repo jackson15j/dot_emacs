@@ -1721,6 +1721,13 @@ sound to be played (default=/../alert.wav)"
 (use-package i3wm-config-mode
   :ensure t)
 
+
+(use-package iss-mode
+  ; https://github.com/rasmus-toftdahl-olesen/iss-mode
+  ; InnoSetup mode: https://jrsoftware.org/isinfo.php
+  :mode "\\.iss\\'"
+  :ensure t)
+
 ;; ========================
 ;; Finally; Load extra dot files (if they exist)
 ;; ========================
