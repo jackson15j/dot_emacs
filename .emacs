@@ -725,10 +725,7 @@
   ; NOTE: 'M-x markdown-preview', requires: 'markdown', to be installed with
   ; system package manager.
   :ensure t
-  :mode (
-         ("\\.markdown\\'")
-         ("\\.md\\'")
-         )
+  :mode "\\.md\\'"
   :bind (
          ("C-c C-a b" . convert-markdown-ref-to-list)
          ("C-c C-a g" . convert-markdown-github-url-to-ref)
