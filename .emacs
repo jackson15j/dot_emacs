@@ -597,6 +597,7 @@
 
 ;; optionally if you want to use debugger
 (use-package dap-mode
+  :if (not (eq system-type 'windows-nt))  ;; FIXME: (void-function dap-ui-mode)
   :ensure t
   )
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
@@ -1429,6 +1430,7 @@
 ;; TODO: find a package manager with mu/mu4e in it (if there is a non-system level way).
 ;; Ubuntu requires apt-get maildir-utils mu4e.
 (use-package mu4e
+  :if (not (eq system-type 'windows-nt))  ;; FIXME: not installed mu4e on windows yet.
   :load-path "/usr/share/emacs/site-lisp/mu4e"  ;; arch.
   ;; FIXME: Cannot set keyboard variable like this, whilst my mu4e-contexts are
   ;; in a private file. Dies on startup with (void-function make-mu4e-context).
