@@ -1722,7 +1722,10 @@ sound to be played (default=/../alert.wav)"
   ; https://github.com/rasmus-toftdahl-olesen/iss-mode
   ; InnoSetup mode: https://jrsoftware.org/isinfo.php
   :mode "\\.iss\\'"
-  :ensure t)
+  :ensure t
+  :init
+  (setq iss-compiler-path "C:\Program Files (x86)\Inno Setup 6")
+  )
 
 ;; ========================
 ;; Finally; Load extra dot files (if they exist)
