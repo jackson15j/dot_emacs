@@ -1231,6 +1231,7 @@
 ; https://github.com/jschaf/powershell.el
 (use-package powershell
   :ensure t
+  :hook (powershell-mode . my-programming-defaults-config)
   )
 
 
