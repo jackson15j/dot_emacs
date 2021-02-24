@@ -801,11 +801,11 @@
 ;; *****************************************************
 (use-package json-mode
   :ensure t
-  :config
-  (progn
-    (add-hook 'json-mode-hook 'my-programming-defaults-config)
-    (add-hook 'json-mode-hook (lambda () (auto-fill-mode -1)))  ;; disables auto fill at column.
-    )
+  :hook (
+         (json-mode . my-programming-defaults-config)
+         (json-mode . (lambda () (auto-fill-mode -1)))  ;; disables auto fill at column.
+         (json-mode . (lambda () (setq js-indent-level 2)))
+         )
   )
 
 ;; *****************************************************
