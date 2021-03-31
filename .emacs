@@ -610,10 +610,14 @@
 (setq lsp-keymap-prefix "s-l")
 
 ;; optionally if you want to use debugger
-(use-package dap-mode
-  :if (not (eq system-type 'windows-nt))  ;; FIXME: (void-function dap-ui-mode)
-  :ensure t
-  )
+;; (use-package dap-mode
+;;   :if (not (eq system-type 'windows-nt))  ;; FIXME: (void-function dap-ui-mode)
+;;   :ensure t
+;;   :config  ; FIXME: breaks after upgrading to latest.
+;;   (dap-ui-mode 1)
+;;   (dap-tooltip-mode 1)
+;;   (dap-ui-controls-mode 1)
+;;   )
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 
 (use-package lsp-mode
@@ -839,9 +843,9 @@
   )
 
 
-
-(use-package realgud
-  :ensure t)
+;; (use-package realgud
+;;   FIXME: Breaks after upgrading.
+;;   :ensure t)
 ;; *****************************************************
 ;; *****************************************************
 ;; Python IDE stuff
