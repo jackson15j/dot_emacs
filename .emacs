@@ -857,6 +857,21 @@
 ;; http://www.emacswiki.org/emacs/ProgrammingWithPythonDotEl
 ;; https://github.com/fgallina/python.el
 ;; http://www.saltycrane.com/blog/2010/05/my-emacs-python-environment/
+(use-package pyvenv
+  :ensure t)
+;; Modified from: https://github.com/jorgenschaefer/pyvenv/issues/95
+(add-hook 'pyvenv-post-activate-hooks 'lsp)
+
+;; https://github.com/jorgenschaefer/pyvenv/issues/51
+;; (defun pyvenv-autoload ()
+;;   (interactive)
+;;   "auto activate venv directory if exists"
+;;   (f-traverse-upwards (lambda (path)
+;;                         (let ((venv-path (f-expand "venv" path)))
+;;                           (when (f-exists? venv-path)
+;;                             (pyvenv-activate venv-path))))))
+;; (add-hook 'python-mode-hook 'pyvenv-autoload)
+
 (use-package python
   :ensure t
   ;; Python workflow:
