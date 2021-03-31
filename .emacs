@@ -98,7 +98,8 @@
 
 ; Use the C-based line numbers instead of the slower lisp (`linum`).
 ;; https://www.emacswiki.org/emacs/LineNumbers#h5o-1
-(require 'display-line-numbers)
+(use-package display-line-numbers
+  :config (global-display-line-numbers-mode))
 (defcustom display-line-numbers-exempt-modes '(vterm-mode eshell-mode shell-mode term-mode ansi-term-mode lisp-interaction-mode, org, compilation-mode)
   "Major modes on which to disable the linum mode, exempts them from global requirement"
   :group 'display-line-numbers
@@ -110,7 +111,6 @@
        (not (member major-mode display-line-numbers-exempt-modes))
        (not (minibufferp)))
       (display-line-numbers-mode)))
-(global-display-line-numbers-mode)
 
 
 (use-package whitespace
