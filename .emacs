@@ -96,6 +96,23 @@
    '(("\\<\\(Note\\|NOTE\\|FIXME\\|Todo\\|TODO\\|BUG\\|Bug\\):" 1 '(:foreground "red" :weight bold) t))))
 
 
+; Use the C-based line numbers instead of the slower lisp (`linum`).
+;; https://www.emacswiki.org/emacs/LineNumbers#h5o-1
+(require 'display-line-numbers)
+(defcustom display-line-numbers-exempt-modes '(vterm-mode eshell-mode shell-mode term-mode ansi-term-mode lisp-interaction-mode, org, compilation-mode)
+  "Major modes on which to disable the linum mode, exempts them from global requirement"
+  :group 'display-line-numbers
+  :type 'list
+  :version "green")
+(defun display-line-numbers--turn-on ()
+  "turn on line numbers but exempting certain major modes defined in `display-line-numbers-exempt-modes'"
+  (if (and
+       (not (member major-mode display-line-numbers-exempt-modes))
+       (not (minibufferp)))
+      (display-line-numbers-mode)))
+(global-display-line-numbers-mode)
+
+
 (use-package whitespace
   ;; White Space Mode
   ;; http://ergoemacs.org/emacs/whitespace-mode.html
@@ -344,7 +361,6 @@
   (fci-mode)  ;; adds fill column indicator.
   (auto-fill-mode)  ;; wraps at auto fill column.
   (flyspell-mode)
-  (linum-mode)  ; Line Numbers Mode
   (my_highlighted_words)  ;; highlight specific words
   (setq indent-tabs-mode nil)  ;; spaces instead of tabs
   )
@@ -367,7 +383,6 @@
   (setq indent-tabs-mode nil)  ;; spaces instead of tabs
   (setq tab-width 4)  ;; 4 spaces per tab key press.
   (which-function-mode)  ;; Display current function in mode line. (http://emacsredux.com/blog/2014/04/05/which-function-mode/)
-  (linum-mode)  ; Line Numbers Mode
   (my_highlighted_words)  ;; highlight specific words
   (show-paren-mode 1)  ;; highlight matching brackets
   (setq tags-revert-without-query t)
@@ -387,7 +402,6 @@
   (auto-fill-mode -1)
   )
 (add-hook 'lisp-interaction-mode-hook 'my-scratch-mode-config)
-(add-hook 'my-scratch-mode-config-hook (lambda() (linum-mode 0)))
 
 ;; *****************************************************
 ;; *****************************************************
@@ -1262,7 +1276,6 @@
 
     (global-set-key "\C-cr" (lambda () (interactive) (org-capture nil "t")))
     (global-set-key "\C-cn" (lambda () (interactive) (org-capture nil "n")))
-    (add-hook 'org-mode-hook (lambda() (linum-mode 0)))
     )
   :config
   (progn
