@@ -1181,6 +1181,19 @@
   :mode ("\\.js\\'" "\\.mjs\\'")
   :hook (js2-mode . lsp)
   )
+;; FIXME: need to update the path to my local node-modules for my project that
+;; is in a sub-directory of the repo.
+;; (use-package eslint-fix
+;;   ; https://github.com/codesuki/eslint-fix
+;;   :ensure t
+;;   :hook (
+;;          (js-mode . selint-fix)
+;;          (js2-mode . selint-fix)
+;;          )
+;;   :init
+;;   (setq eslint-fix-executable "npx eslint")
+;; )
+
 
 ;; *****************************************************
 ;; *****************************************************
