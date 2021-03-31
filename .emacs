@@ -745,7 +745,7 @@
   ; NOTE: 'M-x markdown-preview', requires: 'markdown', to be installed with
   ; system package manager.
   :ensure t
-  :mode "\\.md\\'"
+  :mode ("\\.md\\'" . markdown-mode)
   :bind (
          ("C-c C-a b" . convert-markdown-ref-to-list)
          ("C-c C-a g" . convert-markdown-github-url-to-ref)
@@ -785,7 +785,7 @@
 (use-package yaml-mode
   ; https://emacs-lsp.github.io/lsp-mode/page/lsp-yaml/
   :ensure t
-  :mode "\\.yml\\'"
+  :mode ("\\.yml\\'" . yaml-mode)
   :hook (yaml-mode . lsp)
   )
 
