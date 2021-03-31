@@ -624,7 +624,6 @@
          ;; * `pipenv install --dev python-language-server[all]`.
          ;; * Start pipenv: `C-cC-pa`.
          ;; * Start lsp: `M-x lsp`.
-         (python-mode . lsp)
          (rust-mode . lsp)
          ;; if you want which-key integration
          (lsp-mode . lsp-enable-which-key-integration)
@@ -860,7 +859,9 @@
   ;; * `pipenv install --dev python-language-server[all]`.
   ;; * Start pipenv: `C-cC-pa`.
   ;; * Start lsp: `M-x lsp`.
-  :hook (python-mode . lsp-mode)
+  :hook (
+         (python-mode . lsp)
+         )
   )
 
 (use-package blacken
