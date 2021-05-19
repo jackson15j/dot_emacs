@@ -777,6 +777,10 @@
   (add-hook 'dockerfile-mode-hook (lambda () (set (make-local-variable 'compile-command) "docker build .")))
   )
 
+(use-package docker
+  :ensure t
+  :bind ("C-c d" . docker))
+
 ;; *****************************************************
 ;; *****************************************************
 ;; YAML
