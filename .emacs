@@ -879,6 +879,15 @@
 ;;                             (pyvenv-activate venv-path))))))
 ;; (add-hook 'python-mode-hook 'pyvenv-autoload)
 
+(use-package lsp-jedi
+  ;; https://github.com/fredcamps/lsp-jedi
+  ;; https://github.com/pappasam/jedi-language-server
+  :ensure t
+  :config
+  (with-eval-after-load "lsp-mode"
+    (add-to-list 'lsp-disabled-clients 'pyls)
+    (add-to-list 'lsp-enabled-clients 'jedi)))
+
 (use-package python
   :ensure t
   ;; Python workflow:
