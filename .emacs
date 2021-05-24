@@ -420,6 +420,9 @@
          ("C-c T f" . flycheck-mode)
          ("C-c j" . flycheck-next-error)
         )
+  :hook (
+         (python-mode . (lambda () (setq flycheck-checker 'python-flake8)))
+         )
   :init (global-flycheck-mode)
   :config
   (progn
@@ -441,18 +444,6 @@
   )
   :diminish flycheck-mode)
 (flycheck-mode flycheck-mode-line) ; Flycheck status
-
-(use-package flycheck-pycheckers
-  ; https://github.com/msherry/flycheck-pycheckers
-  :ensure t
-  :after (flycheck)
-  :hook (
-         (python-mode . (lambda () (setq flycheck-checker 'python-pycheckers)))
-         ; (flycheck-mode . #'flycheck-pycheckers-setup)
-         )
-  :config
-   (setq flycheck-pycheckers-checkers '(flake8 mypy3 bandit))
-  )
 
 
 ;; ========================
