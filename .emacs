@@ -442,6 +442,19 @@
   :diminish flycheck-mode)
 (flycheck-mode flycheck-mode-line) ; Flycheck status
 
+(use-package flycheck-pycheckers
+  ; https://github.com/msherry/flycheck-pycheckers
+  :ensure t
+  :after (flycheck)
+  :hook (
+         (python-mode . (lambda () (setq flycheck-checker 'python-pycheckers)))
+         ; (flycheck-mode . #'flycheck-pycheckers-setup)
+         )
+  :config
+   (setq flycheck-pycheckers-checkers '(flake8 mypy3 bandit))
+  )
+
+
 ;; ========================
 ;; VC config (VC is built in version control package. Magit is an enhanced git VC package)
 ;; ========================
