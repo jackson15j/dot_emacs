@@ -1790,6 +1790,20 @@ sound to be played (default=/../alert.wav)"
   (setq iss-compiler-path "C:/Program Files (x86)/Inno Setup 6")
   )
 
+
+(use-package devdocs
+  ; https://github.com/astoff/devdocs.el
+  :ensure t
+  :hook (
+         (c-mode . (lambda () (setq-local devdocs-current-docs '("c"))))
+         (c++-mode . (lambda () (setq-local devdocs-current-docs '("cpp" "cmake~3.20"))))
+         (python-mode . (lambda () (setq-local devdocs-current-docs '("python~3.9" "django~3.2" "django_rest_framework"))))
+         )
+  )
+
+
+
+
 ;; ========================
 ;; Finally; Load extra dot files (if they exist)
 ;; ========================
