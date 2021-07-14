@@ -1292,7 +1292,10 @@
 ; https://github.com/jschaf/powershell.el
 (use-package powershell
   :ensure t
-  :hook (powershell-mode . my-programming-defaults-config)
+  :hook (
+         (powershell-mode . my-programming-defaults-config)
+         ; (powershell-mode . lsp) ;; No `Expand-Archive` on Arch pwsh, so cannot install `pwsh-ls` automatically.
+         )
   )
 
 
