@@ -1584,10 +1584,11 @@
 ;; ========================
 ;; Stackoverflow search (SOS)
 ;; ========================
-(use-package sos
-  :ensure t
-  :bind (("<f5>" . sos))
-  )
+;; FIXME: package doesn't exist any more?
+;; (use-package sos
+;;   :ensure t
+;;   :bind (("<f5>" . sos))
+;;   )
 
 
 ;; FIXME: appears to not exist anymore.
