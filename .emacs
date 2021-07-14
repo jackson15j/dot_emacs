@@ -1074,6 +1074,7 @@
   ;; project.
   ;; requires `clang-format` to be installed from system package manger.
   :ensure t
+  :after cc-mode
   :config
   (progn
     (define-key c++-mode-map (kbd "C-c #") 'clang-format-region)
