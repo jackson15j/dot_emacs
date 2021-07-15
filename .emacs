@@ -519,7 +519,6 @@ so grabbed this code:
     (add-hook 'prog-mode-hook 'global-company-mode)
     (setq company-tooltip-limit 20) ; bigger popup window
     (setq company-idle-delay .3)    ; decrease delay before autocompletion popup shows
-    (setq company-auto-complete nil) ; don't auto complete words when I'm hitting space to move on.
 
     (bind-keys :map company-active-map
                ("C-n" . company-select-next)
@@ -1508,7 +1507,7 @@ FORMAT - .format to use."
   :config
   (progn
     (setq
-     mu4e-maildir "~/mail"  ;; location of my maildir.
+     mu4e-root-maildir "~/mail"  ;; location of my maildir.
      ;; mu4e-maildir (expand-file-name "~/mail")
      ;;rename files when moving
      ;;NEEDED FOR MBSYNC
@@ -1536,18 +1535,6 @@ FORMAT - .format to use."
   ;; uncomment one of these on old mu/emacs versions (0.9.9.6, 24.x).
   ;; (setq mu4e-html2text-command "html2text -utf8 -width 120")  ;; requires apt-get html2text
   ;; (setq mu4e-html2text-command "w3m -T text/html")
-
-  ;; bookmarks
-  (add-to-list 'mu4e-bookmarks
-               (make-mu4e-bookmark
-                :name  "Big messages"
-                :query "size:5M..500M"
-                :key ?b))
-  (add-to-list 'mu4e-bookmarks
-               (make-mu4e-bookmark
-                :name  "Starred messages"
-                :query "flag:flagged"
-                :key ?s))
 
   (use-package mu4e-maildirs-extension
     ;; Show mu4e maildirs summary in mu4e-main-view
