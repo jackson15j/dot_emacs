@@ -710,6 +710,7 @@ so grabbed this code:
 ;; *****************************************************
 (use-package php-mode
   :ensure t
+  :mode ("\\.php\\'" . php-mode)
   :config
   (progn
     (add-hook 'php-mode-hook 'my-programming-defaults-config)
@@ -725,10 +726,13 @@ so grabbed this code:
 (use-package groovy-mode
   ; https://github.com/Groovy-Emacs-Modes/groovy-emacs-modes
   :ensure t
+  :mode (
+         ("\\.groovy\\'" . groovy-mode)
+         ("\\Jenkinsfile*\\'" . groovy-mode)
+         )
   :config
   (progn
     (add-hook 'groovy-mode-hook 'my-programming-defaults-config)
-    (add-to-list 'auto-mode-alist '("jenkinsfile\\'" . groovy-mode))
     )
   )
 
@@ -832,6 +836,7 @@ so grabbed this code:
 ;; *****************************************************
 (use-package json-mode
   :ensure t
+  :mode ("\\.json\\'" . json-mode)
   :hook (
          (json-mode . my-programming-defaults-config)
          (json-mode . (lambda () (auto-fill-mode -1)))  ;; disables auto fill at column.
@@ -900,6 +905,8 @@ so grabbed this code:
 
 (use-package python
   :ensure t
+  :mode ("\\.py\\'" . python-mode)
+  :interpreter ("python" . python-mode)
   ;; Python workflow:
   ;; * `pipenv install --dev python-language-server[all]`.
   ;; * Start pipenv: `C-cC-pa`.
