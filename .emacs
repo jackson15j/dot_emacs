@@ -279,7 +279,9 @@ so grabbed this code:
 
 (use-package vterm
   :if (not (eq system-type 'windows-nt))  ;; FIXME: compiling on Windows.
-  :ensure t)
+  :ensure t
+  :init (setq vterm-always-compile-module t)
+  )
 
 ;; ========================
 ;; ansi-term (terminal emulator. Prefer it to multi-term/eshell/shell)
