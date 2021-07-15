@@ -1914,5 +1914,9 @@ for the use of the hook."
             (message (concat "Loading external dot file: " dot_emacs))
             (load-file dot_emacs))))
 
+
+;; Local Variables:
+;; byte-compile-warnings: (not free-vars)
+;; End:
 (provide '.emacs)
 ;;; .emacs ends here
