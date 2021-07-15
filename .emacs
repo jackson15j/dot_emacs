@@ -793,7 +793,10 @@
 (use-package yaml-mode
   ; https://emacs-lsp.github.io/lsp-mode/page/lsp-yaml/
   :ensure t
-  :mode ("\\.yml\\'" . yaml-mode)
+  :mode (
+         ("\\.yml\\'" . yaml-mode)
+         ("\\.yaml\\'" . yaml-mode)
+         )
   :hook (yaml-mode . lsp)
   )
 
@@ -893,10 +896,7 @@
   ;; https://github.com/fredcamps/lsp-jedi
   ;; https://github.com/pappasam/jedi-language-server
   :ensure t
-  :config
-  (with-eval-after-load "lsp-mode"
-    (add-to-list 'lsp-disabled-clients 'pyls)
-    (add-to-list 'lsp-enabled-clients 'jedi)))
+ )
 
 (use-package python
   :ensure t
