@@ -104,12 +104,12 @@
    (line-number ((t (:inherit (shadow default) :background "color-234"))))
   )
 (defcustom display-line-numbers-exempt-modes '(vterm-mode eshell-mode shell-mode term-mode ansi-term-mode lisp-interaction-mode, org, compilation-mode)
-  "Major modes on which to disable the linum mode, exempts them from global requirement"
+  "Major modes on which to disable the linum mode, exempts them from global requirement."
   :group 'display-line-numbers
   :type 'list
   :version "green")
 (defun display-line-numbers--turn-on ()
-  "turn on line numbers but exempting certain major modes defined in `display-line-numbers-exempt-modes'"
+  "Turn on line numbers but exempting certain major modes defined in `display-line-numbers-exempt-modes'."
   (if (and
        (not (member major-mode display-line-numbers-exempt-modes))
        (not (minibufferp)))
@@ -179,9 +179,10 @@
 
 
 (defun go-to-column (column)
-  "GoTo column. Was getting annoyed seeing errors that point to a column number
-   so grabbed this code:
-   - http://emacsredux.com/blog/2013/07/09/go-to-column/"
+  "GoTo column.
+Was getting annoyed seeing errors that point to a COLUMN number;
+so grabbed this code:
+- http://emacsredux.com/blog/2013/07/09/go-to-column/"
   (interactive "nColumn: ")
   (move-to-column column t))
 (global-set-key (kbd "M-g M-c") 'go-to-column)
@@ -1082,8 +1083,8 @@
   )
 
 (defun create-tags (dir-name)
-  "Create tags file."
-  (interactive "DDirectory: ")
+  "Create tags file in directory: DIR-NAME."
+  (interactive "Directory: ")
   (eshell-command
    ; (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name))) ;; `.c`/`.h` in a non-git repo.
    (format "cd $(git rev-parse --show-toplevel) && git ls-files | etags -" dir-name)))  ;; tag all files.
@@ -1385,6 +1386,8 @@
   :config
   (progn
     (use-package calfw-gcal
+      ;; FIXME: 10year old package with deprecated `cl` requirement.
+      ;; TODO: replace for: https://github.com/myuhe/org-gcal.el.
       :ensure t)
 
     (use-package calfw-ical
@@ -1407,12 +1410,17 @@
    (format "~/org/github_blog/images/%s" path)))
 
 (defun org-custom-link-img-export (path desc format)
-  "Rewrite custom linked images for export."
+  "Rewrite custom linked images for export.
+PATH - path to images.
+DESC - Description to add as alt text..
+FORMAT - .format to use."
   (cond
    ((eq format 'html)
     (format "<img src=\"http://jackson15j.github.io/%s\" alt=\"%s\"/>" path desc))))
 
 (require 'org)
+;; FIXME: `org-add-link-type` is deprecated. Replace with:
+;; `org-link-set-parameters`.
 (org-add-link-type "img" 'org-custom-link-img-follow 'org-custom-link-img-export)
 
 
@@ -1616,10 +1624,10 @@
 ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Desktop-Notifications.html,
 ;; since this would be nicer to move to a standardised package.
 (defun djcb-popup (title msg &optional timeout icon sound)
-  "Show a popup if we're on X, or echo it otherwise; TITLE is the
-title of the message, MSG is the context. Optionally, you can
-provide a timeout (milliseconds, default=5000) an ICON and a
-sound to be played (default=/../alert.wav)"
+  "Show a popup if we're on X, or echo it otherwise;
+TITLE is the title of the message, MSG is the context.
+Optionally, you can provide a TIMEOUT (milliseconds, default=5000) an ICON and
+a SOUND to be played (default=/../alert.wav)"
   (interactive)
   (shell-command
    (concat "mplayer -really-quiet "
@@ -1764,8 +1772,8 @@ sound to be played (default=/../alert.wav)"
 (defun mscgen-compile-buffer-hook()
   "Compile command to generate a PNG from the current mscgen buffer.
 
-  See: https://stackoverflow.com/questions/6138029/how-to-add-a-hook-to-only-run-in-a-particular-mode
-  for the use of the hook."
+See: https://stackoverflow.com/questions/6138029/how-to-add-a-hook-to-only-run-in-a-particular-mode
+for the use of the hook."
   (compile (concat "mscgen -T png " buffer-file-name " && mscgen -T svg " buffer-file-name))
   (message (concat "Generated PNG/SVG for: " buffer-file-name))
   )
@@ -1821,3 +1829,6 @@ sound to be played (default=/../alert.wav)"
           (when (file-exists-p dot_emacs)
             (message (concat "Loading external dot file: " dot_emacs))
             (load-file dot_emacs))))
+
+(provide '.emacs)
+;;; .emacs ends here
