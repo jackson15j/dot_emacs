@@ -69,7 +69,7 @@
 (put 'downcase-region 'disabled nil)  ; allow downcase-region without the disabled feature warning.
 (put 'upcase-region 'disabled nil)  ; allow upcase-region without the disabled feature warning.
 '(flycheck-error-list-column-number ((t (:inherit font-lock-constant-face :background "blue"))))
-'(flycheck-warning ((t (:background "color-17" :underline (:color "DarkOrange" :style wave)))))
+'(flycheck-warning ((t (:background "DarkBlue" :underline (:color "DarkOrange" :style wave)))))
 (setq calendar-week-start-day 1)
 (setq compilation-scroll-output 't)
 (menu-bar-mode -1)  ;; Disable Menu Bar
@@ -101,7 +101,7 @@
 (use-package display-line-numbers
   :config (global-display-line-numbers-mode)
   :custom-face
-   (line-number ((t (:inherit (shadow default) :background "color-234"))))
+   (line-number ((t (:inherit (shadow default) :background "grey10"))))
   )
 (defcustom display-line-numbers-exempt-modes '(vterm-mode eshell-mode shell-mode term-mode ansi-term-mode lisp-interaction-mode, org, compilation-mode)
   "Major modes on which to disable the linum mode, exempts them from global requirement."
@@ -439,9 +439,9 @@ so grabbed this code:
      ;; Set the standard library to libc++ so that C++11 headers will work
      flycheck-clang-standard-library "libc++"
      )
-    (set-face-attribute 'flycheck-error nil :background "color-52")  ; dark red
-    (set-face-attribute 'flycheck-warning nil :background "color-17")  ; dark blue
-    (set-face-attribute 'flycheck-info nil :background "color-22")  ; dark green
+    (set-face-attribute 'flycheck-error nil :background "DarkRed")  ; dark red
+    (set-face-attribute 'flycheck-warning nil :background "DarkBlue")  ; dark blue
+    (set-face-attribute 'flycheck-info nil :background "DarkGreen")  ; dark green
     ;; Use italic face for checker name
     (set-face-attribute 'flycheck-error-list-checker-name nil :inherit 'italic)
   )
