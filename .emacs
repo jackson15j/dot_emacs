@@ -1215,6 +1215,13 @@ so grabbed this code:
 ;; *****************************************************
 ;; *****************************************************
 ; https://emacs.cafe/emacs/javascript/setup/2017/05/09/emacs-setup-javascript-2.html
+; https://emacs-lsp.github.io/lsp-mode/tutorials/reactjs-tutorial/ = ts-ls.
+; https://emacs-lsp.github.io/lsp-mode/page/lsp-eslint/
+; https://classic.yarnpkg.com/en/docs/cli/global
+; - move yarn global install path to home dir and then install eslint globally.
+; `yarn config set prefix ~/.yarn`
+; `npx -p node@14 yarn global add eslint`
+; `M-x lsp-install-server <ret> eslint <ret>`
 (use-package js2-mode
   :ensure t
   :mode ("\\.js\\'" "\\.mjs\\'")
