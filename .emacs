@@ -620,16 +620,6 @@ so grabbed this code:
 ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
 (setq lsp-keymap-prefix "s-l")
 
-;; optionally if you want to use debugger
-;; (use-package dap-mode
-;;   :if (not (eq system-type 'windows-nt))  ;; FIXME: (void-function dap-ui-mode)
-;;   :ensure t
-;;   :config  ; FIXME: breaks after upgrading to latest.
-;;   (dap-ui-mode 1)
-;;   (dap-tooltip-mode 1)
-;;   (dap-ui-controls-mode 1)
-;;   )
-;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 
 (use-package lsp-mode
   :ensure t
@@ -656,7 +646,19 @@ so grabbed this code:
   :ensure t
   :commands lsp-ui-mode)
 
+(use-package lsp-treemacs
+  :after lsp)
 
+;; optionally if you want to use debugger
+(use-package dap-mode
+  :if (not (eq system-type 'windows-nt))  ;; FIXME: (void-function dap-ui-mode)
+  :ensure t
+  :config  ; FIXME: breaks after upgrading to latest.
+  (dap-ui-mode 1)
+  (dap-tooltip-mode 1)
+  (dap-ui-controls-mode 1)
+  )
+;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 
 
 ;; *****************************************************
@@ -921,7 +923,11 @@ so grabbed this code:
   ;; * Start lsp: `M-x lsp`.
   :hook (
          (python-mode . lsp)
+         ;; (python-mode . dap-mode)  ;; think this should be: `dap` only ??
          )
+  :config
+  (require 'dap-python)
+  ;(dap-python-setup)
   )
 
 (use-package blacken
@@ -1231,8 +1237,22 @@ so grabbed this code:
 (use-package js2-mode
   :ensure t
   :mode ("\\.js\\'" "\\.mjs\\'")
-  :hook (js2-mode . lsp)
+  :hook (
+         (js2-mode . lsp)
+         ; (js2-mode . lsp-treemacs-error-list-mode)
+         )
+  :config
+  (require 'dap-chrome)
+  (dap-chrome-setup)
+  (require 'dap-node)
+  (dap-node-setup)
+  (require 'dap-firefox)
+  (dap-node-setup)
+  (setq
+   lsp-eslint-auto-fix-on-save t
+   )
   )
+
 ;; FIXME: need to update the path to my local node-modules for my project that
 ;; is in a sub-directory of the repo.
 ;; (use-package eslint-fix
