@@ -643,6 +643,10 @@ so grabbed this code:
          (lsp-mode . my-programming-defaults-config)
          )
   :commands lsp
+  :config
+  (setq
+   lsp-file-watch-threshold 20000
+        )
   )
 
 ;; optionally
