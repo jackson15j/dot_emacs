@@ -1394,6 +1394,24 @@ so grabbed this code:
     )
 )
 
+(use-package plantuml-mode
+  ; https://plantuml.com/emacs
+  :ensure t
+  :after (org org-src)
+  :init
+  ;; Enable plantuml-mode for PlantUML files
+  (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
+  (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+  :config
+  (setq
+   org-plantuml-jar-path "~/org/plantuml.jar"
+   plantuml-jar-path "~/org/plantuml.jar"
+   plantuml-default-exec-mode 'jar
+   )
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((plantuml . t)))
+  )
 
 ;; http://cestlaz.github.io/posts/using-emacs-26-gcal/
 (use-package calfw
