@@ -1241,7 +1241,7 @@ so grabbed this code:
 ; `M-x lsp-install-server <ret> eslint <ret>`
 (use-package js2-mode
   :ensure t
-  :mode ("\\.js\\'" "\\.mjs\\'")
+  :mode ("\\.js\\'" "\\.jsx\\'" "\\.mjs\\'")
   :hook (
          (js2-mode . lsp)
          (js2-mode . prettier-js-mode)  ; runs prettier on save.
