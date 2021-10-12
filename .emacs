@@ -687,10 +687,11 @@ so grabbed this code:
 ;; Erlang programming
 ;; *****************************************************
 ;; *****************************************************
-(use-package erlang
-  ;; (require 'erlang-start)
-  :ensure t
-  )
+;; FIXME: erlang mode is throwing errors on start in latest emacs28!!
+;; (use-package erlang
+;;   ;; (require 'erlang-start)
+;;   :ensure t
+;;   )
 
 
 
