@@ -21,8 +21,7 @@
 ;; http://xahlee.org/emacs/emacs_installing_packages.html
 ; (add-to-list 'load-path "~/.emacs.d/elpa/")
 ;; http://stackoverflow.com/questions/221365/emacs-lisp-how-to-add-a-folder-and-all-its-first-level-sub-folders-to-the-load
-(ignore-errors
- (make-directory "~/.emacs.d/elpa"))
+(make-directory "~/.emacs.d/elpa" t)
 
 (let* ((my-emacsd-dir "~/.emacs.d/elpa/")
        (default-directory my-emacsd-dir)
