@@ -82,10 +82,26 @@
 (display-battery-mode t)  ;; Battery in modeline. Un-comment to enable.
 (setq large-file-warning-threshold (* 40 1024 1024))  ;; large files shouting from 40MB's
 
-;; Temp directories
-(setq temporary-file-directory "/tmp/")  ;; This lets me say where my temp dir is.
-(setq backup-directory-alist `((".*" . ,temporary-file-directory)))  ; http://www.emacswiki.org/emacs/BackupDirectory
-(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+;; backup files - https://www.emacswiki.org/emacs/BackupDirectory
+(setq
+   backup-by-copying t      ; don't clobber symlinks
+   backup-directory-alist
+    '(("." . "~/.emacs.d/.backups/"))    ; don't litter my fs tree
+   delete-old-versions t
+   kept-new-versions 6
+   kept-old-versions 2
+   version-control t)       ; use versioned backups
+(make-directory "~/.emacs.d/.backups/" t)
+;; https://emacs.stackexchange.com/questions/17210/how-to-place-all-auto-save-files-in-a-directory
+(setq auto-save-file-name-transforms
+      `(
+        ("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" "/tmp/\\2" t)
+        (".*" "~/.emacs.d/.auto-saves/" t)
+        )
+      )
+(make-directory "~/.emacs.d/.auto-saves/" t)
+;; Don't save lock files by files - https://www.emacswiki.org/emacs/LockFiles.
+(setq create-lockfiles nil)
 
 ;; Highlights
 (global-hl-line-mode 1)  ;; horizontal highlighted line on cursor.
