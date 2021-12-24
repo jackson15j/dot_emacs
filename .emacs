@@ -1353,6 +1353,17 @@ so grabbed this code:
            (format "<!DOCTYPE html><html><title>Impatient Markdown</title><xmp theme=\"united\" style=\"display:none;\"> %s  </xmp><script src=\"http://strapdownjs.com/v/0.2/strapdown.js\"></script></html>" (buffer-substring-no-properties (point-min) (point-max))))
          (current-buffer)))
 
+;; https://blog.bitsandbobs.net/blog/emacs-markdown-live-preview/
+(defun my-markdown-preview ()
+  "Preview markdown."
+  (interactive)
+  (unless (process-status "httpd")
+    (httpd-start))
+  (impatient-mode)
+  (imp-set-user-filter 'markdown-html)
+  (imp-visit-buffer))
+
+
 ;; *****************************************************
 ;; *****************************************************
 ;; Rust Mode
