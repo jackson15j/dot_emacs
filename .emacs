@@ -1485,6 +1485,10 @@ so grabbed this code:
   ; https://plantuml.com/emacs
   :ensure t
   :after (org org-src)
+  :hook
+  (
+   (plantuml-mode . my-programming-defaults-config)
+   )
   :init
   ;; Enable plantuml-mode for PlantUML files
   (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
