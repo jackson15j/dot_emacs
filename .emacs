@@ -979,6 +979,13 @@ so grabbed this code:
   (setq blacken-only-if-project-is-blackened t)
   )
 
+(use-package poetry
+  ;; https://github.com/galaunay/poetry.el
+  :ensure t
+  :config
+  (poetry-tracking-mode)  ;; activate poetry virtualenv's on buffer change.
+  )
+
 ;; (use-package python
 ;;   :defer t
 ;;   :bind ("\C-m" . newline-and-indent)
