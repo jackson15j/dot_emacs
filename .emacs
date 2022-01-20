@@ -1276,11 +1276,19 @@ so grabbed this code:
 ;; Javascript IDE stuff
 ;; *****************************************************
 ;; *****************************************************
+;; https://github.com/codesuki/add-node-modules-path
+;; (use-package add-node-modules-path
+;;   :ensure t
+;;   )
+;; https://github.com/jscheid/prettier.el
+;; (use-package prettier
+;;   :ensure t
+;;   )
 ; https://github.com/prettier/prettier-emacs
 ; Requires global prettier install: `npm install -g prettier`.
-(use-package prettier-js
-  :ensure t
-  )
+;; (use-package prettier-js
+;;   :ensure t
+;;   )
 ; https://emacs.cafe/emacs/javascript/setup/2017/05/09/emacs-setup-javascript-2.html
 ; https://emacs-lsp.github.io/lsp-mode/tutorials/reactjs-tutorial/ = ts-ls.
 ; https://emacs-lsp.github.io/lsp-mode/page/lsp-eslint/
@@ -1294,7 +1302,9 @@ so grabbed this code:
   :mode ("\\.js\\'" "\\.jsx\\'" "\\.mjs\\'")
   :hook (
          (js2-mode . lsp)
-         (js2-mode . prettier-js-mode)  ; runs prettier on save.
+         ;; (js2-mode . add-node-modules-path)
+         ;; (js2-mode . prettier-js-mode)  ; runs prettier on save.
+         ;; (js2-mode . prettier-mode)  ; runs prettier on save.
          ; (js2-mode . lsp-treemacs-error-list-mode)
          )
   :config
