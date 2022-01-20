@@ -1080,6 +1080,7 @@ so grabbed this code:
 ;; C++ IDE stuff
 ;; *****************************************************
 ;; *****************************************************
+;; TODO: spaces instead of tabs.
 (use-package cc-mode
   ;; https://emacs-lsp.github.io/lsp-mode/page/lsp-clangd/
   :ensure t
