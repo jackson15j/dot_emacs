@@ -143,6 +143,8 @@
   (setq whitespace-style (quote (face trailing tabs)))
   )
 
+;; http://pragmaticemacs.com/emacs/dired-human-readable-sizes-and-sort-by-size/
+(setq dired-listing-switches "-alh")
 
 ;; ========================
 ;; Fill Column (used to reflow text automatically & highlight margins)
