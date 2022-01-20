@@ -655,6 +655,8 @@ so grabbed this code:
   :config
   (setq
    lsp-file-watch-threshold 20000
+   gc-cons-threshold 100000000
+   read-process-output-max (* 1024 1024 4)  ;; 4MB
         )
   )
 
