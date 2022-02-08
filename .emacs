@@ -1496,6 +1496,13 @@ so grabbed this code:
     )
 )
 
+
+(defun plantuml-compile-buffer-hook()
+  "Compile command to generate a PNG from the current plantuml buffer."
+  (compile (concat "java -jar ~/org/plantuml.jar " buffer-file-name))
+  (message (concat "Generated PNG for: " buffer-file-name))
+  )
+
 (use-package plantuml-mode
   ; https://plantuml.com/emacs
   :ensure t
@@ -1503,6 +1510,7 @@ so grabbed this code:
   :hook
   (
    (plantuml-mode . my-programming-defaults-config)
+   (plantuml-mode . (lambda () (add-hook 'after-save-hook 'plantuml-compile-buffer-hook nil 'make-it-local)))
    )
   :init
   ;; Enable plantuml-mode for PlantUML files
