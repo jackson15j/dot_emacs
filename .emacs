@@ -985,8 +985,6 @@ so grabbed this code:
   ;; (setq blacken-only-if-project-is-blackened t)
   )
 
-(use-package poetry
-  ;; https://github.com/galaunay/poetry.el
 ;; TODO: figure out why this is cause code to be eaten from the top of the file on save.
 ;; (use-package isortify
 ;;   ;; https://github.com/pythonic-emacs/isortify
@@ -996,8 +994,14 @@ so grabbed this code:
 
   :ensure t
   :config
-  (poetry-tracking-mode)  ;; activate poetry virtualenv's on buffer change.
   )
+
+;; (use-package poetry
+;;   ;; https://github.com/galaunay/poetry.el
+;;   :ensure t
+;;   :config
+;;   (poetry-tracking-mode)  ;; activate poetry virtualenv's on buffer change.
+;;   )
 
 ;; (use-package python
 ;;   :defer t
