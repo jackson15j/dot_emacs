@@ -980,7 +980,9 @@ so grabbed this code:
   :ensure t
   :hook (python-mode . blacken-mode)
   :init
-  (setq blacken-only-if-project-is-blackened t)
+  ;; NOTE: Commented out below line due to currently working on projects that
+  ;; require `black` but have no: `[tool.black]` in the `pyproject.toml` file.
+  ;; (setq blacken-only-if-project-is-blackened t)
   )
 
 (use-package poetry
