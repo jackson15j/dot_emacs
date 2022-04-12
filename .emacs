@@ -442,9 +442,6 @@ so grabbed this code:
          ("C-c T f" . flycheck-mode)
          ("C-c j" . flycheck-next-error)
         )
-  :hook (
-         (python-mode . (lambda () (setq flycheck-checker 'python-flake8)))
-         )
   :init (global-flycheck-mode)
   :config
   (progn
@@ -466,6 +463,19 @@ so grabbed this code:
   )
   :diminish flycheck-mode)
 (flycheck-mode flycheck-mode-line) ; Flycheck status
+
+;; Chain modes after `lsp`.
+;; https://rat.dev/flycheck/flycheck/issues/1762
+(defvar-local my/flycheck-local-cache nil)
+(defun my/flycheck-checker-get (fn checker property)
+  (or (alist-get property (alist-get checker my/flycheck-local-cache))
+      (funcall fn checker property)))
+(advice-add 'flycheck-checker-get :around 'my/flycheck-checker-get)
+(add-hook 'lsp-managed-mode-hook
+          (lambda ()
+            (when (derived-mode-p 'python-mode)
+              (setq my/flycheck-local-cache '((lsp . ((next-checkers . (python-pylint)))))))))
+
 
 
 ;; ========================
