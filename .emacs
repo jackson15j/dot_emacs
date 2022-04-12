@@ -667,6 +667,7 @@ so grabbed this code:
   :commands (
              lsp-ui-mode
              lsp-ui-peek-mode
+             lsp-ui-sideline-mode
              )
   :bind (
          ([remap xref-find-definitions] . #'lsp-ui-peek-find-definitions)  ;; M-.
