@@ -987,6 +987,13 @@ so grabbed this code:
 
 (use-package poetry
   ;; https://github.com/galaunay/poetry.el
+;; TODO: figure out why this is cause code to be eaten from the top of the file on save.
+;; (use-package isortify
+;;   ;; https://github.com/pythonic-emacs/isortify
+;;   :ensure t
+;;   :hook (python-mode . isortify-mode)
+;;   )
+
   :ensure t
   :config
   (poetry-tracking-mode)  ;; activate poetry virtualenv's on buffer change.
