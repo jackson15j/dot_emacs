@@ -664,7 +664,14 @@ so grabbed this code:
 (use-package lsp-ui
   ;; https://github.com/emacs-lsp/lsp-ui
   :ensure t
-  :commands lsp-ui-mode
+  :commands (
+             lsp-ui-mode
+             lsp-ui-peek-mode
+             )
+  :bind (
+         ([remap xref-find-definitions] . #'lsp-ui-peek-find-definitions)  ;; M-.
+         ([remap xref-find-references] . #'lsp-ui-peek-find-references)  ;; M-?
+         )
   :config
   (setq
    lsp-ui-doc-show-with-cursor t
