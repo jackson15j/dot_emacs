@@ -952,11 +952,25 @@ so grabbed this code:
          )
   )
 
-(use-package lsp-jedi
-  ;; https://github.com/fredcamps/lsp-jedi
-  ;; https://github.com/pappasam/jedi-language-server
+;; (use-package lsp-jedi
+;;   ;; https://github.com/fredcamps/lsp-jedi
+;;   ;; https://github.com/pappasam/jedi-language-server
+;;   :ensure t
+;;  )
+
+;; NOTE: Working on some code that prevents me installing Jedi due to
+;; dependency conflicts. Trying out MS Python.
+(use-package lsp-python-ms
+  ;; https://emacs-lsp.github.io/lsp-python-ms/?amp=1
   :ensure t
- )
+  :init (setq lsp-python-ms-auto-install-server t)
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-python-ms)
+                         ;; Using `lsp-deferred` since it handles showing
+                         ;; errors in the buffer after the MS LSP agent has
+                         ;; finished analysis (instead of `lsp`).
+                         (lsp-deferred))))
+
 
 (use-package python
   :ensure t
