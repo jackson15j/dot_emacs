@@ -700,6 +700,9 @@ so grabbed this code:
   (dap-ui-mode 1)
   (dap-tooltip-mode 1)
   (dap-ui-controls-mode 1)
+  (setq
+   dap-python-debugger 'debugpy   ;; The default: `ptvsd` is deprecated!
+   )
   )
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 
