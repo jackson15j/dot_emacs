@@ -2136,6 +2136,7 @@ for the use of the hook."
 ;; ========================
 ;; Finally; Load extra dot files (if they exist)
 ;; ========================
+(make-directory "~/configs" t)
 (use-package cus-edit
   :custom (custom-file "~/configs/emacs/custom_set_variables.el" "Moved custom-set-variables to it's own file")
   )
