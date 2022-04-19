@@ -697,6 +697,9 @@ so grabbed this code:
 (use-package dap-mode
   :if (not (eq system-type 'windows-nt))  ;; FIXME: (void-function dap-ui-mode)
   :ensure t
+  :bind (
+         ([f6] . dap-hydra)
+         )
   :config  ; FIXME: breaks after upgrading to latest.
   (dap-ui-mode 1)
   (dap-tooltip-mode 1)
