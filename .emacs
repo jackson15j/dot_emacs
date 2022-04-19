@@ -1049,8 +1049,14 @@ so grabbed this code:
 (use-package conda
   :ensure t
   :config
-  (setq conda-anaconda-home (expand-file-name "~/opt/miniconda3/"))
-  (setq conda-env-home-directory (expand-file-name "~/opt/miniconda3/"))
+  ;; Brew location for `miniforge`.
+  ;; TODO: bound to `darwin`.
+  ;; TODO: check all available paths to see which exists or look into ENV variables ??
+  (setq conda-anaconda-home (expand-file-name "/opt/homebrew/Caskroom/miniforge/base/"))
+  (setq conda-env-home-directory (expand-file-name "/opt/homebrew/Caskroom/miniforge/base/"))
+  ;; ;; Web install location for `miniconda`.
+  ;; (setq conda-anaconda-home (expand-file-name "~/opt/miniconda3/"))
+  ;; (setq conda-env-home-directory (expand-file-name "~/opt/miniconda3/"))
   ;; if you want interactive shell support, include:
   (conda-env-initialize-interactive-shells)
   ;; if you want eshell support, include:
