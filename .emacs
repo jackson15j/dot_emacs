@@ -864,7 +864,14 @@ so grabbed this code:
 
 (use-package docker
   :ensure t
-  :bind ("C-c d" . docker))
+  :bind ("C-c d" . docker)
+  :config
+  ;; https://github.com/Silex/docker.el/issues/188
+  ;; Don't use vterm everywhere.
+  (setq
+   docker-run-async-with-buffer-function 'docker-run-async-with-buffer-shell
+   )
+  )
 
 ;; *****************************************************
 ;; *****************************************************
