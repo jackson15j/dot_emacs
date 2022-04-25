@@ -717,6 +717,7 @@ so grabbed this code:
   (dap-ui-controls-mode 1)
   (setq
    dap-python-debugger 'debugpy   ;; The default: `ptvsd` is deprecated!
+   dap-ui-variable-length 1000  ;; https://github.com/emacs-lsp/dap-mode/issues/416 - don't truncate `locals` variables.
    )
   ;; https://www.reddit.com/r/emacs/comments/tckmb2/dapmode_breakpoints_not_showing_when_in_terminal/
   (unless (display-graphic-p)
