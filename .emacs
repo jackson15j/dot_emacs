@@ -60,6 +60,15 @@
   (server-start))
 
 
+(use-package windmove
+  ;; Builtin method of moving between windows with (default) `Shift+<arrow>`.
+  ;; https://www.emacswiki.org/emacs/WindMove
+  ;; https://pragmaticemacs.wordpress.com/2016/12/26/whizz-between-windows-with-windmove/
+  :ensure t
+  :config 
+  (windmove-default-keybindings)
+  )
+
 
 ;; *****************************************************
 ;; *****************************************************
