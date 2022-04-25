@@ -702,12 +702,14 @@ so grabbed this code:
 (use-package lsp-treemacs
   :after lsp)
 
+
 ;; optionally if you want to use debugger
 (use-package dap-mode
   :if (not (eq system-type 'windows-nt))  ;; FIXME: (void-function dap-ui-mode)
   :ensure t
   :bind (
          ([f6] . dap-hydra)
+         ([f7] . 'dap-ui-repl)
          )
   :config  ; FIXME: breaks after upgrading to latest.
   (dap-ui-mode 1)
