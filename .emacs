@@ -861,9 +861,12 @@ so grabbed this code:
 ;; *****************************************************
 (use-package dockerfile-mode
   :ensure t
-  :init
-  (add-hook 'dockerfile-mode-hook 'my-programming-defaults-config)
-  (add-hook 'dockerfile-mode-hook (lambda () (set (make-local-variable 'compile-command) "docker build .")))
+  :hook
+  (
+   (dockerfile-mode . lsp-deferred)
+   (dockerfile-mode . (lambda () (set (make-local-variable 'compile-command) "docker build .")))
+   (dockerfile-mode-hook . 'my-programming-defaults-config)
+   )
   )
 
 (use-package docker
