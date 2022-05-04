@@ -861,11 +861,12 @@ so grabbed this code:
 ;; *****************************************************
 (use-package dockerfile-mode
   :ensure t
+  :after flycheck lsp-mode
   :hook
   (
-   (dockerfile-mode . lsp-deferred)
+   (dockerfile-mode . lsp)
    (dockerfile-mode . (lambda () (set (make-local-variable 'compile-command) "docker build .")))
-   (dockerfile-mode-hook . 'my-programming-defaults-config)
+   ;; (dockerfile-mode . (lambda () (lsp-deferred) (flycheck-add-next-checker 'lsp 'dockerfile-hadolint)))
    )
   )
 
