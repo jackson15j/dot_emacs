@@ -75,7 +75,7 @@
 ;; Various Tweaks (one-liners and minor package config).
 ;; *****************************************************
 ;; *****************************************************
-(setq global-auto-revert-mode 1)
+(global-auto-revert-mode)
 (put 'downcase-region 'disabled nil)  ; allow downcase-region without the disabled feature warning.
 (put 'upcase-region 'disabled nil)  ; allow upcase-region without the disabled feature warning.
 '(flycheck-error-list-column-number ((t (:inherit font-lock-constant-face :background "blue"))))
