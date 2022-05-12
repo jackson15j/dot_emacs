@@ -879,11 +879,11 @@ so grabbed this code:
   (setq
    docker-run-async-with-buffer-function 'docker-run-async-with-buffer-shell
    docker-container-columns '(
+                              (:name "Names" :width 30 :template "{{ json .Names }}" :sort nil :format nil)
+                              (:name "Status" :width 30 :template "{{ json .Status }}" :sort nil :format nil)
+                              (:name "Image" :width 40 :template "{{ json .Image }}" :sort nil :format nil)
                               (:name "Id" :width 12 :template "{{ json .ID }}" :sort nil :format nil)
-                              (:name "Names" :width 20 :template "{{ json .Names }}" :sort nil :format nil)
-                              (:name "Image" :width 15 :template "{{ json .Image }}" :sort nil :format nil)
-                              (:name "Ports" :width 10 :template "{{ json .Ports }}" :sort nil :format nil)
-                              (:name "Status" :width 20 :template "{{ json .Status }}" :sort nil :format nil)
+                              (:name "Ports" :width 20 :template "{{ json .Ports }}" :sort nil :format nil)
                               (:name "Command" :width 23 :template "{{ json .Command }}" :sort nil :format nil)
                               (:name "Created" :width 23 :template "{{ json .CreatedAt }}" :sort nil :format (lambda (x) (format-time-string "%F %T" (date-to-time x))))
                               )
