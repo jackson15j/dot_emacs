@@ -544,6 +544,22 @@ so grabbed this code:
     (add-to-list 'forge-alist '("bitbucket.eigen.live" "bitbucket.eigen.live/rest/api/1.0" "bitbucket.eigen.live" forge-bitbucket-repository))
     (add-to-list 'forge-alist '("gitlab.eigen.live" "gitlab.eigen.live/api/v4" "gitlab.eigen.live" forge-gitlab-repository))
     )
+  (use-package code-review
+    ;; https://github.com/wandersoncferreira/code-review
+    ;; `M-x code-review-forge-pr-at-point` on forge PR line.
+    ;; `r` for transient menu in a `code-review` buffer.
+    :ensure t
+    :config
+    (setq
+     code-review-bitbucket-host "bitbucket.eigen.live/rest/api/1.0"
+     code-review-gitlab-host "gitlab.eigen.live/api"
+     code-review-gitlab-graphql-host "gitlab.eigen.live/api"
+     ;; Dump requests into the logs for debugging. eg.
+     ;; https://github.com/wandersoncferreira/code-review/issues/195.
+     ;;
+     ;; code-review-log-raw-request-responses t
+     )
+    )
 
   )
 
