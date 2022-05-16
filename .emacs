@@ -533,10 +533,16 @@ so grabbed this code:
     ;; Replacement for `magithub` (https://github.com/vermiculus/magithub),
     ;; which works with Gitlab/Github.
     ;; See old commits for my old `magithub` config.
+    ;;
+    ;; https://www.reddit.com/r/emacs/comments/fe165f/pinentry_problems_in_osx/
+    ;; to fix GPG timeouts due to no password provided/asked.
+    ;; NOTE: for emacsclients, it asks in the main instance window.
     :if (not (eq system-type 'windows-nt))  ;; FIXME: Needs `cc` compiler defined.
     :ensure t
     :config
     (add-to-list 'forge-alist '("git-scm.clinithink.com:2009" "git-scm.clinithink.com/api/v4" "git-scm.clinithink.com" forge-gitlab-repository))
+    (add-to-list 'forge-alist '("bitbucket.eigen.live" "bitbucket.eigen.live/rest/api/1.0" "bitbucket.eigen.live" forge-bitbucket-repository))
+    (add-to-list 'forge-alist '("gitlab.eigen.live" "gitlab.eigen.live/api/v4" "gitlab.eigen.live" forge-gitlab-repository))
     )
 
   )
