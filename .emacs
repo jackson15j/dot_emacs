@@ -46,6 +46,10 @@
   (package-install 'use-package))
 (require 'use-package)
 
+(use-package use-package-ensure-system-package
+  ;; https://github.com/jwiegley/use-package#use-package-ensure-system-package
+  :ensure t)
+
 (setq debug-on-error t)
 ;; *****************************************************
 ;; Bug-Hunter: Debug lisp files
