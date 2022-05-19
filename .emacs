@@ -1675,6 +1675,20 @@ so grabbed this code:
     )
 )
 
+(use-package org-alert
+  ;; https://github.com/spegoraro/org-alert
+  ;; Notifications from scheduled items in the Org Agenda.
+  ;;
+  ;; https://github.com/julienXX/terminal-notifier/issues/292 -  No Notification in macOS12.1 #292
+  ;; https://github.com/julienXX/terminal-notifier
+  :ensure-system-package terminal-notifier
+  :ensure t
+  :after (org)
+  :config
+  (setq
+   alert-default-style 'notifier
+   )
+  )
 
 (defun plantuml-compile-buffer-hook()
   "Compile command to generate a PNG from the current plantuml buffer."
@@ -2133,10 +2147,16 @@ a SOUND to be played (default=/../alert.wav)"
 
 
 (use-package alert
+  ;; https://github.com/jwiegley/alert
+  :ensure-system-package terminal-notifier
+  :ensure t
   :commands (alert)
   :init
-  (setq alert-default-style 'notifier))
-
+  (setq
+   alert-default-style 'notifier
+   alert-fade-time 15
+   )
+  )
 
 
 ;; ========================
