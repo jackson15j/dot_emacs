@@ -763,11 +763,13 @@ so grabbed this code:
    dap-internal-terminal 'dap-internal-terminal-shell  ;; Forgotten how to scroll `vterm` so using shell.
    )
   ;; https://www.reddit.com/r/emacs/comments/tckmb2/dapmode_breakpoints_not_showing_when_in_terminal/
-  (unless (display-graphic-p)
-    (set-face-background 'dap-ui-marker-face "color-166") ; An orange background for the line to execute
-    (set-face-attribute 'dap-ui-marker-face nil :inherit nil) ; Do not inherit other styles
-    (set-face-background 'dap-ui-pending-breakpoint-face "blue") ; Blue background for breakpoints line
-    (set-face-attribute 'dap-ui-verified-breakpoint-face nil :inherit 'dap-ui-pending-breakpoint-face)
+  (with-eval-after-load 'dap-faces
+    (unless (display-graphic-p)
+      (set-face-background 'dap-ui-marker-face "color-166") ; An orange background for the line to execute
+      (set-face-attribute 'dap-ui-marker-face nil :inherit nil) ; Do not inherit other styles
+      (set-face-background 'dap-ui-pending-breakpoint-face "blue") ; Blue background for breakpoints line
+      (set-face-attribute 'dap-ui-verified-breakpoint-face nil :inherit 'dap-ui-pending-breakpoint-face)
+      )
     )
   )
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
