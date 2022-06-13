@@ -771,6 +771,8 @@ so grabbed this code:
       (set-face-attribute 'dap-ui-verified-breakpoint-face nil :inherit 'dap-ui-pending-breakpoint-face)
       )
     )
+  (add-hook 'dap-stopped-hook
+            (lambda (arg) (call-interactively #'dap-hydra)))
   )
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 
