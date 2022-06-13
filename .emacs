@@ -749,10 +749,14 @@ so grabbed this code:
          ([f6] . dap-hydra)
          ([f7] . 'dap-ui-repl)
          )
+  :commands
+  (
+   dap-mode
+   dap-ui-mode
+   dap-tooltip-mode
+   dap-ui-controls-mode
+   )
   :config  ; FIXME: breaks after upgrading to latest.
-  (dap-ui-mode 1)
-  (dap-tooltip-mode 1)
-  (dap-ui-controls-mode 1)
   (setq
    dap-python-debugger 'debugpy   ;; The default: `ptvsd` is deprecated!
    dap-ui-variable-length 1000  ;; https://github.com/emacs-lsp/dap-mode/issues/416 - don't truncate `locals` variables.
