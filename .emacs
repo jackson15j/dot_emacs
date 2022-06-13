@@ -321,9 +321,11 @@ so grabbed this code:
 
 (use-package vterm
   ;; requires `cmake` installed on the system to compile!!
+  ;; C-cC-t to enter/exit copy-mode.
   :if (not (eq system-type 'windows-nt))  ;; FIXME: compiling on Windows.
   :ensure t
   :init (setq vterm-always-compile-module t)
+  :config (setq vterm-max-scrollback 100000)
   )
 
 ;; ========================
