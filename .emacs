@@ -63,6 +63,16 @@
   :config
   (server-start))
 
+(use-package posframe
+  ;; Seeing LSP and other packages blowing up on this missing requirement.
+  :ensure t
+  )
+
+(use-package treemacs
+  ;; Seeing LSP and other packages blowing up on this missing requirement.
+  :ensure t
+  )
+
 
 (use-package windmove
   ;; Builtin method of moving between windows with (default) `Shift+<arrow>`.
