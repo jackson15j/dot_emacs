@@ -960,6 +960,24 @@ so grabbed this code:
    )
   )
 
+
+(use-package kubernetes
+  ;; https://kubernetes-el.github.io/kubernetes-el/
+  :ensure t
+  :commands (kubernetes-overview)
+  :init
+  ;; https://github.com/kubernetes-el/kubernetes-el/issues/265
+  ;; Work around: cyclic dependency.
+  ;; `Debugger entered--Lisp error: (invalid-function kubernetes-utils--save-window-state)`
+  (defmacro kubernetes-utils--save-window-state (&rest body)
+    `(let ((pos (point)) (col (current-column)) (window-start-line (window-start)) (inhibit-redisplay t))
+       (save-excursion ,@body)
+       (goto-char pos)
+       (move-to-column col)
+       (set-window-start (selected-window) window-start-line)))
+)
+
+
 ;; *****************************************************
 ;; *****************************************************
 ;; Shell script (bash)(built-in)(Major mode)
