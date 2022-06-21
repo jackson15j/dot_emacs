@@ -1981,10 +1981,10 @@ FORMAT - .format to use."
 
 '(browse-url-browser-function (quote browse-url-default-browser))  ; Use system default browser instead of eww.
 ;; bound this to Darwin only.
-(cond
- ((string-equal system-type "darwin")
-  (setq browse-url-browser-function  'browse-url-generic
-        browse-url-generic-program "/Applications/Opera.app/Contents/MacOS/Opera")))
+;; (cond
+;;  ((string-equal system-type "darwin")
+;;   (setq browse-url-browser-function  (quote browse-url-default-browser))));;'browse-url-generic
+;;         browse-url-generic-program "/Applications/Opera.app/Contents/MacOS/Opera")))
 
 (use-package language-detection
   ; https://github.com/andreasjansson/language-detection.el
