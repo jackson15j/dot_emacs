@@ -1658,8 +1658,8 @@ so grabbed this code:
 (use-package org
   :ensure t
   :bind (
-	 ("C-c l" . org-store-link)
-	 ("C-c a" . org-agenda)
+     ("C-c l" . org-store-link)
+     ("C-c a" . org-agenda)
      ("C-c c" . org-capture))
   :init
   (progn
@@ -1689,6 +1689,23 @@ so grabbed this code:
     (global-set-key "\C-cn" (lambda () (interactive) (org-capture nil "n")))
     )
   :config
+  (setq
+   org-agenda-custom-commands '(
+                                ;; https://www.orgmode.org/manual/Custom-Agenda-Views.html
+                                ;; https://redgreenrepeat.com/2021/04/09/org-mode-agenda-getting-started-scheduled-items-and-todos/
+                                ;; http://www.cachestocaches.com/2016/9/my-workflow-org-agenda/#the-agenda
+                                ;; https://github.com/gjstein/emacs.d/blob/master/config/gs-org-agenda.el
+                                ("r" "Agenda Review"
+                                 (
+                                  (agenda "")
+                                  (tags "CHASE" ((org-agenda-overriding-header "Chase down these people!! `:CHASE:`")))
+                                  (tags "ACTION-REVIEW" ((org-agenda-overriding-header "Items I need to action!! `:ACTION:`")))
+                                  (tags "REVIEW|WIKI" ((org-agenda-overriding-header "Dump this into Confluence!! `:REVIEW:WIKI:`")))
+                                  (tags "READ" ((org-agenda-overriding-header "Books/Links I need to read!! `:READ:`")))
+                                  (tags-todo "-ACTION-CHASE-READ-REVIEW-WIKI" ((org-agenda-overriding-header "General TODO's")))
+                                  ))
+                                )
+   )
   (progn
     ;; This is an Emacs package that creates graphviz directed graphs from
     ;; the headings of an org file
