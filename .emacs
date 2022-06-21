@@ -1758,7 +1758,8 @@ so grabbed this code:
   )
 
 (use-package plantuml-mode
-  ; https://plantuml.com/emacs
+  ;; https://plantuml.com/emacs
+  :ensure-system-package java
   :ensure t
   :after (org org-src)
   :hook
