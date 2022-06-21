@@ -1911,6 +1911,7 @@ FORMAT - .format to use."
   ;; FIXME: Cannot set keyboard variable like this, whilst my mu4e-contexts are
   ;; in a private file. Dies on startup with (void-function make-mu4e-context).
   ; :bind (("<f7>" . mu4e))
+  :ensure-system-package mu
   :config
   (progn
     (setq
