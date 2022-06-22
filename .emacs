@@ -1725,6 +1725,7 @@ so grabbed this code:
                                   (tags-todo "-ACTION-ADMIN-CHASE-READ-REVIEW-TRAINING-WATCH-WIKI" ((org-agenda-overriding-header "General TODO's")))
                                   ))
                                 )
+   org-src-fontify-natively t
    )
   (progn
     ;; This is an Emacs package that creates graphviz directed graphs from
