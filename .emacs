@@ -1713,15 +1713,16 @@ so grabbed this code:
                                 ;; https://redgreenrepeat.com/2021/04/09/org-mode-agenda-getting-started-scheduled-items-and-todos/
                                 ;; http://www.cachestocaches.com/2016/9/my-workflow-org-agenda/#the-agenda
                                 ;; https://github.com/gjstein/emacs.d/blob/master/config/gs-org-agenda.el
+                                ;; Keep tags but hide `DONE` tasks: https://orgmode.org/manual/Matching-tags-and-properties.html
                                 ("r" "Agenda Review"
                                  (
                                   (agenda "")
-                                  (tags "CHASE" ((org-agenda-overriding-header "Chase down these people!! `:CHASE:`")))
-                                  (tags "ACTION-REVIEW" ((org-agenda-overriding-header "Items I need to action!! `:ACTION:`")))
-                                  (tags "REVIEW|WIKI" ((org-agenda-overriding-header "Dump this into Confluence!! `:REVIEW:WIKI:`")))
-                                  (tags "READ|WATCH" ((org-agenda-overriding-header "Books/Links I need to read/WATCH!! `:READ:WATCH:`")))
-                                  (tags "ADMIN" ((org-agenda-overriding-header "Admin tasks `:ADMIN:`")))
-                                  (tags "TRAINING" ((org-agenda-overriding-header "Current/Future training tasks `:TRAINING:`")))
+                                  (tags "CHASE/!-DONE" ((org-agenda-overriding-header "Chase down these people!! `:CHASE:`")))
+                                  (tags "ACTION-REVIEW-TRAINING/!-DONE" ((org-agenda-overriding-header "Items I need to action!! `:ACTION:`")))
+                                  (tags "REVIEW/!-DONE|WIKI/!-DONE" ((org-agenda-overriding-header "Dump this into Confluence!! `:REVIEW:WIKI:`")))
+                                  (tags "READ/!-DONE|WATCH/!-DONE" ((org-agenda-overriding-header "Books/Links I need to read/WATCH!! `:READ:WATCH:`")))
+                                  (tags "ADMIN/!-DONE" ((org-agenda-overriding-header "Admin tasks `:ADMIN:`")))
+                                  (tags "TRAINING/!-DONE" ((org-agenda-overriding-header "Current/Future training tasks `:TRAINING:`")))
                                   (tags-todo "-ACTION-ADMIN-CHASE-READ-REVIEW-TRAINING-WATCH-WIKI" ((org-agenda-overriding-header "General TODO's")))
                                   ))
                                 )
