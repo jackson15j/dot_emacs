@@ -1732,6 +1732,7 @@ so grabbed this code:
    org-agenda-overriding-columns-format "%CATEGORY %80ITEM %TODO %TAGS"  ;; C-cC-xC-c in an Agenda view.
    org-agenda-compact-blocks t  ;; Compact agenda. Same as setting: `org-agenda-block-separator nil`.
    org-agenda-tags-column 100  ;; Stop tags rendering off the right of the buffer.
+   org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done)  ;; Hide `DONE` lines from Agenda view.
    )
   (progn
     ;; This is an Emacs package that creates graphviz directed graphs from
