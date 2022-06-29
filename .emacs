@@ -1717,14 +1717,14 @@ so grabbed this code:
                                 ("r" "Agenda Review"
                                  (
                                   (agenda "")
-                                  (tags "CHASE/!-DONE" ((org-agenda-overriding-header "\nChase down these people!! `:CHASE:`")))
+                                  (tags "CHASE" ((org-agenda-overriding-header "\nChase down these people!! `:CHASE:`")))
                                   ;; (tags "INVESTIGATE|INVESTIGATION" ((org-agenda-overriding-header "Investigation tasks!! `:INVESTIGATE:INVESTIGATION:`")))
                                   (tags "INVESTIGATE|INVESTIGATION" ((org-agenda-overriding-header "Investigation tasks!! `:INVESTIGATE:INVESTIGATION:`")))
-                                  (tags "ACTION-REVIEW-TRAINING/!-DONE" ((org-agenda-overriding-header "Items I need to action!! `:ACTION:`")))
+                                  (tags "ACTION" ((org-agenda-overriding-header "Items I need to action!! `:ACTION:`")))
                                   (tags "REVIEW|WIKI" ((org-agenda-overriding-header "Dump this into Confluence!! `:REVIEW:WIKI:`")))
                                   (tags "READ|WATCH" ((org-agenda-overriding-header "Books/Links I need to read/WATCH!! `:READ:WATCH:`")))
-                                  (tags "ADMIN/!-DONE" ((org-agenda-overriding-header "Admin tasks `:ADMIN:`")))
-                                  (tags "TRAINING/!-DONE" ((org-agenda-overriding-header "Current/Future training tasks `:TRAINING:`")))
+                                  (tags "ADMIN" ((org-agenda-overriding-header "Admin tasks `:ADMIN:`")))
+                                  (tags "TRAINING" ((org-agenda-overriding-header "Current/Future training tasks `:TRAINING:`")))
                                   (tags-todo "-ACTION-ADMIN-CHASE-READ-REVIEW-TRAINING-WATCH-WIKI" ((org-agenda-overriding-header "General TODO's")))
                                   ))
                                 )
