@@ -1733,6 +1733,7 @@ so grabbed this code:
    org-agenda-compact-blocks t  ;; Compact agenda. Same as setting: `org-agenda-block-separator nil`.
    org-agenda-tags-column 100  ;; Stop tags rendering off the right of the buffer.
    org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done)  ;; Hide `DONE` lines from Agenda view.
+   org-use-tag-inheritance nil  ;; Don't show un-tagged sub-headings when there is a tag on a high-level.
    )
   (progn
     ;; This is an Emacs package that creates graphviz directed graphs from
