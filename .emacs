@@ -1717,15 +1717,14 @@ so grabbed this code:
                                 ("r" "Agenda Review"
                                  (
                                   (agenda "")
-                                  (tags "CHASE" ((org-agenda-overriding-header "\nChase down these people!! `:CHASE:`")))
-                                  ;; (tags "INVESTIGATE|INVESTIGATION" ((org-agenda-overriding-header "Investigation tasks!! `:INVESTIGATE:INVESTIGATION:`")))
-                                  (tags "INVESTIGATE|INVESTIGATION" ((org-agenda-overriding-header "Investigation tasks!! `:INVESTIGATE:INVESTIGATION:`")))
-                                  (tags "ACTION" ((org-agenda-overriding-header "Items I need to action!! `:ACTION:`")))
-                                  (tags "REVIEW|WIKI" ((org-agenda-overriding-header "Dump this into Confluence!! `:REVIEW:WIKI:`")))
-                                  (tags "READ|WATCH" ((org-agenda-overriding-header "Books/Links I need to read/WATCH!! `:READ:WATCH:`")))
-                                  (tags "ADMIN" ((org-agenda-overriding-header "Admin tasks `:ADMIN:`")))
-                                  (tags "TRAINING" ((org-agenda-overriding-header "Current/Future training tasks `:TRAINING:`")))
-                                  (tags-todo "-ACTION-ADMIN-CHASE-READ-REVIEW-TRAINING-WATCH-WIKI" ((org-agenda-overriding-header "General TODO's")))
+                                  (tags "ACTION" ((org-agenda-overriding-header "\nItems I need to action!! ~:ACTION:~")))
+                                  (tags "CHASE" ((org-agenda-overriding-header "\nChase down these people!! ~:CHASE:~")))
+                                  (tags "INVESTIGATE|INVESTIGATION" ((org-agenda-overriding-header "\nInvestigation tasks!! ~:INVESTIGATE:INVESTIGATION:~")))
+                                  (tags "REVIEW|WIKI" ((org-agenda-overriding-header "\nDump this into Confluence!! ~:REVIEW:WIKI:~")))
+                                  (tags "READ|WATCH" ((org-agenda-overriding-header "Books/Links I need to read/WATCH!! ~:READ:WATCH:~")))
+                                  (tags "TRAINING" ((org-agenda-overriding-header "Current/Future training tasks ~:TRAINING:~")))
+                                  (tags "ADMIN" ((org-agenda-overriding-header "Admin tasks ~:ADMIN:~")))
+                                  (tags-todo "-ACTION-ADMIN-CHASE-READ-REVIEW-TRAINING-WATCH-WIKI" ((org-agenda-overriding-header "\nGeneral TODO's")))
                                   ))
                                 )
    org-src-fontify-natively t
