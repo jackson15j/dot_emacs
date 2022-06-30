@@ -1691,13 +1691,15 @@ so grabbed this code:
                          ((org-agenda-files :maxlevel . 5)
                           ("~/org/projects.org" :maxlevel . 2)))
      org-log-done t
+     ;; https://kundeveloper.com/blog/org-capture-3/ for `org-capture-templates` ideas.
      org-capture-templates '(
                              ("t" "Todo" entry (file+headline "~/org/todo.org" "UNSORTED")
-                              "* TODO %?\n %U - %i\n  %a")
+                              "* TODO %?  %^G\n %U - %i\n  %a")
                              ("p" "Project" entry (file+headline "~/org/projects.org" "UNSORTED")
                               "* TODO %?\n %U - %i\n  %a")
                              ("b" "Buy" entry (file+headline "~/org/buy.org" "UNSORTED")
                               "* TODO %?\n %U - %i\n  %a")
+                             ("i" "Ideas" entry (file "~/org/ideas.org") "* %?\n")
                              ("n" "Notes" entry (file+headline "~/org/notes.org" "UNSORTED")
                               "* TODO %?\n %U - %i\n  %a")
                              )
