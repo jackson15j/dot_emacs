@@ -895,10 +895,18 @@ so grabbed this code:
 ;; *****************************************************
 ;; NOTE: `flymd` looks to be broken and unmaintained. Use `impatient-mode` for
 ;; live previews.
+
+;; https://www.emacswiki.org/emacs/KeyboardMacros
+;; https://www.emacswiki.org/emacs/KeyboardMacrosTricks
 (fset 'convert-markdown-ref-to-list
    "\C-[xreplace-regexp\C-m\\[\\(.*\\)\\].*\C-m* [\\1].\C-m")
 (fset 'convert-markdown-github-url-to-ref
    "\C-[xreplace-regexp\C-m.*github.com/\\(.*\\)/\\(.*\\)\C-m[Github: \\1/\\2]: https://github.com/\\1/\\2\C-m")
+;; FIXME: figure out how to feed the `LFD` or `C-qC-j` without it counting as a
+;; real `RET` and breaking the `replace-regexp` with: `\\(` !!
+(defalias 'strip-a-ids-from-org-markdown-export
+   (kmacro "M-< M-x r e p l a c e - r e g e x p RET \\ ( < a SPC i d = .* > < / a > \\ ) RET RET"))
+
 
 (use-package markdown-mode
   ; NOTE: 'M-x markdown-preview', requires: 'markdown', to be installed with
@@ -908,6 +916,7 @@ so grabbed this code:
   :bind (
          ("C-c C-a b" . convert-markdown-ref-to-list)
          ("C-c C-a g" . convert-markdown-github-url-to-ref)
+         ("C-c C-a s" . strip-a-ids-from-org-markdown-export)
          )
   :init
   (progn
