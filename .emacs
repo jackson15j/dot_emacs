@@ -1737,6 +1737,16 @@ so grabbed this code:
                                   (tags "ADMIN" ((org-agenda-overriding-header "Admin tasks ~:ADMIN:~")))
                                   (tags-todo "-ACTION-ADMIN-CHASE-READ-REVIEW-TRAINING-WATCH-WIKI" ((org-agenda-overriding-header "\nGeneral TODO's")))
                                   ))
+                                ("d" "Agenda for last 2 weeks"
+                                 (
+                                  (agenda "")
+                                  )
+                                 (
+                                  (org-agenda-span 15)
+                                  (org-agenda-start-day "-14d")
+                                  (org-agenda-skip-function-global nil)
+                                  )
+                                 )
                                 )
    org-src-fontify-natively t
    org-agenda-overriding-columns-format "%CATEGORY %80ITEM %TODO %TAGS"  ;; C-cC-xC-c in an Agenda view.
