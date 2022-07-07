@@ -38,7 +38,11 @@
 (require 'package)
 (setq package-eanable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("elpa" .  "https://elpa.gnu.org/packages/" ) t)
 (package-initialize)
+;; Run config from an org file.
+;; https://himmallright.gitlab.io/post/org-babel-setup/
+(org-babel-load-file "~/config.org")
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
@@ -50,13 +54,6 @@
   ;; https://github.com/jwiegley/use-package#use-package-ensure-system-package
   :ensure t)
 
-(setq debug-on-error t)
-;; *****************************************************
-;; Bug-Hunter: Debug lisp files
-;; *****************************************************
-;; https://github.com/Malabarba/elisp-bug-hunter
-(use-package bug-hunter
-  :ensure t)
 
 (use-package server
   :ensure t
@@ -82,6 +79,28 @@
   :config 
   (windmove-default-keybindings)
   )
+
+;; (use-package tree-sitter
+;;   ;; https://emacs-tree-sitter.github.io/
+;;   ;; Use tree-sitter for syntax highlighting instead of built-in regex.
+;;   :ensure t
+;;   :commands (global-tree-sitter-mode)
+;;   :init (global-tree-sitter-mode)
+;;   ;; :hook (
+;;   ;;        ('tree-sitter-after-on-hook . tree-sitter-hl-mode)
+;;   ;;        ;; (python-mode . tree-sitter-hl-mode)
+;;   ;;         )
+;;   )
+
+;; (ignore-error module-not-gpl-compatible
+;; (use-package tree-sitter-langs
+;;   :ensure t
+;;   :hook (
+;;          ('tree-sitter-after-on-hook . tree-sitter-hl-mode)
+;;          ;; (python-mode . tree-sitter-hl-mode)
+;;           )
+;;   )
+;; )
 
 
 ;; *****************************************************
@@ -1150,6 +1169,10 @@ so grabbed this code:
 
 ;; NOTE: Working on some code that prevents me installing Jedi due to
 ;; dependency conflicts. Trying out MS Python.
+;; (ignore-error module-not-gpl-compatible
+;;   ;; Added ingore-error due to noise from tree-sitter-langs `python.dylib`.
+;;   ;; See: https://github.com/emacs-tree-sitter/elisp-tree-sitter/issues/100
+  ;; for a similar problem on NixOS.
 (use-package lsp-python-ms
   ;; https://emacs-lsp.github.io/lsp-python-ms/?amp=1
   :ensure t
@@ -1160,7 +1183,7 @@ so grabbed this code:
                          ;; errors in the buffer after the MS LSP agent has
                          ;; finished analysis (instead of `lsp`).
                          (lsp-deferred))))
-
+;; )
 
 (use-package python
   :ensure t
@@ -1201,6 +1224,9 @@ so grabbed this code:
 (use-package conda
   :ensure t
   :config
+  ;; https://github.com/necaris/conda.el/issues/107 - stopped working with
+  ;;conda 4.13.0
+  ;;
   ;; Brew location for `miniforge`.
   ;; TODO: bound to `darwin`.
   ;; TODO: check all available paths to see which exists or look into ENV variables ??
@@ -1212,15 +1238,15 @@ so grabbed this code:
   ;; if you want interactive shell support, include:
   (conda-env-initialize-interactive-shells)
   ;; if you want eshell support, include:
-  (conda-env-initialize-eshell)
-  (defun conda-autoload ()
-    (interactive)
-    "auto activate conda if environment.yml exists."
-    (f-traverse-upwards (lambda (path)
-                          (let ((venv-path (f-expand "environment.yml" path)))
-                            (when (f-exists? venv-path)
-                              (conda-env-activate-for-buffer)
-                              )))))
+;;  (conda-env-initialize-eshell)
+;;  (defun conda-autoload ()
+;;    (interactive)
+;;    "auto activate conda if environment.yml exists."
+;;    (f-traverse-upwards (lambda (path)
+;;                          (let ((venv-path (f-expand "environment.yml" path)))
+;;                            (when (f-exists? venv-path)
+;;                              (conda-env-activate-for-buffer)
+;;                              )))))
   ;; NOTE: Using above function to load env for each buffer, instead of the
   ;; global mode, since the global setting below doesn't gracefully handle
   ;; buffers that don't have a conda env.
@@ -1232,9 +1258,9 @@ so grabbed this code:
   ;;                                           (conda-env-activate-for-buffer))))
   ;; modeline
   ;; (setq-default mode-line-format (cons '(:exec conda-env-current-name) mode-line-format))
-  :hook (
-         (python-mode . conda-autoload)
-         )
+;;  :hook (
+;;         (python-mode . conda-autoload)
+;;         )
   )
 
 ;; FIXME: removing since current work is poetry in a conda env. Advice is to
@@ -1691,7 +1717,10 @@ so grabbed this code:
 ;; http://orgmode.org/worg/code/elisp/dto-org-gtd.el
 ;; http://www.gnu.org/software/emacs/manual/html_node/org/Remember-templates.html
 (use-package org
-  :ensure t
+  ;; https://emacs.stackexchange.com/questions/7890/org-plus-contrib-and-org-with-require-or-use-package
+  ;; https://emacs.stackexchange.com/questions/70081/how-to-deal-with-this-message-important-please-install-org-from-gnu-elpa-as-o
+  :ensure org-contrib
+  :pin gnu
   :bind (
      ("C-c l" . org-store-link)
      ("C-c a" . org-agenda)
@@ -1726,6 +1755,8 @@ so grabbed this code:
     (global-set-key "\C-cn" (lambda () (interactive) (org-capture nil "n")))
     )
   :config
+  ;; Explicit requires from the `org-contrib` package.
+  (require 'ox-confluence)  ;; FIXME: wrong type arguments error!
   (setq
    org-agenda-custom-commands '(
                                 ;; https://www.orgmode.org/manual/Custom-Agenda-Views.html
@@ -2360,6 +2391,15 @@ for the use of the hook."
   )
 
 
+;; (make-directory "~/org/jira/" t)
+;; (use-package org-jira
+;;   :ensure t
+;;   :config
+;;   (setq
+;;    jiralib-url "https://eigentech.atlassian.net/"
+;;    org-jira-working-dir "~/org/jira/"
+;;    )
+;;   )
 
 
 ;; ========================
