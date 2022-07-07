@@ -1700,7 +1700,7 @@ so grabbed this code:
   (progn
     (setq
      org-directory "~/org/"
-     org-agenda-files (list "~/org/")
+     org-agenda-files (directory-files-recursively "~/org/" "\\`[^.].*\\.org\\'")
      org-default-notes-file "~/org/notes.org"
      ;; refile level.
      ;; http://www.millingtons.eclipse.co.uk/glyn/dotemacs.html
