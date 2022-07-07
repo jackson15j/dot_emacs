@@ -29,3 +29,101 @@ locally.
   (use-package bug-hunter
     :ensure t)
 #+END_SRC
+
+* Version Control:
+VC config ([[https://www.gnu.org/software/emacs/manual/html_node/emacs/General-VC-Options.html][VC]] is built in version control package. Magit is an enhanced git VC
+package).
+** Follow symlinks:
+#+BEGIN_SRC emacs-lisp
+  (setq vc-follow-symlinks t)
+#+END_SRC
+** magit
+magit - a pretty good git package with more features than the built in emacs
+"vc" package.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package magit
+    :ensure t
+    :bind (
+       ("<f3>" . magit-status)
+       ("\C-c\C-s" . magit-status)
+       ("\C-cg" . vc-git-grep)
+       ("\C-cb" . magit-blame))
+    :config
+    (setq magit-auto-revert-mode t)
+    ;; `M-x magit-describe-section-briefly`, then check the square brackets in:
+    ;; `<magit-section ... [<section_name> status] ...>`.
+    (setq
+     magit-section-initial-visibility-alist
+     '(
+       (stashes . hide)
+       (unpulled . show)
+       (unpushed . show)
+       (pullreqs . show)
+       ))
+    )
+#+END_SRC
+
+** magit-svn:
+#+BEGIN_SRC emacs-lisp
+  (use-package magit-svn
+    :ensure t
+    :after magit
+    )
+#+END_SRC
+** magit-popup:
+https://github.com/magit/magit/issues/3749 ~magit~ moved to using ~transient~
+but some packages (~magithub~ -
+https://github.com/vermiculus/magithub/issues/402) haven't updated, hence
+explicit definition of ~magit-popup~
+
+#+BEGIN_SRC emacs-lisp
+  (use-package magit-popup
+     :ensure t
+     :after magit
+     )
+#+END_SRC
+** [[https://github.com/magit/forge][forge]]:
+Builds on top of Magit to interact with VCS's so that you can create/edit
+Issues/PR's.
+
+Replacement for [[https://github.com/vermiculus/magithub][magithub]], which works with Gitlab/Github. See old commits for
+my old ~magithub~ config.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package forge
+    ;; https://www.reddit.com/r/emacs/comments/fe165f/pinentry_problems_in_osx/
+    ;; to fix GPG timeouts due to no password provided/asked.
+    ;; NOTE: for emacsclients, it asks in the main instance window.
+    :if (not (eq system-type 'windows-nt))  ;; FIXME: Needs `cc` compiler defined.
+    :ensure t
+    :after magit
+    :config
+    (add-to-list 'forge-alist '("git-scm.clinithink.com:2009" "git-scm.clinithink.com/api/v4" "git-scm.clinithink.com" forge-gitlab-repository))
+    (add-to-list 'forge-alist '("bitbucket.eigen.live" "bitbucket.eigen.live/rest/api/1.0" "bitbucket.eigen.live" forge-bitbucket-repository))
+    (add-to-list 'forge-alist '("gitlab.eigen.live" "gitlab.eigen.live/api/v4" "gitlab.eigen.live" forge-gitlab-repository))
+    )
+    #+END_SRC
+** [[https://github.com/wandersoncferreira/code-review][code-review]]:
+Code Review is a package that builds on top of Magit, but supports interacting
+with PR's to do code reviews (comments, diff view, approvals, etc).
+
+- ~M-x code-review-forge-pr-at-point~ on forge PR line.
+- ~r~ for transient menu in a ~code-review~ buffer.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package code-review
+    :ensure t
+    :after magit
+    :config
+    (setq
+     code-review-bitbucket-host "bitbucket.eigen.live/rest/api/1.0"
+     code-review-gitlab-host "gitlab.eigen.live/api"
+     code-review-gitlab-graphql-host "gitlab.eigen.live/api"
+     ;; Dump requests into the logs for debugging. eg.
+     ;; https://github.com/wandersoncferreira/code-review/issues/195.
+     ;;
+     ;; code-review-log-raw-request-responses t
+     )
+    )
+#+END_SRC

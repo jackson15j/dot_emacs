@@ -40,6 +40,8 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("elpa" .  "https://elpa.gnu.org/packages/" ) t)
 (package-initialize)
+;; Follow symlinks. NOTE: `~/config.org` is a symlink!!
+(setq vc-follow-symlinks t)
 ;; Run config from an org file.
 ;; https://himmallright.gitlab.io/post/org-babel-setup/
 (org-babel-load-file "~/config.org")
@@ -555,80 +557,6 @@ so grabbed this code:
 
 
 
-;; ========================
-;; VC config (VC is built in version control package. Magit is an enhanced git VC package)
-;; ========================
-;; https://www.gnu.org/software/emacs/manual/html_node/emacs/General-VC-Options.html
-(setq vc-follow-symlinks t)
-(use-package magit
-  ;; magit - a pretty good git package with more features than the built in
-  ;; emacs "vc" package.
-  ;; http://magit.github.com/magit/
-  :ensure t
-  :bind (
-     ("<f3>" . magit-status)
-     ("\C-c\C-s" . magit-status)
-     ("\C-cg" . vc-git-grep)
-     ("\C-cb" . magit-blame))
-  :config
-  (setq magit-auto-revert-mode t)
-  ;; `M-x magit-describe-section-briefly`, then check the square brackets in:
-  ;; `<magit-section ... [<section_name> status] ...>`.
-  (setq
-   magit-section-initial-visibility-alist
-   '(
-     (stashes . hide)
-     (unpulled . show)
-     (unpushed . show)
-     (pullreqs . show)
-     ))
-
-  (use-package magit-popup
-    ;; https://github.com/magit/magit/issues/3749
-    ;; `magit` moved to using `transient` but some packages (`magithub` -
-    ;; https://github.com/vermiculus/magithub/issues/402) haven't updated,
-    ;; hence explicit definition of `magit-popup`
-    :ensure t
-    )
-
-  (use-package magit-svn
-    :ensure t
-    )
-
-  (use-package forge
-    ;; https://github.com/magit/forge
-    ;; Replacement for `magithub` (https://github.com/vermiculus/magithub),
-    ;; which works with Gitlab/Github.
-    ;; See old commits for my old `magithub` config.
-    ;;
-    ;; https://www.reddit.com/r/emacs/comments/fe165f/pinentry_problems_in_osx/
-    ;; to fix GPG timeouts due to no password provided/asked.
-    ;; NOTE: for emacsclients, it asks in the main instance window.
-    :if (not (eq system-type 'windows-nt))  ;; FIXME: Needs `cc` compiler defined.
-    :ensure t
-    :config
-    (add-to-list 'forge-alist '("git-scm.clinithink.com:2009" "git-scm.clinithink.com/api/v4" "git-scm.clinithink.com" forge-gitlab-repository))
-    (add-to-list 'forge-alist '("bitbucket.eigen.live" "bitbucket.eigen.live/rest/api/1.0" "bitbucket.eigen.live" forge-bitbucket-repository))
-    (add-to-list 'forge-alist '("gitlab.eigen.live" "gitlab.eigen.live/api/v4" "gitlab.eigen.live" forge-gitlab-repository))
-    )
-  (use-package code-review
-    ;; https://github.com/wandersoncferreira/code-review
-    ;; `M-x code-review-forge-pr-at-point` on forge PR line.
-    ;; `r` for transient menu in a `code-review` buffer.
-    :ensure t
-    :config
-    (setq
-     code-review-bitbucket-host "bitbucket.eigen.live/rest/api/1.0"
-     code-review-gitlab-host "gitlab.eigen.live/api"
-     code-review-gitlab-graphql-host "gitlab.eigen.live/api"
-     ;; Dump requests into the logs for debugging. eg.
-     ;; https://github.com/wandersoncferreira/code-review/issues/195.
-     ;;
-     ;; code-review-log-raw-request-responses t
-     )
-    )
-
-  )
 
 
 
