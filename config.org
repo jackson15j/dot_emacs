@@ -3,7 +3,7 @@
 #+email: craig.astill@gmail.com
 #+OPTIONS: num:nil
 * Dot Emacs
-My main `.emacs` file.
+My main ~.emacs~ file.
 
 ** Ansible
 
@@ -37,7 +37,7 @@ package).
 #+BEGIN_SRC emacs-lisp
   (setq vc-follow-symlinks t)
 #+END_SRC
-** magit
+** [[https://magit.vc/][magit]]:
 magit - a pretty good git package with more features than the built in emacs
 "vc" package.
 
@@ -64,14 +64,17 @@ magit - a pretty good git package with more features than the built in emacs
     )
 #+END_SRC
 
-** magit-svn:
+** [[https://github.com/emacsorphanage/magit-svn][magit-svn]] (legacy):
+Used this years ago when SVN and git-svn where part of my daily work
+routine. Haven't needed to touch SVN in years, but keeping here for legacy
+reasons.
 #+BEGIN_SRC emacs-lisp
   (use-package magit-svn
     :ensure t
     :after magit
     )
 #+END_SRC
-** magit-popup:
+** [[https://github.com/magit/magit-popup][magit-popup]] (legacy):
 https://github.com/magit/magit/issues/3749 ~magit~ moved to using ~transient~
 but some packages (~magithub~ -
 https://github.com/vermiculus/magithub/issues/402) haven't updated, hence
