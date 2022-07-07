@@ -169,6 +169,14 @@
 ;; http://pragmaticemacs.com/emacs/dired-human-readable-sizes-and-sort-by-size/
 (setq dired-listing-switches "-alh")
 
+
+;; Allow `Alt+3` on a Mac to be `#`:
+;; https://stackoverflow.com/questions/1704119/carbon-emacs-re-enable-hash-key
+;; https://stackoverflow.com/questions/3977069/emacs-question-hash-key
+(global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
+(define-key isearch-mode-map (kbd "M-3") '(lambda () (interactive) (isearch-process-search-char ?\#)))
+
+
 ;; ========================
 ;; Fill Column (used to reflow text automatically & highlight margins)
 ;; ========================
