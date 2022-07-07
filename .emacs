@@ -1810,7 +1810,7 @@ so grabbed this code:
 
 (defun plantuml-compile-buffer-hook()
   "Compile command to generate a PNG from the current plantuml buffer."
-  (compile (concat "java -jar ~/org/plantuml.jar " buffer-file-name))
+  (compile (concat "java -jar ~/org/plantuml.jar " buffer-file-name ";\njava -jar ~/org/plantuml.jar -tsvg " buffer-file-name))
   (message (concat "Generated PNG for: " buffer-file-name))
   )
 
