@@ -30,11 +30,6 @@
   (normal-top-level-add-subdirs-to-load-path)
   (nconc load-path orig-load-path))
 
-;; Please don't load outdated byte code
-(setq load-prefer-newer t)
-; https://stackoverflow.com/questions/1217180/how-do-i-byte-compile-everything-in-my-emacs-d-directory
-; (byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
-
 (require 'package)
 (setq package-eanable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
