@@ -145,3 +145,18 @@ with PR's to do code reviews (comments, diff view, approvals, etc).
      )
     )
 #+END_SRC
+
+* org:
+** export:
+Suggested [[https://orgmode.org/manual/Export-Settings.html][Export Options]] at top of file: ~#+OPTIONS: \n:nil toc:nil num:nil~.
+
+- No line wrapping.
+- No TOC.
+- Don't number headings.
+*** ascii:
+Better ASCII export output from org files when the target is an Atlassian
+Confluence Wiki. Export via: ~M-x org-ascii-export-as-ascii~ (~C-cC-etA~).
+#+BEGIN_SRC emacs-lisp
+  (setq org-ascii-text-width 10000)  ;; Large text width to avoid line wrapping.
+  (setq org-ascii-inner-margin 0)  ;; Don't indent lines between headings.
+#+END_SRC
