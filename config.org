@@ -159,7 +159,13 @@ Confluence Wiki. Export via: ~M-x org-ascii-export-as-ascii~ (~C-cC-etA~).
 #+BEGIN_SRC emacs-lisp
   (setq org-ascii-text-width 10000)  ;; Large text width to avoid line wrapping.
   (setq org-ascii-inner-margin 0)  ;; Don't indent lines between headings.
+  ;; Confluence expects H2 to be ~-~.
+  (setq org-ascii-underline '((ascii 61 45 45)
+                              (latin1 61 126 45)
+                              (utf-8 9552 9472 9548 9476 9480)))
+
 #+END_SRC
+
 * Programming Languages:
 ** xml:
 *** Pretty print XML:
