@@ -153,9 +153,34 @@ Suggested [[https://orgmode.org/manual/Export-Settings.html][Export Options]] at
 - No line wrapping.
 - No TOC.
 - Don't number headings.
-*** ascii:
+*** Export org to Confluence:
+Been trying different ways to export org files to then dump into
+Confluence. Current rating of exporters:
+
+1. Export to HTML.
+   - Highlight region.
+   - ~M-x org-html-export-as-html~, cursor jumps to export buffer.
+   - ~M-x browse-url-of-buffer~, to open in your browser.
+   - Select all in Browser tab and paste into Confluence edit mode.
+2. Export to ASCII.
+   - ~M-x org-ascii-export-as-ascii~.
+   - Requires below config changes.
+   - Issues around Headings being picked up by Confluence (eg. h3 == h2, no h3+).
+   - Issues around Formatting being picked up by Confluence (eg. No Bold markup).
+3. Export to Markdown.
+   - ~M-x org-md-export-as-markdown~.
+   - Great rendering in a ~/markdown~ macro, but other macros cannot be nested
+     inside or work with the ~/markdown~ macro. eg. No ~/toc~ macro.
+   - Pretty good rendering pasting into Confluence edit area, but no auto
+     wrapping. ie. 80 characters.
+4. *BROKEN:* ~M-x ox-confluence~ from ~org-contrib~ throws errors on emacs29.
+
+*** Confluence ascii export config:
 Better ASCII export output from org files when the target is an Atlassian
 Confluence Wiki. Export via: ~M-x org-ascii-export-as-ascii~ (~C-cC-etA~).
+
+*TODO: figure out what Heading underlining style Confluence uses for H3-H5!!*
+
 #+BEGIN_SRC emacs-lisp
   (setq org-ascii-text-width 10000)  ;; Large text width to avoid line wrapping.
   (setq org-ascii-inner-margin 0)  ;; Don't indent lines between headings.
