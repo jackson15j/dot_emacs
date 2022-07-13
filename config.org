@@ -30,6 +30,13 @@ locally.
     :ensure t)
 #+END_SRC
 
+** General
+- Don't prompt to kill processes on exit.
+
+#+BEGIN_SRC emacs-lisp
+  (setq confirm-kill-processes nil)
+#+END_SRC
+
 ** Native Compilation:
 Don't load outdated byte code.
 #+BEGIN_SRC emacs-lisp
