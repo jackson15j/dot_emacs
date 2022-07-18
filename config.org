@@ -198,6 +198,22 @@ Confluence Wiki. Export via: ~M-x org-ascii-export-as-ascii~ (~C-cC-etA~).
 
 #+END_SRC
 
+** org-agenda:
+*** [[https://orgmode.org/org.html#Repeated-tasks][Repeated tasks]]:
+- Tag repeated tasks with a deadline (~C-cC-d~).
+- Add the repeat [and reminder] value.
+- Mark as done with ~C-cC-t~, which will log that ~DOEN~ and update the
+  deadline to the next future point.
+
+#+BEGIN_EXAMPLE emacs-lisp
+** TODO example every fortnight task
+DEADLINE: <2022-08-01 Mon 09:00-09:15 +2w -3d>
+:PROPERTIES:
+:LAST_REPEAT: [2022-07-18 Mon 15:35]
+:END:
+- State "DONE"       from "TODO"       [2022-07-18 Mon 15:35]
+- Above ~State~ line is added for each ~C-cC-t~ press!
+#+END_SRC
 * Programming Languages:
 ** xml:
 *** Pretty print XML:
