@@ -58,12 +58,13 @@ Log but don't pop up Warnings buffer for all native compilation warnings.
   (use-package alert
     :ensure-system-package terminal-notifier
     :ensure t
-    :commands (alert)
     :init
     (setq
      alert-default-style 'notifier
      alert-fade-time 15
      )
+    :config
+    (alert)
     )
 #+END_SRC
 ** Custom popup notifications (DEPRECATE!):
