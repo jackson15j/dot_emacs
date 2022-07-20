@@ -2187,18 +2187,6 @@ MODE - ??"
   :ensure t)
 
 
-(use-package alert
-  ;; https://github.com/jwiegley/alert
-  :ensure-system-package terminal-notifier
-  :ensure t
-  :commands (alert)
-  :init
-  (setq
-   alert-default-style 'notifier
-   alert-fade-time 15
-   )
-  )
-
 
 ;; ========================
 ;; speed-type
