@@ -70,6 +70,22 @@ Log but don't pop up Warnings buffer for all native compilation warnings.
     (alert)
     )
 #+END_SRC
+** [[https://github.com/spegoraro/org-alert][org-alert]]:
+Notifications from scheduled items in the Org Agenda. Builds off: [[*\[\[https://github.com/jwiegley/alert\]\[alert\]\]:][alert]].
+#+BEGIN_SRC emacs-lisp
+  (use-package org-alert
+    ;; https://github.com/julienXX/terminal-notifier/issues/292 -  No Notification in macOS12.1 #292
+    ;; https://github.com/julienXX/terminal-notifier
+    :ensure-system-package terminal-notifier
+    :ensure t
+    :after (org)
+    :config
+    (setq
+     alert-default-style 'notifier
+     )
+    (org-alert-enable)
+    )
+#+END_SRC
 ** Custom popup notifications (DEPRECATE!):
 Very old way of doing custom notification pop-ups:
 
