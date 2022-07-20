@@ -61,13 +61,12 @@ Log but don't pop up Warnings buffer for all native compilation warnings.
     ;; :if (eq system-type 'darwin)
     :ensure-system-package terminal-notifier
     :ensure t
+    :commands (alert)
     :init
     (setq
      alert-default-style 'notifier
      alert-fade-time 15
      )
-    :config
-    (alert)
     )
 #+END_SRC
 ** [[https://github.com/spegoraro/org-alert][org-alert]]:
