@@ -56,6 +56,9 @@ Log but don't pop up Warnings buffer for all native compilation warnings.
 ** [[https://github.com/jwiegley/alert][alert]]:
 #+BEGIN_SRC emacs-lisp
   (use-package alert
+    ;; FIXME: is this OS-Specific? Can't remember, so need to double check this
+    ;; wont break linux!! Guessing I will need the following line:
+    ;; :if (eq system-type 'darwin)
     :ensure-system-package terminal-notifier
     :ensure t
     :init
