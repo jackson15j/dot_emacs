@@ -2112,39 +2112,6 @@ MODE - ??"
 
 
 
-;; Showing pop-ups
-;; http://emacs-fu.blogspot.com/2009/11/showing-pop-ups.html
-;;
-;; TODO: figure out why the built in `notifications` package doesn't play
-;; sounds:
-;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Desktop-Notifications.html,
-;; since this would be nicer to move to a standardised package.
-(defun djcb-popup (title msg &optional timeout icon sound)
-  "Show a popup if we're on X, or echo it otherwise;
-TITLE is the title of the message, MSG is the context.
-Optionally, you can provide a TIMEOUT (milliseconds, default=5000) an ICON and
-a SOUND to be played (default=/../alert.wav)"
-  (interactive)
-  (shell-command
-   (concat "mplayer -really-quiet "
-           (if sound sound "/usr/share/sounds/purple/alert.wav")
-           " 2> /dev/null"))
-  ;; Removed `(if (eq window-system 'x)` check since it wasn't doing the
-  ;; notify-send on my terminal emacs session nested in tmux in a terminal
-  ;; under cinnamon.
-  (shell-command (concat "notify-send"
-                         (if icon (concat " -i " icon) "")
-                         (if timeout (concat " -t " timeout) " -t 5000")
-                         " '" title "' '" msg "'"))
-  ;; text only version
-  (message (concat title ": " msg)))
-
-
-;; Run example:
-;; (djcb-popup "Warning" "The end is near"
-;;             nil
-;;             "/usr/share/icons/gnome/128x128/apps/libreoffice-base.png"
-;;             "/usr/share/sounds/purple/alert.wav")
 
 
 
