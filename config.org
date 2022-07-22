@@ -71,6 +71,10 @@ Log but don't pop up Warnings buffer for all native compilation warnings.
 #+END_SRC
 ** [[https://github.com/spegoraro/org-alert][org-alert]]:
 Notifications from scheduled items in the Org Agenda. Builds off: [[*\[\[https://github.com/jwiegley/alert\]\[alert\]\]:][alert]].
+
+*NOTE:* On Mac's I am using an Alert notification for ~terminal-notifier~, so
+that notifications have to be explicitly closed.
+
 #+BEGIN_SRC emacs-lisp
   (use-package org-alert
     ;; https://github.com/julienXX/terminal-notifier/issues/292 -  No Notification in macOS12.1 #292
@@ -81,6 +85,8 @@ Notifications from scheduled items in the Org Agenda. Builds off: [[*\[\[https:/
     :config
     (setq
      alert-default-style 'notifier
+     org-alert-notify-cutoff 5
+     org-alert-notify-after-event-cutoff 1
      )
     (org-alert-enable)
     )
