@@ -1755,7 +1755,7 @@ so grabbed this code:
 
 (use-package plantuml-mode
   ;; https://plantuml.com/emacs
-  :ensure-system-package java
+  :ensure-system-package ((java) (graphviz))
   :ensure t
   :after (org org-src)
   :hook
