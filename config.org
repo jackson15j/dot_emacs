@@ -334,3 +334,12 @@ Usage:
 - To expand single-line XML: Select region or jump to start and call:
   ~bf-pretty-print-xml-region~.
 - To indent multi-line XML: Select region and call: ~indent-region~.
+
+* Links:
+** Configs:
+Configs that look good enough to go back and maybe learn/steal from:
+- https://github.com/meatcar/emacs.d
+- https://github.com/jakebox/jake-emacs
+** Packages to try:
+- https://github.com/seagle0128/doom-modeline
+- https://github.com/emacsorphanage/anzu
