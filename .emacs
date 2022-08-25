@@ -319,6 +319,7 @@ so grabbed this code:
     ;; Don't autosave desktops, it's too expensive.  Desktops aren't
     ;; that precious, and Emacs will save the desktop on exit anyway.
     (setq
+     desktop-load-locked-desktop t
      desktop-auto-save-timeout nil
      desktop-path '("~/")
      desktop-dirname "~/")
