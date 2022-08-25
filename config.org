@@ -37,6 +37,24 @@ locally.
   (setq confirm-kill-processes nil)
 #+END_SRC
 
+*** Desktop
+Auto save all open files in current session and reload on startup.
+#+BEGIN_SRC emacs-lisp
+  (use-package desktop
+    :ensure t
+    :init (desktop-save-mode)
+    :config
+    (progn
+      ;; Don't autosave desktops, it's too expensive.  Desktops aren't
+      ;; that precious, and Emacs will save the desktop on exit anyway.
+      (setq
+       desktop-load-locked-desktop t
+       desktop-auto-save-timeout nil
+       desktop-path '("~/")
+       desktop-dirname "~/")
+      (dolist (mode '(magit-mode git-commit-mode))
+        (add-to-list 'desktop-modes-not-to-save mode))))
+#+END_SRC
 ** Native Compilation:
 Don't load outdated byte code.
 #+BEGIN_SRC emacs-lisp

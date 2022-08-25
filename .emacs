@@ -309,24 +309,6 @@ so grabbed this code:
          ("M-X" . smex-major-mode-commands)))
 
 ;; ========================
-;; Desktop - Auto save tabs.
-;; ========================
-(use-package desktop                    ; Save buffers, windows and frames
-  :ensure t
-  :init (desktop-save-mode)
-  :config
-  (progn
-    ;; Don't autosave desktops, it's too expensive.  Desktops aren't
-    ;; that precious, and Emacs will save the desktop on exit anyway.
-    (setq
-     desktop-load-locked-desktop t
-     desktop-auto-save-timeout nil
-     desktop-path '("~/")
-     desktop-dirname "~/")
-    (dolist (mode '(magit-mode git-commit-mode))
-      (add-to-list 'desktop-modes-not-to-save mode))))
-
-;; ========================
 ;; mode-line (the gutter bar) (smart mode line wraps up a lot of nice tweaks in one package)
 ;; ========================
 ;; https://github.com/Bruce-Connor/smart-mode-line
