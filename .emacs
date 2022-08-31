@@ -52,11 +52,6 @@
 ;; https://himmallright.gitlab.io/post/org-babel-setup/
 (org-babel-load-file "~/config.org")
 
-(use-package server
-  :ensure t
-  :config
-  (server-start))
-
 (use-package posframe
   ;; Seeing LSP and other packages blowing up on this missing requirement.
   :ensure t

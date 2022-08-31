@@ -55,6 +55,13 @@ Auto save all open files in current session and reload on startup.
       (dolist (mode '(magit-mode git-commit-mode))
         (add-to-list 'desktop-modes-not-to-save mode))))
 #+END_SRC
+** Server:
+#+BEGIN_SRC emacs-lisp
+  (use-package server
+    :ensure t
+    :config
+    (server-start))
+#+END_SRC
 ** Native Compilation:
 Don't load outdated byte code.
 #+BEGIN_SRC emacs-lisp
