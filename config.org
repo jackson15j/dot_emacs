@@ -76,7 +76,7 @@ Log but don't pop up Warnings buffer for all native compilation warnings.
   (use-package alert
     ;; FIXME: is this OS-Specific? Can't remember, so need to double check this
     ;; wont break linux!! Guessing I will need the following line:
-    ;; :if (eq system-type 'darwin)
+    :if (eq system-type 'darwin)
     :ensure-system-package terminal-notifier
     :ensure t
     :commands (alert)
@@ -97,6 +97,7 @@ that notifications have to be explicitly closed.
   (use-package org-alert
     ;; https://github.com/julienXX/terminal-notifier/issues/292 -  No Notification in macOS12.1 #292
     ;; https://github.com/julienXX/terminal-notifier
+    :if (eq system-type 'darwin)
     :ensure-system-package terminal-notifier
     :ensure t
     :after (org)
