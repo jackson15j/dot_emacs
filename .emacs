@@ -1120,53 +1120,6 @@ so grabbed this code:
 ;;   :hook (python-mode . isortify-mode)
 ;;   )
 
-;; FIXME: auto activation blows up when a file has no conda env associated to it.
-;;
-(when (eq system-type 'darwin)
-  ;; FIXME: Bound this to my Work laptop only and not break my personal linux
-  ;; laptop when I don't touch conda.
-(use-package conda
-  :ensure t
-  :config
-  ;; https://github.com/necaris/conda.el/issues/107 - stopped working with
-  ;;conda 4.13.0
-  ;;
-  ;; Brew location for `miniforge`.
-  ;; TODO: bound to `darwin`.
-  ;; TODO: check all available paths to see which exists or look into ENV variables ??
-  (setq conda-anaconda-home (expand-file-name "/opt/homebrew/Caskroom/miniforge/base/"))
-  (setq conda-env-home-directory (expand-file-name "/opt/homebrew/Caskroom/miniforge/base/"))
-  ;; ;; Web install location for `miniconda`.
-  ;; (setq conda-anaconda-home (expand-file-name "~/opt/miniconda3/"))
-  ;; (setq conda-env-home-directory (expand-file-name "~/opt/miniconda3/"))
-  ;; if you want interactive shell support, include:
-  (conda-env-initialize-interactive-shells)
-  ;; if you want eshell support, include:
-;;  (conda-env-initialize-eshell)
-;;  (defun conda-autoload ()
-;;    (interactive)
-;;    "auto activate conda if environment.yml exists."
-;;    (f-traverse-upwards (lambda (path)
-;;                          (let ((venv-path (f-expand "environment.yml" path)))
-;;                            (when (f-exists? venv-path)
-;;                              (conda-env-activate-for-buffer)
-;;                              )))))
-  ;; NOTE: Using above function to load env for each buffer, instead of the
-  ;; global mode, since the global setting below doesn't gracefully handle
-  ;; buffers that don't have a conda env.
-  ;;
-  ;; ;; if you want auto-activation (see below for details), include:
-  ;; (conda-env-autoactivate-mode t)
-  ;; ;; if you want to automatically activate a conda environment on the opening of a file:
-  ;; (add-to-hook 'find-file-hook (lambda () (when (bound-and-true-p conda-project-env-path)
-  ;;                                           (conda-env-activate-for-buffer))))
-  ;; modeline
-  ;; (setq-default mode-line-format (cons '(:exec conda-env-current-name) mode-line-format))
-;;  :hook (
-;;         (python-mode . conda-autoload)
-;;         )
-  )
-)
 
 ;; FIXME: removing since current work is poetry in a conda env. Advice is to
 ;; just use conda to manage the venv loading, since poetry is looking in the
