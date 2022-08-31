@@ -1127,6 +1127,9 @@ so grabbed this code:
 
 ;; FIXME: auto activation blows up when a file has no conda env associated to it.
 ;;
+(when (eq system-type 'darwin)
+  ;; FIXME: Bound this to my Work laptop only and not break my personal linux
+  ;; laptop when I don't touch conda.
 (use-package conda
   :ensure t
   :config
@@ -1168,6 +1171,7 @@ so grabbed this code:
 ;;         (python-mode . conda-autoload)
 ;;         )
   )
+)
 
 ;; FIXME: removing since current work is poetry in a conda env. Advice is to
 ;; just use conda to manage the venv loading, since poetry is looking in the
