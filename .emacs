@@ -37,10 +37,6 @@
 (package-initialize)
 ;; Follow symlinks. NOTE: `~/config.org` is a symlink!!
 (setq vc-follow-symlinks t)
-;; Run config from an org file.
-;; https://himmallright.gitlab.io/post/org-babel-setup/
-(org-babel-load-file "~/config.org")
-
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -51,6 +47,10 @@
   ;; https://github.com/jwiegley/use-package#use-package-ensure-system-package
   :ensure t)
 
+
+;; Run config from an org file.
+;; https://himmallright.gitlab.io/post/org-babel-setup/
+(org-babel-load-file "~/config.org")
 
 (use-package server
   :ensure t
