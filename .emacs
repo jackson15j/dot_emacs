@@ -459,7 +459,13 @@ so grabbed this code:
   (flyspell-prog-mode)  ;; spell check comments/strings
   (setq indent-tabs-mode nil)  ;; spaces instead of tabs
   (setq tab-width 4)  ;; 4 spaces per tab key press.
-  (which-function-mode)  ;; Display current function in mode line. (http://emacsredux.com/blog/2014/04/05/which-function-mode/)
+
+  ;; TODO: raise a bug on which-function-mode breaking in python when opening a
+  ;; triple double-qoute (`"""`) docstring in a function and then emacs
+  ;; freezes. Replicated on work files with: `emacs -q`, but failed to
+  ;; replicate so far on a quickly mocked up file in /tmp/.
+  ;;
+  ;; (which-function-mode)  ;; Display current function in mode line. (http://emacsredux.com/blog/2014/04/05/which-function-mode/)
   (my_highlighted_words)  ;; highlight specific words
   (show-paren-mode 1)  ;; highlight matching brackets
   (setq tags-revert-without-query t)
