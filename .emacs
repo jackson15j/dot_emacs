@@ -1622,6 +1622,7 @@ so grabbed this code:
   ;; Explicit requires from the `org-contrib` package.
   (require 'ox-confluence)  ;; FIXME: wrong type arguments error!
   (setq
+   org-link-file-path-type 'relative
    org-agenda-custom-commands '(
                                 ;; https://www.orgmode.org/manual/Custom-Agenda-Views.html
                                 ;; https://redgreenrepeat.com/2021/04/09/org-mode-agenda-getting-started-scheduled-items-and-todos/
