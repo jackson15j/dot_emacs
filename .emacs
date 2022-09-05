@@ -1131,12 +1131,12 @@ so grabbed this code:
 ;; just use conda to manage the venv loading, since poetry is looking in the
 ;; wrong location.
 ;;
-;; (use-package poetry
-;;   ;; https://github.com/galaunay/poetry.el
-;;   :ensure t
-;;   :config
-;;   (poetry-tracking-mode)  ;; activate poetry virtualenv's on buffer change.
-;;   )
+(use-package poetry
+  ;; https://github.com/galaunay/poetry.el
+  :ensure t
+  ;; :config
+  ;; (poetry-tracking-mode)  ;; activate poetry virtualenv's on buffer change.
+  )
 
 ;; (use-package python
 ;;   :defer t
