@@ -316,6 +316,15 @@ DEADLINE: <2022-08-01 Mon 09:00-09:15 +2w -3d>
 - State "DONE"       from "TODO"       [2022-07-18 Mon 15:35]
 - Above ~State~ line is added for each ~C-cC-t~ press!
 #+END_SRC
+* Docker:
+** [[https://github.com/emacs-pe/docker-tramp.el][docker-tramp]]:
+Tramp into a docker container with: ~C-x C-f /docker:[user@]container:/path/to/file~
+
+#+BEGIN_SRC emacs-lisp
+  (use-package docker-tramp
+    :ensure t
+    )
+#+END_SRC
 * Programming Languages:
 ** python:
 #+BEGIN_SRC emacs-lisp
