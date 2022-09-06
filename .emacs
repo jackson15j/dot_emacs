@@ -1600,6 +1600,8 @@ so grabbed this code:
      org-refile-targets (quote
                          ((org-agenda-files :maxlevel . 5)
                           ("~/org/projects.org" :maxlevel . 2)))
+     ;; Allow refiling to a file to support moving up to heading level 1
+     org-refile-use-outline-path 'file
      org-log-done t
      ;; https://kundeveloper.com/blog/org-capture-3/ for `org-capture-templates` ideas.
      org-capture-templates '(
