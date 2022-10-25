@@ -317,14 +317,13 @@ DEADLINE: <2022-08-01 Mon 09:00-09:15 +2w -3d>
 - Above ~State~ line is added for each ~C-cC-t~ press!
 #+END_SRC
 * Docker:
-** [[https://github.com/emacs-pe/docker-tramp.el][docker-tramp]]:
+** tramp-container (built-in):
 Tramp into a docker container with: ~C-x C-f /docker:[user@]container:/path/to/file~
 
-#+BEGIN_SRC emacs-lisp
-  (use-package docker-tramp
-    :ensure t
-    )
-#+END_SRC
+Originally used: [[https://github.com/emacs-pe/docker-tramp.el][docker-tramp]], but updated to latest Emacs29 (on 2022-10-25)
+and now have this warning: ~ ■ Warning (emacs): Package ‘docker-tramp’ has been
+obsoleted, please use integrated package ‘tramp-container’ [2 times]~, so
+removing for: ~tramp-container~.
 * Programming Languages:
 ** python:
 #+BEGIN_SRC emacs-lisp
