@@ -256,6 +256,13 @@ with PR's to do code reviews (comments, diff view, approvals, etc).
 #+END_SRC
 
 * org:
+** macros:
+- Convert markdown links (~[display_message](link)~) to org links
+  (~[[link][display_message]]~):
+  #+BEGIN_SRC emacs-lisp
+    (fset 'convert-markdown-link-to-org-link
+     "\C-[xreplace-regexp\C-m\\[\\(.*\\)\\](\\(.*\\))\C-m[[\\2][\\1]]\C-m")
+ #+END_SRC
 ** export:
 Suggested [[https://orgmode.org/manual/Export-Settings.html][Export Options]] at top of file: ~#+OPTIONS: \n:nil toc:nil num:nil~.
 
