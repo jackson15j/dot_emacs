@@ -429,6 +429,36 @@ Configure the Elfeed RSS reader with an Orgmode file.
     :init (elfeed-org)
     )
 #+END_SRC
+** [[https://github.com/karthink/elfeed-tube][elfeed-tube]]:
+Youtube integration for Elfeed, the feed reader for Emacs.
+#+BEGIN_SRC emacs-lisp
+  (use-package elfeed-tube
+    :ensure t
+    :after elfeed
+    :demand t
+    :config
+    ;; (setq elfeed-tube-auto-save-p nil) ; default value
+    ;; (setq elfeed-tube-auto-fetch-p t)  ; default value
+    (elfeed-tube-setup)
+
+    :bind (:map elfeed-show-mode-map
+           ("F" . elfeed-tube-fetch)
+           ([remap save-buffer] . elfeed-tube-save)
+           :map elfeed-search-mode-map
+           ("F" . elfeed-tube-fetch)
+           ([remap save-buffer] . elfeed-tube-save)))
+#+END_SRC
+
+If you want “live” captions and better MPV support:
+
+#+BEGIN_SRC emacs-lisp
+  (use-package elfeed-tube-mpv
+    :ensure-system-package ((mpv) (yt-dlp))
+    :ensure t ;; or :straight t
+    :bind (:map elfeed-show-mode-map
+                ("C-c C-f" . elfeed-tube-mpv-follow-mode)
+                ("C-c C-w" . elfeed-tube-mpv-where)))
+#+END_SRC
 * Links:
 ** Configs:
 Configs that look good enough to go back and maybe learn/steal from:
