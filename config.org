@@ -459,6 +459,16 @@ If you want “live” captions and better MPV support:
                 ("C-c C-f" . elfeed-tube-mpv-follow-mode)
                 ("C-c C-w" . elfeed-tube-mpv-where)))
 #+END_SRC
+** [[https://github.com/manojm321/elfeed-dashboard][elfeed-dashboard]]:
+A frontend for elfeed (like Mu4e Dashboard).
+#+BEGIN_SRC emacs-lisp
+  (use-package elfeed-dashboard
+    :ensure t
+    :config
+    (setq elfeed-dashboard-file "~/elfeed-dashboard.org")
+    ;; update feed counts on elfeed-quit
+    (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links))
+#+END_SRC
 * Links:
 ** Configs:
 Configs that look good enough to go back and maybe learn/steal from:
