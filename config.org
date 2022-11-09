@@ -415,7 +415,9 @@ Usage:
 An Emacs web feeds client.
 #+BEGIN_SRC emacs-lisp
   (use-package elfeed
-    :ensure t)
+    :ensure t
+    :config (setq-default word-wrap t)
+    )
 #+END_SRC
 ** [[https://github.com/remyhonig/elfeed-org][elfeed-org]]:
 Configure the Elfeed RSS reader with an Orgmode file.
