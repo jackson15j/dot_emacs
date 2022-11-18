@@ -455,9 +455,6 @@ Youtube integration for Elfeed, the feed reader for Emacs.
 
     :bind (:map elfeed-show-mode-map
            ("F" . elfeed-tube-fetch)
-           ([remap save-buffer] . elfeed-tube-save)
-           :map elfeed-search-mode-map
-           ("F" . elfeed-tube-fetch)
            ([remap save-buffer] . elfeed-tube-save)))
 #+END_SRC
 
@@ -469,7 +466,10 @@ If you want “live” captions and better MPV support:
     :ensure t ;; or :straight t
     :bind (:map elfeed-show-mode-map
                 ("C-c C-f" . elfeed-tube-mpv-follow-mode)
-                ("C-c C-w" . elfeed-tube-mpv-where)))
+                ("C-c C-w" . elfeed-tube-mpv-where)
+                ("v" . elfeed-tube-mpv)
+                )
+    )
 #+END_SRC
 ** [[https://github.com/manojm321/elfeed-dashboard][elfeed-dashboard]]:
 A frontend for elfeed (like Mu4e Dashboard).
