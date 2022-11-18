@@ -412,6 +412,8 @@ Usage:
 - To indent multi-line XML: Select region and call: ~indent-region~.
 
 * [[https://github.com/skeeto/elfeed][elfeed]]:
+RSS feeds in emacs.
+** [[https://github.com/skeeto/elfeed][elfeed]]:
 An Emacs web feeds client.
 #+BEGIN_SRC emacs-lisp
   (use-package elfeed
