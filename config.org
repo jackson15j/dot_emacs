@@ -421,7 +421,11 @@ An Emacs web feeds client.
     :hook (
            (elfeed-show-mode . (lambda () (setq-local shr-width 80)))
            )
+    :custom
+    (elfeed-use-curl t)
     :config (setq-default word-wrap t)
+    )
+
     )
 #+END_SRC
 ** [[https://github.com/remyhonig/elfeed-org][elfeed-org]]:
