@@ -424,6 +424,7 @@ An Emacs web feeds client.
     :custom
     (elfeed-use-curl t)
     :config (setq-default word-wrap t)
+    ;; (setq elfeed-log-level 'debug)
     )
 
     )
