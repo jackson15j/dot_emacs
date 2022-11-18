@@ -418,6 +418,9 @@ An Emacs web feeds client.
 #+BEGIN_SRC emacs-lisp
   (use-package elfeed
     :ensure t
+    :hook (
+           (elfeed-show-mode . (lambda () (setq-local shr-width 80)))
+           )
     :config (setq-default word-wrap t)
     )
 #+END_SRC
