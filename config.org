@@ -477,7 +477,7 @@ A frontend for elfeed (like Mu4e Dashboard).
   (use-package elfeed-dashboard
     :ensure t
     :config
-    (setq elfeed-dashboard-file "~/elfeed-dashboard.org")
+    (setq elfeed-dashboard-file "~/org/personal/elfeed-dashboard.org")
     ;; update feed counts on elfeed-quit
     (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links))
 #+END_SRC
