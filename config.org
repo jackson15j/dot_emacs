@@ -521,6 +521,24 @@ FIXME: Raise bug around missing Powerline version in melpa.
     ;;(setq elfeed-show-entry-switch 'pop-to-buffer)
     )
 #+END_SRC
+** TODO Future elfeed packages to pull in:
+- https://sr.ht/~johnhamelink/elfeed-paywall/,
+  https://www.reddit.com/r/emacs/comments/6r07ea/is_elfeed_able_to_extract_full_text_from_articles/ -
+  Avoid paywalls and retrieve content from a feed entry's link.
+- https://github.com/zabe40/elfeed-time - elfeed-time displays the approximate
+  time it will take to read, watch, or listen to an elfeed entry. It can
+  display this information in both elfeed-search-mode, and elfeed-show-mode.
+- https://github.com/yt-dlp/yt-dlp,
+  https://github.com/cvzi/mpv-youtube-upnext/issues/8 - log into YouTube via
+  either: ~.netrc~, or: ~--cookies~ pulled from the browser and stored in a
+  file set in the ~yt-dlp~ config file.
+- https://cundy.me/post/elfeed/ - Customized
+  ~elfeed-search-print-entry-function~ to put more useful information on the
+  ~elfeed-search~ buffer. eg. like ~elfeed-time~ (youtube duration, date).
+- Fix ~elfeed-org~ tags on FreshRSS sourced feeds.
+- https://gist.github.com/alphapapa/80d2dba33fafcb50f558464a3a73af9a - anything
+  worth stealing from Alphapapa's config?
+- https://noonker.github.io/posts/2020-04-22-elfeed/ - any inspiration?
 * Links:
 ** Configs:
 Configs that look good enough to go back and maybe learn/steal from:
