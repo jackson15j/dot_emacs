@@ -539,6 +539,27 @@ FIXME: Raise bug around missing Powerline version in melpa.
 - https://gist.github.com/alphapapa/80d2dba33fafcb50f558464a3a73af9a - anything
   worth stealing from Alphapapa's config?
 - https://noonker.github.io/posts/2020-04-22-elfeed/ - any inspiration?
+* Reading:
+Packages around reading (eg. novels/epubs, Speed Reading, etc).
+** [[https://github.com/emacsmirror/spray][spray]]:
+Speed reading in a buffer by flashing each word in turn. Spritz clone for speed
+reading.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package spray
+    :ensure t)
+#+END_SRC
+
+*** Commands
+In ~spray-mode~ buffers, following commands are available:
+
+- ~spray-start/stop~ (~SPC~) pause or resume spraying.
+- ~spray-backward-word~ (~h, <left>~) pause and back to the last word.
+- ~spray-forward-word~ (~l, <right>~) inverse of spray-backward-word.
+- ~spray-faster~ (~f~) increases speed.
+- ~spray-slower~ (~s~) decreases speed.
+- ~spray-quit~ (~q, <return>~) quit ~spray-mode~.
+
 * Links:
 ** Configs:
 Configs that look good enough to go back and maybe learn/steal from:

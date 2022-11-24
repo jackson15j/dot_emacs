@@ -2127,13 +2127,6 @@ MODE - ??"
   :ensure t)
 
 ;; ========================
-;; spray (spritz clone - speed reading)
-;; ========================
-;; https://github.com/ian-kelling/spray
-(use-package spray
-  :ensure )
-
-;; ========================
 ;; MscGen mode (Custom)
 ;; ========================
 ;; http://www.mcternan.me.uk/mscgen/
