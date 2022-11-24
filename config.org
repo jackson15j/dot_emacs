@@ -426,8 +426,6 @@ An Emacs web feeds client.
     :config (setq-default word-wrap t)
     ;; (setq elfeed-log-level 'debug)
     )
-
-    )
 #+END_SRC
 ** [[https://github.com/remyhonig/elfeed-org][elfeed-org]]:
 Configure the Elfeed RSS reader with an Orgmode file.
