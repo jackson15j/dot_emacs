@@ -507,18 +507,18 @@ Alternative to [[*\[\[https://github.com/manojm321/elfeed-dashboard\]\[elfeed-da
   (use-package elfeed-summary
     :ensure t)
 #+END_SRC
-** [[https://github.com/jeetelongname/elfeed-goodies][elfeed-goodies]]:
-FIXME: Raise bug around missing Powerline version in melpa.
-#+BEGIN_SRC emacs-lisp
-  (use-package elfeed-goodies
-    :ensure t
-    :init (elfeed-goodies/setup)
-    :config
-    ;; Fix: Pane splits vertically instead of horizontally.
-    ;; https://github.com/jeetelongname/elfeed-goodies/issues/40
-    ;;(setq elfeed-show-entry-switch 'pop-to-buffer)
-    )
-#+END_SRC
+# ** [[https://github.com/jeetelongname/elfeed-goodies][elfeed-goodies]]:
+# FIXME: Raise bug around missing Powerline version in melpa.
+# #+BEGIN_SRC emacs-lisp
+#   (use-package elfeed-goodies
+#     :ensure t
+#     :init (elfeed-goodies/setup)
+#     :config
+#     ;; Fix: Pane splits vertically instead of horizontally.
+#     ;; https://github.com/jeetelongname/elfeed-goodies/issues/40
+#     ;;(setq elfeed-show-entry-switch 'pop-to-buffer)
+#     )
+# #+END_SRC
 ** TODO Future elfeed packages to pull in:
 - https://sr.ht/~johnhamelink/elfeed-paywall/,
   https://www.reddit.com/r/emacs/comments/6r07ea/is_elfeed_able_to_extract_full_text_from_articles/ -
