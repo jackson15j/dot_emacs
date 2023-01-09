@@ -519,6 +519,16 @@ Alternative to [[*\[\[https://github.com/manojm321/elfeed-dashboard\]\[elfeed-da
 #     ;;(setq elfeed-show-entry-switch 'pop-to-buffer)
 #     )
 # #+END_SRC
+# ** [[https://github.com/paulelms/elfeed-autotag][elfeed-autotag]]:
+# Easy auto-tagging for elfeed-protocol (and elfeed in general).
+# #+BEGIN_SRC emacs-lisp
+#   (use-package elfeed-autotag
+#     :ensure t
+#     :config
+#     (setq elfeed-autotag-files '("~/org/personal/elfeed.org"))
+#     (elfeed-autotag)
+#     )
+# #+END_SRC
 ** TODO Future elfeed packages to pull in:
 - https://sr.ht/~johnhamelink/elfeed-paywall/,
   https://www.reddit.com/r/emacs/comments/6r07ea/is_elfeed_able_to_extract_full_text_from_articles/ -
