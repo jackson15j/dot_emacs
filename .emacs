@@ -1593,7 +1593,7 @@ so grabbed this code:
   (progn
     (setq
      org-directory "~/org/"
-     org-agenda-files (directory-files-recursively "~/org/" "\\.*\\.org\\'" t (lambda (x) "ignore certain org folders." (not (string-equal x "~/org/eigen"))))
+     org-agenda-files '("~/org/")  ;; Will search all sub directories from the `org-agenda-file-regexp`.
      org-default-notes-file "~/org/notes.org"
      ;; refile level.
      ;; http://www.millingtons.eclipse.co.uk/glyn/dotemacs.html
