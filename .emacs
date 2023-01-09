@@ -1646,11 +1646,11 @@ so grabbed this code:
                                 ;; https://fortelabs.com/blog/para/
                                 ("p" "PARA (Project Area Resources Archive) Agenda Review"
                                  (
-                                  (agenda "")
+                                  (agenda)
                                   (tags "ACTION|CHASE|INVESTIGATE|INVESTIGATION" ((org-agenda-overriding-header "\nProject: \"a series of tasks linked to a goal, with a deadline.\"  ~:ACTION:CHASE:INVESTIGATE:INVESTIGATION:~")))
-                                  (tags-todo "-ACTION-ADMIN-CHASE-READ-REVIEW-TRAINING-WATCH-WIKI" ((org-agenda-overriding-header "Project: (Tag to remove non-urgent TODO's out of this list!!)")))
-                                  (tags "ADMIN|REVIEW|WIKI" ((org-agenda-overriding-header "\nAreas: \"a sphere of activity with a standard to be maintained over time.\"  ~:ADMIN:REVIEW:WIKI:~")))
-                                  (tags "READ|TRAINING|WATCH" ((org-agenda-overriding-header "\nResource: "a topic or theme of ongoing interest."  ~:READ:TRAINING:WATCH~")))
+                                  (tags-todo "-ACTION-ADMIN-CHASE-EMACS-PERSONAL-READ-REVIEW-TRAINING-WATCH-WIKI-WORKFLOW" ((org-agenda-overriding-header "Project: (Tag to remove non-urgent TODO's out of this list!!)")))
+                                  (tags "ADMIN|REVIEW|WIKI|WORKFLOW" ((org-agenda-overriding-header "\nAreas: \"a sphere of activity with a standard to be maintained over time.\"  ~:ADMIN:REVIEW:WIKI:WORKFLOW:~")))
+                                  (tags "EMACS|PERSONAL|READ|TRAINING|WATCH" ((org-agenda-overriding-header "\nResource: \"a topic or theme of ongoing interest.\"  ~:EMACS:PERSONAL:READ:TRAINING:WATCH~")))
                                   ))
                                 ("d" "Agenda for last 2 weeks"
                                  (
