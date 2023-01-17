@@ -547,6 +547,11 @@ Alternative to [[*\[\[https://github.com/manojm321/elfeed-dashboard\]\[elfeed-da
 - https://gist.github.com/alphapapa/80d2dba33fafcb50f558464a3a73af9a - anything
   worth stealing from Alphapapa's config?
 - https://noonker.github.io/posts/2020-04-22-elfeed/ - any inspiration?
+- https://punchagan.muse-amuse.in/blog/elfeed-hook-to-fetch-full-content/ -
+  Fetch full content of a page.
+- https://bitbucket.org/shackra/4hoa/src/master/ - A Go application that will
+  burn your feeds and retrieve articles of the Internet for you to read in eww
+  (or any other non-graphical web browser).
 * Reading:
 Packages around reading (eg. novels/epubs, Speed Reading, etc).
 ** [[https://github.com/emacsmirror/spray][spray]]:
