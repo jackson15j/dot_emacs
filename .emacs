@@ -1661,7 +1661,18 @@ so grabbed this code:
                                  ;; Script export: ~emacs --batch -l ~/.emacs --eval '(org-store-agenda-views)'~
                                  ("/tmp/org_agenda_para.html" "/tmp/org_agenda_para.ics" "/tmp/org_agenda_para.txt")
                                  )
-                                ("d" "Agenda for last 2 weeks"
+                                ("d" "Agenda for Today (Compact view for Exporting to displays)"
+                                 (
+                                  (agenda)
+                                  (tags "ACTION|CHASE|INVESTIGATE|INVESTIGATION" ((org-agenda-overriding-header "Project: \"a series of tasks linked to a goal, with a deadline.\"  ~:ACTION:CHASE:INVESTIGATE:INVESTIGATION:~")))
+                                  )
+                                 (
+                                  (org-agenda-span 1)
+                                  (org-agenda-use-time-grid nil)
+                                  )
+                                 ("/tmp/org_agenda_today.html" "/tmp/org_agenda_today.ics" "/tmp/org_agenda_today.txt")
+                                 )
+                                ("w" "Agenda for last 2 weeks"
                                  (
                                   (agenda "")
                                   )
