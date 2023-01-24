@@ -1644,7 +1644,7 @@ so grabbed this code:
                                   (tags-todo "-ACTION-ADMIN-CHASE-READ-REVIEW-TRAINING-WATCH-WIKI" ((org-agenda-overriding-header "\nGeneral TODO's")))
                                   )
                                  nil  ;; settings
-                                 ("/tmp/org_agenda_review.html")  ;; ~org-store-agenda-views~ output file
+                                 ("/tmp/org_agenda_review.html" "/tmp/org_agenda_review.ics" "/tmp/org_agenda_review.txt")  ;; ~org-store-agenda-views~ output file
                                  )
                                 ;; https://fortelabs.com/blog/para/
                                 ("p" "PARA (Project Area Resources Archive) Agenda Review"
@@ -1656,7 +1656,10 @@ so grabbed this code:
                                   (tags "EMACS|PERSONAL|READ|TRAINING|WATCH" ((org-agenda-overriding-header "\nResource: \"a topic or theme of ongoing interest.\"  ~:EMACS:PERSONAL:READ:TRAINING:WATCH~")))
                                   )
                                  nil  ;; settings
-                                 ("/tmp/org_agenda_para.html")  ;; ~org-store-agenda-views~ output file
+                                 ;; See: https://orgmode.org/manual/Exporting-Agenda-Views.html
+                                 ;; ~M-x org-store-agenda-views~ outputs all files for all views.
+                                 ;; Script export: ~emacs --batch -l ~/.emacs --eval '(org-store-agenda-views)'~
+                                 ("/tmp/org_agenda_para.html" "/tmp/org_agenda_para.ics" "/tmp/org_agenda_para.txt")
                                  )
                                 ("d" "Agenda for last 2 weeks"
                                  (
