@@ -23,14 +23,17 @@
         state: link
         force: yes  # See: https://github.com/ansible/ansible/issues/7627
 
-    - name: Update & upgrade pacman once at start of ansible
+    - name: Update pacman cache
       # http://docs.ansible.com/ansible/become.html
       become: true
       become_method: sudo  # requires running with --ask-become-pass.
       # https://docs.ansible.com/ansible/pacman_module.html
       pacman:
         update_cache: yes
-        upgrade: yes
+        # TEMP: commenting out since I should be doing this outside of this
+        # playbook as common behaviour.
+        #
+        # upgrade: yes
 
     - name: Install Emacs package
       become: true
