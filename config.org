@@ -60,7 +60,10 @@ Auto save all open files in current session and reload on startup.
   (use-package server
     :ensure t
     :config
-    (server-start))
+    ;; https://wiki.archlinux.org/title/Emacs#Multiplexing_emacs_and_emacsclient
+    (unless (server-running-p)
+      (server-start))
+    )
 #+END_SRC
 ** Native Compilation:
 Don't load outdated byte code.
