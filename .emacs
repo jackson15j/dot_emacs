@@ -1092,6 +1092,15 @@ so grabbed this code:
                          ;; finished analysis (instead of `lsp`).
                          (lsp-deferred))))
 
+(use-package lsp-pyright
+  ;; https://emacs-lsp.github.io/lsp-pyright/
+  ;; https://github.com/emacs-lsp/lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-pyright)
+                         (lsp))))  ; or lsp-deferred
+
+
 (use-package python
   :ensure t
   :mode ("\\.py\\'" . python-mode)
