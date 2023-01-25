@@ -1079,7 +1079,8 @@ so grabbed this code:
 ;; (ignore-error module-not-gpl-compatible
 ;;   ;; Added ingore-error due to noise from tree-sitter-langs `python.dylib`.
 ;;   ;; See: https://github.com/emacs-tree-sitter/elisp-tree-sitter/issues/100
-  ;; for a similar problem on NixOS.
+;; for a similar problem on NixOS.
+;; )
 (use-package lsp-python-ms
   ;; https://emacs-lsp.github.io/lsp-python-ms/?amp=1
   :ensure t
@@ -1090,7 +1091,6 @@ so grabbed this code:
                          ;; errors in the buffer after the MS LSP agent has
                          ;; finished analysis (instead of `lsp`).
                          (lsp-deferred))))
-;; )
 
 (use-package python
   :ensure t
