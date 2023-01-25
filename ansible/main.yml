@@ -54,11 +54,14 @@
           - mu  # mu4e. Pacman AUR.
         state: latest
 
-    - name: Install Tern for Javascript completions
-      become: true
-      become_method: sudo
-      npm:
-        name:
-          - tern  # javascript completions in `tern-mode`.
-        global: yes
-        state: latest
+    # FIXME: Invalid Tags name error + I'd rather move these to be inside the
+    # emacs config with `:ensure-system-package`.
+    #
+    # - name: Install Tern for Javascript completions
+    #   become: true
+    #   become_method: sudo
+    #   npm:
+    #     name:
+    #       - tern  # javascript completions in `tern-mode`.
+    #     global: yes
+    #     state: latest
