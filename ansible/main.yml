@@ -35,12 +35,11 @@
         #
         # upgrade: yes
 
-    - name: Install Emacs package
-      become: true
-      become_method: sudo
-      pacman:
-        name: emacs
-        state: latest
+    - name: Install Emacs Git package
+      aur:
+        use: yay
+        name:
+          - emacs-git
 
     - name: Install dependencies in .emacs
       become: true
