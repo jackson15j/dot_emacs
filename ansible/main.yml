@@ -65,3 +65,12 @@
     #       - tern  # javascript completions in `tern-mode`.
     #     global: yes
     #     state: latest
+
+    - name: Enable emacs service
+      # https://docs.ansible.com/ansible/latest/modules/systemd_module.html
+      # https://wiki.archlinux.org/title/Emacs#As_a_systemd_unit
+      systemd:
+        name: emacs.service
+        enabled: True
+        state: started
+        scope: user
