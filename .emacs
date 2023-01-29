@@ -47,7 +47,6 @@
   ;; https://github.com/jwiegley/use-package#use-package-ensure-system-package
   :ensure t)
 
-
 ;; Run config from an org file.
 ;; https://himmallright.gitlab.io/post/org-babel-setup/
 (org-babel-load-file "~/config.org")
@@ -55,11 +54,13 @@
 (use-package posframe
   ;; Seeing LSP and other packages blowing up on this missing requirement.
   :ensure t
+  :defer t
   )
 
 (use-package treemacs
   ;; Seeing LSP and other packages blowing up on this missing requirement.
   :ensure t
+  :defer t
   )
 
 
@@ -76,6 +77,7 @@
 ;;   ;; https://emacs-tree-sitter.github.io/
 ;;   ;; Use tree-sitter for syntax highlighting instead of built-in regex.
 ;;   :ensure t
+;;   :defer t
 ;;   :commands (global-tree-sitter-mode)
 ;;   :init (global-tree-sitter-mode)
 ;;   ;; :hook (
@@ -87,6 +89,7 @@
 ;; (ignore-error module-not-gpl-compatible
 ;; (use-package tree-sitter-langs
 ;;   :ensure t
+;;   :defer t
 ;;   :hook (
 ;;          ('tree-sitter-after-on-hook . tree-sitter-hl-mode)
 ;;          ;; (python-mode . tree-sitter-hl-mode)
@@ -173,6 +176,7 @@ Defined in: `display-line-numbers-exempt-modes'."
   ;; White Space Mode
   ;; http://ergoemacs.org/emacs/whitespace-mode.html
   :ensure t
+  :defer t
   :config
   (global-whitespace-mode)
   ;; make whitespace-mode use just basic coloring
@@ -198,6 +202,7 @@ Defined in: `display-line-numbers-exempt-modes'."
 ;; Also changed the column fill to be a double pipe. See unicode table.
 (use-package fill-column-indicator
   :ensure t
+  :defer t
   :config
   (progn
     (setq-default fci-rule-column 79)
@@ -222,7 +227,8 @@ Defined in: `display-line-numbers-exempt-modes'."
 ;; ========================
 ;; `M-x dictionary-search` look up word definition.
 (use-package dictionary
-  :ensure t)
+  :ensure t
+  :defer t)
 
 
 
@@ -288,6 +294,7 @@ so grabbed this code:
 ;; Ido mode with fuzzy matching
 (use-package ido
   :ensure t
+  :defer t
   :bind ("C-x C-b" . ibuffer)
   :init
   (progn
@@ -302,6 +309,7 @@ so grabbed this code:
 ;; http://writequit.org/org/settings.html
 (use-package smex
   :ensure t
+  :defer t
   :bind (("M-x" . smex)
          ("M-X" . smex-major-mode-commands)))
 
@@ -311,6 +319,7 @@ so grabbed this code:
 ;; https://github.com/Bruce-Connor/smart-mode-line
 (use-package smart-mode-line
   :ensure t
+  :defer t
   :init
   (setq
    sml/no-confirm-load-theme t
@@ -328,6 +337,7 @@ so grabbed this code:
   ;; C-cC-t to enter/exit copy-mode.
   :if (not (eq system-type 'windows-nt))  ;; FIXME: compiling on Windows.
   :ensure t
+  :defer t
   :init (setq vterm-always-compile-module t)
   :config (setq vterm-max-scrollback 100000)
   )
@@ -404,6 +414,7 @@ so grabbed this code:
 ;; ========================
 (use-package tab-bar
   :ensure t
+  :defer t
   :bind ("C-x t" . 'hydra-tab-bar/body)
   )
 
@@ -498,6 +509,7 @@ so grabbed this code:
 ;; ========================
 (use-package flycheck                   ; On-the-fly syntax checking
   :ensure t
+  :defer t
   :bind (("C-c e" . list-flycheck-errors)
          ("C-c T f" . flycheck-mode)
          ("C-c j" . flycheck-next-error)
@@ -552,6 +564,7 @@ so grabbed this code:
 (use-package company
   ;; Completion
   :ensure t
+  :defer t
   :config
   (progn
     ;; Enable company mode in every programming mode.
@@ -568,6 +581,7 @@ so grabbed this code:
     (use-package company-statistics
       ;; Rate completions by use.
       :ensure t
+      :defer t
       :config
       (add-hook 'after-init-hook 'company-statistics-mode)
       )
@@ -607,6 +621,7 @@ so grabbed this code:
 ; https://github.com/bbatsov/persp-projectile
 (use-package projectile
   :ensure t
+  :defer t
   :bind ("C-c p" . 'projectile-command-map)
   :init
   (progn
@@ -628,6 +643,7 @@ so grabbed this code:
 ;;   ;; The replacement to `virtualenv`.
 ;;   ;; Do `C-cC-pa` or `M-x pipenv-activate` to start a projects pipenv.
 ;;   :ensure t
+;;   :defer t
 ;;   :hook (python-mode . pipenv-mode)
 ;;   :init
 ;;   (setq
@@ -638,6 +654,7 @@ so grabbed this code:
 ;; which-key integration, to show keyboard shortcuts.
 (use-package which-key
   :ensure t
+  :defer t
   :config
   (which-key-mode))
 
@@ -658,6 +675,7 @@ so grabbed this code:
 
 (use-package lsp-mode
   :ensure t
+  :defer t
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
 
          ;; Python workflow:
@@ -682,6 +700,7 @@ so grabbed this code:
 (use-package lsp-ui
   ;; https://github.com/emacs-lsp/lsp-ui
   :ensure t
+  :defer t
   :commands (
              lsp-ui-mode
              lsp-ui-peek-mode
@@ -705,6 +724,7 @@ so grabbed this code:
 (use-package dap-mode
   :if (not (eq system-type 'windows-nt))  ;; FIXME: (void-function dap-ui-mode)
   :ensure t
+  :defer t
   :bind (
          ([f6] . dap-hydra)
          ([f7] . 'dap-ui-repl)
@@ -767,6 +787,7 @@ so grabbed this code:
 ;; (use-package erlang
 ;;   ;; (require 'erlang-start)
 ;;   :ensure t
+;;  :defer t
 ;;   )
 
 
@@ -797,6 +818,7 @@ so grabbed this code:
 ;; *****************************************************
 (use-package php-mode
   :ensure t
+  :defer t
   :mode ("\\.php\\'" . php-mode)
   :config
   (progn
@@ -813,6 +835,7 @@ so grabbed this code:
 (use-package groovy-mode
   ; https://github.com/Groovy-Emacs-Modes/groovy-emacs-modes
   :ensure t
+  :defer t
   :mode (
          ("\\.groovy\\'" . groovy-mode)
          ("\\Jenkinsfile*\\'" . groovy-mode)
@@ -848,6 +871,7 @@ so grabbed this code:
   ; NOTE: 'M-x markdown-preview', requires: 'markdown', to be installed with
   ; system package manager.
   :ensure t
+  :defer t
   :mode ("\\.md\\'" . markdown-mode)
   :bind (
          ("C-c C-a b" . convert-markdown-ref-to-list)
@@ -861,12 +885,14 @@ so grabbed this code:
 
   (use-package html-to-markdown
     ;; Convert html code to markdown.
-    :ensure t)
+    :ensure t
+  :defer t)
 
   (use-package markdown-toc
     ;; https://github.com/ardumont/markdown-toc
     ;; Used to generate a table of contents in a markdown file.
-    :ensure t)
+    :ensure t
+  :defer t)
   )
 
 ;; *****************************************************
@@ -876,6 +902,7 @@ so grabbed this code:
 ;; *****************************************************
 (use-package dockerfile-mode
   :ensure t
+  :defer t
   :after flycheck lsp-mode
   :hook
   (
@@ -887,6 +914,7 @@ so grabbed this code:
 
 (use-package docker
   :ensure t
+  :defer t
   :bind ("C-c d" . docker)
   :config
   ;; https://github.com/Silex/docker.el/issues/188
@@ -909,6 +937,7 @@ so grabbed this code:
 (use-package kubernetes
   ;; https://kubernetes-el.github.io/kubernetes-el/
   :ensure t
+  :defer t
   :commands (kubernetes-overview)
   :init
   ;; https://github.com/kubernetes-el/kubernetes-el/issues/265
@@ -930,6 +959,7 @@ so grabbed this code:
 ;; *****************************************************
 (use-package sh-script
   :ensure t
+  :defer t
   :hook (
          (shell-script-mode . lsp)
          (sh-mode . lsp)
@@ -945,6 +975,7 @@ so grabbed this code:
 (use-package yaml-mode
   ; https://emacs-lsp.github.io/lsp-mode/page/lsp-yaml/
   :ensure t
+  :defer t
   :mode (
          ("\\.yml\\'" . yaml-mode)
          ("\\.yaml\\'" . yaml-mode)
@@ -955,6 +986,7 @@ so grabbed this code:
 (use-package ansible
   ; https://github.com/k1LoW/emacs-ansible
   :ensure t
+  :defer t
   :config
   (progn
     (add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
@@ -963,12 +995,14 @@ so grabbed this code:
   (use-package ansible-doc
     ; https://github.com/lunaryorn/ansible-doc.el
     :ensure t
+  :defer t
     :hook (yaml-mode . ansible-doc-mode)
     )
 
   (use-package company-ansible
     ; https://github.com/krzysztof-magosa/company-ansible
     :ensure t
+  :defer t
     :after (company)
     :config
     (add-to-list 'company-backends 'company-ansible)
@@ -1006,9 +1040,11 @@ so grabbed this code:
 ;;   normal-top-level()
 
 (use-package json-reformat
-  :ensure t)
+  :ensure t
+  :defer t)
 (use-package json-mode
   :ensure t
+  :defer t
   :mode ("\\.json\\'" . json-mode)
   :hook (
          (json-mode . my-programming-defaults-config)
@@ -1031,13 +1067,15 @@ so grabbed this code:
 ;; User-Agent: Emacs Restclient
 (use-package restclient
   :ensure t
+  :defer t
   :mode ("\\.restclient\\'" . restclient-mode)
   )
 
 
 ;; (use-package realgud
 ;;   FIXME: Breaks after upgrading.
-;;   :ensure t)
+;;   :ensure t
+;;   :defer t)
 ;; *****************************************************
 ;; *****************************************************
 ;; Python IDE stuff
@@ -1051,6 +1089,7 @@ so grabbed this code:
 ;; http://www.saltycrane.com/blog/2010/05/my-emacs-python-environment/
 (use-package pyvenv
   :ensure t
+  :defer t
   :functions pyvenv-autoload
   :config
   (defun pyvenv-autoload ()
@@ -1074,6 +1113,7 @@ so grabbed this code:
 ;;   ;; https://github.com/fredcamps/lsp-jedi
 ;;   ;; https://github.com/pappasam/jedi-language-server
 ;;   :ensure t
+;;   :defer t
 ;;  )
 
 ;; NOTE: Working on some code that prevents me installing Jedi due to
@@ -1086,6 +1126,7 @@ so grabbed this code:
 (use-package lsp-python-ms
   ;; https://emacs-lsp.github.io/lsp-python-ms/?amp=1
   :ensure t
+  :defer t
   :init (setq lsp-python-ms-auto-install-server t)
   :hook (python-mode . (lambda ()
                          (require 'lsp-python-ms)
@@ -1098,6 +1139,7 @@ so grabbed this code:
   ;; https://emacs-lsp.github.io/lsp-pyright/
   ;; https://github.com/emacs-lsp/lsp-pyright
   :ensure t
+  :defer t
   :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
                          (lsp))))  ; or lsp-deferred
@@ -1105,6 +1147,7 @@ so grabbed this code:
 
 (use-package python
   :ensure t
+  :defer t
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
   ;; Python workflow:
@@ -1123,6 +1166,7 @@ so grabbed this code:
 (use-package blacken
   ; https://github.com/pythonic-emacs/blacken
   :ensure t
+  :defer t
   :hook (python-mode . blacken-mode)
   :init
   ;; NOTE: Commented out below line due to currently working on projects that
@@ -1134,6 +1178,7 @@ so grabbed this code:
 ;; (use-package isortify
 ;;   ;; https://github.com/pythonic-emacs/isortify
 ;;   :ensure t
+;;   :defer t
 ;;   :hook (python-mode . isortify-mode)
 ;;   )
 
@@ -1145,6 +1190,7 @@ so grabbed this code:
 (use-package poetry
   ;; https://github.com/galaunay/poetry.el
   :ensure t
+  :defer t
   ;; :config
   ;; (poetry-tracking-mode)  ;; activate poetry virtualenv's on buffer change.
   )
@@ -1165,6 +1211,7 @@ so grabbed this code:
 ;;       ; https://github.com/naiquevin/sphinx-doc.el
 ;;       ; C-c M-d, to auto generate sphinx docs for current function.
 ;;       :ensure t
+;;      :defer t
 ;;       :config
 ;;       (progn
 ;;         (add-hook 'python-mode-hook (lambda ()
@@ -1178,12 +1225,14 @@ so grabbed this code:
 ;;       ;; Even though Anaconda is based off Jedi, it seems to _"just work"_ for
 ;;       ;; me on my current latest python3, compared to `jedi` + `company-jedi.`
 ;;       :ensure t
+;;       :defer t
 ;;       )
 
 ;;     (use-package company-anaconda
 ;;       ;; https://github.com/proofit404/company-anaconda
 ;;       ;; `M-?` for docs.
 ;;       :ensure t
+;;       :defer t
 ;;       :after company
 ;;       :config
 ;;       (add-hook 'python-mode-hook 'anaconda-mode)
@@ -1193,27 +1242,32 @@ so grabbed this code:
 
 ;;     (use-package realgud-ipdb
 ;;       :ensure t
+;;       :defer t
 ;;       ;:after realgud
 ;;       )
 
 ;;     ;; (use-package cov
 ;;     ;;   :ensure t
+;;     ;;   :defer t
 ;;     ;;   )
 ;;     ;; (setq cov-coverage-file-paths '("." "~/work/exchange/" "~/work/exchange/build/test-reports" cov--locate-coveralls cov--locate-clover))
 ;;     ;; (setq cov-coverage-file "coverage.xml")
 
 ;;     ;; (use-package coverage
 ;;     ;;   :ensure t
+;;     ;;   :defer t
 ;;     ;;   )
 ;;     ;; (setq coverage-dir "~/work/exchange/")
 ;;     ;; (setq coverage-dir "~/work/exchange/build/test-reports/")
 
 ;;     ;; (use-package undercover
 ;;     ;;   :ensure t
+;;     ;;   :defer t
 ;;     ;;   )
 
 ;;     ;; (use-package pycoverage
 ;;     ;;   :ensure t
+;;     ;;   :defer t
 ;;     ;;   )
 
 ;;     )
@@ -1223,6 +1277,7 @@ so grabbed this code:
 ;; ========================
 ;; (use-package nose
 ;;   :ensure t
+;;   :defer t
 ;;   :config
 ;;   (progn
 ;;     (define-key nose-mode-map "\C-cn" 'nosetests-all)
@@ -1243,6 +1298,7 @@ so grabbed this code:
 (use-package cc-mode
   ;; https://emacs-lsp.github.io/lsp-mode/page/lsp-clangd/
   :ensure t
+  :defer t
   :hook (
          (c-mode . lsp)
          (cc-mode . lsp)
@@ -1255,6 +1311,7 @@ so grabbed this code:
 ;;   ;; brew tap homebrew/dupes && brew install gdb
 ;;   ;; Note: gdb keybinding is: C-x C-a C-l, which I did have my rename term windows as.
 ;;   :ensure t
+;;   :defer t
 ;;   :bind (
 ;;          ;; ("<f9>" . compile)
 ;;          ([remap comment-region] . 'recompile)  ; "C-c C-c"
@@ -1264,12 +1321,14 @@ so grabbed this code:
 ;;   (progn
 
 ;;     (use-package smart-compile
-;;       :ensure t)
+;;       :ensure t
+;;       :defer t)
 
 ;;     (use-package xcscope
 ;;       ;; Use cscope files within emacs, to jump around C/C++ code.
 ;;       ;; https://github.com/dkogan/xcscope.el
 ;;       :ensure t
+;;       :defer t
 ;;       :config
 ;;       (progn
 ;;         ;; Setup auto-magically hooks into c/c++ modes.
@@ -1282,6 +1341,7 @@ so grabbed this code:
 ;;     (use-package company-c-headers
 ;;       ;; Complete c-headers
 ;;       :ensure t
+;;       :defer t
 ;;       :config
 ;;       (push 'company-c-headers company-backends)
 ;;       )
@@ -1307,6 +1367,7 @@ so grabbed this code:
   ;; project.
   ;; requires `clang-format` to be installed from system package manger.
   :ensure t
+  :defer t
   :after cc-mode
   :config
   (progn
@@ -1327,6 +1388,7 @@ so grabbed this code:
   ;; Bit weird, but need to activate pipenv on a python file in the repo, then
   ;; reload the CMakeList.txt`.
   :ensure t
+  :defer t
   :hook (cmake-mode . lsp)
   )
 
@@ -1351,6 +1413,7 @@ so grabbed this code:
 ;; (use-package csharp-mode
 ;;   ;; https://jamiecollinson.com/blog/my-emacs-config/#c-1
 ;;   :ensure t
+;;   :defer t
 ;;   :init
 ;;   (add-hook 'csharp-mode-hook 'my-programming-defaults-config)
 ;;   (add-hook 'csharp-mode-hook 'my-csharp-mode-syntax)
@@ -1382,6 +1445,7 @@ so grabbed this code:
 ;;     ;; Watch a file via: `M-x coverlay-watch-file /path/to/lcov-file`. or:
 ;;     ;; `C-c C-l w`.
 ;;     :ensure t
+;;     :defer t
 ;;     :init
 ;;     (setq coverlay:mark-tested-lines nil)
 ;;     )
@@ -1407,6 +1471,7 @@ so grabbed this code:
 ;; https://github.com/mopemope/meghanada-emacs
 (use-package meghanada
   :ensure t
+  :defer t
   :init
   (add-hook 'java-mode-hook #'meghanada-mode)
   (add-hook 'java-mode-hook 'flycheck-mode)
@@ -1419,6 +1484,7 @@ so grabbed this code:
 
 (use-package mvn
   :ensure t
+  :defer t
   :init
   ;; Correctly colourise the compilation buffer for maven calls.
   ;; https://github.com/apg/mvn-el
@@ -1441,15 +1507,18 @@ so grabbed this code:
 ;; https://github.com/codesuki/add-node-modules-path
 ;; (use-package add-node-modules-path
 ;;   :ensure t
+;;   :defer t
 ;;   )
 ;; https://github.com/jscheid/prettier.el
 ;; (use-package prettier
 ;;   :ensure t
+;;   :defer t
 ;;   )
 ; https://github.com/prettier/prettier-emacs
 ; Requires global prettier install: `npm install -g prettier`.
 ;; (use-package prettier-js
 ;;   :ensure t
+;;   :defer t
 ;;   )
 ; https://emacs.cafe/emacs/javascript/setup/2017/05/09/emacs-setup-javascript-2.html
 ; https://emacs-lsp.github.io/lsp-mode/tutorials/reactjs-tutorial/ = ts-ls.
@@ -1461,6 +1530,7 @@ so grabbed this code:
 ; `M-x lsp-install-server <ret> eslint <ret>`
 (use-package js2-mode
   :ensure t
+  :defer t
   :mode ("\\.js\\'" "\\.jsx\\'" "\\.mjs\\'")
   :hook (
          (js2-mode . lsp)
@@ -1486,6 +1556,7 @@ so grabbed this code:
 ;; (use-package eslint-fix
 ;;   ; https://github.com/codesuki/eslint-fix
 ;;   :ensure t
+;;   :defer t
 ;;   :hook (
 ;;          (js-mode . selint-fix)
 ;;          (js2-mode . selint-fix)
@@ -1505,6 +1576,7 @@ so grabbed this code:
 (use-package css-mode
   ; https://emacs-lsp.github.io/lsp-mode/page/lsp-css/
   :ensure t
+  :defer t
   :hook (css-mode . lsp)
   )
 
@@ -1513,6 +1585,7 @@ so grabbed this code:
   ; start webserver with: `M-x httpd-start`.
   ; Then set the mode on the buffer: `M-x impatient-mode`.
   :ensure t
+  :defer t
   )
 
 ; https://stackoverflow.com/questions/36183071/how-can-i-preview-markdown-in-emacs-in-real-time
@@ -1546,6 +1619,7 @@ so grabbed this code:
 ; https://github.com/rust-lang/rust-mode
 (use-package rust-mode
   :ensure t
+  :defer t
   ; https://emacs-lsp.github.io/lsp-mode/page/lsp-rust/
   :hook (rust-mode . lsp)
   )
@@ -1559,6 +1633,7 @@ so grabbed this code:
 ; https://github.com/dominikh/go-mode.el
 (use-package go-mode
   :ensure t
+  :defer t
   ; Requires `go` & `gopls` to be installed. See:
   ; * https://github.com/golang/tools/tree/master/gopls
   ; * https://emacs-lsp.github.io/lsp-mode/page/lsp-gopls/
@@ -1574,6 +1649,7 @@ so grabbed this code:
 ; https://github.com/jschaf/powershell.el
 (use-package powershell
   :ensure t
+  :defer t
   :hook (
          (powershell-mode . my-programming-defaults-config)
          ; (powershell-mode . lsp) ;; No `Expand-Archive` on Arch pwsh, so cannot install `pwsh-ls` automatically.
@@ -1592,9 +1668,13 @@ so grabbed this code:
 ;; http://orgmode.org/worg/code/elisp/dto-org-gtd.el
 ;; http://www.gnu.org/software/emacs/manual/html_node/org/Remember-templates.html
 (use-package org
+  ;; NOTE: ~ox-confluence~ from ~org-contrib~ never worked well, compared to
+  ;; the exports listed in: ~config.org~. Disabling for now.
   ;; https://emacs.stackexchange.com/questions/7890/org-plus-contrib-and-org-with-require-or-use-package
   ;; https://emacs.stackexchange.com/questions/70081/how-to-deal-with-this-message-important-please-install-org-from-gnu-elpa-as-o
-  :ensure org-contrib
+  ;; :ensure org-contrib
+  :ensure t
+  :defer t
   :pin gnu
   :bind (
      ("C-c l" . org-store-link)
@@ -1632,8 +1712,8 @@ so grabbed this code:
     (global-set-key "\C-cn" (lambda () (interactive) (org-capture nil "n")))
     )
   :config
-  ;; Explicit requires from the `org-contrib` package.
-  (require 'ox-confluence)  ;; FIXME: wrong type arguments error!
+  ;; ;; Explicit requires from the `org-contrib` package.
+  ;; (require 'ox-confluence)  ;; FIXME: wrong type arguments error!
   (setq
    org-link-file-path-type 'relative
    org-agenda-custom-commands '(
@@ -1709,6 +1789,7 @@ so grabbed this code:
       :init
       (require 'ox-org)
       :ensure t
+      :defer t
       ;; Uncomment the below if 'ensure-system-packages` is installed
       ;;:ensure-system-package (gvgen . graphviz)
       :config
@@ -1741,6 +1822,7 @@ so grabbed this code:
   ;; https://plantuml.com/emacs
   :ensure-system-package ((java) (graphviz))
   :ensure t
+  :defer t
   :after (org org-src)
   :hook
   (
@@ -1765,6 +1847,7 @@ so grabbed this code:
 ;; http://cestlaz.github.io/posts/using-emacs-26-gcal/
 (use-package calfw
   :ensure t
+  :defer t
   :bind
   (
    ("<f8>" . cfw:open-org-calendar)
@@ -1774,13 +1857,16 @@ so grabbed this code:
     (use-package calfw-gcal
       ;; FIXME: 10year old package with deprecated `cl` requirement.
       ;; TODO: replace for: https://github.com/myuhe/org-gcal.el.
-      :ensure t)
+      :ensure t
+  :defer t)
 
     (use-package calfw-ical
-      :ensure t)
+      :ensure t
+  :defer t)
 
     (use-package calfw-org
-      :ensure t)
+      :ensure t
+  :defer t)
     )
   ;; FIXME: what does this do??
   (setq cfw:org-overwrite-default-keybinding t)
@@ -1819,6 +1905,7 @@ FORMAT - .format to use."
 ;; *****************************************************
 (use-package log4j-mode
   :ensure t
+  :defer t
   :mode "\\.log\\'"
   )
 '(log4j-font-lock-fatal-face ((t (:foreground "darkred" :weight bold))))
@@ -1833,7 +1920,8 @@ FORMAT - .format to use."
 ;; *****************************************************
 ;; https://github.com/orgcandman/pcap-mode
 (use-package pcap-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 ;; *****************************************************
 ;; *****************************************************
@@ -1869,6 +1957,7 @@ FORMAT - .format to use."
   ;; in a private file. Dies on startup with (void-function make-mu4e-context).
   ; :bind (("<f7>" . mu4e))
   :ensure-system-package mu
+  :defer t
   :config
   (progn
     (setq
@@ -1901,12 +1990,14 @@ FORMAT - .format to use."
     ;; Show mu4e maildirs summary in mu4e-main-view
     ;; https://github.com/agpchil/mu4e-maildirs-extension
     :ensure t
+    :defer t
     :init (mu4e-maildirs-extension))
 
   (use-package mu4e-alert
     ;; Does desktop/modeline notifications.
     ;; https://github.com/iqbalansari/mu4e-alert
     :ensure t
+    :defer t
     :config
     (mu4e-alert-set-default-style 'libnotify)
     (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
@@ -1942,6 +2033,7 @@ FORMAT - .format to use."
 (use-package language-detection
   ; https://github.com/andreasjansson/language-detection.el
   :ensure t
+  :defer t
   )
 
 (require 'cl-lib)
@@ -2034,6 +2126,7 @@ MODE - ??"
 ;; FIXME: package doesn't exist any more?
 ;; (use-package sos
 ;;   :ensure t
+;;   :defer t
 ;;   :bind (("<f5>" . sos))
 ;;   )
 
@@ -2044,6 +2137,7 @@ MODE - ??"
 ;; ;; ========================
 ;; (use-package irfc
 ;;   :ensure t
+;;   :defer t
 ;;   :config
 ;;   (progn
 ;;     (setq
@@ -2066,6 +2160,7 @@ MODE - ??"
 ;; * https://wiki.archlinux.org/index.php/Ncmpcpp
 (use-package mingus
   :ensure t
+  :defer t
   :bind
   (
    ("C-c m" . mingus)
@@ -2086,6 +2181,7 @@ MODE - ??"
 ;; FIXME: uncomment once `Debugger entered--Lisp error: (void-variable hierarchy--make)` is fixed.
 ;; (use-package md4rd
 ;;   :ensure t
+;;   :defer t
 ;;   )
 
 
@@ -2098,7 +2194,8 @@ MODE - ??"
 ;; Touch typing practice.
 ;; Call: `M-x speed-type-text`.
 (use-package speed-type
-  :ensure t)
+  :ensure t
+  :defer t)
 
 ;; ========================
 ;; MscGen mode (Custom)
@@ -2138,10 +2235,12 @@ for the use of the hook."
 
 
 (use-package csv-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package i3wm-config-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 
 (use-package iss-mode
@@ -2149,6 +2248,7 @@ for the use of the hook."
   ; InnoSetup mode: https://jrsoftware.org/isinfo.php
   :mode "\\.iss\\'"
   :ensure t
+  :defer t
   :init
   (setq iss-compiler-path "C:/Program Files (x86)/Inno Setup 6")
   )
@@ -2157,6 +2257,7 @@ for the use of the hook."
 (use-package devdocs
   ; https://github.com/astoff/devdocs.el
   :ensure t
+  :defer t
   :hook (
          (c-mode . (lambda () (setq-local devdocs-current-docs '("c"))))
          (c++-mode . (lambda () (setq-local devdocs-current-docs '("cpp" "cmake~3.20"))))
@@ -2168,6 +2269,7 @@ for the use of the hook."
 ;; (make-directory "~/org/jira/" t)
 ;; (use-package org-jira
 ;;   :ensure t
+;;   :defer t
 ;;   :config
 ;;   (setq
 ;;    jiralib-url "https://eigentech.atlassian.net/"

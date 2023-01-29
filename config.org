@@ -27,7 +27,8 @@ locally.
 *** [[https://github.com/Malabarba/elisp-bug-hunter][Bug-Hunter]]
 #+BEGIN_SRC emacs-lisp
   (use-package bug-hunter
-    :ensure t)
+    :ensure t
+    :defer t)
 #+END_SRC
 *** [[https://github.com/jschaf/esup][ESUP - Emacs Start Up Profiler]]
 To start Esup, run ~M-x esup~, and watch the magic happen.
@@ -36,7 +37,9 @@ By default, Esup will profile ~user-init-file~. To profile a custom file, call
 ~esup~ with a prefix argument. That is, ~C-u M-x esup~.
 #+BEGIN_SRC emacs-lisp
   (use-package esup
-    :defer  ;; Slow on startup. Profiled with ~M-x esup~.
+    :ensure t
+    :defer t
+    :defer
     :config
     ;; Work around a bug where esup tries to step into the byte-compiled
     ;; version of `cl-lib', and fails horribly.
@@ -56,6 +59,7 @@ Auto save all open files in current session and reload on startup.
 #+BEGIN_SRC emacs-lisp
   (use-package desktop
     :ensure t
+    :defer t
     :init (desktop-save-mode)
     :config
     (progn
@@ -74,6 +78,7 @@ Auto save all open files in current session and reload on startup.
 #+BEGIN_SRC emacs-lisp
   (use-package server
     :ensure t
+    :defer t
     :config
     ;; https://wiki.archlinux.org/title/Emacs#Multiplexing_emacs_and_emacsclient
     (unless (server-running-p)
@@ -104,6 +109,7 @@ Log but don't pop up Warnings buffer for all native compilation warnings.
     :if (eq system-type 'darwin)
     :ensure-system-package terminal-notifier
     :ensure t
+    :defer t
     :commands (alert)
     :init
     (setq
@@ -125,6 +131,7 @@ that notifications have to be explicitly closed.
     :if (eq system-type 'darwin)
     :ensure-system-package terminal-notifier
     :ensure t
+    :defer t
     :after (org)
     :config
     (setq
@@ -186,6 +193,7 @@ magit - a pretty good git package with more features than the built in emacs
 #+BEGIN_SRC emacs-lisp
   (use-package magit
     :ensure t
+    :defer t
     :bind (
        ("<f3>" . magit-status)
        ("\C-c\C-s" . magit-status)
@@ -213,6 +221,7 @@ reasons.
 #+BEGIN_SRC emacs-lisp
   (use-package magit-svn
     :ensure t
+    :defer t
     :after magit
     )
 #+END_SRC
@@ -225,6 +234,7 @@ explicit definition of ~magit-popup~
 #+BEGIN_SRC emacs-lisp
   (use-package magit-popup
      :ensure t
+     :defer t
      :after magit
      )
 #+END_SRC
@@ -242,6 +252,7 @@ my old ~magithub~ config.
     ;; NOTE: for emacsclients, it asks in the main instance window.
     :if (not (eq system-type 'windows-nt))  ;; FIXME: Needs `cc` compiler defined.
     :ensure t
+    :defer t
     :after magit
     :config
     (add-to-list 'forge-alist '("git-scm.clinithink.com:2009" "git-scm.clinithink.com/api/v4" "git-scm.clinithink.com" forge-gitlab-repository))
@@ -259,6 +270,7 @@ with PR's to do code reviews (comments, diff view, approvals, etc).
 #+BEGIN_SRC emacs-lisp
   (use-package code-review
     :ensure t
+    :defer t
     :after magit
     :config
     (setq
@@ -360,6 +372,7 @@ removing for: ~tramp-container~.
     (use-package conda
       :after (python-mode)
       :ensure t
+      :defer t
       :config
       ;; https://github.com/necaris/conda.el/issues/107 - stopped working with
       ;;conda 4.13.0
@@ -436,6 +449,7 @@ An Emacs web feeds client.
 #+BEGIN_SRC emacs-lisp
   (use-package elfeed
     :ensure t
+    :defer t
     :hook (
            (elfeed-show-mode . (lambda () (setq-local shr-width 80)))
            )
@@ -450,6 +464,7 @@ Configure the Elfeed RSS reader with an Orgmode file.
 #+BEGIN_SRC emacs-lisp
   (use-package elfeed-org
     :ensure t
+    :defer t
     :config
     (setq
      rmh-elfeed-org-files (list "~/org/personal/elfeed.org")
@@ -466,7 +481,8 @@ Configure the Elfeed RSS reader with an Orgmode file.
       elfeed-protocol-update-unread-only t
       )
      (elfeed-protocol-enable)
-     :ensure t)
+     :ensure t
+     :defer t)
 
   (defadvice elfeed (after configure-elfeed-feeds activate)
     "Make elfeed-org autotags rules work with elfeed-protocol."
@@ -484,6 +500,7 @@ Youtube integration for Elfeed, the feed reader for Emacs.
 #+BEGIN_SRC emacs-lisp
   (use-package elfeed-tube
     :ensure t
+    :defer t
     :after elfeed
     :demand t
     :config
@@ -501,7 +518,8 @@ If you want “live” captions and better MPV support:
 #+BEGIN_SRC emacs-lisp
   (use-package elfeed-tube-mpv
     :ensure-system-package ((mpv) (yt-dlp))
-    :ensure t ;; or :straight t
+    :ensure t
+    :defer t ;; or :straight t
     :bind (:map elfeed-show-mode-map
                 ("C-c C-f" . elfeed-tube-mpv-follow-mode)
                 ("C-c C-w" . elfeed-tube-mpv-where)
@@ -514,6 +532,7 @@ A frontend for elfeed (like Mu4e Dashboard).
 #+BEGIN_SRC emacs-lisp
   (use-package elfeed-dashboard
     :ensure t
+    :defer t
     :config
     (setq elfeed-dashboard-file "~/org/personal/elfeed-dashboard.org")
     ;; update feed counts on elfeed-quit
@@ -523,13 +542,15 @@ A frontend for elfeed (like Mu4e Dashboard).
 Alternative to [[*\[\[https://github.com/manojm321/elfeed-dashboard\]\[elfeed-dashboard\]\]:][elfeed-dashboard]].
 #+BEGIN_SRC emacs-lisp
   (use-package elfeed-summary
-    :ensure t)
+    :ensure t
+    :defer t)
 #+END_SRC
 # ** [[https://github.com/jeetelongname/elfeed-goodies][elfeed-goodies]]:
 # FIXME: Raise bug around missing Powerline version in melpa.
 # #+BEGIN_SRC emacs-lisp
 #   (use-package elfeed-goodies
 #     :ensure t
+#     :defer t
 #     :init (elfeed-goodies/setup)
 #     :config
 #     ;; Fix: Pane splits vertically instead of horizontally.
@@ -542,6 +563,7 @@ Alternative to [[*\[\[https://github.com/manojm321/elfeed-dashboard\]\[elfeed-da
 # #+BEGIN_SRC emacs-lisp
 #   (use-package elfeed-autotag
 #     :ensure t
+#     :defer t
 #     :config
 #     (setq elfeed-autotag-files '("~/org/personal/elfeed.org"))
 #     (elfeed-autotag)
@@ -578,7 +600,8 @@ reading.
 
 #+BEGIN_SRC emacs-lisp
   (use-package spray
-    :ensure t)
+    :ensure t
+    :defer t)
 #+END_SRC
 
 *** Commands
