@@ -2091,36 +2091,6 @@ MODE - ??"
 ;;   )
 
 
-;; FIXME: setup the exwm windows manager.
-;; (use-package xelb
-;;   :ensure t
-;;   :config
-;;   (use-package exwm
-;;     :ensure t
-;;     :config
-;;     ('exwm-config)
-;;     ('exwm-config-default)
-;;     )
-;;   )
-
-
-;; ;; wiki.archlinux.org/index.php/EXWM
-;; ;; FIXME: convert to `use-package` format.
-;; (require 'exwm)
-;; (require 'exwm-config)
-;; (exwm-config-default)
-
-;; ;; (require 'exwm-systemtray)
-;; ;; (exwm-systemtray-enable)
-;; (require 'exwm-randr)
-;; (setq exwm-randr-workspace-output-plist '(1 "eDP1" 2 "HDMI2"))
-;; (add-hook 'exwm-randr-screen-change-hook
-;;           (lambda ()
-;;             (start-process-shell-command
-;;              "xrandr" nil "xrandr --output eDP1 --below HDMI2 --auto")))
-;; (exwm-randr-enable)
-
-;; (exwm-enable)
 
 
 ;; ========================
