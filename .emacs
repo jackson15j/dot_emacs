@@ -2147,15 +2147,6 @@ MODE - ??"
 
 
 ;; ========================
-;; el-get (External Package manager)
-;; ========================
-;; https://www.emacswiki.org/emacs/el-get
-(use-package el-get
-  :ensure t)
-
-
-
-;; ========================
 ;; speed-type
 ;; ========================
 ;; https://github.com/parkouss/speed-type/ (was: https://github.com/hagleitn/speed-type).
