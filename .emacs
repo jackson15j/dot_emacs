@@ -155,12 +155,14 @@
    (line-number ((t (:inherit (shadow default) :background "grey10"))))
   )
 (defcustom display-line-numbers-exempt-modes '(vterm-mode eshell-mode shell-mode term-mode ansi-term-mode lisp-interaction-mode, org, compilation-mode)
-  "Major modes on which to disable the linum mode, exempts them from global requirement."
+  "Major modes on which to disable the linum mode.
+Exempts them from global requirement."
   :group 'display-line-numbers
   :type 'list
   :version "green")
 (defun display-line-numbers--turn-on ()
-  "Turn on line numbers but exempting certain major modes defined in `display-line-numbers-exempt-modes'."
+  "Turn on line numbers but exempting certain major modes.
+Defined in: `display-line-numbers-exempt-modes'."
   (if (and
        (not (member major-mode display-line-numbers-exempt-modes))
        (not (minibufferp)))
@@ -263,7 +265,7 @@ so grabbed this code:
 ;; ========================
 ; https://stackoverflow.com/questions/9688748/emacs-comment-uncomment-current-line
 (defun comment-or-uncomment-region-or-line ()
-  "Comments or uncomments the region or the current line if there's no active region."
+  "Un/Comments the region or the current line if there's no active region."
   (interactive)
   (let (beg end)
     (if (region-active-p)
@@ -431,7 +433,7 @@ so grabbed this code:
 ;; TEXT MODE DEFAULTS
 ;; ========================
 (defun my-text-mode-config ()
-  "All of my 'text-mode' config in one place."
+  "All of my `text-mode` config in one place."
   (interactive)
   (whitespace-mode)  ;; highlights whitespace.
   (my_highlighted_words)  ;; highlights specific words in red & bold.
@@ -1052,8 +1054,8 @@ so grabbed this code:
   :functions pyvenv-autoload
   :config
   (defun pyvenv-autoload ()
-    (interactive)
     "auto activate venv directory if exists. See: https://github.com/jorgenschaefer/pyvenv/issues/51"
+    (interactive)
     (f-traverse-upwards (lambda (path)
                           (let ((venv-path (f-expand ".venv" path)))
                             (when (f-exists? venv-path)
@@ -1392,7 +1394,7 @@ so grabbed this code:
 ;; *****************************************************
 ;; *****************************************************
 (defun my-java-mode-syntax ()
-  "Hook for my tweaks to 'java-mode'."
+  "Hook for my tweaks to `java-mode`."
   (interactive)
   ;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Indenting-switch-statements.html
   (c-set-offset 'case-label '+)  ; A "case" or "default" label.
