@@ -1880,10 +1880,6 @@ FORMAT - .format to use."
      ;; General config.
      mu4e-update-interval 120
      mu4e-headers-auto-update t
-     mu4e-view-show-images t
-     ;; show full addresses in view message (instead of just names)
-     ;; toggle per name with M-RET
-     mu4e-view-show-addresses t
      ;; http://www.djcbsoftware.nl/code/mu/mu4e/Displaying-rich_002dtext-messages.html
      ;; If you’re using a dark theme, and the messages are hard to read, it can
      ;; help to change the luminosity, e.g.:
