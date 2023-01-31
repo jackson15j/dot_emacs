@@ -252,7 +252,6 @@ my old ~magithub~ config.
     ;; NOTE: for emacsclients, it asks in the main instance window.
     :if (not (eq system-type 'windows-nt))  ;; FIXME: Needs `cc` compiler defined.
     :ensure t
-    :defer t
     :after magit
     :config
     (add-to-list 'forge-alist '("git-scm.clinithink.com:2009" "git-scm.clinithink.com/api/v4" "git-scm.clinithink.com" forge-gitlab-repository))
