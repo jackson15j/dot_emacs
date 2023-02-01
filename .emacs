@@ -1588,17 +1588,21 @@ so grabbed this code:
   :defer t
   )
 
-; https://stackoverflow.com/questions/36183071/how-can-i-preview-markdown-in-emacs-in-real-time
-(defun markdown-html (buffer)
+(defun my-markdown-filter (buffer)
   "Function to allow `impatient-mode` to preview markdown.  Usage:
 
 * `M-x httpd-start`
 * Go to required BUFFER.
 * `M-x impatient-mode`
 * `M-x imp-set-user-filter RET markdown-html RET`"
-  (princ (with-current-buffer buffer
-           (format "<!DOCTYPE html><html><title>Impatient Markdown</title><xmp theme=\"united\" style=\"display:none;\"> %s  </xmp><script src=\"http://strapdownjs.com/v/0.2/strapdown.js\"></script></html>" (buffer-substring-no-properties (point-min) (point-max))))
-         (current-buffer)))
+  (princ
+   (with-temp-buffer
+     (let ((tmp (buffer-name)))
+       (set-buffer buffer)
+       (set-buffer (markdown tmp))
+       (format "<!DOCTYPE html><html><title>Markdown preview</title><link rel=\"stylesheet\" href = \"https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css\"/>
+<body><article class=\"markdown-body\" style=\"box-sizing: border-box;min-width: 200px;max-width: 980px;margin: 0 auto;padding: 45px;\">%s</article></body></html>" (buffer-string))))
+   (current-buffer)))
 
 ;; https://blog.bitsandbobs.net/blog/emacs-markdown-live-preview/
 (defun my-markdown-preview ()
@@ -1607,7 +1611,7 @@ so grabbed this code:
   (unless (process-status "httpd")
     (httpd-start))
   (impatient-mode)
-  (imp-set-user-filter 'markdown-html)
+  (imp-set-user-filter 'my-markdown-filter)
   (imp-visit-buffer))
 
 
