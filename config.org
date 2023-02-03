@@ -100,6 +100,21 @@ Log but don't pop up Warnings buffer for all native compilation warnings.
 #+BEGIN_SRC emacs-lisp
   (setq native-comp-async-report-warnings-errors 'silent)
 #+END_SRC
+** Treesit:
+Treesit uses the tree-sitter grammars to provide faces/fontifying/structures to
+text by an AST instead of a regex (ie. fast, accurate, works during editing).
+*** [[https://github.com/renzmann/treesit-auto][treesit-auto]]:
+Automatically install tree-sitter grammars.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package treesit-auto
+    :ensure t
+    :demand t
+    :config
+    (add-to-list 'treesit-auto-fallback-alist '(bash-ts-mode . sh-mode))
+    (setq treesit-auto-install t)
+    (global-treesit-auto-mode))
+#+END_SRC
 * Notifications:
 ** [[https://github.com/jwiegley/alert][alert]]:
 #+BEGIN_SRC emacs-lisp
