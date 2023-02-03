@@ -1794,7 +1794,7 @@ so grabbed this code:
       (require 'ox-org)
       :ensure t
       :defer t
-      ;; Uncomment the below if 'ensure-system-packages` is installed
+      ;; Uncomment the below if 'ensure-system-package` is installed
       ;;:ensure-system-package (gvgen . graphviz)
       :config
       (setq org-mind-map-default-graph-attribs
