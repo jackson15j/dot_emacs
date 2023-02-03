@@ -736,8 +736,9 @@ so grabbed this code:
    dap-tooltip-mode
    dap-ui-controls-mode
    )
-  :config  ; FIXME: breaks after upgrading to latest.
+  :config
   (setq
+  ;; NOTE: For Python. install: `debugpy` python package in the project!
    dap-python-debugger 'debugpy   ;; The default: `ptvsd` is deprecated!
    dap-ui-variable-length 1000  ;; https://github.com/emacs-lsp/dap-mode/issues/416 - don't truncate `locals` variables.
    dap-internal-terminal 'dap-internal-terminal-shell  ;; Forgotten how to scroll `vterm` so using shell.
