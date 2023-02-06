@@ -1050,10 +1050,9 @@ so grabbed this code:
   )
 
 
-;; (use-package realgud
-;;   FIXME: Breaks after upgrading.
-;;   :ensure t
-;;   :defer t)
+(use-package realgud
+  :ensure t
+  :defer t)
 ;; *****************************************************
 ;; *****************************************************
 ;; Python IDE stuff
