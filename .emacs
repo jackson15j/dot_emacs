@@ -38,15 +38,20 @@
 ;; Follow symlinks. NOTE: `~/config.org` is a symlink!!
 (setq vc-follow-symlinks t)
 ;; Bootstrap `use-package'
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(require 'use-package)
+;; (unless (package-installed-p 'use-package)
+;;   (package-refresh-contents)
+;;   (package-install 'use-package))
+;; (require 'use-package)
 
-(use-package use-package-ensure-system-package
-  ;; https://github.com/jwiegley/use-package#use-package-ensure-system-package
-  :ensure t)
+;; (use-package use-package-ensure-system-package
+;;   ;; https://github.com/jwiegley/use-package#use-package-ensure-system-package
+;;   :ensure t)
 
+(use-package system-packages
+;; `use-package` is a built-in in emacs29, but need to install
+;; `system-packages` for `use-package-ensure-system-package` built-in to work.
+  :ensure t
+)
 ;; Run config from an org file.
 ;; https://himmallright.gitlab.io/post/org-babel-setup/
 (org-babel-load-file "~/config.org")
