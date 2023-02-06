@@ -326,7 +326,8 @@ and more — in a fast and effective plain text system.
        ;; http://www.millingtons.eclipse.co.uk/glyn/dotemacs.html
        org-refile-targets (quote
                            ((org-agenda-files :maxlevel . 5)
-                            ("~/org/projects.org" :maxlevel . 2)))
+                            ("~/org/projects.org" :maxlevel . 2)
+                            ("~/org/programming_notes/notes.org" :maxlevel . 5)))
        ;; Allow refiling to a file to support moving up to heading level 1
        org-refile-use-outline-path 'file
        org-log-done t
