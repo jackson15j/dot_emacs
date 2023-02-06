@@ -529,6 +529,9 @@ Originally used: [[https://github.com/emacs-pe/docker-tramp.el][docker-tramp]], 
 and now have this warning: ~ ■ Warning (emacs): Package ‘docker-tramp’ has been
 obsoleted, please use integrated package ‘tramp-container’ [2 times]~, so
 removing for: ~tramp-container~.
+
+*NOTE:* [[https://blog.phundrak.com/emacs-29-what-can-we-expect/#tramp-natively-supports-docker-podman-and-kubernetes][TRAMP natively supports Docker, Podman and Kubernetes]]. Need to look
+ into how this will work in latest Emacs29 branch builds!!
 * Programming Languages:
 ** python:
 #+BEGIN_SRC emacs-lisp
