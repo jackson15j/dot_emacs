@@ -326,7 +326,7 @@ and more — in a fast and effective plain text system.
        ;; http://www.millingtons.eclipse.co.uk/glyn/dotemacs.html
        org-refile-targets (quote
                            ((org-agenda-files :maxlevel . 5)
-                            ("~/org/projects.org" :maxlevel . 2)
+                            ("~/org/personal/projects.org" :maxlevel . 2)
                             ("~/org/programming_notes/notes.org" :maxlevel . 5)))
        ;; Allow refiling to a file to support moving up to heading level 1
        org-refile-use-outline-path 'file
@@ -335,12 +335,12 @@ and more — in a fast and effective plain text system.
        org-capture-templates '(
                                ("t" "Todo" entry (file+headline "~/org/todo.org" "UNSORTED")
                                 "* TODO %?  %^G\n %U - %i\n  %a")
-                               ("p" "Project" entry (file+headline "~/org/projects.org" "UNSORTED")
+                               ("p" "Projects" entry (file+headline "~/org/personal/projects.org" "UNSORTED")
                                 "* TODO %?\n %U - %i\n  %a")
-                               ("b" "Buy" entry (file+headline "~/org/buy.org" "UNSORTED")
+                               ("b" "Buy" entry (file+headline "~/org/personal/buy.org" "UNSORTED")
                                 "* TODO %?\n %U - %i\n  %a")
-                               ("i" "Ideas" entry (file "~/org/ideas.org") "* %?\n")
-                               ("n" "Notes" entry (file+headline "~/org/notes.org" "UNSORTED")
+                               ("i" "Inbox - Dumping ground" entry (file "~/org/inbox.org") "* %?\n")
+                               ("n" "Notes" entry (file+headline "~/org/programming_notes/notes.org" "UNSORTED")
                                 "* TODO %?\n %U - %i\n  %a")
                                )
        )
@@ -377,7 +377,7 @@ and more — in a fast and effective plain text system.
                                     (tags "ACTION|CHASE|INVESTIGATE|INVESTIGATION" ((org-agenda-overriding-header "\nProject: \"a series of tasks linked to a goal, with a deadline.\"  ~:ACTION:CHASE:INVESTIGATE:INVESTIGATION:~")))
                                     (tags-todo "-ACTION-ADMIN-CHASE-EMACS-PERSONAL-READ-REVIEW-TRAINING-WATCH-WIKI-WORKFLOW" ((org-agenda-overriding-header "Project: (Tag to remove non-urgent TODO's out of this list!!)")))
                                     (tags "ADMIN|REVIEW|WIKI|WORKFLOW" ((org-agenda-overriding-header "\nAreas: \"a sphere of activity with a standard to be maintained over time.\"  ~:ADMIN:REVIEW:WIKI:WORKFLOW:~")))
-                                    (tags "EMACS|PERSONAL|READ|TRAINING|WATCH" ((org-agenda-overriding-header "\nResource: \"a topic or theme of ongoing interest.\"  ~:EMACS:PERSONAL:READ:TRAINING:WATCH~")))
+                                    (tags "EMACS|PERSONAL|READ|TRAINING|WATCH|UNSORTED" ((org-agenda-overriding-header "\nResource: \"a topic or theme of ongoing interest.\"  ~:EMACS:PERSONAL:READ:TRAINING:WATCH:UNSORTED:~")))
                                     )
                                    nil  ;; settings
                                    ;; See: https://orgmode.org/manual/Exporting-Agenda-Views.html
