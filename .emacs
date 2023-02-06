@@ -1799,16 +1799,18 @@ so grabbed this code:
   ;; https://plantuml.com/emacs
   :ensure-system-package ((java) (graphviz))
   :ensure t
-  :defer t
   :after (org org-src)
+  ;; FIXME: since my tree-sit change in python to use `python-base-mode`
+  ;; everywhere, it seems to have broken the `.plantuml` look-up in
+  ;; `auto-mode-alist`. ie. plantuml files open up with `python-mode` ??
+  :mode "\\.plantuml\\'"
   :hook
   (
    (plantuml-mode . my-programming-defaults-config)
    (plantuml-mode . (lambda () (add-hook 'after-save-hook 'plantuml-compile-buffer-hook nil 'make-it-local)))
    )
   :init
-  ;; Enable plantuml-mode for PlantUML files
-  (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
+  ;; Enable plantuml-mode for PlantUML org code block
   (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
   :config
   (setq
