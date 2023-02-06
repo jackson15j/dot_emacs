@@ -37,15 +37,6 @@
 (package-initialize)
 ;; Follow symlinks. NOTE: `~/config.org` is a symlink!!
 (setq vc-follow-symlinks t)
-;; Bootstrap `use-package'
-;; (unless (package-installed-p 'use-package)
-;;   (package-refresh-contents)
-;;   (package-install 'use-package))
-;; (require 'use-package)
-
-;; (use-package use-package-ensure-system-package
-;;   ;; https://github.com/jwiegley/use-package#use-package-ensure-system-package
-;;   :ensure t)
 
 (use-package system-packages
 ;; `use-package` is a built-in in emacs29, but need to install
