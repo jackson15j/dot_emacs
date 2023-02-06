@@ -423,37 +423,7 @@ with PR's to do code reviews (comments, diff view, approvals, etc).
      org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done)  ;; Hide `DONE` lines from Agenda view.
      org-use-tag-inheritance nil  ;; Don't show un-tagged sub-headings when there is a tag on a high-level.
      )
-    (progn
-      ;; This is an Emacs package that creates graphviz directed graphs from
-      ;; the headings of an org file
-      ;; https://github.com/theodorewiles/org-mind-map
-      (use-package org-mind-map
-        :init
-        (require 'ox-org)
-        :ensure t
-        :defer t
-        ;; Uncomment the below if 'ensure-system-package` is installed
-        ;;:ensure-system-package (gvgen . graphviz)
-        :config
-        (setq org-mind-map-default-graph-attribs
-              '(("autosize" . "false")
-                ("size" . "9,12")
-                ("resolution" . "200")
-                ("nodesep" . "0.75")
-                ("overlap" . "false")
-                ("spline" . "true")
-                ("rankdir" . "LR")))
-        ;; (setq org-mind-map-engine "dot")       ; Default. Directed Graph
-        ;; (setq org-mind-map-engine "neato")  ; Undirected Spring Graph
-        (setq org-mind-map-engine "twopi")  ; Radial Layout
-        ;; (setq org-mind-map-engine "fdp")    ; Undirected Spring Force-Directed
-        ;; (setq org-mind-map-engine "sfdp")   ; Multiscale version of fdp for the layout of large graphs
-        ;; (setq org-mind-map-engine "twopi")  ; Radial layouts
-        ;; (setq org-mind-map-engine "circo")  ; Circular Layout
-        )
-      )
   )
-
 #+END_SRC
 ** macros:
 - Convert markdown links (~[display_message](link)~) to org links
@@ -514,6 +484,36 @@ Confluence Wiki. Export via: ~M-x org-ascii-export-as-ascii~ (~C-cC-etA~).
   deadline to the next future point.
 
 #+BEGIN_EXAMPLE emacs-lisp
+** [[https://github.com/theodorewiles/org-mind-map][org-mindmap]]:
+#+BEGIN_SRC emacs-lisp
+  ;; This is an Emacs package that creates graphviz directed graphs from
+  ;; the headings of an org file
+  ;; https://github.com/theodorewiles/org-mind-map
+  (use-package org-mind-map
+    :init
+    (require 'ox-org)
+    :ensure t
+    :defer t
+    ;; Uncomment the below if 'ensure-system-package` is installed
+    ;;:ensure-system-package (gvgen . graphviz)
+    :config
+    (setq org-mind-map-default-graph-attribs
+          '(("autosize" . "false")
+            ("size" . "9,12")
+            ("resolution" . "200")
+            ("nodesep" . "0.75")
+            ("overlap" . "false")
+            ("spline" . "true")
+            ("rankdir" . "LR")))
+    ;; (setq org-mind-map-engine "dot")       ; Default. Directed Graph
+    ;; (setq org-mind-map-engine "neato")  ; Undirected Spring Graph
+    (setq org-mind-map-engine "twopi")  ; Radial Layout
+    ;; (setq org-mind-map-engine "fdp")    ; Undirected Spring Force-Directed
+    ;; (setq org-mind-map-engine "sfdp")   ; Multiscale version of fdp for the layout of large graphs
+    ;; (setq org-mind-map-engine "twopi")  ; Radial layouts
+    ;; (setq org-mind-map-engine "circo")  ; Circular Layout
+    )
+#+END_SRC
 ** TODO example every fortnight task
 DEADLINE: <2022-08-01 Mon 09:00-09:15 +2w -3d>
 :PROPERTIES:
