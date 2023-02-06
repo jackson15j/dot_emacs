@@ -73,29 +73,6 @@
   (windmove-default-keybindings)
   )
 
-;; (use-package tree-sitter
-;;   ;; https://emacs-tree-sitter.github.io/
-;;   ;; Use tree-sitter for syntax highlighting instead of built-in regex.
-;;   :ensure t
-;;   :defer t
-;;   :commands (global-tree-sitter-mode)
-;;   :init (global-tree-sitter-mode)
-;;   ;; :hook (
-;;   ;;        ('tree-sitter-after-on-hook . tree-sitter-hl-mode)
-;;   ;;        ;; (python-base-mode . tree-sitter-hl-mode)
-;;   ;;         )
-;;   )
-
-;; (ignore-error module-not-gpl-compatible
-;; (use-package tree-sitter-langs
-;;   :ensure t
-;;   :defer t
-;;   :hook (
-;;          ('tree-sitter-after-on-hook . tree-sitter-hl-mode)
-;;          ;; (python-base-mode . tree-sitter-hl-mode)
-;;           )
-;;   )
-;; )
 
 
 ;; *****************************************************
