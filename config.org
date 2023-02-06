@@ -299,18 +299,12 @@ with PR's to do code reviews (comments, diff view, approvals, etc).
     )
 #+END_SRC
 
-* org:
+* [[https://orgmode.org][org-mode]]:
+A GNU Emacs major mode for keeping notes, authoring documents, computational
+notebooks, literate programming, maintaining to-do lists, planning projects,
+and more — in a fast and effective plain text system.
+** Core org-mode config:
 #+BEGIN_SRC emacs-lisp
-  ;; *****************************************************
-  ;; *****************************************************
-  ;; Org Mode
-  ;; *****************************************************
-  ;; *****************************************************
-  ;; ========================
-  ;; Initialisation
-  ;; ========================
-  ;; http://orgmode.org/worg/code/elisp/dto-org-gtd.el
-  ;; http://www.gnu.org/software/emacs/manual/html_node/org/Remember-templates.html
   (use-package org
     ;; NOTE: ~ox-confluence~ from ~org-contrib~ never worked well, compared to
     ;; the exports listed in: ~config.org~. Disabling for now.
@@ -359,10 +353,6 @@ with PR's to do code reviews (comments, diff view, approvals, etc).
     (setq
      org-link-file-path-type 'relative
      org-agenda-custom-commands '(
-                                  ;; https://www.orgmode.org/manual/Custom-Agenda-Views.html
-                                  ;; https://redgreenrepeat.com/2021/04/09/org-mode-agenda-getting-started-scheduled-items-and-todos/
-                                  ;; http://www.cachestocaches.com/2016/9/my-workflow-org-agenda/#the-agenda
-                                  ;; https://github.com/gjstein/emacs.d/blob/master/config/gs-org-agenda.el
                                   ;; Keep tags but hide `DONE` tasks: https://orgmode.org/manual/Matching-tags-and-properties.html
                                   ("r" "Agenda Review"
                                    (
@@ -425,6 +415,9 @@ with PR's to do code reviews (comments, diff view, approvals, etc).
      )
   )
 #+END_SRC
+** Capture/Reminders:
+- http://orgmode.org/worg/code/elisp/dto-org-gtd.el
+- http://www.gnu.org/software/emacs/manual/html_node/org/Remember-templates.html
 ** macros:
 - Convert markdown links (~[display_message](link)~) to org links
   (~[[link][display_message]]~):
@@ -477,6 +470,11 @@ Confluence Wiki. Export via: ~M-x org-ascii-export-as-ascii~ (~C-cC-etA~).
 #+END_SRC
 
 ** org-agenda:
+*** Custom Agenda views:
+- https://www.orgmode.org/manual/Custom-Agenda-Views.html
+- https://redgreenrepeat.com/2021/04/09/org-mode-agenda-getting-started-scheduled-items-and-todos/
+- http://www.cachestocaches.com/2016/9/my-workflow-org-agenda/#the-agenda
+- https://github.com/gjstein/emacs.d/blob/master/config/gs-org-agenda.el
 *** [[https://orgmode.org/org.html#Repeated-tasks][Repeated tasks]]:
 - Tag repeated tasks with a deadline (~C-cC-d~).
 - Add the repeat [and reminder] value.
