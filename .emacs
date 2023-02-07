@@ -845,7 +845,6 @@ so grabbed this code:
   ; NOTE: 'M-x markdown-preview', requires: 'markdown', to be installed with
   ; system package manager.
   :ensure t
-  :defer t
   :mode ("\\.md\\'" . markdown-mode)
   :bind (
          ("C-c C-a b" . convert-markdown-ref-to-list)
@@ -908,22 +907,22 @@ so grabbed this code:
   )
 
 
-(use-package kubernetes
-  ;; https://kubernetes-el.github.io/kubernetes-el/
-  :ensure t
-  :defer t
-  :commands (kubernetes-overview)
-  :init
-  ;; https://github.com/kubernetes-el/kubernetes-el/issues/265
-  ;; Work around: cyclic dependency.
-  ;; `Debugger entered--Lisp error: (invalid-function kubernetes-utils--save-window-state)`
-  (defmacro kubernetes-utils--save-window-state (&rest body)
-    `(let ((pos (point)) (col (current-column)) (window-start-line (window-start)) (inhibit-redisplay t))
-       (save-excursion ,@body)
-       (goto-char pos)
-       (move-to-column col)
-       (set-window-start (selected-window) window-start-line)))
-)
+;; (use-package kubernetes
+;;   ;; https://kubernetes-el.github.io/kubernetes-el/
+;;   :ensure t
+;;   :defer t
+;;   :commands (kubernetes-overview)
+;;   :init
+;;   ;; https://github.com/kubernetes-el/kubernetes-el/issues/265
+;;   ;; Work around: cyclic dependency.
+;;   ;; `Debugger entered--Lisp error: (invalid-function kubernetes-utils--save-window-state)`
+;;   (defmacro kubernetes-utils--save-window-state (&rest body)
+;;     `(let ((pos (point)) (col (current-column)) (window-start-line (window-start)) (inhibit-redisplay t))
+;;        (save-excursion ,@body)
+;;        (goto-char pos)
+;;        (move-to-column col)
+;;        (set-window-start (selected-window) window-start-line)))
+;; )
 
 
 ;; *****************************************************
@@ -1122,7 +1121,7 @@ so grabbed this code:
   :ensure t
   :defer t
   :mode ("\\.py\\'" . python-base-mode)
-  :interpreter ("python" . python-base-mode)
+  ;; :interpreter ("python" . python-base-mode)
   ;; Python workflow:
   ;; * `pipenv install --dev python-language-server[all]`.
   ;; * Start pipenv: `C-cC-pa`.
