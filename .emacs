@@ -1131,6 +1131,9 @@ so grabbed this code:
          ;; (python-mode . dap-mode)  ;; think this should be: `dap` only ??
          )
   :config
+  (setq
+   python-ts-mode-hook python-mode-hook
+   )
   (require 'dap-python)
   ;(dap-python-setup)
   )
