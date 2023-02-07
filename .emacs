@@ -518,7 +518,7 @@ so grabbed this code:
 (advice-add 'flycheck-checker-get :around 'my/flycheck-checker-get)
 (add-hook 'lsp-managed-mode-hook
           (lambda ()
-            (when (derived-mode-p 'python-base-mode)
+            (when (derived-mode-p 'python-mode)
               (setq my/flycheck-local-cache '((lsp . ((next-checkers . (python-pylint)))))))))
 
 
@@ -617,7 +617,7 @@ so grabbed this code:
 ;;   ;; Do `C-cC-pa` or `M-x pipenv-activate` to start a projects pipenv.
 ;;   :ensure t
 ;;   :defer t
-;;   :hook (python-base-mode . pipenv-mode)
+;;   :hook (python-mode . pipenv-mode)
 ;;   :init
 ;;   (setq
 ;;    pipenv-projectile-after-switch-function
@@ -649,7 +649,7 @@ so grabbed this code:
 (use-package lsp-mode
   :ensure t
   :defer t
-  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-base-mode)
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
 
          ;; Python workflow:
          ;; * `pipenv install --dev python-language-server[all]`.
@@ -995,7 +995,7 @@ so grabbed this code:
 ;;   byte-code("\300\301!\210\300\302!\210\300\303!\210\300\304!\210\305\306\307\310\311\301%\207" [require js rx json-snatcher json-reformat custom-declare-group json-mode nil "Major mode for editing JSON files." :group] 6)
 ;;   json-mode()
 ;;   set-auto-mode-0(json-mode nil)
-;;   set-auto-mode--apply-alist((("\\.iss\\'" . iss-mode) ("\\.msc$" . mscgen-mode) ("\\.rcp\\'" . emacs-lisp-mode) (".*mutt.*" . mail-mode) ("\\.plantuml\\'" . plantuml-mode) ("\\.odc\\'" . archive-mode) ("\\.odf\\'" . archive-mode) ("\\.odi\\'" . archive-mode) ("\\.otp\\'" . archive-mode) ("\\.odp\\'" . archive-mode) ("\\.otg\\'" . archive-mode) ("\\.odg\\'" . archive-mode) ("\\.ots\\'" . archive-mode) ("\\.ods\\'" . archive-mode) ("\\.odm\\'" . archive-mode) ("\\.ott\\'" . archive-mode) ("\\.odt\\'" . archive-mode) ("\\.mjs\\'" . js2-mode) ("\\.jsx\\'" . js2-mode) ("\\.js\\'" . js2-mode) ("\\.py\\'" . python-base-mode) ("\\.restclient\\'" . restclient-mode) ("\\.json\\'" . json-mode) ("\\.yaml\\'" . yaml-mode) ("\\.yml\\'" . yaml-mode) ("\\.\\(e?ya?\\|ra\\)ml\\'" . yaml-mode) ("\\.md\\'" . markdown-mode) ("\\Jenkinsfile*\\'" . groovy-mode) ("\\.groovy\\'" . groovy-mode) ("\\.php\\'" . php-mode) ("\\.\\(?:php[s345]?\\|phtml\\)\\'" . php-mode-maybe) ("\\.\\(?:php\\.inc\\|stub\\)\\'" . php-mode) ("/\\.php_cs\\(?:\\.dist\\)?\\'" . php-mode) ("web.config$" . xml-mode) ("\\.cmake\\'" . cmake-mode) ("CMakeLists\\.txt\\'" . cmake-mode) ("\\.tsv\\'" . tsv-mode) ("\\.[Cc][Ss][Vv]\\'" . csv-mode) ("\\.dockerfile\\'" . dockerfile-mode) ("/Dockerfile\\(?:\\.[^/\\]*\\)?\\'" . dockerfile-mode) ("\\.hrl\\'" . erlang-mode) ("\\.erl\\'" . erlang-mode) ("/ebin/.+\\.app" . erlang-mode) ("\\.yrl" . erlang-mode) ("\\.xrl$" . erlang-mode) ("\\.hrl$" . erlang-mode) ("\\.escript" . erlang-mode) ("\\.app\\.src$" . erlang-mode) ("\\.erl$" . erlang-mode) ("go\\.mod\\'" . go-dot-mod-mode) ...) nil nil)
+;;   set-auto-mode--apply-alist((("\\.iss\\'" . iss-mode) ("\\.msc$" . mscgen-mode) ("\\.rcp\\'" . emacs-lisp-mode) (".*mutt.*" . mail-mode) ("\\.plantuml\\'" . plantuml-mode) ("\\.odc\\'" . archive-mode) ("\\.odf\\'" . archive-mode) ("\\.odi\\'" . archive-mode) ("\\.otp\\'" . archive-mode) ("\\.odp\\'" . archive-mode) ("\\.otg\\'" . archive-mode) ("\\.odg\\'" . archive-mode) ("\\.ots\\'" . archive-mode) ("\\.ods\\'" . archive-mode) ("\\.odm\\'" . archive-mode) ("\\.ott\\'" . archive-mode) ("\\.odt\\'" . archive-mode) ("\\.mjs\\'" . js2-mode) ("\\.jsx\\'" . js2-mode) ("\\.js\\'" . js2-mode) ("\\.py\\'" . python-mode) ("\\.restclient\\'" . restclient-mode) ("\\.json\\'" . json-mode) ("\\.yaml\\'" . yaml-mode) ("\\.yml\\'" . yaml-mode) ("\\.\\(e?ya?\\|ra\\)ml\\'" . yaml-mode) ("\\.md\\'" . markdown-mode) ("\\Jenkinsfile*\\'" . groovy-mode) ("\\.groovy\\'" . groovy-mode) ("\\.php\\'" . php-mode) ("\\.\\(?:php[s345]?\\|phtml\\)\\'" . php-mode-maybe) ("\\.\\(?:php\\.inc\\|stub\\)\\'" . php-mode) ("/\\.php_cs\\(?:\\.dist\\)?\\'" . php-mode) ("web.config$" . xml-mode) ("\\.cmake\\'" . cmake-mode) ("CMakeLists\\.txt\\'" . cmake-mode) ("\\.tsv\\'" . tsv-mode) ("\\.[Cc][Ss][Vv]\\'" . csv-mode) ("\\.dockerfile\\'" . dockerfile-mode) ("/Dockerfile\\(?:\\.[^/\\]*\\)?\\'" . dockerfile-mode) ("\\.hrl\\'" . erlang-mode) ("\\.erl\\'" . erlang-mode) ("/ebin/.+\\.app" . erlang-mode) ("\\.yrl" . erlang-mode) ("\\.xrl$" . erlang-mode) ("\\.hrl$" . erlang-mode) ("\\.escript" . erlang-mode) ("\\.app\\.src$" . erlang-mode) ("\\.erl$" . erlang-mode) ("go\\.mod\\'" . go-dot-mod-mode) ...) nil nil)
 ;;   set-auto-mode()
 ;;   normal-mode(t)
 ;;   after-find-file(nil nil)
@@ -1073,7 +1073,7 @@ so grabbed this code:
                               (pyvenv-activate venv-path)
                               )))))
   :hook (
-         (python-base-mode . pyvenv-autoload)
+         (python-mode . pyvenv-autoload)
          ;; Modified from: https://github.com/jorgenschaefer/pyvenv/issues/95
          ;; FIXME: correct this so it runs LSP after above call, so I don't
          ;; need to do: C-xC-v.
@@ -1100,7 +1100,7 @@ so grabbed this code:
   :ensure t
   :defer t
   :init (setq lsp-python-ms-auto-install-server t)
-  :hook (python-base-mode . (lambda ()
+  :hook (python-mode . (lambda ()
                          (require 'lsp-python-ms)
                          ;; Using `lsp-deferred` since it handles showing
                          ;; errors in the buffer after the MS LSP agent has
@@ -1112,7 +1112,7 @@ so grabbed this code:
   ;; https://github.com/emacs-lsp/lsp-pyright
   :ensure t
   :defer t
-  :hook (python-base-mode . (lambda ()
+  :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
                          (lsp))))  ; or lsp-deferred
 
@@ -1120,15 +1120,15 @@ so grabbed this code:
 (use-package python
   :ensure t
   :defer t
-  :mode ("\\.py\\'" . python-base-mode)
-  ;; :interpreter ("python" . python-base-mode)
+  :mode ("\\.py\\'" . python-mode)
+  ;; :interpreter ("python" . python-mode)
   ;; Python workflow:
   ;; * `pipenv install --dev python-language-server[all]`.
   ;; * Start pipenv: `C-cC-pa`.
   ;; * Start lsp: `M-x lsp`.
   :hook (
-         (python-base-mode . lsp)
-         ;; (python-base-mode . dap-mode)  ;; think this should be: `dap` only ??
+         (python-mode . lsp)
+         ;; (python-mode . dap-mode)  ;; think this should be: `dap` only ??
          )
   :config
   (require 'dap-python)
@@ -1139,7 +1139,7 @@ so grabbed this code:
   ; https://github.com/pythonic-emacs/blacken
   :ensure t
   :defer t
-  :hook (python-base-mode . blacken-mode)
+  :hook (python-mode . blacken-mode)
   :init
   ;; NOTE: Commented out below line due to currently working on projects that
   ;; require `black` but have no: `[tool.black]` in the `pyproject.toml` file.
@@ -1151,7 +1151,7 @@ so grabbed this code:
 ;;   ;; https://github.com/pythonic-emacs/isortify
 ;;   :ensure t
 ;;   :defer t
-;;   :hook (python-base-mode . isortify-mode)
+;;   :hook (python-mode . isortify-mode)
 ;;   )
 
 
@@ -1172,12 +1172,12 @@ so grabbed this code:
 ;;   :bind ("\C-m" . newline-and-indent)
 ;;   :config
 ;;   (progn
-;;     (add-hook 'python-base-mode-hook 'my-programming-defaults-config)
+;;     (add-hook 'python-mode-hook 'my-programming-defaults-config)
 ;;     ;; (setq
 ;;     ;;  python-indent-offset 4  ;; FIXME: With this all indenting is broken. Without a package moans that it is missing.
 ;;     ;;  )
 ;;     ; http://www.emacswiki.org/emacs/ProgrammingWithPythonDotEl#toc1
-;;     ;; (add-hook 'python-base-mode-hook '(lambda () (define-key python-base-mode-map "\C-m" 'newline-and-indent)))  ; maintain indentation on newline
+;;     ;; (add-hook 'python-mode-hook '(lambda () (define-key python-mode-map "\C-m" 'newline-and-indent)))  ; maintain indentation on newline
 
 ;;     (use-package sphinx-doc
 ;;       ; https://github.com/naiquevin/sphinx-doc.el
@@ -1186,7 +1186,7 @@ so grabbed this code:
 ;;      :defer t
 ;;       :config
 ;;       (progn
-;;         (add-hook 'python-base-mode-hook (lambda ()
+;;         (add-hook 'python-mode-hook (lambda ()
 ;;                                       (require 'sphinx-doc)
 ;;                                       (sphinx-doc-mode t)))
 ;;         )
@@ -1207,8 +1207,8 @@ so grabbed this code:
 ;;       :defer t
 ;;       :after company
 ;;       :config
-;;       (add-hook 'python-base-mode-hook 'anaconda-mode)
-;;       (add-hook 'python-base-mode-hook 'anaconda-eldoc-mode)
+;;       (add-hook 'python-mode-hook 'anaconda-mode)
+;;       (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
 ;;       (add-to-list 'company-backends 'company-anaconda)
 ;;       )
 
@@ -1253,8 +1253,8 @@ so grabbed this code:
 ;;   :config
 ;;   (progn
 ;;     (define-key nose-mode-map "\C-cn" 'nosetests-all)
-;;     ;; (define-key python-base-mode-map "\C-cn" 'nosetests-all)
-;;     ;; (define-key python-base-mode-map "\C-cm" 'nosetests-one)
+;;     ;; (define-key python-mode-map "\C-cn" 'nosetests-all)
+;;     ;; (define-key python-mode-map "\C-cm" 'nosetests-one)
 ;;     (setq nose-use-verbose nil) ; default is t  ; nil = dots as output.
 ;;   )
 ;; )
@@ -1645,7 +1645,7 @@ so grabbed this code:
   :ensure-system-package ((java) (graphviz))
   :ensure t
   :after (org org-src)
-  ;; FIXME: since my tree-sit change in python to use `python-base-mode`
+  ;; FIXME: since my tree-sit change in python to use `python-mode`
   ;; everywhere, it seems to have broken the `.plantuml` look-up in
   ;; `auto-mode-alist`. ie. plantuml files open up with `python-mode` ??
   :mode "\\.plantuml\\'"
@@ -1920,7 +1920,7 @@ MODE - ??"
                 (perl perl-mode)
                 (php php-mode)
                 (prolog prolog-mode)
-                (python python-base-mode)
+                (python python-mode)
                 (r r-mode)
                 (ruby ruby-mode)
                 (rust rust-mode)
@@ -2085,7 +2085,7 @@ for the use of the hook."
   :hook (
          (c-mode . (lambda () (setq-local devdocs-current-docs '("c"))))
          (c++-mode . (lambda () (setq-local devdocs-current-docs '("cpp" "cmake~3.20"))))
-         (python-base-mode . (lambda () (setq-local devdocs-current-docs '("python~3.9" "django~3.2" "django_rest_framework"))))
+         (python-mode . (lambda () (setq-local devdocs-current-docs '("python~3.9" "django~3.2" "django_rest_framework"))))
          )
   )
 

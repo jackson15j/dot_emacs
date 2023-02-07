@@ -547,7 +547,7 @@ removing for: ~tramp-container~.
     ;; FIXME: Bound this to my Work laptop only and not break my personal linux
     ;; laptop when I don't touch conda.
     (use-package conda
-      :after (python-base-mode)
+      :after (python-mode)
       :ensure t
       :defer t
       :config
@@ -586,7 +586,7 @@ removing for: ~tramp-container~.
       ;; modeline
       ;; (setq-default mode-line-format (cons '(:exec conda-env-current-name) mode-line-format))
       ;; :hook (
-      ;;        (python-base-mode . conda-autoload)
+      ;;        (python-mode . conda-autoload)
       ;;        )
     )
   )
