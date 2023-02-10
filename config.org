@@ -350,6 +350,8 @@ and more — in a fast and effective plain text system.
                                ("i" "Inbox - Dumping ground" entry (file "~/org/inbox.org") "* %?\n")
                                ("n" "Notes" entry (file+headline "~/org/programming_notes/notes.org" "UNSORTED")
                                 "* TODO %?\n %U - %i\n  %a")
+                               ("y" "YouTube: Watch List.\n\t\t*Link is pulled from X Clipboard!!*\n\t\t*NOTE:* if this is a Playlist;\n\t\t- manually delete ~v=<id>&~.\n\t\t- keep: ~list=<id>~!" entry (file+headline "~/org/personal/personal_todos.org" "YouTube Watch list:")
+                                "* [[shell:mpv %x &][YouTube: %?]]  :WATCH:")
                                )
        )
 
