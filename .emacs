@@ -1083,27 +1083,6 @@ so grabbed this code:
                          (lsp))))  ; or lsp-deferred
 
 
-(use-package python
-  :ensure t
-  :defer t
-  :mode ("\\.py\\'" . python-mode)
-  ;; :interpreter ("python" . python-mode)
-  ;; Python workflow:
-  ;; * `pipenv install --dev python-language-server[all]`.
-  ;; * Start pipenv: `C-cC-pa`.
-  ;; * Start lsp: `M-x lsp`.
-  :hook (
-         (python-mode . lsp)
-         ;; (python-mode . dap-mode)  ;; think this should be: `dap` only ??
-         )
-  :config
-  (setq
-   python-ts-mode-hook python-mode-hook
-   )
-  (require 'dap-python)
-  ;(dap-python-setup)
-  )
-
 (use-package blacken
   ; https://github.com/pythonic-emacs/blacken
   :ensure t

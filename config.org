@@ -544,6 +544,30 @@ removing for: ~tramp-container~.
  into how this will work in latest Emacs29 branch builds!!
 * Programming Languages:
 ** python:
+*** python (~python-mode~):
+#+BEGIN_SRC emacs-lisp
+  (use-package python
+    :ensure t
+    :defer t
+    :mode ("\\.py\\'" . python-mode)
+    :interpreter ("python" . python-mode)
+    ;; Python workflow:
+    ;; * `pipenv install --dev python-language-server[all]`.
+    ;; * Start pipenv: `C-cC-pa`.
+    ;; * Start lsp: `M-x lsp`.
+    :hook (
+           (python-mode . lsp)
+           ;; (python-mode . dap-mode)  ;; think this should be: `dap` only ??
+           )
+    :config
+    (setq
+     ;; See: https://github.com/renzmann/treesit-auto#keep-track-of-your-hooks
+     python-ts-mode-hook python-mode-hook
+     )
+    (require 'dap-python)
+    ;(dap-python-setup)
+    )
+#+END_SRC
 *** conda:
 #+BEGIN_SRC emacs-lisp
   ;; FIXME: auto activation blows up when a file has no conda env associated to it.
