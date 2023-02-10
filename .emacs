@@ -562,55 +562,6 @@ so grabbed this code:
   )
 
 
-;; *****************************************************
-;; *****************************************************
-;; Handle Projects.
-;; *****************************************************
-;; *****************************************************
-; Been getting more annoyed at not using daemon mode on my main box and
-; connecting with emacsclients. Due to work, I use quite a few git-worktree's
-; of the same repo. The problem would be accidentally cross editing files
-; across the different worktree's (Hence not using daemon mode, and instead
-; just running up multiple `emacs --debug-init` sessions for each worktree.
-;
-; Let's have a go at banishing this behaviour:
-;
-; * Projectile: Allows for project focus (git repo), whilst also doing fuzzy
-;   file searching across the entire project (Nice!)
-; * Perspective: Allows for workspaces that when switched to, return the
-;   buffers to their original state. Also focuses down the `ido` buffer to the
-;   open buffers in that workspace (Nice!)
-; * persp-projectile: Combines Projectile and Perspective so that switching
-;   projects gives you the Perspective buffer change behaviour (Much nicer than
-;   Projectile's insistence that you want to always open a new file but also
-;   keep old buffers hanging around).
-;
-; NOTE: Projectile state is not saved in `desktop-save`.
-; NOTE: Perspective mode with IDO only show's files in project, so have to use
-; ibuffer to get full list.
-;
-; https://github.com/bbatsov/projectile
-; https://github.com/nex3/perspective-el
-; https://github.com/bbatsov/persp-projectile
-(use-package projectile
-  :ensure t
-  :defer t
-  :bind ("C-c p" . 'projectile-command-map)
-  :init
-  (progn
-    (projectile-mode)
-    (recentf-mode)  ; enables projectile-recentf mode for recent files.
-    ; https://github.com/bbatsov/projectile/issues/1183
-    ; Projectile now scrapes all files to discover project type for modeline.
-    ; This is calculated on every cursor movement, so lags emacs like crazy.
-    ; Below is the workaround to disable this until it is fixed.
-    (setq projectile-mode-line
-         '(:eval (format " Projectile[%s]"
-                        (projectile-project-name))))
-    )
-  )
-
-
 ;; which-key integration, to show keyboard shortcuts.
 (use-package which-key
   :ensure t
