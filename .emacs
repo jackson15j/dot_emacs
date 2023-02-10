@@ -1083,13 +1083,6 @@ so grabbed this code:
                          (lsp))))  ; or lsp-deferred
 
 
-;; TODO: figure out why this is cause code to be eaten from the top of the file on save.
-;; (use-package isortify
-;;   ;; https://github.com/pythonic-emacs/isortify
-;;   :ensure t
-;;   :defer t
-;;   :hook (python-mode . isortify-mode)
-;;   )
 
 
 

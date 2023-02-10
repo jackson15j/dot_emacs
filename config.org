@@ -584,6 +584,19 @@ Uses [[https://github.com/psf/black][Github: psf/black]] to reformat python buff
     ;; (setq blacken-only-if-project-is-blackened t)
     )
 #+END_SRC
+**** [[https://github.com/pythonic-emacs/isortify][isortify]]:
+Calls [[https://pycqa.github.io/isort/][isort]] to sort imports.
+
+TODO: figure out why this is cause code to be eaten from the top of the file on
+save.
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package isortify
+  ;;   :ensure t
+  ;;   :defer t
+  ;;   :after (python-mode)
+  ;;   :hook (python-mode . isortify-mode)
+  ;;   )
+#+END_SRC
 *** Package Management:
 **** conda:
 #+BEGIN_SRC emacs-lisp
