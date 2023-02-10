@@ -1035,56 +1035,6 @@ so grabbed this code:
 (use-package realgud
   :ensure t
   :defer t)
-;; *****************************************************
-;; *****************************************************
-;; Python IDE stuff
-;; *****************************************************
-;; *****************************************************
-;; ========================
-;; python.el
-;; ========================
-;; http://www.emacswiki.org/emacs/ProgrammingWithPythonDotEl
-;; https://github.com/fgallina/python.el
-;; http://www.saltycrane.com/blog/2010/05/my-emacs-python-environment/
-
-;; (use-package lsp-jedi
-;;   ;; https://github.com/fredcamps/lsp-jedi
-;;   ;; https://github.com/pappasam/jedi-language-server
-;;   :ensure t
-;;   :defer t
-;;  )
-
-;; NOTE: Working on some code that prevents me installing Jedi due to
-;; dependency conflicts. Trying out MS Python.
-;; (ignore-error module-not-gpl-compatible
-;;   ;; Added ingore-error due to noise from tree-sitter-langs `python.dylib`.
-;;   ;; See: https://github.com/emacs-tree-sitter/elisp-tree-sitter/issues/100
-;; for a similar problem on NixOS.
-;; )
-(use-package lsp-python-ms
-  ;; https://emacs-lsp.github.io/lsp-python-ms/?amp=1
-  :ensure t
-  :defer t
-  :init (setq lsp-python-ms-auto-install-server t)
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-python-ms)
-                         ;; Using `lsp-deferred` since it handles showing
-                         ;; errors in the buffer after the MS LSP agent has
-                         ;; finished analysis (instead of `lsp`).
-                         (lsp-deferred))))
-
-(use-package lsp-pyright
-  ;; https://emacs-lsp.github.io/lsp-pyright/
-  ;; https://github.com/emacs-lsp/lsp-pyright
-  :ensure t
-  :defer t
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-pyright)
-                         (lsp))))  ; or lsp-deferred
-
-
-
-
 
 
 

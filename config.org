@@ -543,7 +543,69 @@ removing for: ~tramp-container~.
 *NOTE:* [[https://blog.phundrak.com/emacs-29-what-can-we-expect/#tramp-natively-supports-docker-podman-and-kubernetes][TRAMP natively supports Docker, Podman and Kubernetes]]. Need to look
  into how this will work in latest Emacs29 branch builds!!
 * Programming Languages:
+** LSP (Language Server Protocol):
+*** LSP core:
+*** LSP Python Extensions:
+**** [[https://github.com/fredcamps/lsp-jedi][lsp-jedi]]:
+I preferred [[https://jedi.readthedocs.io/en/latest/][jedi]] over [[https://github.com/python-rope/rope][rope]] for ease of setup and usage, but have moved away
+from Jedi for [[https://github.com/microsoft/pyright][pyright]] ([[*\[\[https://emacs-lsp.github.io/lsp-pyright/\]\[lsp-pyright\]\]:][lsp-pyright]]) since it is installed outside of
+dependencies (so more consistent usage with emacs across repos + no longer have
+to fight to install dev dependencies for local editor completions). See:
+https://github.com/pappasam/jedi-language-server.
+
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package lsp-jedi
+  ;;   :ensure t
+  ;;   :defer t
+  ;;   :after (python-mode lsp)
+  ;;  )
+#+END_SRC
+**** [[https://emacs-lsp.github.io/lsp-pyright/][lsp-pyright]]:
+My Current choice of sourcing completions for python: [[https://github.com/emacs-lsp/lsp-pyright][Github:
+emacs-lsp/lsp-pyright]].
+#+BEGIN_SRC emacs-lisp
+(use-package lsp-pyright
+  :ensure t
+  :defer t
+  :after (python-mode lsp)
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-pyright)
+                         (lsp))))  ; or lsp-deferred
+#+END_SRC
+**** [[ https://emacs-lsp.github.io/lsp-python-ms/][lsp-python-ms]]:
+NOTE: Working on some code that prevents me installing Jedi due to
+dependency conflicts. Trying out MS Python, but eventually moved over to:
+[[*\[\[https://emacs-lsp.github.io/lsp-pyright/\]\[lsp-pyright\]\]:][lsp-pyright]]. Error:
+
+#+BEGIN_EXAMPLE emacs-lisp
+(ignore-error module-not-gpl-compatible
+  ;; Added ingore-error due to noise from tree-sitter-langs `python.dylib`.
+  ;; See: https://github.com/emacs-tree-sitter/elisp-tree-sitter/issues/100
+for a similar problem on NixOS.
+)
+#+END_EXAMPLE
+
+#+BEGIN_SRC emacs-lisp
+  (use-package lsp-python-ms
+    :ensure t
+    :defer t
+    :after (python-mode lsp)
+    :init (setq lsp-python-ms-auto-install-server t)
+    :hook (python-mode . (lambda ()
+                           (require 'lsp-python-ms)
+                           ;; Using `lsp-deferred` since it handles showing
+                           ;; errors in the buffer after the MS LSP agent has
+                           ;; finished analysis (instead of `lsp`).
+                           (lsp-deferred))))
+#+END_SRC
 ** python:
+
+Historical Links:
+
+- http://www.emacswiki.org/emacs/ProgrammingWithPythonDotEl.
+- https://github.com/fgallina/python.el.
+- http://www.saltycrane.com/blog/2010/05/my-emacs-python-environment/.
+
 *** python (~python-mode~):
 #+BEGIN_SRC emacs-lisp
   (use-package python
