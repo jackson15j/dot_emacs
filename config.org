@@ -639,6 +639,20 @@ Uses [[https://github.com/psf/black][Github: psf/black]] to reformat python buff
 
 #+END_SRC
 
+**** [[https://github.com/galaunay/poetry.el][poetry]]:
+FIXME: removing since current work is poetry in a conda env. Advice is to just
+use conda to manage the venv loading, since poetry is looking in the wrong
+location.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package poetry
+    :ensure t
+    :defer t
+    :after (python-mode)
+    ;; :config
+    ;; (poetry-tracking-mode)  ;; activate poetry virtualenv's on buffer change.
+    )
+#+END_SRC
 *** Virtual Env Management:
 **** [[https://github.com/pwalsh/pipenv.el][pipenv]]:
 The replacement to ~virtualenv~. Do ~C-cC-pa~ or ~M-x pipenv-activate~ to start
