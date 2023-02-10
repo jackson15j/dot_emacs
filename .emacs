@@ -1083,17 +1083,6 @@ so grabbed this code:
                          (lsp))))  ; or lsp-deferred
 
 
-(use-package blacken
-  ; https://github.com/pythonic-emacs/blacken
-  :ensure t
-  :defer t
-  :hook (python-mode . blacken-mode)
-  :init
-  ;; NOTE: Commented out below line due to currently working on projects that
-  ;; require `black` but have no: `[tool.black]` in the `pyproject.toml` file.
-  ;; (setq blacken-only-if-project-is-blackened t)
-  )
-
 ;; TODO: figure out why this is cause code to be eaten from the top of the file on save.
 ;; (use-package isortify
 ;;   ;; https://github.com/pythonic-emacs/isortify

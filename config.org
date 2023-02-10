@@ -568,6 +568,23 @@ removing for: ~tramp-container~.
     ;(dap-python-setup)
     )
 #+END_SRC
+*** Linters:
+**** [[https://github.com/pythonic-emacs/blacken][blacken]]:
+Uses [[https://github.com/psf/black][Github: psf/black]] to reformat python buffer on save.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package blacken
+    :ensure t
+    :defer t
+    :after (python-mode)
+    :hook (python-mode . blacken-mode)
+    :init
+    ;; NOTE: Commented out below line due to currently working on projects that
+    ;; require `black` but have no: `[tool.black]` in the `pyproject.toml` file.
+    ;; (setq blacken-only-if-project-is-blackened t)
+    )
+#+END_SRC
+*** Package Management:
 **** conda:
 #+BEGIN_SRC emacs-lisp
   ;; FIXME: auto activation blows up when a file has no conda env associated to it.
