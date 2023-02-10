@@ -1046,27 +1046,6 @@ so grabbed this code:
 ;; http://www.emacswiki.org/emacs/ProgrammingWithPythonDotEl
 ;; https://github.com/fgallina/python.el
 ;; http://www.saltycrane.com/blog/2010/05/my-emacs-python-environment/
-(use-package pyvenv
-  :ensure t
-  :defer t
-  :functions pyvenv-autoload
-  :config
-  (defun pyvenv-autoload ()
-    "auto activate venv directory if exists. See: https://github.com/jorgenschaefer/pyvenv/issues/51"
-    (interactive)
-    (f-traverse-upwards (lambda (path)
-                          (let ((venv-path (f-expand ".venv" path)))
-                            (when (f-exists? venv-path)
-                              (pyvenv-activate venv-path)
-                              )))))
-  :hook (
-         (python-mode . pyvenv-autoload)
-         ;; Modified from: https://github.com/jorgenschaefer/pyvenv/issues/95
-         ;; FIXME: correct this so it runs LSP after above call, so I don't
-         ;; need to do: C-xC-v.
-         ;; (pyvenv-post-activate-hooks . lsp)
-         )
-  )
 
 ;; (use-package lsp-jedi
 ;;   ;; https://github.com/fredcamps/lsp-jedi

@@ -614,6 +614,31 @@ a projects pipenv.
   ;;    #'pipenv-projectile-after-switch-default))
 #+END_SRC
 
+*** pyvenv:
+#+BEGIN_SRC emacs-lisp
+  (use-package pyvenv
+    :ensure t
+    :defer t
+    :after (python-mode)
+    :functions pyvenv-autoload
+    :config
+    (defun pyvenv-autoload ()
+      "auto activate venv directory if exists. See: https://github.com/jorgenschaefer/pyvenv/issues/51"
+      (interactive)
+      (f-traverse-upwards (lambda (path)
+                            (let ((venv-path (f-expand ".venv" path)))
+                              (when (f-exists? venv-path)
+                                (pyvenv-activate venv-path)
+                                )))))
+    :hook (
+           (python-mode . pyvenv-autoload)
+           ;; Modified from: https://github.com/jorgenschaefer/pyvenv/issues/95
+           ;; FIXME: correct this so it runs LSP after above call, so I don't
+           ;; need to do: C-xC-v.
+           ;; (pyvenv-post-activate-hooks . lsp)
+           )
+    )
+#+END_SRC
 ** xml:
 *** Pretty print XML:
 - [[https://stackoverflow.com/questions/12492/pretty-printing-xml-files-on-emacs][SO: Pretty Printing XML files on Emacs]]. Picked the solution below so that I
