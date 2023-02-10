@@ -559,6 +559,14 @@ Confluence Wiki. Export via: ~M-x org-ascii-export-as-ascii~ (~C-cC-etA~).
   deadline to the next future point.
 
 #+BEGIN_EXAMPLE emacs-lisp
+  ,** TODO example every fortnight task
+  DEADLINE: <2022-08-01 Mon 09:00-09:15 +2w -3d>
+  :PROPERTIES:
+  :LAST_REPEAT: [2022-07-18 Mon 15:35]
+  :END:
+  - State "DONE"       from "TODO"       [2022-07-18 Mon 15:35]
+  - Above ~State~ line is added for each ~C-cC-t~ press!
+#+END_EXAMPLE
 ** [[https://github.com/theodorewiles/org-mind-map][org-mindmap]]:
 #+BEGIN_SRC emacs-lisp
   ;; This is an Emacs package that creates graphviz directed graphs from
@@ -588,14 +596,6 @@ Confluence Wiki. Export via: ~M-x org-ascii-export-as-ascii~ (~C-cC-etA~).
     ;; (setq org-mind-map-engine "twopi")  ; Radial layouts
     ;; (setq org-mind-map-engine "circo")  ; Circular Layout
     )
-#+END_SRC
-** TODO example every fortnight task
-DEADLINE: <2022-08-01 Mon 09:00-09:15 +2w -3d>
-:PROPERTIES:
-:LAST_REPEAT: [2022-07-18 Mon 15:35]
-:END:
-- State "DONE"       from "TODO"       [2022-07-18 Mon 15:35]
-- Above ~State~ line is added for each ~C-cC-t~ press!
 #+END_SRC
 * Docker:
 ** tramp-container (built-in):
