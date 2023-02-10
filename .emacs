@@ -611,19 +611,6 @@ so grabbed this code:
   )
 
 
-;; (use-package pipenv
-;;   ;; https://github.com/pwalsh/pipenv.el
-;;   ;; The replacement to `virtualenv`.
-;;   ;; Do `C-cC-pa` or `M-x pipenv-activate` to start a projects pipenv.
-;;   :ensure t
-;;   :defer t
-;;   :hook (python-mode . pipenv-mode)
-;;   :init
-;;   (setq
-;;    pipenv-projectile-after-switch-function
-;;    #'pipenv-projectile-after-switch-default))
-
-
 ;; which-key integration, to show keyboard shortcuts.
 (use-package which-key
   :ensure t

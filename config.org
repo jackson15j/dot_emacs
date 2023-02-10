@@ -598,6 +598,22 @@ removing for: ~tramp-container~.
 
 #+END_SRC
 
+*** [[https://github.com/pwalsh/pipenv.el][pipenv]]:
+The replacement to ~virtualenv~. Do ~C-cC-pa~ or ~M-x pipenv-activate~ to start
+a projects pipenv.
+
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package pipenv
+  ;;   :ensure t
+  ;;   :defer t
+  ;;   :after (python-mode)
+  ;;   :hook (python-mode . pipenv-mode)
+  ;;   :init
+  ;;   (setq
+  ;;    pipenv-projectile-after-switch-function
+  ;;    #'pipenv-projectile-after-switch-default))
+#+END_SRC
+
 ** xml:
 *** Pretty print XML:
 - [[https://stackoverflow.com/questions/12492/pretty-printing-xml-files-on-emacs][SO: Pretty Printing XML files on Emacs]]. Picked the solution below so that I
