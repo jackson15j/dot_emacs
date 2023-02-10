@@ -568,7 +568,7 @@ removing for: ~tramp-container~.
     ;(dap-python-setup)
     )
 #+END_SRC
-*** conda:
+**** conda:
 #+BEGIN_SRC emacs-lisp
   ;; FIXME: auto activation blows up when a file has no conda env associated to it.
   ;;
@@ -622,7 +622,8 @@ removing for: ~tramp-container~.
 
 #+END_SRC
 
-*** [[https://github.com/pwalsh/pipenv.el][pipenv]]:
+*** Virtual Env Management:
+**** [[https://github.com/pwalsh/pipenv.el][pipenv]]:
 The replacement to ~virtualenv~. Do ~C-cC-pa~ or ~M-x pipenv-activate~ to start
 a projects pipenv.
 
@@ -638,7 +639,7 @@ a projects pipenv.
   ;;    #'pipenv-projectile-after-switch-default))
 #+END_SRC
 
-*** pyvenv:
+**** pyvenv:
 #+BEGIN_SRC emacs-lisp
   (use-package pyvenv
     :ensure t
