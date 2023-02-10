@@ -5,6 +5,7 @@
 * Dot Emacs
 My main ~.emacs~ file.
 
+*NOTE:* For built-in packages, check out the emacs manual via: ~C-h r~!
 ** Ansible
 
 Install via [[http://docs.ansible.com/ansible/][ansible]] with the following command, which will prompt for sudo
