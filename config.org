@@ -629,6 +629,22 @@ removing for: ~tramp-container~.
 *NOTE:* [[https://blog.phundrak.com/emacs-29-what-can-we-expect/#tramp-natively-supports-docker-podman-and-kubernetes][TRAMP natively supports Docker, Podman and Kubernetes]]. Need to look
  into how this will work in latest Emacs29 branch builds!!
 * Programming Languages:
+** go:
+*** [[https://github.com/dominikh/go-mode.el][go-mode]]:
+Requires ~go~ & ~gopls~ to be installed. See:
+
+- https://github.com/golang/tools/tree/master/gopls
+- https://emacs-lsp.github.io/lsp-mode/page/lsp-gopls/
+
+#+BEGIN_SRC emacs-lisp
+  (use-package go-mode
+    :ensure-system-package ((go) (gopls))
+    :ensure t
+    :defer t
+    :after (lsp)
+    :hook (go-mode . lsp)
+    )
+#+END_SRC
 ** LSP (Language Server Protocol):
 *** LSP core:
 *** LSP Python Extensions:
