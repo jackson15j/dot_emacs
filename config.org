@@ -305,7 +305,7 @@ reasons.
   (use-package magit-svn
     :ensure t
     :defer t
-    :after magit
+    :after (magit)
     )
 #+END_SRC
 ** [[https://github.com/magit/magit-popup][magit-popup]] (legacy):
@@ -318,7 +318,7 @@ explicit definition of ~magit-popup~
   (use-package magit-popup
      :ensure t
      :defer t
-     :after magit
+     :after (magit)
      )
 #+END_SRC
 ** [[https://github.com/magit/forge][forge]]:
@@ -335,7 +335,7 @@ my old ~magithub~ config.
     ;; NOTE: for emacsclients, it asks in the main instance window.
     :if (not (eq system-type 'windows-nt))  ;; FIXME: Needs `cc` compiler defined.
     :ensure t
-    :after magit
+    :after (magit)
     :config
     (add-to-list 'forge-alist '("git-scm.clinithink.com:2009" "git-scm.clinithink.com/api/v4" "git-scm.clinithink.com" forge-gitlab-repository))
     (add-to-list 'forge-alist '("bitbucket.eigen.live" "bitbucket.eigen.live/rest/api/1.0" "bitbucket.eigen.live" forge-bitbucket-repository))
@@ -353,7 +353,7 @@ with PR's to do code reviews (comments, diff view, approvals, etc).
   (use-package code-review
     :ensure t
     :defer t
-    :after magit
+    :after (magit)
     :config
     (setq
      code-review-bitbucket-host "bitbucket.eigen.live/rest/api/1.0"
@@ -941,7 +941,7 @@ Youtube integration for Elfeed, the feed reader for Emacs.
   (use-package elfeed-tube
     :ensure t
     :defer t
-    :after elfeed
+    :after (elfeed)
     :demand t
     :config
     ;; (setq elfeed-tube-auto-save-p nil) ; default value

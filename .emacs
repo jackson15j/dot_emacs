@@ -628,7 +628,7 @@ so grabbed this code:
   )
 
 (use-package lsp-treemacs
-  :after lsp)
+  :after (lsp))
 
 
 ;; optionally if you want to use debugger
@@ -814,7 +814,7 @@ so grabbed this code:
 (use-package dockerfile-mode
   :ensure t
   :defer t
-  :after flycheck lsp-mode
+  :after (flycheck lsp-mode)
   :hook
   (
    (dockerfile-mode . lsp)
@@ -1068,7 +1068,7 @@ so grabbed this code:
   ;; requires `clang-format` to be installed from system package manger.
   :ensure t
   :defer t
-  :after cc-mode
+  :after (cc-mode)
   :config
   (progn
     (define-key c++-mode-map (kbd "C-c #") 'clang-format-region)
@@ -1129,7 +1129,7 @@ so grabbed this code:
 ;;     ;; FIXME: Deferring since I don't have omnisharp installed. Currently not
 ;;     ;; doing csharp. Should do a check of packages installed.
 ;;     :defer t
-;;     :after company
+;;     :after (company)
 ;;     :bind (:map omnisharp-command-map
 ;;            ;; FIXME: Make these not global to C++ !!
 ;;            ("C-c f" . 'omnisharp-run-code-action-refactoring)  ; Refactor/missing_imports/etc...
