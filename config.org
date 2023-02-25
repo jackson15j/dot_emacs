@@ -643,6 +643,11 @@ Requires ~go~ & ~gopls~ to be installed. See:
     :defer t
     :after (lsp)
     :hook (go-mode . lsp)
+    :config
+    (setq
+     ;; See: https://github.com/renzmann/treesit-auto#keep-track-of-your-hooks
+     go-ts-mode-hook go-mode-hook
+     )
     )
 #+END_SRC
 ** LSP (Language Server Protocol):
