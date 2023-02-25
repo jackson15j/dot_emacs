@@ -71,7 +71,7 @@ By default, Esup will profile ~user-init-file~. To profile a custom file, call
     (setq savehist-additional-variables '(search-ring regexp-search-ring))
   #+END_SRC
 
-*** Desktop
+*** Desktop:
 Auto save all open files in current session and reload on startup.
 #+BEGIN_SRC emacs-lisp
   (use-package desktop
@@ -90,6 +90,14 @@ Auto save all open files in current session and reload on startup.
        desktop-dirname "~/")
       (dolist (mode '(magit-mode git-commit-mode))
         (add-to-list 'desktop-modes-not-to-save mode))))
+#+END_SRC
+*** which-key:
+~which-key~ integration, to show keyboard shortcuts.
+#+BEGIN_SRC emacs-lisp
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
 #+END_SRC
 ** flymake:
 #+BEGIN_SRC emacs-lisp

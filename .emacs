@@ -538,13 +538,6 @@ so grabbed this code:
   )
 
 
-;; which-key integration, to show keyboard shortcuts.
-(use-package which-key
-  :ensure t
-  :defer t
-  :config
-  (which-key-mode))
-
 
 
 
