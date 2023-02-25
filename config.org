@@ -801,13 +801,14 @@ https://github.com/pappasam/jedi-language-server.
 My Current choice of sourcing completions for python: [[https://github.com/emacs-lsp/lsp-pyright][Github:
 emacs-lsp/lsp-pyright]].
 #+BEGIN_SRC emacs-lisp
-(use-package lsp-pyright
-  :ensure t
-  :defer t
-  :after (python-mode lsp)
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-pyright)
-                         (lsp))))  ; or lsp-deferred
+  (use-package lsp-pyright
+    :disabled
+    ;; :ensure t
+    :defer t
+    :after (python-mode lsp)
+    :hook (python-mode . (lambda ()
+                           (require 'lsp-pyright)
+                           (lsp))))  ; or lsp-deferred
 #+END_SRC
 **** [[ https://emacs-lsp.github.io/lsp-python-ms/][lsp-python-ms]]:
 NOTE: Working on some code that prevents me installing Jedi due to
@@ -824,7 +825,8 @@ for a similar problem on NixOS.
 
 #+BEGIN_SRC emacs-lisp
   (use-package lsp-python-ms
-    :ensure t
+    :disabled
+    ;; :ensure t
     :defer t
     :after (python-mode lsp)
     :init (setq lsp-python-ms-auto-install-server t)
