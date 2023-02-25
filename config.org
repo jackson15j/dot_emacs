@@ -54,6 +54,8 @@ By default, Esup will profile ~user-init-file~. To profile a custom file, call
 #+BEGIN_SRC emacs-lisp
   (setq confirm-kill-processes nil)
   (setq-default tab-width 4)
+  ;; Fuzzy completions just like: ~ido~ + fuzzy matching & ~smex~.
+  (fido-mode t)
 #+END_SRC
 
 *** Desktop

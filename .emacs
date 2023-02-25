@@ -261,30 +261,6 @@ so grabbed this code:
 ;; *****************************************************
 ;; *****************************************************
 
-;; ========================
-;; Ido (easily find files & open buffers with fuzzy matching)
-;; ========================
-;; Ido mode with fuzzy matching
-(use-package ido
-  :ensure t
-  :defer t
-  :bind ("C-x C-b" . ibuffer)
-  :init
-  (progn
-    (ido-mode t)
-    (setq ido-enable-flex-matching t) ;; enable fuzzy matching
-  )
-)
-
-;; ========================
-;; smex - Smex is IDO, but for M-x
-;; ========================
-;; http://writequit.org/org/settings.html
-(use-package smex
-  :ensure t
-  :defer t
-  :bind (("M-x" . smex)
-         ("M-X" . smex-major-mode-commands)))
 
 ;; ========================
 ;; mode-line (the gutter bar) (smart mode line wraps up a lot of nice tweaks in one package)
