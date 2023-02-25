@@ -668,9 +668,41 @@ removing for: ~tramp-container~.
 *NOTE:* [[https://blog.phundrak.com/emacs-29-what-can-we-expect/#tramp-natively-supports-docker-podman-and-kubernetes][TRAMP natively supports Docker, Podman and Kubernetes]]. Need to look
  into how this will work in latest Emacs29 branch builds!!
 * Programming Languages:
+** Completions:
+Code completions. This can be done with the built-in ~completion-at-point~
+(~C-M-i~), but using ~company-mode~ for a drop down at point.
+*** company-mode:
+#+BEGIN_SRC emacs-lisp
+  (use-package company
+    :ensure t
+    :defer t
+    :bind (:map company-active-map
+           ("C-n" . company-select-next)
+           ([(tab)] . company-complete)
+           )
+    :hook ((prog-mode . global-company-mode))
+    :config
+    (setq
+      company-tooltip-limit 20 ; bigger popup window.
+      company-idle-delay .3    ; decrease delay before autocompletion popup shows.
+      ;; (setq company-backends (delete 'company-semantic company-backends))
+      )
+    )
+
+#+END_SRC
+*** company-statistics:
+Rate completions by use.
+#+BEGIN_SRC emacs-lisp
+  (use-package company-statistics
+    :ensure t
+    :after (company-mode)
+    :hook ((after-init . company-statistics-mode))
+    )
+#+END_SRC
 ** eglot:
 #+BEGIN_SRC emacs-lisp
   (use-package eglot
+    :after (company-mode)
     :hook ((eglot-mode . global-company-mode))
     :ensure t)
 #+END_SRC

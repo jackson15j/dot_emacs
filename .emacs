@@ -498,49 +498,6 @@ so grabbed this code:
               (setq my/flycheck-local-cache '((lsp . ((next-checkers . (python-pylint)))))))))
 
 
-
-
-
-
-
-
-
-;; *****************************************************
-;; *****************************************************
-;; Code Completion.
-;; *****************************************************
-;; *****************************************************
-(use-package company
-  ;; Completion
-  :ensure t
-  :defer t
-  :config
-  (progn
-    ;; Enable company mode in every programming mode.
-    (add-hook 'prog-mode-hook 'global-company-mode)
-    (setq company-tooltip-limit 20) ; bigger popup window
-    (setq company-idle-delay .3)    ; decrease delay before autocompletion popup shows
-
-    (bind-keys :map company-active-map
-               ("C-n" . company-select-next)
-               ([(tab)] . company-complete)
-               )
-    ;; (setq company-backends (delete 'company-semantic company-backends))
-
-    (use-package company-statistics
-      ;; Rate completions by use.
-      :ensure t
-      :defer t
-      :config
-      (add-hook 'after-init-hook 'company-statistics-mode)
-      )
-    )
-  )
-
-
-
-
-
 ;; *****************************************************
 ;; *****************************************************
 ;; Lsp Client/Server for programming
