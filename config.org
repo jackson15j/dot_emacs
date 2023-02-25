@@ -759,6 +759,53 @@ for a similar problem on NixOS.
                            ;; finished analysis (instead of `lsp`).
                            (lsp-deferred))))
 #+END_SRC
+** markdown:
+*** markdown-mode:
+NOTE:
+
+- ~flymd~ looks to be broken and unmaintained. Use ~impatient-mode~ for live
+  previews.
+- ~M-x markdown-preview~, requires: ~markdown~, to be installed with system
+  package manager.
+
+#+BEGIN_SRC emacs-lisp
+  ;; https://www.emacswiki.org/emacs/KeyboardMacros
+  ;; https://www.emacswiki.org/emacs/KeyboardMacrosTricks
+  (fset 'convert-markdown-ref-to-list
+    "\C-[xreplace-regexp\C-m\\[\\(.*\\)\\].*\C-m* [\\1].\C-m")
+  (fset 'convert-markdown-github-url-to-ref
+    "\C-[xreplace-regexp\C-m.*github.com/\\(.*\\)/\\(.*\\)\C-m[Github: \\1/\\2]: https://github.com/\\1/\\2\C-m")
+  ;; FIXME: figure out how to feed the `LFD` or `C-qC-j` without it
+  ;; counting as a real `RET` and breaking the `replace-regexp` with:
+  ;; `\\(` !!
+  (defalias 'strip-a-ids-from-org-markdown-export
+    (kmacro "M-< M-x r e p l a c e - r e g e x p RET \\ ( < a SPC i d = .* > < / a > \\ ) RET RET"))
+
+  (use-package markdown-mode
+    :ensure t
+    :bind (
+           ("C-c C-a b" . convert-markdown-ref-to-list)
+           ("C-c C-a g" . convert-markdown-github-url-to-ref)
+           ("C-c C-a s" . strip-a-ids-from-org-markdown-export)
+           )
+    :hook ((markdown-mode . my-text-mode-config))
+    )
+#+END_SRC
+*** html-to-markdown:
+#+BEGIN_SRC emacs-lisp
+  (use-package html-to-markdown
+    ;; Convert html code to markdown.
+    :ensure t
+    :defer t)
+#+END_SRC
+*** markdown-toc:
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-toc
+    ;; https://github.com/ardumont/markdown-toc
+    ;; Used to generate a table of contents in a markdown file.
+    :ensure t
+    :defer t)
+#+END_SRC
 ** python:
 
 Historical Links:
