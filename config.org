@@ -56,6 +56,9 @@ By default, Esup will profile ~user-init-file~. To profile a custom file, call
   (setq-default tab-width 4)
   ;; Fuzzy completions just like: ~ido~ + fuzzy matching & ~smex~.
   (fido-mode t)
+  ;; Save history in minibuffers.
+  (savehist-mode t)
+  (setq savehist-additional-variables '(search-ring regexp-search-ring))
 #+END_SRC
 
 *** Desktop
