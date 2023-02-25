@@ -99,6 +99,16 @@ Auto save all open files in current session and reload on startup.
   :config
   (which-key-mode))
 #+END_SRC
+*** [[http://ergoemacs.org/emacs/whitespace-mode.html][whitespace-mode]]:
+Highlight white-space (eg. tabs) in the buffer.
+#+BEGIN_SRC emacs-lisp
+  (use-package whitespace
+    :ensure t
+    :config
+    (global-whitespace-mode)
+    (setq whitespace-style (quote (face trailing tabs)))
+    )
+#+END_SRC
 ** flymake:
 #+BEGIN_SRC emacs-lisp
   (use-package flymake

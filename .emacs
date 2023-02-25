@@ -145,16 +145,6 @@ Defined in: `display-line-numbers-exempt-modes'."
       (display-line-numbers-mode)))
 
 
-(use-package whitespace
-  ;; White Space Mode
-  ;; http://ergoemacs.org/emacs/whitespace-mode.html
-  :ensure t
-  :defer t
-  :config
-  (global-whitespace-mode)
-  ;; make whitespace-mode use just basic coloring
-  (setq whitespace-style (quote (face trailing tabs)))
-  )
 
 ;; http://pragmaticemacs.com/emacs/dired-human-readable-sizes-and-sort-by-size/
 (setq dired-listing-switches "-alh")
