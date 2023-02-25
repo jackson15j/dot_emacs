@@ -449,7 +449,8 @@ so grabbed this code:
 (use-package flycheck                   ; On-the-fly syntax checking
   :ensure t
   :defer t
-  :bind (("C-c e" . list-flycheck-errors)
+  :bind (:map flycheck-mode-map
+         ("C-c e" . list-flycheck-errors)
          ("C-c T f" . flycheck-mode)
          ("C-c j" . flycheck-next-error)
         )
