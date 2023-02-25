@@ -893,18 +893,30 @@ Historical Links:
 - http://www.saltycrane.com/blog/2010/05/my-emacs-python-environment/.
 
 *** python (~python-mode~):
+NOTE: This still requires running: ~M-x eglot~ and then picking the python LSP
+server (suggest: =pyright-langserver=).
+
 #+BEGIN_SRC emacs-lisp
   (use-package python
     :ensure t
     :defer t
-    :mode ("\\.py\\'" . python-mode)
-    :interpreter ("python" . python-mode)
+    :functions flycheck-mode
+    :preface
+    (defun cas/python-config ()
+        "Disable flycheck for flymake + eglot."
+        (flycheck-mode -1)
+        (if (not (string-match "python" compile-command))
+            (set (make-local-variable 'compile-command)
+                 "pytest"))
+        )
     ;; Python workflow:
     ;; * `pipenv install --dev python-language-server[all]`.
     ;; * Start pipenv: `C-cC-pa`.
     ;; * Start lsp: `M-x lsp`.
     :hook (
-           (python-mode . lsp)
+           (python-ts-mode . eglot-ensure)
+           (python-mode . cas/python-config)
+           ;; (python-mode . lsp)
            ;; (python-mode . dap-mode)  ;; think this should be: `dap` only ??
            )
     :config
@@ -912,8 +924,8 @@ Historical Links:
      ;; See: https://github.com/renzmann/treesit-auto#keep-track-of-your-hooks
      python-ts-mode-hook python-mode-hook
      )
-    (require 'dap-python)
-    ;(dap-python-setup)
+    ;; ;; (require 'dap-python)
+    ;; ;; (dap-python-setup)
     )
 #+END_SRC
 *** Linters:
