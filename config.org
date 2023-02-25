@@ -649,6 +649,7 @@ Requires ~go~ & ~gopls~ to be installed. See:
     :ensure-system-package (go gopls)
     :ensure t
     :defer t
+    :functions flycheck-mode
     :preface
     (defun cas/go-config ()
       "Tame tab indenting for go mode + disable flycheck for flymake + eglot."
