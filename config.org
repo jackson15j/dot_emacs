@@ -203,9 +203,9 @@ ibuffer to get full list.
     )
 #+END_SRC
 
-*** Environment Varaibles:
-See: [[http://yitang.uk/2021/06/18/managing-emacs-server-as-systemd-service/][Yi Tang: Managing Emacs Server as Systemd Service]] for notes on using the
-environment variables:
+*** Environment Variables:
+See: [[https://github.com/purcell/exec-path-from-shell][Github: purcell/exec-path-from-shell]] & [[http://yitang.uk/2021/06/18/managing-emacs-server-as-systemd-service/][Yi Tang: Managing Emacs Server as
+Systemd Service]] for notes on using the environment variables:
 
 #+BEGIN_QUOTE
 Environment Variables
