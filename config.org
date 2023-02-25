@@ -193,11 +193,43 @@ ibuffer to get full list.
 #+BEGIN_SRC emacs-lisp
   (use-package server
     :ensure t
-    :defer t
+    :after (exec-path-from-shell)
     :config
     ;; https://wiki.archlinux.org/title/Emacs#Multiplexing_emacs_and_emacsclient
     (unless (server-running-p)
       (server-start))
+    )
+#+END_SRC
+
+*** Environment Varaibles:
+See: [[http://yitang.uk/2021/06/18/managing-emacs-server-as-systemd-service/][Yi Tang: Managing Emacs Server as Systemd Service]] for notes on using the
+environment variables:
+
+#+BEGIN_QUOTE
+Environment Variables
+
+The customised shell configuration in .bashrc are loaded when opening an
+interactive shell session. So the Emacs server managed by systemd would not
+have the environment variables, alias, functions or whatever defined in
+.bashrc.
+
+[[https://stackoverflow.com/questions/49764993/using-a-users-bashrc-in-a-systemd-service][This stackoverflow post]] provides the rationale and how to tweak the unit file
+so systemd would load .bashrc.
+
+This problem can solved a lot easier on the Emacs side, by using
+[[https://github.com/purcell/exec-path-from-shell][exec-path-from-shell]] package. It will ensure the environment variables inside
+Emacs are the same as in the user's interactive shell.
+
+Simply put the following in your .emacs would do the trick.
+
+~(exec-path-from-shell-initialize)~
+#+END_QUOTE
+
+#+BEGIN_SRC emacs-lisp
+  (use-package exec-path-from-shell
+    :ensure t
+    :config
+    (exec-path-from-shell-initialize)
     )
 #+END_SRC
 ** Native Compilation:
