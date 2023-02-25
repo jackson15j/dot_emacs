@@ -122,7 +122,7 @@ Going to try ~project~ for a bit and see how it goes.
     :ensure t)
 #+END_SRC
 *** [[https://github.com/bbatsov/projectile][projectile]]:
-Historical notes:
+#+html: <details><summary><b>Historical notes:</b></summary>
 
 Been getting more annoyed at not using daemon mode on my main box and
 connecting with emacsclients. Due to work, I use quite a few git-worktree's
@@ -170,6 +170,7 @@ ibuffer to get full list.
       )
     )
 #+END_SRC
+#+html: </details>
 ** Server:
 #+BEGIN_SRC emacs-lisp
   (use-package server
