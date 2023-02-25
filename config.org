@@ -78,6 +78,20 @@ Auto save all open files in current session and reload on startup.
       (dolist (mode '(magit-mode git-commit-mode))
         (add-to-list 'desktop-modes-not-to-save mode))))
 #+END_SRC
+** flymake:
+#+BEGIN_SRC emacs-lisp
+  (use-package flymake
+    :bind (("C-c e" . flymake-show-buffer-diagnostics)
+           ("C-c j" . flymake-goto-next-error)
+        )
+    :config
+    (progn
+     (set-face-attribute 'flymake-error nil :background "DarkRed")
+     (set-face-attribute 'flymake-warning nil :background "DarkBlue")
+     (set-face-attribute 'flymake-note nil :background "DarkGreen")
+     )
+    )
+#+END_SRC
 ** Project management:
 I've used ~projectile~ for years, but giving ~project~ a go. Only ever used:
 
