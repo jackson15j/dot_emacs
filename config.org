@@ -630,6 +630,11 @@ removing for: ~tramp-container~.
 *NOTE:* [[https://blog.phundrak.com/emacs-29-what-can-we-expect/#tramp-natively-supports-docker-podman-and-kubernetes][TRAMP natively supports Docker, Podman and Kubernetes]]. Need to look
  into how this will work in latest Emacs29 branch builds!!
 * Programming Languages:
+** eglot:
+#+BEGIN_SRC emacs-lisp
+  (use-package eglot
+    :ensure t)
+#+END_SRC
 ** go:
 *** [[https://github.com/dominikh/go-mode.el][go-mode]]:
 Requires ~go~ & ~gopls~ to be installed. See:
