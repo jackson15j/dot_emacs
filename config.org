@@ -649,18 +649,19 @@ Requires ~go~ & ~gopls~ to be installed. See:
     :ensure-system-package (go gopls)
     :ensure t
     :defer t
+    :preface
+    (defun cas/go-config ()
+      "Tame tab indenting for go mode + disable flycheck for flymake + eglot."
+      (setq tab-width 4)
+      (setq go-ts-mode-indent-offset 4)
+      (setq indent-tabs-mode t)
+      (flycheck-mode -1)
+      )
     :hook (
        (go-ts-mode . eglot-ensure)
+       (go-ts-mode . cas/go-config)
        )
     )
-  (defun cas/go-config ()
-    "Tame tab indenting for go mode + disable flycheck for flymake + eglot."
-    (setq tab-width 4)
-    (setq go-ts-mode-indent-offset 4)
-    (setq indent-tabs-mode t)
-    (flycheck-mode -1)
-    )
-  (add-hook 'go-ts-mode-hook 'cas/go-config)
 #+END_SRC
 ** LSP (Language Server Protocol):
 *** LSP core:
