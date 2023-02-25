@@ -112,7 +112,9 @@ Highlight white-space (eg. tabs) in the buffer.
 ** flymake:
 #+BEGIN_SRC emacs-lisp
   (use-package flymake
-    :bind (("C-c e" . flymake-show-buffer-diagnostics)
+    :bind (:map flymake-mode-map
+           ("C-c e" . flymake-show-buffer-diagnostics)
+           ("C-c p" . flymake-show-project-diagnostics)
            ("C-c j" . flymake-goto-next-error)
         )
     :config
