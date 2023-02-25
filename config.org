@@ -51,15 +51,25 @@ By default, Esup will profile ~user-init-file~. To profile a custom file, call
 ** General
 - Don't prompt to kill processes on exit.
 
-#+BEGIN_SRC emacs-lisp
-  (setq confirm-kill-processes nil)
-  (setq-default tab-width 4)
-  ;; Fuzzy completions just like: ~ido~ + fuzzy matching & ~smex~.
-  (fido-mode t)
-  ;; Save history in minibuffers.
-  (savehist-mode t)
-  (setq savehist-additional-variables '(search-ring regexp-search-ring))
-#+END_SRC
+  #+BEGIN_SRC emacs-lisp
+    (setq confirm-kill-processes nil)
+    (setq-default tab-width 4)
+  #+END_SRC
+
+- Global defaults:
+
+  #+BEGIN_SRC emacs-lisp
+    (setq-default tab-width 4)
+  #+END_SRC
+
+- Fuzzy completions (just like ~ido~ with fuzzy matching set + ~smex~) and Save
+  history in minibuffers.
+
+  #+BEGIN_SRC emacs-lisp
+    (fido-mode t)
+    (savehist-mode t)
+    (setq savehist-additional-variables '(search-ring regexp-search-ring))
+  #+END_SRC
 
 *** Desktop
 Auto save all open files in current session and reload on startup.
