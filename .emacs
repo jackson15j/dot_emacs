@@ -534,7 +534,7 @@ so grabbed this code:
              lsp-ui-peek-mode
              lsp-ui-sideline-mode
              )
-  :bind (
+  :bind (:map lsp-command-map
          ([remap xref-find-definitions] . #'lsp-ui-peek-find-definitions)  ;; M-.
          ([remap xref-find-references] . #'lsp-ui-peek-find-references)  ;; M-?
          )
