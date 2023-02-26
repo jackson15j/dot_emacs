@@ -782,8 +782,9 @@ Requires ~go~ & ~gopls~ to be installed. See:
                "go build -v && go test -v && go vet"))
       )
     :hook (
-       (go-ts-mode . eglot-ensure)
-       (go-ts-mode . cas/go-config)
+           (before-save . 'gofmt-before-save)
+           (go-ts-mode . eglot-ensure)
+           (go-ts-mode . cas/go-config)
        )
     )
 #+END_SRC
