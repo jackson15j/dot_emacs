@@ -935,10 +935,8 @@ Uses [[https://github.com/psf/black][Github: psf/black]] to reformat python buff
 #+BEGIN_SRC emacs-lisp
   (use-package blacken
     :ensure t
-    :defer t
-    :after (python-mode)
     :hook (python-mode . blacken-mode)
-    :init
+    ;; :init
     ;; NOTE: Commented out below line due to currently working on projects that
     ;; require `black` but have no: `[tool.black]` in the `pyproject.toml` file.
     ;; (setq blacken-only-if-project-is-blackened t)
