@@ -758,6 +758,16 @@ trying to slim down config and use more built-ins.
     :ensure t)
 #+END_SRC
 ** go:
+Go config links:
+
+- https://andrewjamesjohnson.com/configuring-emacs-for-go-development/.
+- https://legends2k.github.io/note/go_setup/.
+- [[https://gist.github.com/GnaneshKunal/3d3f982ce1903990eedd586952893422][Github Gist: GnaneshKunai/go-ts-fmt.el]].
+- https://arenzana.org/2019/01/emacs-go-mode/.
+- https://honnef.co/articles/writing-go-in-emacs/ &
+  https://honnef.co/articles/writing-go-in-emacs-cont./.
+- https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins.
+
 *** [[https://github.com/dominikh/go-mode.el][go-mode]]:
 Requires ~go~ & ~gopls~ to be installed. See:
 
