@@ -743,7 +743,14 @@ Rate completions by use.
     :hook ((after-init . company-statistics-mode))
     )
 #+END_SRC
-** eglot:
+** [[https://joaotavora.github.io/eglot/][eglot]]:
+Eglot ([[https://github.com/joaotavora/eglot][Github: joaotavora/eglot]]) is the built-in, streamlined LSP (Language
+Server Protocol) client for emacs, to talk to LSP Servers with. it is the
+alternative to the external,feature-rich package: [[*LSP (Language Server Protocol):][lsp-mode]].
+
+NOTE: Currently transitioning over to ~eglot~ from: ~lsp-mode~, as part of
+trying to slim down config and use more built-ins.
+
 #+BEGIN_SRC emacs-lisp
   (use-package eglot
     :after (company-mode)
@@ -781,6 +788,8 @@ Requires ~go~ & ~gopls~ to be installed. See:
     )
 #+END_SRC
 ** LSP (Language Server Protocol):
+~lsp-mode~ is the external, feature-rich version of: [[*\[\[https://joaotavora.github.io/eglot/\]\[eglot\]\]:][eglot]] (built-in), for
+interacting with LSP Servers in emacs.
 *** LSP core:
 *** LSP Python Extensions:
 **** [[https://github.com/fredcamps/lsp-jedi][lsp-jedi]]:
