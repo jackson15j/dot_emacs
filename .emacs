@@ -182,8 +182,15 @@ Defined in: `display-line-numbers-exempt-modes'."
 ;; ispell is the built in spell checker, but aspell is better (multiple dictionaries)
 ; http://www.emacswiki.org/emacs/InteractiveSpell#toc6
 ; brew install aspell --with-lang-es --with-lang-uk --with-lang-en
-(setq ispell-program-name "aspell")
-(setq ispell-list-command "list")
+(use-package ispell
+  :if (eq system-type 'darwin)
+  :ensure-system-package (brew install aspell)
+  :config
+  (setq
+   ispell-program-name "aspell"
+   ispell-list-command "list"
+   )
+  )
 
 ;; ========================
 ;; Lookup dictionary definitions.
