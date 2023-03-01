@@ -177,21 +177,6 @@ Defined in: `display-line-numbers-exempt-modes'."
 
 
 ;; ========================
-;; spell checking (aspell)
-;; ========================
-;; ispell is the built in spell checker, but aspell is better (multiple dictionaries)
-; http://www.emacswiki.org/emacs/InteractiveSpell#toc6
-; brew install aspell --with-lang-es --with-lang-uk --with-lang-en
-(use-package ispell
-  :ensure-system-package (aspell)
-  :config
-  (setq
-   ispell-program-name "aspell"
-   ispell-list-command "list"
-   )
-  )
-
-;; ========================
 ;; Lookup dictionary definitions.
 ;; ========================
 ;; `M-x dictionary-search` look up word definition.

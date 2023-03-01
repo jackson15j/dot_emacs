@@ -249,6 +249,21 @@ Log but don't pop up Warnings buffer for all native compilation warnings.
 #+BEGIN_SRC emacs-lisp
   (setq native-comp-async-report-warnings-errors 'silent)
 #+END_SRC
+** Spell Checking:
+*** ispell (via aspell):
+~ispell~ is the built in spell checker, but ~aspell~ is better (multiple
+dictionaries). See: http://www.emacswiki.org/emacs/InteractiveSpell#toc6
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ispell
+    :ensure-system-package (aspell)
+    :config
+    (setq
+     ispell-program-name "aspell"
+     ispell-list-command "list"
+     )
+    )
+#+END_SRC
 ** Treesit:
 Treesit uses the tree-sitter grammars to provide faces/fontifying/structures to
 text by an AST instead of a regex (ie. fast, accurate, works during editing).
