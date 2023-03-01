@@ -183,8 +183,7 @@ Defined in: `display-line-numbers-exempt-modes'."
 ; http://www.emacswiki.org/emacs/InteractiveSpell#toc6
 ; brew install aspell --with-lang-es --with-lang-uk --with-lang-en
 (use-package ispell
-  :if (eq system-type 'darwin)
-  :ensure-system-package (brew install aspell)
+  :ensure-system-package (aspell)
   :config
   (setq
    ispell-program-name "aspell"
