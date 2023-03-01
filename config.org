@@ -678,6 +678,19 @@ missing several days:
     + [X] typing
 #+END_EXAMPLE
 
+** org-babel:
+*** [[https://emacs.stackexchange.com/questions/20577/org-babel-load-all-languages-on-demand][Load (all) languages on-demand]]:
+Also see: [[https://orgmode.org/worg/org-contrib/babel/languages/index.html#configure][Org-Babel: Activate Languages]].
+
+#+BEGIN_SRC emacs-lisp
+(defadvice org-babel-execute-src-block (around load-language nil activate)
+  "Load language if needed"
+  (let ((language (org-element-property :language (org-element-at-point))))
+    (unless (cdr (assoc (intern language) org-babel-load-languages))
+      (add-to-list 'org-babel-load-languages (cons (intern language) t))
+      (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
+    ad-do-it))
+#+END_SRC
 ** [[https://github.com/theodorewiles/org-mind-map][org-mindmap]]:
 #+BEGIN_SRC emacs-lisp
   ;; This is an Emacs package that creates graphviz directed graphs from
