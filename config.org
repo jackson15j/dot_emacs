@@ -487,6 +487,14 @@ and more — in a fast and effective plain text system.
                             ("~/org/programming_notes/notes.org" :maxlevel . 5)))
        ;; Allow refiling to a file to support moving up to heading level 1
        org-refile-use-outline-path 'file
+       ;; FIXME: Something has changed to the point where I can no longer refile
+       ;; to headings in a file after the file selection part. Changing the
+       ;; outline path option below allows me to do it, but it is super laggy
+       ;; from all of the headings it is fuzzy searching through.
+       ;;
+       ;; I may have to give up on refiling to the top heading in a file with the
+       ;; ~org-refile-use-outline-path 'file~ change above.
+       org-outline-path-complete-in-steps nil
        org-log-done t
        ;; https://kundeveloper.com/blog/org-capture-3/ for `org-capture-templates` ideas.
        org-capture-templates '(
