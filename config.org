@@ -471,13 +471,13 @@ and more — in a fast and effective plain text system.
     (progn
       (setq
        org-directory "~/org/"
-       org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/")
-       ;; org-agenda-files (apply 'append
-       ;;                         (mapcar
-       ;;                          (lambda (directory)
-       ;;                            (directory-files-recursively
-       ;;                             directory org-agenda-file-regexp))
-       ;;                          '("~/org/")))
+       ;; org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/")
+       org-agenda-files (apply 'append
+                               (mapcar
+                                (lambda (directory)
+                                  (directory-files-recursively
+                                   directory org-agenda-file-regexp))
+                                '("~/org/")))
        org-default-notes-file "~/org/notes.org"
        ;; refile level.
        ;; http://www.millingtons.eclipse.co.uk/glyn/dotemacs.html
