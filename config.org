@@ -250,6 +250,11 @@ Log but don't pop up Warnings buffer for all native compilation warnings.
   (setq native-comp-async-report-warnings-errors 'silent)
 #+END_SRC
 ** Spell Checking:
+*** flyspell:
+**** Highlight all spelling mistakes in a buffer in one go.
+#+BEGIN_EXAMPLE emacs-lisp
+M-x flyspell-buffer
+#+END_EXAMPLE emacs-lisp
 *** ispell (via aspell):
 ~ispell~ is the built in spell checker, but ~aspell~ is better (multiple
 dictionaries). See: http://www.emacswiki.org/emacs/InteractiveSpell#toc6
