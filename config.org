@@ -1171,14 +1171,14 @@ do completions!
   (use-package yaml-mode
     :ensure-system-package (yaml-language-server)
     :ensure t
-    ;; :preface
-    ;; (defun cas/yaml-config ()
-    ;;     "Disable flycheck for flymake + eglot."
-    ;;     (flycheck-mode -1)
-    ;;     )
+    :preface
+    (defun cas/yaml-config ()
+        "Disable flycheck for flymake + eglot."
+        (flycheck-mode -1)
+        )
     :hook (
            (yaml-ts-mode . eglot-ensure)
-    ;;        (yaml-mode . cas/yaml-config)
+           (yaml-ts-mode . cas/yaml-config)
            )
     )
 #+END_SRC
