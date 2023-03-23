@@ -801,7 +801,7 @@ Rate completions by use.
     )
 #+END_SRC
 ++ C/CPP:
-*** cmake:
+** cmake:
 - https://emacs-lsp.github.io/lsp-mode/page/lsp-cmake/
 - ~pipenv install --dev cmake-language-server~.
   - Bit weird, but need to activate pipenv on a python file in the repo, then
@@ -809,9 +809,10 @@ Rate completions by use.
 
 #+BEGIN_SRC emacs-lisp
   (use-package cmake-mode
+    :ensure-system-package (cmake)
     :ensure t
-    :defer t
-    :hook (cmake-mode . lsp)
+    ;; FIXME: Hook breaks the `ensure-system-package` call.
+    ;; :hook (cmake-mode . lsp)
     )
 #+END_SRC
 ** [[https://joaotavora.github.io/eglot/][eglot]]:
