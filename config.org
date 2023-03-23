@@ -975,6 +975,7 @@ server (suggest: =pyright-langserver=).
 
 #+BEGIN_SRC emacs-lisp
   (use-package python
+    :ensure-system-package (python)
     :ensure t
     :functions flycheck-mode
     :preface
