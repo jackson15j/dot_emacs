@@ -1162,17 +1162,26 @@ Usage:
 - To indent multi-line XML: Select region and call: ~indent-region~.
 
 ** yaml:
-Currently using [[https://emacs-lsp.github.io/lsp-mode/page/lsp-yaml/
-][lsp-yaml]] support.
+Currently using [[https://emacs-lsp.github.io/lsp-mode/page/lsp-yaml/][lsp-yaml]] support.
+
+Use ~:ensure-system-package~ to install the: [[https://github.com/redhat-developer/yaml-language-server][Github:
+redhat-developer/yaml-language-server]] for eglot to use. *NOTE:* Look at the
+github page to configure schemas for the YAML file (eg. Kubernetes schema) to
+do completions!
+
 #+BEGIN_SRC emacs-lisp
   (use-package yaml-mode
+    :ensure-system-package (yaml-language-server)
     :ensure t
-    :defer t
-    :mode (
-           ("\\.yml\\'" . yaml-mode)
-           ("\\.yaml\\'" . yaml-mode)
-           )
-    :hook (yaml-mode . lsp)
+    ;; :preface
+    ;; (defun cas/yaml-config ()
+    ;;     "Disable flycheck for flymake + eglot."
+    ;;     (flycheck-mode -1)
+    ;;     )
+    ;; :hook (
+    ;;        (yaml-ts-mode . eglot-ensure)
+    ;;        (yaml-mode . cas/yaml-config)
+    ;;        )
     )
 #+END_SRC
 * [[https://github.com/skeeto/elfeed][elfeed]]:
