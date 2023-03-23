@@ -800,6 +800,20 @@ Rate completions by use.
     :hook ((after-init . company-statistics-mode))
     )
 #+END_SRC
+++ C/CPP:
+*** cmake:
+- https://emacs-lsp.github.io/lsp-mode/page/lsp-cmake/
+- ~pipenv install --dev cmake-language-server~.
+  - Bit weird, but need to activate pipenv on a python file in the repo, then
+    reload the CMakeList.txt`.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package cmake-mode
+    :ensure t
+    :defer t
+    :hook (cmake-mode . lsp)
+    )
+#+END_SRC
 ** [[https://joaotavora.github.io/eglot/][eglot]]:
 Eglot ([[https://github.com/joaotavora/eglot][Github: joaotavora/eglot]]) is the built-in, streamlined LSP (Language
 Server Protocol) client for emacs, to talk to LSP Servers with. it is the

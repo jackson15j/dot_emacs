@@ -917,16 +917,6 @@ so grabbed this code:
    ; (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name))) ;; `.c`/`.h` in a non-git repo.
    (format "cd $(git rev-parse --show-toplevel) && git ls-files | etags -" dir-name)))  ;; tag all files.
 
-(use-package cmake-mode
-  ;; https://emacs-lsp.github.io/lsp-mode/page/lsp-cmake/
-  ;; pipenv install --dev cmake-language-server
-  ;; Bit weird, but need to activate pipenv on a python file in the repo, then
-  ;; reload the CMakeList.txt`.
-  :ensure t
-  :defer t
-  :hook (cmake-mode . lsp)
-  )
-
 ;; *****************************************************
 ;; *****************************************************
 ;; C# IDE stuff
