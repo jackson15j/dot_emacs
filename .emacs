@@ -739,22 +739,6 @@ so grabbed this code:
   )
 
 
-;; *****************************************************
-;; *****************************************************
-;; YAML
-;; *****************************************************
-;; *****************************************************
-(use-package yaml-mode
-  ; https://emacs-lsp.github.io/lsp-mode/page/lsp-yaml/
-  :ensure t
-  :defer t
-  :mode (
-         ("\\.yml\\'" . yaml-mode)
-         ("\\.yaml\\'" . yaml-mode)
-         )
-  :hook (yaml-mode . lsp)
-  )
-
 (use-package ansible
   ; https://github.com/k1LoW/emacs-ansible
   :ensure t

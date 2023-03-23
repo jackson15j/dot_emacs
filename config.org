@@ -1161,6 +1161,20 @@ Usage:
   ~bf-pretty-print-xml-region~.
 - To indent multi-line XML: Select region and call: ~indent-region~.
 
+** yaml:
+Currently using [[https://emacs-lsp.github.io/lsp-mode/page/lsp-yaml/
+][lsp-yaml]] support.
+#+BEGIN_SRC emacs-lisp
+  (use-package yaml-mode
+    :ensure t
+    :defer t
+    :mode (
+           ("\\.yml\\'" . yaml-mode)
+           ("\\.yaml\\'" . yaml-mode)
+           )
+    :hook (yaml-mode . lsp)
+    )
+#+END_SRC
 * [[https://github.com/skeeto/elfeed][elfeed]]:
 RSS feeds in emacs.
 ** [[https://github.com/skeeto/elfeed][elfeed]]:
