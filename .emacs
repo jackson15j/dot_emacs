@@ -435,7 +435,7 @@ so grabbed this code:
          ("C-c T f" . flycheck-mode)
          ("C-c j" . flycheck-next-error)
         )
-  :init (global-flycheck-mode)
+  ;; :init (global-flycheck-mode)
   :config
   (progn
     (setq

@@ -117,6 +117,10 @@ Highlight white-space (eg. tabs) in the buffer.
            ("C-c p" . flymake-show-project-diagnostics)
            ("C-c j" . flymake-goto-next-error)
         )
+    :hook (
+           (prog-mode . flymake-mode)
+           (text-mode . flymake-mode)
+           )
     :config
     (progn
      (set-face-attribute 'flymake-error nil :background "DarkRed")
@@ -854,11 +858,10 @@ Requires ~go~ & ~gopls~ to be installed. See:
     :functions flycheck-mode
     :preface
     (defun cas/go-config ()
-      "Tame tab indenting for go mode + disable flycheck for flymake + eglot."
+      "Tame tab indenting for go mode."
       (setq tab-width 4)
       (setq go-ts-mode-indent-offset 4)
       (setq indent-tabs-mode t)
-      (flycheck-mode -1)
       (add-hook 'before-save-hook #'eglot-format-buffer t t)
       (if (not (string-match "go" compile-command))
           (set (make-local-variable 'compile-command)
@@ -995,8 +998,7 @@ server (suggest: =pyright-langserver=).
     :functions flycheck-mode
     :preface
     (defun cas/python-config ()
-        "Disable flycheck for flymake + eglot."
-        (flycheck-mode -1)
+        "Python additional config."
         (if (not (string-match "python" compile-command))
             (set (make-local-variable 'compile-command)
                  "pytest"))
@@ -1186,14 +1188,8 @@ do completions!
   (use-package yaml-mode
     :ensure-system-package (yaml-language-server)
     :ensure t
-    :preface
-    (defun cas/yaml-config ()
-        "Disable flycheck for flymake + eglot."
-        (flycheck-mode -1)
-        )
     :hook (
            (yaml-ts-mode . eglot-ensure)
-           (yaml-ts-mode . cas/yaml-config)
            )
     )
 #+END_SRC
