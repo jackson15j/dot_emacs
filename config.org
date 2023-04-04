@@ -601,9 +601,19 @@ and more — in a fast and effective plain text system.
                                     )
                                    ("/tmp/org_agenda_today.html" "/tmp/org_agenda_today.ics" "/tmp/org_agenda_today.txt")
                                    )
-                                  ("o" "Agenda for last 2 weeks"
+                                  ("i" "Personal agenda for last 2 weeks"
                                    (
                                     (agenda "")
+                                    )
+                                   (
+                                    (org-agenda-span 15)
+                                    (org-agenda-start-day "-14d")
+                                    (org-agenda-skip-function-global nil)
+                                    )
+                                   )
+                                  ("o" "Work agenda for last 2 weeks (1-2-1 Reviews)"
+                                   (
+                                    (agenda "" ((org-agenda-files (directory-files-recursively "~/org/work/" org-agenda-file-regexp))))
                                     )
                                    (
                                     (org-agenda-span 15)
