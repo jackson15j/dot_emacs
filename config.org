@@ -562,13 +562,13 @@ and more — in a fast and effective plain text system.
                                    ("/tmp/org_agenda_review.html" "/tmp/org_agenda_review.ics" "/tmp/org_agenda_review.txt")  ;; ~org-store-agenda-views~ output file
                                    )
                                   ;; https://fortelabs.com/blog/para/
-                                  ("p" "PARA (Project Area Resources Archive) Agenda Review"
+                                  ("p" "PARA Personal (Project Area Resources Archive) Agenda Review"
                                    (
-                                    (agenda)
-                                    (tags "ACTION|CHASE|INVESTIGATE|INVESTIGATION" ((org-agenda-overriding-header "\nProject: \"a series of tasks linked to a goal, with a deadline.\"  ~:ACTION:CHASE:INVESTIGATE:INVESTIGATION:~")))
-                                    (tags-todo "-ACTION-ADMIN-CHASE-EMACS-PERSONAL-READ-REVIEW-TRAINING-WATCH-WIKI-WORKFLOW" ((org-agenda-overriding-header "Project: (Tag to remove non-urgent TODO's out of this list!!)")))
-                                    (tags "ADMIN|REVIEW|WIKI|WORKFLOW" ((org-agenda-overriding-header "\nAreas: \"a sphere of activity with a standard to be maintained over time.\"  ~:ADMIN:REVIEW:WIKI:WORKFLOW:~")))
-                                    (tags "EMACS|PERSONAL|READ|TRAINING|WATCH|UNSORTED" ((org-agenda-overriding-header "\nResource: \"a topic or theme of ongoing interest.\"  ~:EMACS:PERSONAL:READ:TRAINING:WATCH:UNSORTED:~")))
+                                    (agenda "" ((org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/"))))
+                                    (tags "ACTION|CHASE|INVESTIGATE|INVESTIGATION" ((org-agenda-overriding-header "\nProject: \"a series of tasks linked to a goal, with a deadline.\"  ~:ACTION:CHASE:INVESTIGATE:INVESTIGATION:~") (org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/"))))
+                                    (tags-todo "-ACTION-ADMIN-CHASE-EMACS-PERSONAL-READ-REVIEW-TRAINING-WATCH-WIKI-WORKFLOW" ((org-agenda-overriding-header "Project: (Tag to remove non-urgent TODO's out of this list!!)") (org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/"))))
+                                    (tags "ADMIN|REVIEW|WIKI|WORKFLOW" ((org-agenda-overriding-header "\nAreas: \"a sphere of activity with a standard to be maintained over time.\"  ~:ADMIN:REVIEW:WIKI:WORKFLOW:~") (org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/"))))
+                                    (tags "EMACS|PERSONAL|READ|TRAINING|WATCH|UNSORTED" ((org-agenda-overriding-header "\nResource: \"a topic or theme of ongoing interest.\"  ~:EMACS:PERSONAL:READ:TRAINING:WATCH:UNSORTED:~") (org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/"))))
                                     )
                                    nil  ;; settings
                                    ;; See: https://orgmode.org/manual/Exporting-Agenda-Views.html
