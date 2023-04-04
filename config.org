@@ -1418,6 +1418,7 @@ paging mode (eg. like scrolling through a man page on a real terminal). See:
   (use-package eshell
     :ensure t
     :config
+    (setq eshell-history-size 1000000)
     (with-eval-after-load 'em-term
       (add-to-list 'eshell-visual-commands "aws"))
     )
