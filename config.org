@@ -761,6 +761,21 @@ Also see: [[https://orgmode.org/worg/org-contrib/babel/languages/index.html#conf
     ;; (setq org-mind-map-engine "circo")  ; Circular Layout
     )
 #+END_SRC
+** todo keywords:
+
+Applying styles to TODO keywords in org files:
+#+BEGIN_SRC emacs-lisp
+  (setq org-todo-keyword-faces
+        '(
+          ("TODO" . org-warning)
+          ("STARTED" . "yellow")
+          ("INPROGRESS" . "yellow")
+          ("BLOCKED" . (:foreground "white" :weight bold :background "red"))
+          ("CANCELED" . (:foreground "blue" :weight bold :strikethough t))
+          ("PARKED" . (:forground "dark grey"))
+          )
+        )
+#+END_SRC
 * Docker:
 ** tramp-container (built-in):
 Tramp into a docker container with: ~C-x C-f /docker:[user@]container:/path/to/file~
