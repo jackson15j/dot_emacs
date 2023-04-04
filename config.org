@@ -478,6 +478,10 @@ with PR's to do code reviews (comments, diff view, approvals, etc).
 A GNU Emacs major mode for keeping notes, authoring documents, computational
 notebooks, literate programming, maintaining to-do lists, planning projects,
 and more — in a fast and effective plain text system.
+
+*NOTE:* Broken apart org mode config via: [[https://github.com/jwiegley/use-package/issues/662][Github:
+ jwiegley/use-package/issues/662 - Calling use-package multiple times on the
+ same package #662]].
 ** Core org-mode config:
 #+BEGIN_SRC emacs-lisp
   (use-package org
@@ -544,6 +548,77 @@ and more — in a fast and effective plain text system.
     ;; (require 'ox-confluence)  ;; FIXME: wrong type arguments error!
     (setq
      org-link-file-path-type 'relative
+     org-use-tag-inheritance nil  ;; Don't show un-tagged sub-headings when there is a tag on a high-level.
+     )
+  )
+#+END_SRC
+** Capture/Reminders:
+- http://orgmode.org/worg/code/elisp/dto-org-gtd.el
+- http://www.gnu.org/software/emacs/manual/html_node/org/Remember-templates.html
+** macros:
+- Convert markdown links (~[display_message](link)~) to org links
+  (~[[link][display_message]]~):
+  #+BEGIN_SRC emacs-lisp
+    (fset 'convert-markdown-link-to-org-link
+     "\C-[xreplace-regexp\C-m\\[\\(.*\\)\\](\\(.*\\))\C-m[[\\2][\\1]]\C-m")
+ #+END_SRC
+** export:
+Suggested [[https://orgmode.org/manual/Export-Settings.html][Export Options]] at top of file: ~#+OPTIONS: \n:nil toc:nil
+num:nil~. Or: ~#+OPTIONS: \n:nil toc:nil num:nil html-postamble:nil~ to remove
+the footer as well.
+
+- No line wrapping.
+- No TOC.
+- Don't number headings.
+*** Export org to Confluence:
+Been trying different ways to export org files to then dump into
+Confluence. Current rating of exporters:
+
+1. Export to HTML.
+   - Highlight region.
+   - ~M-x org-html-export-as-html~, cursor jumps to export buffer.
+   - ~M-x browse-url-of-buffer~, to open in your browser.
+   - Select all in Browser tab and paste into Confluence edit mode.
+2. Export to ASCII.
+   - ~M-x org-ascii-export-as-ascii~.
+   - Requires below config changes.
+   - Issues around Headings being picked up by Confluence (eg. h3 == h2, no h3+).
+   - Issues around Formatting being picked up by Confluence (eg. No Bold markup).
+3. Export to Markdown.
+   - ~M-x org-md-export-as-markdown~.
+   - Great rendering in a ~/markdown~ macro, but other macros cannot be nested
+     inside or work with the ~/markdown~ macro. eg. No ~/toc~ macro.
+   - Pretty good rendering pasting into Confluence edit area, but no auto
+     wrapping. ie. 80 characters.
+4. *BROKEN:* ~M-x ox-confluence~ from ~org-contrib~ throws errors on emacs29.
+
+*** Confluence ascii export config:
+Better ASCII export output from org files when the target is an Atlassian
+Confluence Wiki. Export via: ~M-x org-ascii-export-as-ascii~ (~C-cC-etA~).
+
+*TODO: figure out what Heading underlining style Confluence uses for H3-H5!!*
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-ascii-text-width 10000)  ;; Large text width to avoid line wrapping.
+  (setq org-ascii-inner-margin 0)  ;; Don't indent lines between headings.
+  ;; Confluence expects H2 to be ~-~.
+  (setq org-ascii-underline '((ascii 61 45 45)
+                              (latin1 61 126 45)
+                              (utf-8 9552 9472 9548 9476 9480)))
+
+#+END_SRC
+
+** org-agenda:
+*** Custom Agenda views:
+- https://www.orgmode.org/manual/Custom-Agenda-Views.html
+- https://redgreenrepeat.com/2021/04/09/org-mode-agenda-getting-started-scheduled-items-and-todos/
+- http://www.cachestocaches.com/2016/9/my-workflow-org-agenda/#the-agenda
+- https://github.com/gjstein/emacs.d/blob/master/config/gs-org-agenda.el
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org
+    :config
+    (setq
      org-agenda-custom-commands '(
                                   ;; Keep tags but hide `DONE` tasks: https://orgmode.org/manual/Matching-tags-and-properties.html
                                   ("r" "Agenda Review"
@@ -627,72 +702,9 @@ and more — in a fast and effective plain text system.
      org-agenda-compact-blocks t  ;; Compact agenda. Same as setting: `org-agenda-block-separator nil`.
      org-agenda-tags-column 100  ;; Stop tags rendering off the right of the buffer.
      org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done)  ;; Hide `DONE` lines from Agenda view.
-     org-use-tag-inheritance nil  ;; Don't show un-tagged sub-headings when there is a tag on a high-level.
      )
-  )
+    )
 #+END_SRC
-** Capture/Reminders:
-- http://orgmode.org/worg/code/elisp/dto-org-gtd.el
-- http://www.gnu.org/software/emacs/manual/html_node/org/Remember-templates.html
-** macros:
-- Convert markdown links (~[display_message](link)~) to org links
-  (~[[link][display_message]]~):
-  #+BEGIN_SRC emacs-lisp
-    (fset 'convert-markdown-link-to-org-link
-     "\C-[xreplace-regexp\C-m\\[\\(.*\\)\\](\\(.*\\))\C-m[[\\2][\\1]]\C-m")
- #+END_SRC
-** export:
-Suggested [[https://orgmode.org/manual/Export-Settings.html][Export Options]] at top of file: ~#+OPTIONS: \n:nil toc:nil
-num:nil~. Or: ~#+OPTIONS: \n:nil toc:nil num:nil html-postamble:nil~ to remove
-the footer as well.
-
-- No line wrapping.
-- No TOC.
-- Don't number headings.
-*** Export org to Confluence:
-Been trying different ways to export org files to then dump into
-Confluence. Current rating of exporters:
-
-1. Export to HTML.
-   - Highlight region.
-   - ~M-x org-html-export-as-html~, cursor jumps to export buffer.
-   - ~M-x browse-url-of-buffer~, to open in your browser.
-   - Select all in Browser tab and paste into Confluence edit mode.
-2. Export to ASCII.
-   - ~M-x org-ascii-export-as-ascii~.
-   - Requires below config changes.
-   - Issues around Headings being picked up by Confluence (eg. h3 == h2, no h3+).
-   - Issues around Formatting being picked up by Confluence (eg. No Bold markup).
-3. Export to Markdown.
-   - ~M-x org-md-export-as-markdown~.
-   - Great rendering in a ~/markdown~ macro, but other macros cannot be nested
-     inside or work with the ~/markdown~ macro. eg. No ~/toc~ macro.
-   - Pretty good rendering pasting into Confluence edit area, but no auto
-     wrapping. ie. 80 characters.
-4. *BROKEN:* ~M-x ox-confluence~ from ~org-contrib~ throws errors on emacs29.
-
-*** Confluence ascii export config:
-Better ASCII export output from org files when the target is an Atlassian
-Confluence Wiki. Export via: ~M-x org-ascii-export-as-ascii~ (~C-cC-etA~).
-
-*TODO: figure out what Heading underlining style Confluence uses for H3-H5!!*
-
-#+BEGIN_SRC emacs-lisp
-  (setq org-ascii-text-width 10000)  ;; Large text width to avoid line wrapping.
-  (setq org-ascii-inner-margin 0)  ;; Don't indent lines between headings.
-  ;; Confluence expects H2 to be ~-~.
-  (setq org-ascii-underline '((ascii 61 45 45)
-                              (latin1 61 126 45)
-                              (utf-8 9552 9472 9548 9476 9480)))
-
-#+END_SRC
-
-** org-agenda:
-*** Custom Agenda views:
-- https://www.orgmode.org/manual/Custom-Agenda-Views.html
-- https://redgreenrepeat.com/2021/04/09/org-mode-agenda-getting-started-scheduled-items-and-todos/
-- http://www.cachestocaches.com/2016/9/my-workflow-org-agenda/#the-agenda
-- https://github.com/gjstein/emacs.d/blob/master/config/gs-org-agenda.el
 *** [[https://orgmode.org/org.html#Repeated-tasks][Repeated tasks]]:
 - Tag repeated tasks with a deadline (~C-cC-d~).
 - Add the repeat [and reminder] value.
