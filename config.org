@@ -1366,6 +1366,20 @@ In ~spray-mode~ buffers, following commands are available:
 - ~spray-quit~ (~q, <return>~) quit ~spray-mode~.
 
 * Terminals:
+** eshell:
+Add the following programs to the list of programs that =eshell= won't complain
+about not being a proper terminal. This will move out of line-mode and into
+paging mode (eg. like scrolling through a man page on a real terminal). See:
+
+- [[https://emacs.stackexchange.com/questions/37910/fix-or-workaround-terminal-is-not-fully-functional][Emacs StackExchange: fix or workaround: "Terminal is not fully functional"]].
+- [[https://www.emacswiki.org/emacs/EshellVisualCommands][Emacs Wiki: Eshell Visual Commands]].
+
+*NOTE:* This will use =ansi-term= for those command calls, so can use:
+ =C-xC-j=, and: =C-cC-k=, to jump in and out of editing mode.
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'eshell-visual-commands "aws")
+#+END_SRC
 ** vterm:
 Vterm is a terminal with pretty good ncurses support and compliance.
 
