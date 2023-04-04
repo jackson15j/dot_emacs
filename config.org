@@ -1415,7 +1415,12 @@ paging mode (eg. like scrolling through a man page on a real terminal). See:
  =C-xC-j=, and: =C-cC-k=, to jump in and out of editing mode.
 
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'eshell-visual-commands "aws")
+  (use-package eshell
+    :ensure t
+    :config
+    (with-eval-after-load 'em-term
+      (add-to-list 'eshell-visual-commands "aws"))
+    )
 #+END_SRC
 ** vterm:
 Vterm is a terminal with pretty good ncurses support and compliance.
