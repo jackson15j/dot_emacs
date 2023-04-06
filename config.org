@@ -753,6 +753,23 @@ Also see: [[https://orgmode.org/worg/org-contrib/babel/languages/index.html#conf
       (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
     ad-do-it))
 #+END_SRC
+*** Redirect stderr to =:results= block:
+See: [[https://emacs.stackexchange.com/questions/75778/org-babel-redirect-stderr-c-option-requires-an-argument][StackOverflow: Org Bable Redirect stderr (-c option requires an argument)]].
+
+Either:
+
+- Redirect all output at the file level:
+  #+BEGIN_EXAMPLE emacs-lisp
+    ,#+PROPERTY: header-args:shell :prologue "exec 2>&1" :epilogue ":" :results drawer
+  #+END_EXAMPLE
+- Redirect all output at the Heading level:
+  #+BEGIN_EXAMPLE emacs-lisp
+    :PROPERTIES:
+    :header-args:shell: :prologue "exec 2>&1" :epilogue ":" :results drawer
+    :END:
+  #+END_EXAMPLE
+
+*NOTE:* ~C-cC-c~ on the Property block to refresh for the file.
 ** [[https://github.com/theodorewiles/org-mind-map][org-mindmap]]:
 #+BEGIN_SRC emacs-lisp
   ;; This is an Emacs package that creates graphviz directed graphs from
