@@ -856,6 +856,13 @@ Rate completions by use.
     ;; :hook (cmake-mode . lsp)
     )
 #+END_SRC
+** [[https://github.com/preetpalS/emacs-dotenv-mode][dotenv-mode]]:
+Major mode for ~.env~ files.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package dotenv-mode
+    :ensure t)
+#+END_SRC
 ** [[https://joaotavora.github.io/eglot/][eglot]]:
 Eglot ([[https://github.com/joaotavora/eglot][Github: joaotavora/eglot]]) is the built-in, streamlined LSP (Language
 Server Protocol) client for emacs, to talk to LSP Servers with. it is the
