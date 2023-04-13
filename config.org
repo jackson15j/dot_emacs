@@ -896,6 +896,113 @@ Rate completions by use.
     ;; :hook (cmake-mode . lsp)
     )
 #+END_SRC
+** cpp:
+*** cc-mode:
+TODO:
+
+- Move to =eglot= + =flymake=.
+- Build ~compile_commands.json~.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package cc-mode
+    ;; https://emacs-lsp.github.io/lsp-mode/page/lsp-clangd/
+    :ensure t
+    :defer t
+    :after (lsp-mode)
+    :hook (
+           (c-mode . lsp)
+           (cc-mode . lsp)
+           (c++-mode . lsp)
+           )
+    )
+#+END_SRC
+*** cc-mode (historical):
+My very very old setup, long before LSP was a thing. Haven't used it in about a
+decade.
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package cc-mode
+  ;;   ;; gdb on mac:
+  ;;   ;; brew tap homebrew/dupes && brew install gdb
+  ;;   ;; Note: gdb keybinding is: C-x C-a C-l, which I did have my rename term windows as.
+  ;;   :ensure t
+  ;;   :defer t
+  ;;   :bind (
+  ;;          ;; ("<f9>" . compile)
+  ;;          ([remap comment-region] . 'recompile)  ; "C-c C-c"
+  ;;          ("M-." . 'xref-find-definitions)  ; https://www.emacswiki.org/emacs/EmacsTags
+  ;;          )
+  ;;   :config
+  ;;   (progn
+
+  ;;     (use-package smart-compile
+  ;;       :ensure t
+  ;;       :defer t)
+
+  ;;     (use-package xcscope
+  ;;       ;; Use cscope files within emacs, to jump around C/C++ code.
+  ;;       ;; https://github.com/dkogan/xcscope.el
+  ;;       :ensure t
+  ;;       :defer t
+  ;;       :config
+  ;;       (progn
+  ;;         ;; Setup auto-magically hooks into c/c++ modes.
+  ;;         (cscope-setup)
+  ;;         )
+  ;;       (define-key c++-mode-map [remap c-set-style] 'cscope-find-this-symbol)  ;; C-c .
+  ;;       ;; Note etags search defaults to: M-.
+  ;;       )
+
+  ;;     (use-package company-c-headers
+  ;;       ;; Complete c-headers
+  ;;       :ensure t
+  ;;       :defer t
+  ;;       :config
+  ;;       (push 'company-c-headers company-backends)
+  ;;       )
+
+  ;;     ;; cc-mode general settings.
+
+  ;;     ;; g++-4.9 -g3 -Wall -std=c++11 -stdlib=libc++ -lc++ *.cpp
+  ;;     ;; clang++ -g3 -Wall -std=c++11 -stdlib=libc++ -lc++ *.cpp
+  ;;     (add-to-list 'smart-compile-alist '("\\.[Cc]+[Pp]*\\'" . "clang++ -g3 -Wall -std=c++11 -stdlib=libc++ -lc++ -o %n.out *.cpp"))
+  ;;     (add-hook 'c-mode-common-hook 'my-programming-defaults-config)
+  ;;     (setq c-basic-offset 4)  ;; http://emacswiki.org/emacs/IndentingC
+  ;;     (setq c-default-style "linux")  ;; http://cc-mode.sourceforge.net/html-manual/Built_002din-Styles.html#Built_002din-Styles
+  ;;     ;; FIXME: Either bound this to `*compilation*` window only, so it stops
+  ;;     ;; jumping when I grep, or find the old stop-on-first-error behaviour I
+  ;;     ;; used to use.
+  ;;     (setq compilation-auto-jump-to-first-error nil)
+  ;;     )
+  ;;   (define-key c++-mode-map [remap comment-region] 'compile)  ;; C-c C-c
+  ;;   )
+#+END_SRC
+*** clang:
+#+BEGIN_SRC emacs-lisp
+  (use-package clang-format
+    ;; Applies clang-format to C++ files based on a .clang-format file in the
+    ;; project.
+    ;; requires `clang-format` to be installed from system package manger.
+    :ensure t
+    :defer t
+    :after (cc-mode)
+    :config
+    (progn
+      (define-key c++-mode-map (kbd "C-c #") 'clang-format-region)
+      )
+    )
+#+END_SRC
+*** Function to Create ~TAG~ file:
+Used to use this a decade ago. Not sure if it's worth keeping now that
+LSP is the common way to offload completions and look-ups.
+
+#+BEGIN_SRC emacs-lisp
+  (defun create-tags (dir-name)
+    "Create tags file in directory: DIR-NAME."
+    (interactive "Directory: ")
+    (eshell-command
+     ; (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name))) ;; `.c`/`.h` in a non-git repo.
+     (format "cd $(git rev-parse --show-toplevel) && git ls-files | etags -" dir-name)))  ;; tag all files.
+#+END_SRC
 ** [[https://github.com/preetpalS/emacs-dotenv-mode][dotenv-mode]]:
 Major mode for ~.env~ files.
 
