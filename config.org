@@ -663,8 +663,8 @@ Confluence Wiki. Export via: ~M-x org-ascii-export-as-ascii~ (~C-cC-etA~).
                                   ("p" "PARA Personal (Project Area Resources Archive) Agenda Review"
                                    (
                                     (agenda "" ((org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/"))))
-                                    (tags "ACTION|CHASE|INVESTIGATE|INVESTIGATION" ((org-agenda-overriding-header "\nProject: \"a series of tasks linked to a goal, with a deadline.\"  ~:ACTION:CHASE:INVESTIGATE:INVESTIGATION:~") (org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/"))))
-                                    (tags-todo "-ACTION-ADMIN-CHASE-EMACS-PERSONAL-READ-REVIEW-TRAINING-WATCH-WIKI-WORKFLOW" ((org-agenda-overriding-header "Project: (Tag to remove non-urgent TODO's out of this list!!)") (org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/"))))
+                                    (tags "ACTION|CHASE|INVESTIGATE|INVESTIGATION|TRAVEL" ((org-agenda-overriding-header "\nProject: \"a series of tasks linked to a goal, with a deadline.\"  ~:ACTION:CHASE:INVESTIGATE:INVESTIGATION:~") (org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/"))))
+                                    (tags-todo "-ACTION-ADMIN-CHASE-EMACS-PERSONAL-READ-REVIEW-TRAINING-TRAVEL-WATCH-WIKI-WORKFLOW" ((org-agenda-overriding-header "Project: (Tag to remove non-urgent TODO's out of this list!!)") (org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/"))))
                                     (tags "ADMIN|REVIEW|WIKI|WORKFLOW" ((org-agenda-overriding-header "\nAreas: \"a sphere of activity with a standard to be maintained over time.\"  ~:ADMIN:REVIEW:WIKI:WORKFLOW:~") (org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/"))))
                                     (tags "EMACS|PERSONAL|READ|TRAINING|WATCH|UNSORTED" ((org-agenda-overriding-header "\nResource: \"a topic or theme of ongoing interest.\"  ~:EMACS:PERSONAL:READ:TRAINING:WATCH:UNSORTED:~") (org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/"))))
                                     )
@@ -677,8 +677,8 @@ Confluence Wiki. Export via: ~M-x org-ascii-export-as-ascii~ (~C-cC-etA~).
                                   ("w" "PARA Work (Project Area Resources Archive) Agenda Review"
                                    (
                                     (agenda "" ((org-agenda-files (directory-files-recursively "~/org/work/" org-agenda-file-regexp))))
-                                    (tags "ACTION|CHASE|INVESTIGATE|INVESTIGATION" ((org-agenda-overriding-header "\nProject: \"a series of tasks linked to a goal, with a deadline.\"  ~:ACTION:CHASE:INVESTIGATE:INVESTIGATION:~") (org-agenda-files (directory-files-recursively "~/org/work/" org-agenda-file-regexp))))
-                                    (tags-todo "-ACTION-ADMIN-CHASE-EMACS-PERSONAL-READ-REVIEW-TRAINING-WATCH-WIKI-WORKFLOW" ((org-agenda-overriding-header "Project: (Tag to remove non-urgent TODO's out of this list!!)") (org-agenda-files (directory-files-recursively "~/org/work/" org-agenda-file-regexp))))
+                                    (tags "ACTION|CHASE|INVESTIGATE|INVESTIGATION|TRAVEL" ((org-agenda-overriding-header "\nProject: \"a series of tasks linked to a goal, with a deadline.\"  ~:ACTION:CHASE:INVESTIGATE:INVESTIGATION:~") (org-agenda-files (directory-files-recursively "~/org/work/" org-agenda-file-regexp))))
+                                    (tags-todo "-ACTION-ADMIN-CHASE-EMACS-PERSONAL-READ-REVIEW-TRAINING-TRAVEL-WATCH-WIKI-WORKFLOW" ((org-agenda-overriding-header "Project: (Tag to remove non-urgent TODO's out of this list!!)") (org-agenda-files (directory-files-recursively "~/org/work/" org-agenda-file-regexp))))
                                     (tags "ADMIN|REVIEW|WIKI|WORKFLOW" ((org-agenda-overriding-header "\nAreas: \"a sphere of activity with a standard to be maintained over time.\"  ~:ADMIN:REVIEW:WIKI:WORKFLOW:~") (org-agenda-files (directory-files-recursively "~/org/work/" org-agenda-file-regexp))))
                                     (tags "READ|TRAINING|WATCH|UNSORTED" ((org-agenda-overriding-header "\nResource: \"a topic or theme of ongoing interest.\"  ~:READ:TRAINING:WATCH:UNSORTED:~") (org-agenda-files (directory-files-recursively "~/org/work/" org-agenda-file-regexp))))
                                     )
@@ -691,7 +691,7 @@ Confluence Wiki. Export via: ~M-x org-ascii-export-as-ascii~ (~C-cC-etA~).
                                   ("d" "Agenda for Today (Compact view for Exporting to displays)"
                                    (
                                     (agenda)
-                                    (tags "ACTION|CHASE|INVESTIGATE|INVESTIGATION" ((org-agenda-overriding-header "Project: \"a series of tasks linked to a goal, with a deadline.\"  ~:ACTION:CHASE:INVESTIGATE:INVESTIGATION:~")))
+                                    (tags "ACTION|CHASE|INVESTIGATE|INVESTIGATION|TRAVEL" ((org-agenda-overriding-header "Project: \"a series of tasks linked to a goal, with a deadline.\"  ~:ACTION:CHASE:INVESTIGATE:INVESTIGATION:~")))
                                     )
                                    (
                                     (org-agenda-span 1)
