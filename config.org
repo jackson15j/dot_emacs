@@ -982,6 +982,7 @@ decade.
     ;; Applies clang-format to C++ files based on a .clang-format file in the
     ;; project.
     ;; requires `clang-format` to be installed from system package manger.
+    :ensure-system-package (clang)
     :ensure t
     :defer t
     :after (cc-mode)
