@@ -243,24 +243,6 @@ so grabbed this code:
 ;; *****************************************************
 
 
-;; ========================
-;; mode-line (the gutter bar) (smart mode line wraps up a lot of nice tweaks in one package)
-;; ========================
-;; https://github.com/Bruce-Connor/smart-mode-line
-(use-package smart-mode-line
-  ;; :ensure t
-  :disabled t
-  :defer t
-  :init
-  (setq
-   sml/no-confirm-load-theme t
-   sml/theme 'dark
-   sml/mode-width `full
-   )
-  (sml/setup)
-  (column-number-mode t)
-  )
-
 
 
 ;; ========================
