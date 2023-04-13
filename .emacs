@@ -248,7 +248,8 @@ so grabbed this code:
 ;; ========================
 ;; https://github.com/Bruce-Connor/smart-mode-line
 (use-package smart-mode-line
-  :ensure t
+  ;; :ensure t
+  :disabled t
   :defer t
   :init
   (setq
