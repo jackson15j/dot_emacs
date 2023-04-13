@@ -322,7 +322,6 @@ Automatically install tree-sitter grammars.
     :if (eq system-type 'darwin)
     :ensure-system-package terminal-notifier
     :ensure t
-    :defer t
     :commands (alert)
     :init
     (setq
@@ -344,7 +343,6 @@ that notifications have to be explicitly closed.
     :if (eq system-type 'darwin)
     :ensure-system-package terminal-notifier
     :ensure t
-    :defer t
     :after (org)
     :config
     (setq
@@ -802,7 +800,6 @@ Either:
     :init
     (require 'ox-org)
     :ensure t
-    :defer t
     ;; Uncomment the below if 'ensure-system-package` is installed
     ;;:ensure-system-package (gvgen . graphviz)
     :config
@@ -984,7 +981,6 @@ decade.
     ;; requires `clang-format` to be installed from system package manger.
     :ensure-system-package (clang)
     :ensure t
-    :defer t
     :after (cc-mode)
     :config
     (progn
@@ -1046,7 +1042,6 @@ Requires ~go~ & ~gopls~ to be installed. See:
   (use-package go-mode
     :ensure-system-package (go gopls)
     :ensure t
-    :defer t
     :functions flycheck-mode
     :preface
     (defun cas/go-config ()
@@ -1462,7 +1457,6 @@ If you want “live” captions and better MPV support:
   (use-package elfeed-tube-mpv
     :ensure-system-package ((mpv) (yt-dlp))
     :ensure t
-    :defer t ;; or :straight t
     :bind (:map elfeed-show-mode-map
                 ("C-c C-f" . elfeed-tube-mpv-follow-mode)
                 ("C-c C-w" . elfeed-tube-mpv-where)
@@ -1591,7 +1585,6 @@ Vterm is a terminal with pretty good ncurses support and compliance.
     :ensure-system-package (cmake)
     :ensure t
     :after (cmake-mode)
-    :defer t
     :init (setq vterm-always-compile-module t)
     :config (setq vterm-max-scrollback 100000)
     )
