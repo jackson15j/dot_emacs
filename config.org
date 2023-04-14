@@ -1614,7 +1614,18 @@ Eg. Run (~C-cC-c~) the following in an empty buffer with restclient-mode on:
     :mode ("\\.restclient\\'" . restclient-mode)
     )
 #+END_SRC
-
+** [[;; From https://github.com/alf/ob-restclient.el][ob-restclient]]:
+Add =restclient= support to org-babel code blocks.
+#+BEGIN_SRC emacs-lisp
+  (use-package ob-restclient
+    :ensure t
+    :after (restclient)
+    :config
+      (org-babel-do-load-languages
+       'org-babel-load-languages
+       '((restclient . t)))
+    )
+#+END_SRC
 * Links:
 ** Configs:
 Configs that look good enough to go back and maybe learn/steal from:
