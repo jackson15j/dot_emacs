@@ -1616,6 +1616,13 @@ Eg. Run (~C-cC-c~) the following in an empty buffer with restclient-mode on:
 #+END_SRC
 ** [[;; From https://github.com/alf/ob-restclient.el][ob-restclient]]:
 Add =restclient= support to org-babel code blocks.
+
+Eg. Run (~C-cC-c~) the following code block.
+#+BEGIN_SRC restclient :results silent
+  GET https://api.github.com
+  User-Agent: Emacs Restclient
+#+END_SRC
+
 #+BEGIN_SRC emacs-lisp
   (use-package ob-restclient
     :ensure t
