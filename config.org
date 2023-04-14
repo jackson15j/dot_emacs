@@ -1593,6 +1593,28 @@ Vterm is a terminal with pretty good ncurses support and compliance.
     :config (setq vterm-max-scrollback 100000)
     )
 #+END_SRC
+* Web:
+** [[https://github.com/pashky/restclient.el][restclient]]:
+Run up a rest client in emacs to quickly test APIs. See:
+
+- http://emacsrocks.com/e15.html
+- [[https://emacsconf.org/2021/talks/tech/][EmacsConf 2021: Creating technical API documentation and presentations using org-babel, restclient, and org-treeslide]].
+- [[https://github.com/jypma/emacsconf2021/blob/master/presentation.org][Github: jypma/emacsconf2021/blob/master/presentation.org]].
+
+Eg. Run (~C-cC-c~) the following in an empty buffer with restclient-mode on:
+#+BEGIN_EXAMPLE restclient
+  GET https://api.github.com
+  User-Agent: Emacs Restclient
+#+END_EXAMPLE
+
+#+BEGIN_SRC emacs-lisp
+  (use-package restclient
+    :ensure t
+    :defer t
+    :mode ("\\.restclient\\'" . restclient-mode)
+    )
+#+END_SRC
+
 * Links:
 ** Configs:
 Configs that look good enough to go back and maybe learn/steal from:
