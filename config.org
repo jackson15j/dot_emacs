@@ -1174,6 +1174,16 @@ NOTE:
 ** [[https://plantuml.com/][plantuml]]:
 Create architecture/design images with UML.
 
+Here are some good org-babel plantuml examples: [[https://github.com/dfeich/org-babel-examples/blob/master/plantuml/plantuml-babel.org][Github:
+dfeich/org-babel-examples/blob/master/plantuml/plantuml-babel.org]].
+
+*NOTE:* On Mac's =brew= does not symlink =OpenJDK= by default, to not break
+system packages. Run:
+
+#+BEGIN_SRC shell :results silent
+  sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+#+END_SRC
+
 #+BEGIN_SRC emacs-lisp
   (defun plantuml-compile-buffer-hook()
     "Compile command to generate a PNG from the current plantuml buffer."
