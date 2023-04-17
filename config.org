@@ -1183,7 +1183,7 @@ Create architecture/design images with UML.
 
   (use-package plantuml-mode
     ;; https://plantuml.com/emacs
-    :ensure-system-package ((java) (graphviz))
+    :ensure-system-package ((dot . graphviz) (java))
     :ensure t
     :after (org org-src)
     ;; FIXME: since my tree-sit change in python to use `python-mode`
