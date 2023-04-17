@@ -830,6 +830,7 @@ jypma/emacsconf2021/blob/master/presentation.org]].
 #+BEGIN_SRC emacs-lisp
   (defun my/presentation-setup ()
     (shell-command "dunstctl set-paused true")
+    (turn-off-fci-mode)
     (flyspell-mode 0)
     (setq text-scale-mode-amount 3)
     (org-display-inline-images)
@@ -839,6 +840,7 @@ jypma/emacsconf2021/blob/master/presentation.org]].
 
   (defun my/presentation-end ()
     (shell-command "dunstctl set-paused false")
+    (turn-on-fci-mode)
     (flyspell-mode 1)
     (text-scale-mode 0)
     (org-remove-inline-images)
