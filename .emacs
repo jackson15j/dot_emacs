@@ -1043,40 +1043,6 @@ so grabbed this code:
 
 
 
-(defun plantuml-compile-buffer-hook()
-  "Compile command to generate a PNG from the current plantuml buffer."
-  (compile (concat "java -jar ~/org/plantuml.jar " buffer-file-name ";\njava -jar ~/org/plantuml.jar -tsvg " buffer-file-name))
-  (message (concat "Generated PNG for: " buffer-file-name))
-  )
-
-(use-package plantuml-mode
-  ;; https://plantuml.com/emacs
-  :ensure-system-package ((java) (graphviz))
-  :ensure t
-  :after (org org-src)
-  ;; FIXME: since my tree-sit change in python to use `python-mode`
-  ;; everywhere, it seems to have broken the `.plantuml` look-up in
-  ;; `auto-mode-alist`. ie. plantuml files open up with `python-mode` ??
-  :mode "\\.plantuml\\'"
-  :hook
-  (
-   (plantuml-mode . my-programming-defaults-config)
-   (plantuml-mode . (lambda () (add-hook 'after-save-hook 'plantuml-compile-buffer-hook nil 'make-it-local)))
-   )
-  :init
-  ;; Enable plantuml-mode for PlantUML org code block
-  (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
-  :config
-  (setq
-   org-plantuml-jar-path "~/org/plantuml.jar"
-   plantuml-jar-path "~/org/plantuml.jar"
-   plantuml-default-exec-mode 'jar
-   )
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((plantuml . t)))
-  )
-
 ;; http://cestlaz.github.io/posts/using-emacs-26-gcal/
 (use-package calfw
   :ensure t
