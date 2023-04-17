@@ -1200,6 +1200,13 @@ Create architecture/design images with UML.
     (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
     :config
     (setq
+     ;; Use plantuml server, once: ~(setq plantuml-default-exec-mode 'server)~.
+     ;; https://hub.docker.com/r/plantuml/plantuml-server
+     ;; docker run -d -p 8099:8080 plantuml/plantuml-server:jetty
+     ;; plantuml-server-url "http://localhost:8099"
+
+     ;; See: following issue for inability to use PlantUML server in org-babel:
+     ;; https://github.com/skuro/plantuml-mode/issues/165
      org-plantuml-jar-path "~/org/plantuml.jar"
      plantuml-jar-path "~/org/plantuml.jar"
      plantuml-default-exec-mode 'jar
