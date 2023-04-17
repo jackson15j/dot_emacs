@@ -821,6 +821,44 @@ Either:
     ;; (setq org-mind-map-engine "circo")  ; Circular Layout
     )
 #+END_SRC
+** [[https://github.com/takaxp/org-tree-slide][org-tree-slide]]:
+Modern Org Presentation solution.
+
+Base config stolen from: [[https://github.com/jypma/emacsconf2021/blob/master/presentation.org#package-org-tree-slide][Github:
+jypma/emacsconf2021/blob/master/presentation.org]].
+
+#+BEGIN_SRC emacs-lisp
+  (defun my/presentation-setup ()
+    (shell-command "dunstctl set-paused true")
+    (flyspell-mode 0)
+    (setq text-scale-mode-amount 3)
+    (org-display-inline-images)
+    (text-scale-mode 1)
+    (font-lock-flush)
+    (font-lock-ensure))
+
+  (defun my/presentation-end ()
+    (shell-command "dunstctl set-paused false")
+    (flyspell-mode 1)
+    (text-scale-mode 0)
+    (org-remove-inline-images)
+    (font-lock-flush)
+    (font-lock-ensure))
+
+  (use-package org-tree-slide
+    :ensure t
+    ;; Load immediately, since it messes with org-mode faces
+    :demand
+    :hook
+    ((org-tree-slide-play . my/presentation-setup)
+     (org-tree-slide-stop . my/presentation-end))
+    :bind
+    (:map org-mode-map
+          ("<f6>" . org-tree-slide-mode))
+    :custom
+    (org-image-actual-width nil)
+    )
+#+END_SRC
 ** todo keywords:
 
 Applying styles to TODO keywords in org files:
