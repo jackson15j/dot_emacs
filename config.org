@@ -342,7 +342,8 @@ that notifications have to be explicitly closed.
     ;; https://github.com/julienXX/terminal-notifier
     :if (eq system-type 'darwin)
     :ensure-system-package terminal-notifier
-    :ensure t
+    ;; :ensure t
+    :disabled t  ;; Why is this blowing up??
     :after (org)
     :config
     (setq
