@@ -296,6 +296,14 @@ dictionaries). See: http://www.emacswiki.org/emacs/InteractiveSpell#toc6
      )
     )
 #+END_SRC
+*** Set local ispell dictionary to Welsh in Welsh files.
+Steps:
+- Pull welsh dictionary from; https://ftp.gnu.org/gnu/aspell/dict/cy/.
+- Un-tar, build and install dictionary: ~./configure && make && sudo make
+  install~.
+- Set file local variable to set the Welsh dictionary: ~M-x
+  add-file-local-variable <ret>ispell-local-dictionary<ret>"cy"<ret>~.
+- Revert buffer and verify spellings: ~M-x flyspell-buffer~.
 ** Treesit:
 Treesit uses the tree-sitter grammars to provide faces/fontifying/structures to
 text by an AST instead of a regex (ie. fast, accurate, works during editing).
