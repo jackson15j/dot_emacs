@@ -1488,6 +1488,35 @@ do completions!
            )
     )
 #+END_SRC
+*** yaml schemas:
+RedHat maintains a whole library of JSON schemas for it's [[https://github.com/redhat-developer/yaml-language-server][Github:
+redhat-developer/yaml-language-server]] to use. These need to be pulled in
+dynamically, so that emacs can appropriately warn/highlight/complete/document
+the YAML in the current buffer.
+
+Links:
+
+- https://developers.redhat.com/blog/2020/11/25/how-to-configure-yaml-schema-to-make-editing-files-easier#yaml_schema.
+- https://emacs-lsp.github.io/lsp-mode/page/lsp-yaml/.
+- https://www.schemastore.org/json/.
+- https://github.com/SchemaStore/schemastore/commit/12841f7f81401f2c48c3c1c647c9e0739a34a89b
+  for DBT project files.
+- [[https://github.com/joaotavora/eglot/discussions/918][Github: joaotavora/eglot/discussions/918 - Eglot + yaml-language-server #918]].
+
+Hopefully, [[https://github.com/yveszoundi/eglot-yaml][Github: yveszoundi/eglot-yaml]] solves this problem for eglot.
+
+**** [[https://github.com/yveszoundi/eglot-yaml][eglot-yaml]]:
+~M-x eglot-yaml-schema-for-buffer~ to select a JSON schema for the current YAML
+buffer.
+
+*NOTE:* Not in emacs package managers! Commented out for now.
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package eglot-yaml
+  ;;   :ensure t
+  ;;   :after (eglot)
+  ;;   :hook ((yaml-ts-mode . eglot-yaml-init))
+  ;;   )
+#+END_SRC
 * [[https://github.com/skeeto/elfeed][elfeed]]:
 RSS feeds in emacs.
 ** [[https://github.com/skeeto/elfeed][elfeed]]:
