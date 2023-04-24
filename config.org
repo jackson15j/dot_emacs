@@ -1742,6 +1742,7 @@ Eg. Run (~C-cC-c~) the following code block.
 Configs that look good enough to go back and maybe learn/steal from:
 - https://github.com/meatcar/emacs.d
 - https://github.com/jakebox/jake-emacs
+- https://github.com/jypma/emacs.d
 ** Packages to try:
 - https://github.com/seagle0128/doom-modeline
 - https://github.com/emacsorphanage/anzu
