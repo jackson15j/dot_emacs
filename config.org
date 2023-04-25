@@ -1447,6 +1447,30 @@ a projects pipenv.
            )
     )
 #+END_SRC
+** sql:
+- Linter: [[https://github.com/sqlfluff/sqlfluff][Github: sqlfluff/sqlfluff]]
+
+#+BEGIN_SRC emacs-lisp
+  (use-package sql
+    :ensure-system-package (sqlfluff)
+    :ensure t
+    ;; :hook (
+    ;;        (sql-mode . eglot-ensure)
+    ;;        )
+    :config
+    (setq
+     sql-dialect 'postgres
+     sql-linter-program 'sqlfluff
+     )
+    )
+#+END_SRC
+*** [[https://github.com/erickgnavar/flymake-sqlfluff][flymake-sqlfluff]]:
+Testing out SQLFluff for linting.
+#+BEGIN_SRC emacs-lisp
+  (use-package flymake-sqlfluff
+    :ensure-system-package (sqlfluff)
+    :ensure t)
+#+END_SRC
 ** xml:
 *** Pretty print XML:
 - [[https://stackoverflow.com/questions/12492/pretty-printing-xml-files-on-emacs][SO: Pretty Printing XML files on Emacs]]. Picked the solution below so that I
