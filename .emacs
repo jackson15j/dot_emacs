@@ -1001,11 +1001,17 @@ so grabbed this code:
 <body><article class=\"markdown-body\" style=\"box-sizing: border-box;min-width: 200px;max-width: 980px;margin: 0 auto;padding: 45px;\">%s</article></body></html>" (buffer-string))))
    (current-buffer)))
 
+
+;; Was `http-start` doesn't blow up when port is in use, so this ends up
+;; sending the impatient-mode generated URL to whatever service is already
+;; running on the default port of 8080.
+;;
 ;; https://blog.bitsandbobs.net/blog/emacs-markdown-live-preview/
 (defun my-markdown-preview ()
   "Preview markdown."
   (interactive)
   (unless (process-status "httpd")
+    (setq httpd-port 8088)
     (httpd-start))
   (impatient-mode)
   (imp-set-user-filter 'my-markdown-filter)
