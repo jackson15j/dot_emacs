@@ -977,45 +977,6 @@ so grabbed this code:
   :hook (css-mode . lsp)
   )
 
-;https://github.com/skeeto/impatient-mode
-(use-package impatient-mode
-  ; start webserver with: `M-x httpd-start`.
-  ; Then set the mode on the buffer: `M-x impatient-mode`.
-  :ensure t
-  :defer t
-  )
-
-(defun my-markdown-filter (buffer)
-  "Function to allow `impatient-mode` to preview markdown.  Usage:
-
-* `M-x httpd-start`
-* Go to required BUFFER.
-* `M-x impatient-mode`
-* `M-x imp-set-user-filter RET markdown-html RET`"
-  (princ
-   (with-temp-buffer
-     (let ((tmp (buffer-name)))
-       (set-buffer buffer)
-       (set-buffer (markdown tmp))
-       (format "<!DOCTYPE html><html><title>Markdown preview</title><link rel=\"stylesheet\" href = \"https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css\"/>
-<body><article class=\"markdown-body\" style=\"box-sizing: border-box;min-width: 200px;max-width: 980px;margin: 0 auto;padding: 45px;\">%s</article></body></html>" (buffer-string))))
-   (current-buffer)))
-
-
-;; Was `http-start` doesn't blow up when port is in use, so this ends up
-;; sending the impatient-mode generated URL to whatever service is already
-;; running on the default port of 8080.
-;;
-;; https://blog.bitsandbobs.net/blog/emacs-markdown-live-preview/
-(defun my-markdown-preview ()
-  "Preview markdown."
-  (interactive)
-  (unless (process-status "httpd")
-    (setq httpd-port 8088)
-    (httpd-start))
-  (impatient-mode)
-  (imp-set-user-filter 'my-markdown-filter)
-  (imp-visit-buffer))
 
 
 ;; *****************************************************
