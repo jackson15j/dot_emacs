@@ -305,6 +305,9 @@ Steps:
   add-file-local-variable <ret>ispell-local-dictionary<ret>"cy"<ret>~.
 - Revert buffer and verify spellings: ~M-x flyspell-buffer~.
 ** tab-bar:
+The =tab-bar= package creates tabs like a browser. Each tab can maintain it's
+layout. Seems to hook into =desktop-save= to restore on restarts.
+
 #+BEGIN_SRC emacs-lisp
   (use-package tab-bar
     :ensure t
