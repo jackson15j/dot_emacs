@@ -444,7 +444,6 @@ magit - a pretty good git package with more features than the built in emacs
 #+BEGIN_SRC emacs-lisp
   (use-package magit
     :ensure t
-    :defer t
     :bind (
        ("<f3>" . magit-status)
        ("\C-c\C-s" . magit-status)
@@ -485,7 +484,6 @@ explicit definition of ~magit-popup~
 #+BEGIN_SRC emacs-lisp
   (use-package magit-popup
      :ensure t
-     :defer t
      :after (magit)
      )
 #+END_SRC
