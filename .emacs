@@ -328,7 +328,6 @@ so grabbed this code:
   (my_highlighted_words)  ;; highlights specific words in red & bold.
   (fci-mode)  ;; adds fill column indicator.
   (auto-fill-mode)  ;; wraps at auto fill column.
-  (flyspell-mode)
   (my_highlighted_words)  ;; highlight specific words
   (setq indent-tabs-mode nil)  ;; spaces instead of tabs
   )
@@ -346,8 +345,6 @@ so grabbed this code:
   (my_highlighted_words)  ;; highlights specific words in red & bold.
   (fci-mode)  ;; adds fill column indicator.
   ;; (auto-fill-mode nil)  ;; disables auto fill at column.
-  (flyspell-mode)
-  (flyspell-prog-mode)  ;; spell check comments/strings
   (setq indent-tabs-mode nil)  ;; spaces instead of tabs
   (setq tab-width 4)  ;; 4 spaces per tab key press.
 
