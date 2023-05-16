@@ -1004,11 +1004,6 @@ TODO:
     ;; https://emacs-lsp.github.io/lsp-mode/page/lsp-clangd/
     :ensure t
     :after (eglot)
-    :hook (
-           (cc-mode . eglot-ensure)
-           (c-ts-base-mode . eglot-ensure)
-           (cc-ts-mode . eglot-ensure)
-           )
     )
 #+END_SRC
 *** cc-mode (historical):
@@ -1116,7 +1111,10 @@ trying to slim down config and use more built-ins.
 #+BEGIN_SRC emacs-lisp
   (use-package eglot
     :after (company-mode)
-    :hook ((eglot-mode . global-company-mode))
+    :hook (
+           (eglot-mode . global-company-mode)
+           (prog-mode . eglot-ensure)
+           )
     :ensure t)
 #+END_SRC
 ** go:
@@ -1140,6 +1138,7 @@ Requires ~go~ & ~gopls~ to be installed. See:
   (use-package go-mode
     :ensure-system-package (go gopls)
     :ensure t
+    :after eglot
     :functions flycheck-mode
     :preface
     (defun cas/go-config ()
@@ -1153,7 +1152,6 @@ Requires ~go~ & ~gopls~ to be installed. See:
                "go build -v && go test -v && go vet"))
       )
     :hook (
-           (go-ts-mode . eglot-ensure)
            (go-ts-mode . cas/go-config)
        )
     )
@@ -1392,7 +1390,6 @@ server (suggest: =pyright-langserver=).
                  "pytest"))
         )
     :hook (
-           (python-ts-mode . eglot-ensure)
            (python-mode . cas/python-config)
            )
     :config
@@ -1547,9 +1544,6 @@ a projects pipenv.
   (use-package sql
     :ensure-system-package (sqlfluff)
     :ensure t
-    ;; :hook (
-    ;;        (sql-mode . eglot-ensure)
-    ;;        )
     :config
     (setq
      sql-dialect 'postgres
@@ -1600,9 +1594,6 @@ do completions!
   (use-package yaml-mode
     :ensure-system-package (yaml-language-server)
     :ensure t
-    :hook (
-           (yaml-ts-mode . eglot-ensure)
-           )
     )
 #+END_SRC
 *** yaml schemas:
