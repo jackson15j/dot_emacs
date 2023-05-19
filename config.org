@@ -1161,6 +1161,7 @@ Requires ~go~ & ~gopls~ to be installed. See:
       )
     :hook (
            (go-ts-mode . cas/go-config)
+           (go-ts-mode . eglot-ensure)
        )
     )
 #+END_SRC
@@ -1426,7 +1427,7 @@ server (suggest: =pyright-langserver=).
                  "pytest"))
         )
     :hook (
-           (python-mode . cas/python-config)
+           (python-ts-mode . cas/python-config)
            )
     :config
     (setq
