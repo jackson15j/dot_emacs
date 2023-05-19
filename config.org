@@ -1174,7 +1174,7 @@ running delve process.
 
 Typical workflow might be:
 
-- Debug Tests: ~M-x dlv <return> dlv test <return>~.
+- Debug Tests: ~M-x dlv <return> dlv test <return>~, Debug App: ~dlv debug~.
 - Set Breakpoint: ~b <file>:<line>~, List: ~bp~, toggle: ~toggle <int>~
 - Start/Continue: ~c~.
 - Step: ~s~, Step Over: ~n~, Step Out: ~n~.
