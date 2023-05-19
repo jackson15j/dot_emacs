@@ -1157,6 +1157,33 @@ Requires ~go~ & ~gopls~ to be installed. See:
        )
     )
 #+END_SRC
+*** [[https://github.com/benma/go-dlv.el/][go-dlv]]:
+Debug Go programs with: [[https://github.com/go-delve/delve][Delve]], via: [[https://github.com/benma/go-dlv.el/][go-dlv]] on top of [[https://github.com/realgud/realgud][realgud]].
+
+For help either look at: [[https://github.com/go-delve/delve/blob/master/Documentation/cli/README.md][Github:
+go-delve/delve/blob/master/Documentation/cli/README.md]], or: ~help~ in a
+running delve process.
+
+Typical workflow might be:
+
+- Debug Tests: ~M-x dlv <return> dlv test <return>~.
+- Set Breakpoint: ~b <file>:<line>~, List: ~bp~, toggle: ~toggle <int>~
+- Start/Continue: ~c~.
+- Step: ~s~, Step Over: ~n~, Step Out: ~n~.
+- Print variable: ~p <variable>~.
+- Call function: ~call <func>~.
+- Restart: ~r~. **NOTE:** need to restart debug session to pick up file
+  changes!!
+- Exit: ~exit~
+
+#+BEGIN_SRC emacs-lisp
+  (use-package go-dlv
+    :ensure-system-package (delve)
+    :ensure t
+    :after (realgud)
+    )
+#+END_SRC
+
 ** LSP (Language Server Protocol):
 ~lsp-mode~ is the external, feature-rich version of: [[*\[\[https://joaotavora.github.io/eglot/\]\[eglot\]\]:][eglot]] (built-in), for
 interacting with LSP Servers in emacs.
