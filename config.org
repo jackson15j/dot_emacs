@@ -1093,6 +1093,13 @@ LSP is the common way to offload completions and look-ups.
      ; (format "find %s -type f -name \"*.[ch]\" | etags -" dir-name))) ;; `.c`/`.h` in a non-git repo.
      (format "cd $(git rev-parse --show-toplevel) && git ls-files | etags -" dir-name)))  ;; tag all files.
 #+END_SRC
+** debugging:
+*** [[https://github.com/realgud/realgud][realgud]]:
+#+BEGIN_SRC emacs-lisp
+  (use-package realgud
+    :ensure t
+    :defer t)
+#+END_SRC
 ** [[https://github.com/preetpalS/emacs-dotenv-mode][dotenv-mode]]:
 Major mode for ~.env~ files.
 
