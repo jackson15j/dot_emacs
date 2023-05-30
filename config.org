@@ -1813,6 +1813,28 @@ Alternative to [[*\[\[https://github.com/manojm321/elfeed-dashboard\]\[elfeed-da
   (or any other non-graphical web browser).
 * Reading:
 Packages around reading (eg. novels/epubs, Speed Reading, etc).
+** [[https://github.com/smythp/eloud][eloud]]:
+Emacs-based screen reader to read words when passing over them, or the whole
+buffer with ~M-<~ (=beginning-of-buffer=). Toggle with: ~M-x eloud-mode~.
+
+*NOTE:*
+- This slows down buffer movement greatly.
+- Throws traceback when trying to close with a FIDO fuzzy completion. Have to
+  type out: ~eloud-mode<return>~, in: ~M-x~, to disable.
+  - See: [[https://github.com/smythp/eloud/issues/33][Cannot disable eloud-mode from a fido completion #33]].
+- [[https://espeak.sourceforge.net/commands.html][Espeak Docs: Commnands]].
+
+#+BEGIN_SRC emacs-lisp
+  (use-package eloud
+    :ensure t
+    :ensure-system-package (espeak)
+    :if (eq system-type 'darwin)
+    :config
+    (setq eloud-espeak-path "/usr/local/bin/espeak")
+    (setq eloud-speech-rate 350)
+    )
+#+END_SRC
+
 ** [[https://github.com/emacsmirror/spray][spray]]:
 Speed reading in a buffer by flashing each word in turn. Spritz clone for speed
 reading.
