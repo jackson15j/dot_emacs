@@ -929,6 +929,64 @@ Applying styles to TODO keywords in org files:
           )
         )
 #+END_SRC
+* Diagrams:
+Modes for drawing diagrams like: Ladder/Sequence, MindMaps, Class/Block/Object,
+UML diagrams.
+** [[https://plantuml.com/][plantuml]]:
+Create architecture/design images with UML.
+
+Here are some good org-babel plantuml examples: [[https://github.com/dfeich/org-babel-examples/blob/master/plantuml/plantuml-babel.org][Github:
+dfeich/org-babel-examples/blob/master/plantuml/plantuml-babel.org]].
+
+*NOTE:* On Mac's =brew= does not symlink =OpenJDK= by default, to not break
+system packages. Run:
+
+#+BEGIN_SRC shell :results silent
+  sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (defun plantuml-compile-buffer-hook()
+    "Compile command to generate a PNG from the current plantuml buffer."
+    (compile (concat "java -jar ~/org/plantuml.jar " buffer-file-name ";\njava -jar ~/org/plantuml.jar -tsvg " buffer-file-name))
+    (message (concat "Generated PNG for: " buffer-file-name))
+    )
+
+  (use-package plantuml-mode
+    ;; https://plantuml.com/emacs
+    :ensure-system-package ((dot . graphviz) (java))
+    :ensure t
+    :after (org org-src)
+    ;; FIXME: since my tree-sit change in python to use `python-mode`
+    ;; everywhere, it seems to have broken the `.plantuml` look-up in
+    ;; `auto-mode-alist`. ie. plantuml files open up with `python-mode` ??
+    :mode "\\.plantuml\\'"
+    :hook
+    (
+     (plantuml-mode . my-programming-defaults-config)
+     (plantuml-mode . (lambda () (add-hook 'after-save-hook 'plantuml-compile-buffer-hook nil 'make-it-local)))
+     )
+    :init
+    ;; Enable plantuml-mode for PlantUML org code block
+    (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+    :config
+    (setq
+     ;; Use plantuml server, once: ~(setq plantuml-default-exec-mode 'server)~.
+     ;; https://hub.docker.com/r/plantuml/plantuml-server
+     ;; docker run -d -p 8099:8080 plantuml/plantuml-server:jetty
+     ;; plantuml-server-url "http://localhost:8099"
+
+     ;; See: following issue for inability to use PlantUML server in org-babel:
+     ;; https://github.com/skuro/plantuml-mode/issues/165
+     org-plantuml-jar-path "~/org/plantuml.jar"
+     plantuml-jar-path "~/org/plantuml.jar"
+     plantuml-default-exec-mode 'jar
+     )
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((plantuml . t)))
+    )
+#+END_SRC
 * Docker:
 ** tramp-container (built-in):
 Tramp into a docker container with: ~C-x C-f /docker:[user@]container:/path/to/file~
@@ -1345,61 +1403,6 @@ See: https://blog.bitsandbobs.net/blog/emacs-markdown-live-preview/
     ;; Used to generate a table of contents in a markdown file.
     :ensure t
     :defer t)
-#+END_SRC
-** [[https://plantuml.com/][plantuml]]:
-Create architecture/design images with UML.
-
-Here are some good org-babel plantuml examples: [[https://github.com/dfeich/org-babel-examples/blob/master/plantuml/plantuml-babel.org][Github:
-dfeich/org-babel-examples/blob/master/plantuml/plantuml-babel.org]].
-
-*NOTE:* On Mac's =brew= does not symlink =OpenJDK= by default, to not break
-system packages. Run:
-
-#+BEGIN_SRC shell :results silent
-  sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-  (defun plantuml-compile-buffer-hook()
-    "Compile command to generate a PNG from the current plantuml buffer."
-    (compile (concat "java -jar ~/org/plantuml.jar " buffer-file-name ";\njava -jar ~/org/plantuml.jar -tsvg " buffer-file-name))
-    (message (concat "Generated PNG for: " buffer-file-name))
-    )
-
-  (use-package plantuml-mode
-    ;; https://plantuml.com/emacs
-    :ensure-system-package ((dot . graphviz) (java))
-    :ensure t
-    :after (org org-src)
-    ;; FIXME: since my tree-sit change in python to use `python-mode`
-    ;; everywhere, it seems to have broken the `.plantuml` look-up in
-    ;; `auto-mode-alist`. ie. plantuml files open up with `python-mode` ??
-    :mode "\\.plantuml\\'"
-    :hook
-    (
-     (plantuml-mode . my-programming-defaults-config)
-     (plantuml-mode . (lambda () (add-hook 'after-save-hook 'plantuml-compile-buffer-hook nil 'make-it-local)))
-     )
-    :init
-    ;; Enable plantuml-mode for PlantUML org code block
-    (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
-    :config
-    (setq
-     ;; Use plantuml server, once: ~(setq plantuml-default-exec-mode 'server)~.
-     ;; https://hub.docker.com/r/plantuml/plantuml-server
-     ;; docker run -d -p 8099:8080 plantuml/plantuml-server:jetty
-     ;; plantuml-server-url "http://localhost:8099"
-
-     ;; See: following issue for inability to use PlantUML server in org-babel:
-     ;; https://github.com/skuro/plantuml-mode/issues/165
-     org-plantuml-jar-path "~/org/plantuml.jar"
-     plantuml-jar-path "~/org/plantuml.jar"
-     plantuml-default-exec-mode 'jar
-     )
-    (org-babel-do-load-languages
-     'org-babel-load-languages
-     '((plantuml . t)))
-    )
 #+END_SRC
 ** python:
 
