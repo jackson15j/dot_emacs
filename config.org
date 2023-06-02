@@ -932,6 +932,38 @@ Applying styles to TODO keywords in org files:
 * Diagrams:
 Modes for drawing diagrams like: Ladder/Sequence, MindMaps, Class/Block/Object,
 UML diagrams.
+** [[https://mermaid.js.org/intro/][mermaid]]:
+Mermaid is a new plaintext diagram markup that has native rendering support in
+Github (See: [[https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams][Github Docs: Creating Diagrams]]). To render locally, you need to
+install: [[https://github.com/mermaid-js/mermaid-cli][=mermaid-cli=]]. Example that /should/ render natively in Github:
+
+#+BEGIN_SRC mermaid
+  sequenceDiagram
+   A-->B: Works!
+#+END_SRC
+
+*** [[https://github.com/abrochard/mermaid-mode][mermaid-mode]]:
+~brew install mermaid-cli` falls over with: ~Error: mermaid-cli has been
+disabled because it installs a pre-built copy of Chromium!~.
+
+Which is mentioned in the Closed:WontFix issue: [[https://github.com/mermaid-js/mermaid-cli/issues/288][update brew formula to work
+with 9.0.3 #288]]. Installing via =npm= globally instead.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package mermaid-mode
+    :ensure-system-package (mmdc . "npm install -g @mermaid-js/mermaid-cli")
+    :ensure t
+    )
+#+END_SRC
+
+*** [[https://github.com/arnm/ob-mermaid][ob-mermaid]]:
+#+BEGIN_SRC emacs-lisp
+  (use-package ob-mermaid
+    :ensure-system-package (mmdc . "npm install -g @mermaid-js/mermaid-cli")
+    :ensure t
+    )
+#+END_SRC
+
 ** [[https://plantuml.com/][plantuml]]:
 Create architecture/design images with UML.
 
