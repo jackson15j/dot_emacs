@@ -123,17 +123,6 @@
    '(("\\<\\(Note\\|NOTE\\|FIXME\\|Todo\\|TODO\\|BUG\\|Bug\\):" 1 '(:foreground "red" :weight bold) t))))
 
 
-; Use the C-based line numbers instead of the slower lisp (`linum`).
-;; https://www.emacswiki.org/emacs/LineNumbers#h5o-1
-(use-package display-line-numbers
-  :hook (
-         (prog-mode . 'display-line-numbers)
-         (text-mode . 'display-line-numbers)
-         )
-  :custom-face
-   (line-number ((t (:inherit (shadow default) :background "grey10"))))
-  )
-
 
 
 ;; http://pragmaticemacs.com/emacs/dired-human-readable-sizes-and-sort-by-size/

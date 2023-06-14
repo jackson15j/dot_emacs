@@ -91,6 +91,20 @@ Auto save all open files in current session and reload on startup.
       (dolist (mode '(magit-mode git-commit-mode))
         (add-to-list 'desktop-modes-not-to-save mode))))
 #+END_SRC
+*** display-line-numbers:
+Use the C-based line numbers instead of the slower lisp (`linum`).
+https://www.emacswiki.org/emacs/LineNumbers#h5o-1
+
+#+BEGIN_SRC emacs-lisp
+  (use-package display-line-numbers
+    :hook (
+           (prog-mode . 'display-line-numbers)
+           (text-mode . 'display-line-numbers)
+           )
+    :custom-face
+     (line-number ((t (:inherit (shadow default) :background "grey10"))))
+    )
+#+END_SRC
 *** which-key:
 ~which-key~ integration, to show keyboard shortcuts.
 #+BEGIN_SRC emacs-lisp
