@@ -1872,6 +1872,33 @@ Alternative to [[*\[\[https://github.com/manojm321/elfeed-dashboard\]\[elfeed-da
 - https://bitbucket.org/shackra/4hoa/src/master/ - A Go application that will
   burn your feeds and retrieve articles of the Internet for you to read in eww
   (or any other non-graphical web browser).
+* Music:
+** [[https://github.com/pft/mingus][mingus]]:
+Mingus (MPD client)
+
+MPD references:
+
+- https://github.com/dakrone/eos/blob/master/eos-music.org
+- https://wiki.archlinux.org/index.php/Music_Player_Daemon
+- https://wiki.archlinux.org/index.php/Ncmpcpp
+
+#+BEGIN_SRC emacs-lisp
+  (use-package mingus
+    :ensure t
+    :defer t
+    :bind
+    (
+     ("C-c m" . mingus)
+     ("<f9>" . mingus-toggle)
+     ("C-<f12>" . mingus-prev)
+     ("<f12>" . mingus-next)
+     ; "C-<f2>
+     ("M-[ 1 ; 5 q" . mingus-vol-down)
+     ; "C-<f3>
+     ("M-[ 1 ; 5 r" . mingus-vol-up)
+     )
+    )
+#+END_SRC
 * Reading:
 Packages around reading (eg. novels/epubs, Speed Reading, etc).
 ** [[https://github.com/smythp/eloud][eloud]]:

@@ -1248,33 +1248,6 @@ MODE - ??"
 ;;   )
 
 
-
-
-
-
-;; ========================
-;; Mingus (MPD client)
-;; ========================
-;; MPD references:
-;; * https://github.com/dakrone/eos/blob/master/eos-music.org
-;; * https://wiki.archlinux.org/index.php/Music_Player_Daemon
-;; * https://wiki.archlinux.org/index.php/Ncmpcpp
-(use-package mingus
-  :ensure t
-  :defer t
-  :bind
-  (
-   ("C-c m" . mingus)
-   ("<f9>" . mingus-toggle)
-   ("C-<f12>" . mingus-prev)
-   ("<f12>" . mingus-next)
-   ; "C-<f2>
-   ("M-[ 1 ; 5 q" . mingus-vol-down)
-   ; "C-<f3>
-   ("M-[ 1 ; 5 r" . mingus-vol-up)
-   )
-  )
-
 ;; ========================
 ;; md4rd (Reddit client)
 ;; ========================
