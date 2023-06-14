@@ -1428,7 +1428,7 @@ for a similar problem on NixOS.
                            (lsp-deferred))))
 #+END_SRC
 ** markdown:
-*** markdown-mode:
+*** [[https://github.com/jrblevin/markdown-mode][markdown-mode]]:
 NOTE:
 
 - ~flymd~ looks to be broken and unmaintained. Use ~impatient-mode~ for live
@@ -1436,13 +1436,16 @@ NOTE:
 - ~M-x markdown-preview~, requires: ~markdown~, to be installed with system
   package manager.
 
+Look at:
+
+- http://fletcher.github.io/peg-multimarkdown/.
 #+BEGIN_SRC emacs-lisp
   ;; https://www.emacswiki.org/emacs/KeyboardMacros
   ;; https://www.emacswiki.org/emacs/KeyboardMacrosTricks
   (fset 'convert-markdown-ref-to-list
-    "\C-[xreplace-regexp\C-m\\[\\(.*\\)\\].*\C-m* [\\1].\C-m")
+        "\C-[xreplace-regexp\C-m\\[\\(.*\\)\\].*\C-m* [\\1].\C-m")
   (fset 'convert-markdown-github-url-to-ref
-    "\C-[xreplace-regexp\C-m.*github.com/\\(.*\\)/\\(.*\\)\C-m[Github: \\1/\\2]: https://github.com/\\1/\\2\C-m")
+        "\C-[xreplace-regexp\C-m.*github.com/\\(.*\\)/\\(.*\\)\C-m[Github: \\1/\\2]: https://github.com/\\1/\\2\C-m")
   ;; FIXME: figure out how to feed the `LFD` or `C-qC-j` without it
   ;; counting as a real `RET` and breaking the `replace-regexp` with:
   ;; `\\(` !!
@@ -1450,8 +1453,12 @@ NOTE:
     (kmacro "M-< M-x r e p l a c e - r e g e x p RET \\ ( < a SPC i d = .* > < / a > \\ ) RET RET"))
 
   (use-package markdown-mode
-    :ensure-system-package (markdown)  ;; Required by ~M-x markdown-preview~.
+    ;; ~markdown~ in arch package manager.
+    ;; :ensure-system-package (markdown)  ;; Required by ~M-x markdown-preview~.
     :ensure t
+    :mode ("README\\.md\\'" . gfm-mode)
+    ;; multimarkdown is in brew/yay, but not pulling down on arch??
+    ;; :init (setq markdown-command "multimarkdown")
     :bind (
            ("C-c C-a b" . convert-markdown-ref-to-list)
            ("C-c C-a g" . convert-markdown-github-url-to-ref)
