@@ -348,30 +348,31 @@ layout. Seems to hook into =desktop-save= to restore on restarts.
 
 #+BEGIN_SRC emacs-lisp
   (use-package tab-bar
-    :ensure t
-    :defer t
-    :bind ("C-x t" . 'hydra-tab-bar/body)
-    )
-
-  ;; https://github.com/abo-abo/hydra/wiki/Emacs-27-tab-bar-mode
-  ;; https://github.com/abo-abo/hydra/wiki/Binding-Styles
-  (defhydra hydra-tab-bar (:color amaranth)
-    "Tab Bar Operations"
-    ("t" tab-new "Create a new tab" :column "Creation")
-    ("c" tab-new "Create a new tab")
-    ("d" dired-other-tab "Open Dired in another tab")
-    ("f" find-file-other-tab "Find file in another tab")
-    ("0" tab-close "Close current tab")
-    ("k" tab-close "Close current tab")
-    ("m" tab-move "Move current tab" :column "Management")
-    ("r" tab-rename "Rename Tab")
-    ("n" tab-bar-select-tab-by-name "Select tab by name" :column "Navigation")
-    ("s" tab-bar-select-tab-by-name "Select tab by name")
-    ("j" tab-previous "Previous Tab")
-    ("l" tab-next "Next Tab")
-    (";" tab-next "Next Tab")
-    ("q" nil "Exit" :exit t)
-    )
+	:ensure t
+	:defer t
+	:after (hydra)
+	:bind ("C-x t" . 'hydra-tab-bar/body)
+	:config
+	;; https://github.com/abo-abo/hydra/wiki/Emacs-27-tab-bar-mode
+	;; https://github.com/abo-abo/hydra/wiki/Binding-Styles
+	(defhydra hydra-tab-bar (:color amaranth)
+			  "Tab Bar Operations"
+			  ("t" tab-new "Create a new tab" :column "Creation")
+			  ("c" tab-new "Create a new tab")
+			  ("d" dired-other-tab "Open Dired in another tab")
+			  ("f" find-file-other-tab "Find file in another tab")
+			  ("0" tab-close "Close current tab")
+			  ("k" tab-close "Close current tab")
+			  ("m" tab-move "Move current tab" :column "Management")
+			  ("r" tab-rename "Rename Tab")
+			  ("n" tab-bar-select-tab-by-name "Select tab by name" :column "Navigation")
+			  ("s" tab-bar-select-tab-by-name "Select tab by name")
+			  ("j" tab-previous "Previous Tab")
+			  ("l" tab-next "Next Tab")
+			  (";" tab-next "Next Tab")
+			  ("q" nil "Exit" :exit t)
+			  )
+	)
 #+END_SRC
 ** Treesit:
 Treesit uses the tree-sitter grammars to provide faces/fontifying/structures to
@@ -2041,6 +2042,14 @@ Vterm is a terminal with pretty good ncurses support and compliance.
     :init (setq vterm-always-compile-module t)
     :config (setq vterm-max-scrollback 100000)
     )
+#+END_SRC
+* Unsorted:
+** [[https://github.com/abo-abo/hydra][hydra]]:
+Create visual menu's like what `magit` provides, but easily
+customised.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package hydra :ensure t)
 #+END_SRC
 * Web:
 ** [[https://github.com/pashky/restclient.el][restclient]]:

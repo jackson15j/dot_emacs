@@ -457,6 +457,7 @@ so grabbed this code:
   :if (not (eq system-type 'windows-nt))  ;; FIXME: (void-function dap-ui-mode)
   :ensure t
   :defer t
+  :after (hydra)
   :bind (
          ([f6] . dap-hydra)
          ([f7] . 'dap-ui-repl)
