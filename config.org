@@ -1834,14 +1834,16 @@ Configure the Elfeed RSS reader with an Orgmode file.
 
   (defadvice elfeed (after configure-elfeed-feeds activate)
     "Make elfeed-org autotags rules work with elfeed-protocol."
-    ;; (setq elfeed-protocol-tags elfeed-feeds)
+    (setq elfeed-protocol-tags elfeed-feeds)
     ;; ~.authinfo.gpg~ contents: ~machine <ip/hostname> port <port> login <user> password <password>~.
-    (setq elfeed-feeds '(("fever+http://craig@192.168.0.98:8095"
-                          :api-url "http://craig@192.168.0.98:8095/api/fever.php"
-                          :use-authinfo t
-                          ;; :autotags elfeed-protocol-tags
-                          )))
-     )
+    (setq elfeed-feeds (list
+                        (list
+                         "fever+http://craig@192.168.0.98:8095"
+                         :api-url "http://craig@192.168.0.98:8095/api/fever.php"
+                         :use-authinfo t
+                         :autotags elfeed-protocol-tags
+                         )))
+    )
 #+END_SRC
 ** [[https://github.com/karthink/elfeed-tube][elfeed-tube]]:
 Youtube integration for Elfeed, the feed reader for Emacs.
