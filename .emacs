@@ -112,17 +112,6 @@
 ;; Don't save lock files by files - https://www.emacswiki.org/emacs/LockFiles.
 (setq create-lockfiles nil)
 
-;; Highlights
-(global-hl-line-mode 1)  ;; horizontal highlighted line on cursor.
-;; http://www.emacswiki.org/emacs/EmacsNiftyTricks
-;; http://emacs-fu.blogspot.com/2008/12/highlighting-todo-fixme-and-friends.html
-(defun my_highlighted_words ()
-  "Highlight specific words in the buffer."
- (interactive)
-  (font-lock-add-keywords nil
-   '(("\\<\\(Note\\|NOTE\\|FIXME\\|Todo\\|TODO\\|BUG\\|Bug\\):" 1 '(:foreground "red" :weight bold) t))))
-
-
 
 
 ;; http://pragmaticemacs.com/emacs/dired-human-readable-sizes-and-sort-by-size/
