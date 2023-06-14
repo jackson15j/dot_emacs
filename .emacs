@@ -582,63 +582,6 @@ so grabbed this code:
 
 ;; *****************************************************
 ;; *****************************************************
-;; Dockerfile
-;; *****************************************************
-;; *****************************************************
-(use-package dockerfile-mode
-  :ensure t
-  :defer t
-  :after (flycheck lsp-mode)
-  :hook
-  (
-   (dockerfile-mode . lsp)
-   (dockerfile-mode . (lambda () (set (make-local-variable 'compile-command) "docker build .")))
-   ;; (dockerfile-mode . (lambda () (lsp-deferred) (flycheck-add-next-checker 'lsp 'dockerfile-hadolint)))
-   )
-  )
-
-(use-package docker
-  :ensure t
-  :defer t
-  :bind ("C-c d" . docker)
-  :config
-  ;; https://github.com/Silex/docker.el/issues/188
-  ;; Don't use vterm everywhere.
-  (setq
-   docker-run-async-with-buffer-function 'docker-run-async-with-buffer-shell
-   docker-container-columns '(
-                              (:name "Names" :width 30 :template "{{ json .Names }}" :sort nil :format nil)
-                              (:name "Status" :width 30 :template "{{ json .Status }}" :sort nil :format nil)
-                              (:name "Image" :width 40 :template "{{ json .Image }}" :sort nil :format nil)
-                              (:name "Id" :width 12 :template "{{ json .ID }}" :sort nil :format nil)
-                              (:name "Ports" :width 20 :template "{{ json .Ports }}" :sort nil :format nil)
-                              (:name "Command" :width 23 :template "{{ json .Command }}" :sort nil :format nil)
-                              (:name "Created" :width 23 :template "{{ json .CreatedAt }}" :sort nil :format (lambda (x) (format-time-string "%F %T" (date-to-time x))))
-                              )
-   )
-  )
-
-
-;; (use-package kubernetes
-;;   ;; https://kubernetes-el.github.io/kubernetes-el/
-;;   :ensure t
-;;   :defer t
-;;   :commands (kubernetes-overview)
-;;   :init
-;;   ;; https://github.com/kubernetes-el/kubernetes-el/issues/265
-;;   ;; Work around: cyclic dependency.
-;;   ;; `Debugger entered--Lisp error: (invalid-function kubernetes-utils--save-window-state)`
-;;   (defmacro kubernetes-utils--save-window-state (&rest body)
-;;     `(let ((pos (point)) (col (current-column)) (window-start-line (window-start)) (inhibit-redisplay t))
-;;        (save-excursion ,@body)
-;;        (goto-char pos)
-;;        (move-to-column col)
-;;        (set-window-start (selected-window) window-start-line)))
-;; )
-
-
-;; *****************************************************
-;; *****************************************************
 ;; Shell script (bash)(built-in)(Major mode)
 ;; *****************************************************
 ;; *****************************************************
