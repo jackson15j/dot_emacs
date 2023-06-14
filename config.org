@@ -1978,9 +1978,9 @@ buffer with ~M-<~ (=beginning-of-buffer=). Toggle with: ~M-x eloud-mode~.
   (use-package eloud
     :ensure t
     :ensure-system-package (espeak)
-    :if (eq system-type 'darwin)
     :config
-    (setq eloud-espeak-path "/usr/local/bin/espeak")
+    (if (eq system-type 'darwin)
+        (setq eloud-espeak-path "/usr/local/bin/espeak"))
     (setq eloud-speech-rate 350)
     )
 #+END_SRC
