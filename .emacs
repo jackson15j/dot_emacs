@@ -126,23 +126,13 @@
 ; Use the C-based line numbers instead of the slower lisp (`linum`).
 ;; https://www.emacswiki.org/emacs/LineNumbers#h5o-1
 (use-package display-line-numbers
-  :config (global-display-line-numbers-mode)
+  :hook (
+         (prog-mode . 'display-line-numbers)
+         (text-mode . 'display-line-numbers)
+         )
   :custom-face
    (line-number ((t (:inherit (shadow default) :background "grey10"))))
   )
-(defcustom display-line-numbers-exempt-modes '(vterm-mode eshell-mode shell-mode term-mode ansi-term-mode lisp-interaction-mode, org, compilation-mode)
-  "Major modes on which to disable the linum mode.
-Exempts them from global requirement."
-  :group 'display-line-numbers
-  :type 'list
-  :version "green")
-(defun display-line-numbers--turn-on ()
-  "Turn on line numbers but exempting certain major modes.
-Defined in: `display-line-numbers-exempt-modes'."
-  (if (and
-       (not (member major-mode display-line-numbers-exempt-modes))
-       (not (minibufferp)))
-      (display-line-numbers-mode)))
 
 
 
