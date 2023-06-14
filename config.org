@@ -395,15 +395,13 @@ Automatically install tree-sitter grammars.
 ** [[https://github.com/jwiegley/alert][alert]]:
 #+BEGIN_SRC emacs-lisp
   (use-package alert
-    ;; FIXME: is this OS-Specific? Can't remember, so need to double check this
-    ;; wont break linux!! Guessing I will need the following line:
-    :if (eq system-type 'darwin)
-    :ensure-system-package terminal-notifier
+    ;; TODO: Check if Mac can work with libnotify. It works on Linux.
+    ;; :ensure-system-package terminal-notifier
     :ensure t
     :commands (alert)
     :init
     (setq
-     alert-default-style 'notifier
+     alert-default-style 'libnotify
      alert-fade-time 15
      )
     )
@@ -418,14 +416,14 @@ that notifications have to be explicitly closed.
   (use-package org-alert
     ;; https://github.com/julienXX/terminal-notifier/issues/292 -  No Notification in macOS12.1 #292
     ;; https://github.com/julienXX/terminal-notifier
-    :if (eq system-type 'darwin)
-    :ensure-system-package terminal-notifier
-    ;; :ensure t
-    :disabled t  ;; Why is this blowing up??
+    ;; TODO: Check if Mac can work with libnotify. It works on Linux.
+    ;; :ensure-system-package terminal-notifier
+    :ensure t
+    ;; :disabled t  ;; Why is this blowing up??
     :after (org)
     :config
     (setq
-     alert-default-style 'notifier
+     alert-default-style 'libnotify
      org-alert-notify-cutoff 5
      org-alert-notify-after-event-cutoff 1
      )
