@@ -281,9 +281,10 @@ Log but don't pop up Warnings buffer for all native compilation warnings.
 #+BEGIN_SRC emacs-lisp
   (use-package flyspell
     :ensure t
-    :init
-    (flyspell-mode)
-    (flyspell-prog-mode)
+    :hook (
+           (prog-mode . flyspell-prog-mode)
+           (text-mode . flyspell-mode)
+           )
     )
 #+END_SRC
 **** Highlight all spelling mistakes in a buffer in one go.
