@@ -1090,7 +1090,6 @@ system packages. Run:
     ;; :after (eglot)
     :hook
     (
-     ;((dockerfile-mode dockerfile-ts-mode) . eglot-ensure)
      ((dockerfile-mode dockerfile-ts-mode) . (lambda () (set (make-local-variable 'compile-command) "docker build .")))
      )
     )
@@ -1364,7 +1363,6 @@ Requires ~go~ & ~gopls~ to be installed. See:
       )
     :hook (
            (go-ts-mode . cas/go-config)
-           (go-ts-mode . eglot-ensure)
        )
     )
 #+END_SRC
