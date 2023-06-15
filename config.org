@@ -70,6 +70,12 @@ By default, Esup will profile ~user-init-file~. To profile a custom file, call
     (savehist-mode t)
     (setq savehist-additional-variables '(search-ring regexp-search-ring))
   #+END_SRC
+
+- Bookmarks:
+  #+BEGIN_SRC emacs-lisp
+    (setq bookmark-default-file "~/org/personal/bookmarks")
+  #+END_SRC
+
 - Highlights:
   #+BEGIN_SRC emacs-lisp
     (global-hl-line-mode 1)  ;; horizontal highlighted line on cursor.
