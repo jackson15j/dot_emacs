@@ -1801,6 +1801,7 @@ do completions!
   (use-package yaml-mode
     :ensure-system-package (yaml-language-server)
     :ensure t
+    :hook (((yaml-mode yaml-ts-mode) . eglot-ensure))
     )
 #+END_SRC
 *** yaml schemas:
