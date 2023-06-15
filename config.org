@@ -1079,17 +1079,19 @@ system packages. Run:
     )
 #+END_SRC
 ** dockerfile:
-*TODO:* Convert to =eglot=/=flymake=.
+=eglot= uses: https://github.com/rcjsuen/dockerfile-language-server-nodejs.
+
 #+BEGIN_SRC emacs-lisp
   (use-package dockerfile-mode
+    :ensure-system-package (docker-langserver . "npm install -g dockerfile-language-server-nodejs")
     :ensure t
-    :defer t
-    :after (flycheck lsp-mode)
+    ;; TODO: Raise bug about how this `:after` call breaks `eglot` automatically
+    ;; running.
+    ;; :after (eglot)
     :hook
     (
-     (dockerfile-mode . lsp)
-     (dockerfile-mode . (lambda () (set (make-local-variable 'compile-command) "docker build .")))
-     ;; (dockerfile-mode . (lambda () (lsp-deferred) (flycheck-add-next-checker 'lsp 'dockerfile-hadolint)))
+     ;((dockerfile-mode dockerfile-ts-mode) . eglot-ensure)
+     ((dockerfile-mode dockerfile-ts-mode) . (lambda () (set (make-local-variable 'compile-command) "docker build .")))
      )
     )
 #+END_SRC
