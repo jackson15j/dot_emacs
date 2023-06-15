@@ -1060,7 +1060,8 @@ FORMAT - .format to use."
   :bind (("<f4>" . eww))
   ;; FIXME: eww is okay, but for things like google account redirects, we need
   ;; a real browser.
-  ;; :config
+  :config
+  (setq eww-bookmarks-directory "~/org/personal/")
   ;; (progn
   ;;   (setq
   ;;    browse-url-browser-function (quote eww-browse-url)
