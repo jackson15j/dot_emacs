@@ -115,6 +115,7 @@ https://www.emacswiki.org/emacs/LineNumbers#h5o-1
 #+BEGIN_SRC emacs-lisp
   (use-package display-line-numbers
     :hook (
+           (conf-mode . 'display-line-numbers)
            (prog-mode . 'display-line-numbers)
            (text-mode . 'display-line-numbers)
            )
