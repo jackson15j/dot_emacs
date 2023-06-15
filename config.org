@@ -1343,6 +1343,9 @@ Requires ~go~ & ~gopls~ to be installed. See:
 - https://github.com/golang/tools/tree/master/gopls
 - https://emacs-lsp.github.io/lsp-mode/page/lsp-gopls/
 
+Also see: [[https://github.com/dominikh/go-mode.el/issues/396][Add optional support for tree-sitter #396]], which is tracking issues
+with supporting the new =go-ts-mode=.
+
 #+BEGIN_SRC emacs-lisp
   (use-package go-mode
     :ensure-system-package (go gopls)
@@ -1355,14 +1358,16 @@ Requires ~go~ & ~gopls~ to be installed. See:
       (setq tab-width 4)
       (setq go-ts-mode-indent-offset 4)
       (setq indent-tabs-mode t)
-      ;; (add-hook 'before-save-hook #'eglot-format-buffer t t)
+      (add-hook 'before-save-hook #'eglot-format-buffer -10 t)
       (add-hook 'before-save-hook #'gofmt-before-save)
+      ;; Need the above line to load the: ~gofmt~ package in emacs. Why!?
+      ;; (add-hook 'before-save-hook 'gofmt nil t)
       (if (not (string-match "go" compile-command))
           (set (make-local-variable 'compile-command)
                "go build -v && go test -v && go vet"))
       )
     :hook (
-           (go-ts-mode . cas/go-config)
+           ((go-mode go-ts-mode) . cas/go-config)
        )
     )
 #+END_SRC
