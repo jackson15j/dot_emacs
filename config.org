@@ -1719,6 +1719,7 @@ a projects pipenv.
     (setq
      sql-dialect 'postgres
      sql-linter-program 'sqlfluff
+     indent-tabs-mode nil  ;; spaces instead of tabs
      )
     )
 #+END_SRC
