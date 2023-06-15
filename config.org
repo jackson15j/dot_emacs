@@ -1301,7 +1301,9 @@ trying to slim down config and use more built-ins.
 
 #+BEGIN_SRC emacs-lisp
   (use-package eglot
-    :after (company-mode)
+    ;; TODO: Raise bug about how this `:after` call breaks `eglot` automatically
+    ;; running.
+    ;; :after (company-mode)
     :hook (
            (eglot-mode . global-company-mode)
            (prog-mode . eglot-ensure)
