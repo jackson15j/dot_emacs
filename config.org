@@ -1306,6 +1306,23 @@ trying to slim down config and use more built-ins.
            )
     :ensure t)
 #+END_SRC
+*** [[https://github.com/joaotavora/breadcrumb][breadcrumb]]:
+Breadcrumb is a mode that fell out of the wish for eglot Users to have the same
+breadcrumb as seen in ~lsp-ui~. See: [[https://github.com/joaotavora/eglot/discussions/988][Github: joaotavora/eglot - Breadcrumb
+feature (can eglot support headerline like lsp-mode does?) #988]].
+
+This is external to eglot, but placing here just because of the link.
+
+# #+BEGIN_SRC emacs-lisp
+#   (use-package breadcrumb
+#     :vc (:url "https://github.com/joaotavora/breadcrumb"
+#          :rev :newest
+#     :ensure t
+#     :config
+#     (breadcrumb-mode)
+#     )
+# #+END_SRC
+
 ** go:
 Go config links:
 
