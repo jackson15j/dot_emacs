@@ -402,12 +402,17 @@ Automatically install tree-sitter grammars.
 #+BEGIN_SRC emacs-lisp
   (use-package alert
     ;; TODO: Check if Mac can work with libnotify. It works on Linux.
-    ;; :ensure-system-package terminal-notifier
+    ;; Still not working + libnotify keeps being reinstalled by brew due to
+    ;; different name.
+    :ensure-system-package (libnotify)
     :ensure t
     :commands (alert)
     :init
+    (if (eq system-type 'darwin)
+        (setq alert-default-style 'terminal-notifier)
+      (setq alerqt-default-style 'libnotify)
+      )
     (setq
-     alert-default-style 'libnotify
      alert-fade-time 15
      )
     )
