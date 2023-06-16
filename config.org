@@ -2094,6 +2094,76 @@ In ~spray-mode~ buffers, following commands are available:
 - ~spray-quit~ (~q, <return>~) quit ~spray-mode~.
 
 * Terminals:
+** ansi-term:
+=ansi-term= is terminal emulator. I originally preferred it to
+multi-term/eshell/shell, but find =shell= works better with paths and running
+of applications (eg. `aws` CLI client correctly logging in).
+
+Code from: https://github.com/jwalgran/dotfiles/blob/master/.emacs.d/config.el
+
+#+BEGIN_SRC emacs-lisp
+  (use-package term
+    :demand t
+    :bind (("<f2>" . visit-ansi-term)
+           ;; Note: gdb keybinding is: C-x C-a C-l, which I did have my rename term windows as.
+           ;; ("C-x C-a" . open-term)
+           )
+    :init
+    (progn
+      ;; https://github.com/ahinz/emacs-config/blob/7e025076097f045aea2a0aedd0523ee996753346/.emacs.d/ah-modes.el#L268
+      (defun open-named-term (new-buffer-name cmd &rest switches)
+        (setq term-ansi-buffer-name (generate-new-buffer-name new-buffer-name))
+        (setq term-ansi-buffer-name (apply 'make-term term-ansi-buffer-name cmd nil switches))
+        (set-buffer term-ansi-buffer-name)
+        (term-mode)
+        (term-char-mode)
+        (term-set-escape-char ?\C-x)
+        (switch-to-buffer term-ansi-buffer-name))
+
+      ;; https://github.com/ahinz/emacs-config/blob/7e025076097f045aea2a0aedd0523ee996753346/.emacs.d/ah-modes.el#L268
+      (defun open-term (name)
+        (interactive "sName: ")
+        (open-named-term name "/bin/bash"))
+
+      (defun visit-ansi-term ()
+        "If the current buffer is:
+           1) a running ansi-term named *ansi-term*, rename it.
+           2) a stopped ansi-term, kill it and create a new one.
+           3) a non ansi-term, go to an already running ansi-term
+              or start a new one while killing a defunt one"
+        (interactive)
+        (let ((is-term (string= "term-mode" major-mode))
+              (is-running (term-check-proc (buffer-name)))
+              (term-cmd "/bin/bash")
+              (anon-term (get-buffer "*ansi-term*")))
+          (if is-term
+              (if is-running
+                  (if (string= "*ansi-term*" (buffer-name))
+                      (call-interactively 'rename-buffer)
+                    (if anon-term
+                        (switch-to-buffer "*ansi-term*")
+                      (ansi-term term-cmd)))
+                (kill-buffer (buffer-name))
+                (ansi-term term-cmd))
+            (if anon-term
+                (if (term-check-proc "*ansi-term*")
+                    (switch-to-buffer "*ansi-term*")
+                  (kill-buffer "*ansi-term*")
+                  (ansi-term term-cmd))
+              (ansi-term term-cmd)))))
+
+      ;; Make ansi-term buffers close when you kill the shell process
+      (defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
+        (if (memq (process-status proc) '(signal exit))
+            (let ((buffer (process-buffer proc)))
+              ad-do-it
+              (kill-buffer buffer))
+          ad-do-it))
+      (ad-activate 'term-sentinel))
+
+    (add-hook 'ansi-term-hook (lambda () (global-hl-line-mode 0)))  ; http://stackoverflow.com/questions/9990370/how-to-disable-hl-line-feature-in-specified-mode
+    )
+#+END_SRC
 ** eshell:
 Add the following programs to the list of programs that =eshell= won't complain
 about not being a proper terminal. This will move out of line-mode and into
