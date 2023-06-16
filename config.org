@@ -309,6 +309,23 @@ Log but don't pop up Warnings buffer for all native compilation warnings.
   (setq native-comp-async-report-warnings-errors 'silent)
 #+END_SRC
 ** Spell Checking:
+*** dictionary:
+Lookup dictionary definitions.
+
+See: https://emacsredux.com/blog/2023/04/11/looking-up-words-in-a-dictionary/,
+for details as well as installing the dictionary service as an alternative
+to: ~dict.org~.
+
+- ~M-x dictionary-search~ look up word definition.
+- ~M-x dictionary-lookup-definition~ to do a lookup at point.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package dictionary
+    :ensure t
+    :defer t
+    :config (setq dictionary-server "dict.org")
+    )
+#+END_SRC
 *** flyspell:
 See: [[https://www.emacswiki.org/emacs/FlySpell#h5o-4][EmacsWiki: FlySpell Performance]] about disabling
 ~flyspell-issue-message-flag~ to greatly speed up ~flyspell-buffer~.

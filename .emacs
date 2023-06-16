@@ -117,17 +117,6 @@
 (define-key isearch-mode-map (kbd "M-3") '(lambda () (interactive) (isearch-process-search-char ?\#)))
 
 
-
-;; ========================
-;; Lookup dictionary definitions.
-;; ========================
-;; `M-x dictionary-search` look up word definition.
-(use-package dictionary
-  :ensure t
-  :defer t)
-
-
-
 ;; *****************************************************
 ;; *****************************************************
 ;; My custom functions
