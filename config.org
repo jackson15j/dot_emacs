@@ -398,6 +398,16 @@ Automatically install tree-sitter grammars.
     (global-treesit-auto-mode)
     )
 #+END_SRC
+** [[https://www.emacswiki.org/emacs/WindMove][windmove]]:
+Builtin method of moving between windows with (default) ~Shift+<arrow>~. See:
+[[https://pragmaticemacs.wordpress.com/2016/12/26/whizz-between-windows-with-windmove/][PragmaticEmacs: Whizz between windows with windmove]].
+
+#+BEGIN_SRC emacs-lisp
+  (use-package windmove
+    :ensure t
+    :config (windmove-default-keybindings)
+    )
+#+END_SRC
 * Notifications:
 ** [[https://github.com/jwiegley/alert][alert]]:
 #+BEGIN_SRC emacs-lisp
