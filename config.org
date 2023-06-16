@@ -408,6 +408,25 @@ Builtin method of moving between windows with (default) ~Shift+<arrow>~. See:
     :config (windmove-default-keybindings)
     )
 #+END_SRC
+* Buffer/Window Management:
+** Fill Column Indicator
+Fill Column is used to reflow text automatically & highlight margins, as well
+as show a hard column line. See: [[http://www.emacswiki.org/FillColumnIndicator][Emacs Wiki: FillColumnIndicator]]. I changed
+the column fill to be a double pipe. See unicode table.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package fill-column-indicator
+    :ensure t
+    :defer t
+    :config
+    (progn
+      (setq-default fci-rule-column 79)
+      (setq fci-rule-character ?\u2016)
+      ;; automatically wrap to 79 characters.
+      (setq-default fill-column 79)
+      (setq-default git-commit-fill-column 79))
+  )
+#+END_SRC
 * Notifications:
 ** [[https://github.com/jwiegley/alert][alert]]:
 #+BEGIN_SRC emacs-lisp

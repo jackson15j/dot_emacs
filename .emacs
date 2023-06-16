@@ -117,24 +117,6 @@
 (define-key isearch-mode-map (kbd "M-3") '(lambda () (interactive) (isearch-process-search-char ?\#)))
 
 
-;; ========================
-;; Fill Column (used to reflow text automatically & highlight margins)
-;; ========================
-;; different 79 char ruler, that's solid down.
-;; http://www.emacswiki.org/FillColumnIndicator
-;; Also changed the column fill to be a double pipe. See unicode table.
-(use-package fill-column-indicator
-  :ensure t
-  :defer t
-  :config
-  (progn
-    (setq-default fci-rule-column 79)
-    (setq fci-rule-character ?\u2016)
-    ;; automatically wrap to 79 characters.
-    (setq-default fill-column 79)
-    (setq-default git-commit-fill-column 79))
-)
-
 
 ;; ========================
 ;; Lookup dictionary definitions.
