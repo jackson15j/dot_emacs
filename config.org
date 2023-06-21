@@ -1948,6 +1948,7 @@ Configure the Elfeed RSS reader with an Orgmode file.
 Youtube integration for Elfeed, the feed reader for Emacs.
 #+BEGIN_SRC emacs-lisp
   (use-package elfeed-tube
+    :ensure-system-package ((mpv) (yt-dlp))
     :ensure t
     :defer t
     :after (elfeed)
@@ -1966,7 +1967,7 @@ If you want “live” captions and better MPV support:
 
 #+BEGIN_SRC emacs-lisp
   (use-package elfeed-tube-mpv
-    :ensure-system-package ((mpv) (yt-dlp))
+    :ensure-system-package (mpv)
     :ensure t
     :bind (:map elfeed-show-mode-map
                 ("C-c C-f" . elfeed-tube-mpv-follow-mode)
