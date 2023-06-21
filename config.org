@@ -444,6 +444,14 @@ the column fill to be a double pipe. See unicode table.
       (setq-default git-commit-fill-column 79))
   )
 #+END_SRC
+** [[https://github.com/hlissner/emacs-hide-mode-line][hide-mode-line]]:
+Useful package when paired with a presentation mode like: [[*\[\[https://github.com/takaxp/org-tree-slide\]\[org-tree-slide\]\]:][org-tree-slide]], give
+a fullscreen (distraction-free) presentation. See: [[https://www.youtube.com/live/vz9aLmxYJB0?feature=share&t=1636][YouTube: Emacs Tips - How to
+Give Presentations with Org Mode (Questions)]].
+
+#+BEGIN_SRC emacs-lisp
+  (use-package hide-mode-line :ensure t)
+#+END_SRC
 * Notifications:
 ** [[https://github.com/jwiegley/alert][alert]]:
 #+BEGIN_SRC emacs-lisp
@@ -976,6 +984,7 @@ jypma/emacsconf2021/blob/master/presentation.org]].
     (setq text-scale-mode-amount 3)
     (org-display-inline-images)
     (text-scale-mode 1)
+    (hide-mode-line-mode 1)
     (font-lock-flush)
     (font-lock-ensure))
 
@@ -984,6 +993,7 @@ jypma/emacsconf2021/blob/master/presentation.org]].
     (turn-on-fci-mode)
     (flyspell-mode 1)
     (text-scale-mode 0)
+    (hide-mode-line-mode 0)
     (org-remove-inline-images)
     (font-lock-flush)
     (font-lock-ensure))
