@@ -766,10 +766,11 @@ Confluence Wiki. Export via: ~M-x org-ascii-export-as-ascii~ (~C-cC-etA~).
 Add: ~:async~ to an org-babel code block to run async when called with:
 ~C-cC-c~.
 
-#+BEGIN_SRC emacs-lisp
-  (use-package ob-async
-    :ensure t)
-#+END_SRC
+*FIXME: Comment out `ob-async`. It's throwing errors on post-install restart!*
+# #+BEGIN_SRC emacs-lisp
+#   (use-package ob-async
+#     :ensure t)
+# #+END_SRC
 ** org-agenda:
 *** Custom Agenda views:
 - https://www.orgmode.org/manual/Custom-Agenda-Views.html
