@@ -2078,6 +2078,30 @@ MPD references:
      )
     )
 #+END_SRC
+** [[https://github.com/mpdel/mpdel][mpdel]]:
+Looking to see if there are any good alternative MPD clients to mingus for
+controlling my remote MPD servers.
+
+- ~C-x Z~ Prefix
+  - ~l~ Playlist.
+  - ~N~ Artists.
+  - ~:~ Browser.
+  - ~C~ Connect to Profile. Profiles defined via: [[https://github.com/mpdel/libmpdel][libmpdel]].
+  - ~SPC~ Play/Pause toggle.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package mpdel
+    :ensure t
+    :config
+    (setq libmpdel-profiles
+     '(
+       ("Local server" "localhost" 6600 ipv4)
+       ("RAudio-Office server" "raudio-office.local" 6600 ipv4)
+       ("Volumio-Office server" "volumio-office.local" 6600 ipv4)
+       )
+     )
+    )
+#+END_SRC
 * Reading:
 Packages around reading (eg. novels/epubs, Speed Reading, etc).
 ** [[https://github.com/smythp/eloud][eloud]]:
