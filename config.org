@@ -1486,6 +1486,20 @@ Typical workflow might be:
     )
 #+END_SRC
 
+*** [[https://github.com/pope/ob-go][ob-go]]:
+Go support in org-code blocks.
+#+BEGIN_SRC emacs-lisp
+  (use-package ob-go :ensure t)
+#+END_SRC
+
+This will allow the following code block to run:
+#+begin_src go :imports '("fmt" "time")
+  fmt.Println("Current Time:", time.Now())
+#+end_src
+
+#+RESULTS:
+: Current Time: 2023-06-30 14:35:27.486993 +0100 BST m=+0.000096251
+
 ** LSP (Language Server Protocol):
 ~lsp-mode~ is the external, feature-rich version of: [[*\[\[https://joaotavora.github.io/eglot/\]\[eglot\]\]:][eglot]] (built-in), for
 interacting with LSP Servers in emacs.
