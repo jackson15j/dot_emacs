@@ -470,7 +470,7 @@ Centre buffers, example for presentations
     ;; TODO: Check if Mac can work with libnotify. It works on Linux.
     ;; Still not working + libnotify keeps being reinstalled by brew due to
     ;; different name.
-    :ensure-system-package (libnotify)
+    ;; :ensure-system-package (libnotify)
     :ensure t
     :commands (alert)
     :init
