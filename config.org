@@ -1559,6 +1559,18 @@ for a similar problem on NixOS.
                            ;; finished analysis (instead of `lsp`).
                            (lsp-deferred))))
 #+END_SRC
+** [[https://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/progmodes/make-mode.el][make-mode]] (built-in):
+#+BEGIN_SRC emacs-lisp
+  (use-package make-mode
+    :ensure t
+    :preface
+    (defun cas/make-mode-config ()
+      "Set config just for Makefile buffers."
+      (setq indent-tabs-mode t)
+      )
+    :hook ((makefile-mode . cas/make-mode-config))
+    )
+#+END_SRC
 ** markdown:
 *** [[https://github.com/jrblevin/markdown-mode][markdown-mode]]:
 NOTE:
