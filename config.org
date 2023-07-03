@@ -1560,6 +1560,9 @@ for a similar problem on NixOS.
                            (lsp-deferred))))
 #+END_SRC
 ** [[https://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/progmodes/make-mode.el][make-mode]] (built-in):
+FIXME: remove the =eglot-ensure= hook on =prog-mode=, since there is no
+lsp-server for Makefile's.
+
 #+BEGIN_SRC emacs-lisp
   (use-package make-mode
     :ensure t
@@ -1567,6 +1570,7 @@ for a similar problem on NixOS.
     (defun cas/make-mode-config ()
       "Set config just for Makefile buffers."
       (setq indent-tabs-mode t)
+      ;; (remove-hook 'prog-mode-hook 'eglot-ensure)
       )
     :hook ((makefile-mode . cas/make-mode-config))
     )
