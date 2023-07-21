@@ -1797,6 +1797,14 @@ save.
   ;;   :hook (python-mode . isortify-mode)
   ;;   )
 #+END_SRC
+**** [[https://github.com/erickgnavar/flymake-ruff][flymake-ruff]]:
+Mentioned as the [[https://beta.ruff.rs/docs/editor-integrations/#emacs-unofficial][Emacs Ruff integration]].
+FIXME: bound to only python buffers (with =ruff= installed??).
+# #+BEGIN_SRC emacs-lisp
+#   (use-package flymake-ruff
+#     :ensure t
+#     :hook (eglot-managed-mode . flymake-ruff-load))
+# #+END_SRC
 *** Package Management:
 **** conda:
 #+BEGIN_SRC emacs-lisp
