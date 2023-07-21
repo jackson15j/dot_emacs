@@ -1500,6 +1500,54 @@ This will allow the following code block to run:
 #+RESULTS:
 : Current Time: 2023-06-30 14:35:27.486993 +0100 BST m=+0.000096251
 
+** json:
+*** json-mode:
+#+BEGIN_SRC emacs-lisp
+  (use-package json-mode
+    :ensure t
+    :defer t
+    :mode ("\\.json\\'" . json-mode)
+    :hook (
+           (json-mode . my-programming-defaults-config)
+           (json-mode . (lambda () (auto-fill-mode -1)))  ;; disables auto fill at column.
+           (json-mode . (lambda () (setq js-indent-level 2)))
+           )
+    )
+#+END_SRC
+*** json-format:
+#+BEGIN_SRC emacs-lisp
+  ;; *****************************************************
+  ;; *****************************************************
+  ;; Json programming
+  ;; *****************************************************
+  ;; *****************************************************
+  ; TODO: Figure out which package is requiring `json-reformat` ??
+  ;; Debugger entered--Lisp error: (file-missing "Cannot open load file" "No such file or directory" "json-reformat")
+  ;;   require(json-reformat)
+  ;;   byte-code("\300\301!\210\300\302!\210\300\303!\210\300\304!\210\305\306\307\310\311\301%\207" [require js rx json-snatcher json-reformat custom-declare-group json-mode nil "Major mode for editing JSON files." :group] 6)
+  ;;   json-mode()
+  ;;   set-auto-mode-0(json-mode nil)
+  ;;   set-auto-mode--apply-alist((("\\.iss\\'" . iss-mode) ("\\.msc$" . mscgen-mode) ("\\.rcp\\'" . emacs-lisp-mode) (".*mutt.*" . mail-mode) ("\\.plantuml\\'" . plantuml-mode) ("\\.odc\\'" . archive-mode) ("\\.odf\\'" . archive-mode) ("\\.odi\\'" . archive-mode) ("\\.otp\\'" . archive-mode) ("\\.odp\\'" . archive-mode) ("\\.otg\\'" . archive-mode) ("\\.odg\\'" . archive-mode) ("\\.ots\\'" . archive-mode) ("\\.ods\\'" . archive-mode) ("\\.odm\\'" . archive-mode) ("\\.ott\\'" . archive-mode) ("\\.odt\\'" . archive-mode) ("\\.mjs\\'" . js2-mode) ("\\.jsx\\'" . js2-mode) ("\\.js\\'" . js2-mode) ("\\.py\\'" . python-mode) ("\\.restclient\\'" . restclient-mode) ("\\.json\\'" . json-mode) ("\\.yaml\\'" . yaml-mode) ("\\.yml\\'" . yaml-mode) ("\\.\\(e?ya?\\|ra\\)ml\\'" . yaml-mode) ("\\.md\\'" . markdown-mode) ("\\Jenkinsfile*\\'" . groovy-mode) ("\\.groovy\\'" . groovy-mode) ("\\.php\\'" . php-mode) ("\\.\\(?:php[s345]?\\|phtml\\)\\'" . php-mode-maybe) ("\\.\\(?:php\\.inc\\|stub\\)\\'" . php-mode) ("/\\.php_cs\\(?:\\.dist\\)?\\'" . php-mode) ("web.config$" . xml-mode) ("\\.cmake\\'" . cmake-mode) ("CMakeLists\\.txt\\'" . cmake-mode) ("\\.tsv\\'" . tsv-mode) ("\\.[Cc][Ss][Vv]\\'" . csv-mode) ("\\.dockerfile\\'" . dockerfile-mode) ("/Dockerfile\\(?:\\.[^/\\]*\\)?\\'" . dockerfile-mode) ("\\.hrl\\'" . erlang-mode) ("\\.erl\\'" . erlang-mode) ("/ebin/.+\\.app" . erlang-mode) ("\\.yrl" . erlang-mode) ("\\.xrl$" . erlang-mode) ("\\.hrl$" . erlang-mode) ("\\.escript" . erlang-mode) ("\\.app\\.src$" . erlang-mode) ("\\.erl$" . erlang-mode) ("go\\.mod\\'" . go-dot-mod-mode) ...) nil nil)
+  ;;   set-auto-mode()
+  ;;   normal-mode(t)
+  ;;   after-find-file(nil nil)
+  ;;   find-file-noselect-1(#<buffer package.json> "~/work/Apollo/Unlock/unlock_webui/package.json" :nowarn nil "~/work/Apollo/Unlock/unlock_webui/package.json" (27399170 66307))
+  ;;   find-file-noselect("/home/craig/work/Apollo/Unlock/unlock_webui/packag..." :nowarn)
+  ;;   desktop-restore-file-buffer("/home/craig/work/Apollo/Unlock/unlock_webui/packag..." "package.json" nil)
+  ;;   desktop-create-buffer(208 "/home/craig/work/Apollo/Unlock/unlock_webui/packag..." "package.json" fundamental-mode (override-global-mode global-whitespace-mode company-mode projectile-mode which-key-mode dap-mode global-auto-revert-mode) 2720 (nil nil) nil nil ((buffer-display-time 24951 42966 348475 416000) (buffer-file-coding-system . utf-8-unix)) ((mark-ring nil)))
+  ;;   eval-buffer(#<buffer  *load*> nil "/home/craig/.emacs.desktop" nil t)  ; Reading at buffer position 15343
+  ;;   load-with-code-conversion("/home/craig/.emacs.desktop" "/home/craig/.emacs.desktop" t t)
+  ;;   load("/home/craig/.emacs.desktop" t t t)
+  ;;   desktop-read()
+  ;;   #f(compiled-function () #<bytecode -0x19a5bc467a428ba3>)()
+  ;;   run-hooks(after-init-hook delayed-warnings-hook)
+  ;;   command-line()
+  ;;   normal-top-level()
+
+  (use-package json-reformat
+    :ensure t
+    :defer t)
+#+END_SRC
 ** LSP (Language Server Protocol):
 ~lsp-mode~ is the external, feature-rich version of: [[*\[\[https://joaotavora.github.io/eglot/\]\[eglot\]\]:][eglot]] (built-in), for
 interacting with LSP Servers in emacs.
