@@ -452,6 +452,16 @@ Give Presentations with Org Mode (Questions)]].
 #+BEGIN_SRC emacs-lisp
   (use-package hide-mode-line :ensure t)
 #+END_SRC
+** [[https://github.com/Alexander-Miller/treemacs][treemacs]]:
+*NOTE:* Seeing LSP and other packages blowing up on this missing requirement.
+#+BEGIN_SRC emacs-lisp
+  (use-package treemacs
+    :ensure t
+    :defer t
+    :custom
+    (treemacs-project-follow-mode t)
+    )
+#+END_SRC
 ** visual-fill-column:
 Centre buffers, example for presentations
 
