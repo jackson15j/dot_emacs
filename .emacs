@@ -57,6 +57,8 @@
   ;; Seeing LSP and other packages blowing up on this missing requirement.
   :ensure t
   :defer t
+  :custom
+  (treemacs-project-follow-mode t)
   )
 
 
