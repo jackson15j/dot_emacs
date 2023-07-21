@@ -1414,15 +1414,15 @@ feature (can eglot support headerline like lsp-mode does?) #988]].
 
 This is external to eglot, but placing here just because of the link.
 
-# #+BEGIN_SRC emacs-lisp
-#   (use-package breadcrumb
-#     :vc (:url "https://github.com/joaotavora/breadcrumb"
-#          :rev :newest
-#     :ensure t
-#     :config
-#     (breadcrumb-mode)
-#     )
-# #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package breadcrumb
+    :vc (:url "https://github.com/joaotavora/breadcrumb"
+         :rev :newest)
+    :ensure t
+    :config
+    (breadcrumb-mode)
+    )
+#+END_SRC
 
 ** go:
 Go config links:
