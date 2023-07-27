@@ -1442,6 +1442,26 @@ This is external to eglot, but placing here just because of the link.
     )
 #+END_SRC
 
+** gnuplot:
+*** [[https://github.com/emacs-gnuplot/gnuplot][gnuplot]]:
+Required by =M-x org-plot/gnuplot=.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package gnuplot
+    :ensure-system-package (gnuplot)
+    :ensure t
+    :defeer t
+    )
+#+END_SRC
+*** [[https://github.com/mkmcc/gnuplot-mode][gnuplot-mode]]:
+Mode for editing =gnuplot= files.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package gnuplot-mode
+    :ensure t
+    :defer t
+    )
+#+END_SRC
 ** go:
 Go config links:
 
