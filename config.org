@@ -878,6 +878,15 @@ Add: ~:async~ to an org-babel code block to run async when called with:
                                     (org-agenda-skip-function-global nil)
                                     )
                                    )
+                                  ("y" "Personal agenda for month"
+                                   (
+                                    (agenda "")
+                                    )
+                                   (
+                                    (org-agenda-span 'month)
+                                    (org-agenda-skip-function-global nil)
+                                    )
+                                   )
                                   ("o" "Work agenda for last 2 weeks (1-2-1 Reviews)"
                                    (
                                     (agenda "" ((org-agenda-files (directory-files-recursively "~/org/work/" org-agenda-file-regexp))))
@@ -885,6 +894,15 @@ Add: ~:async~ to an org-babel code block to run async when called with:
                                    (
                                     (org-agenda-span 15)
                                     (org-agenda-start-day "-14d")
+                                    (org-agenda-skip-function-global nil)
+                                    )
+                                   )
+                                  ("u" "Work Month view"
+                                   (
+                                    (agenda "" ((org-agenda-files (directory-files-recursively "~/org/work/" org-agenda-file-regexp))))
+                                    )
+                                   (
+                                    (org-agenda-span 'month)
                                     (org-agenda-skip-function-global nil)
                                     )
                                    )
