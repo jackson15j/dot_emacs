@@ -1450,7 +1450,7 @@ Required by =M-x org-plot/gnuplot=.
   (use-package gnuplot
     :ensure-system-package (gnuplot)
     :ensure t
-    :defeer t
+    :defer t
     )
 #+END_SRC
 *** [[https://github.com/mkmcc/gnuplot-mode][gnuplot-mode]]:
