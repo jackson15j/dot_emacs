@@ -2066,6 +2066,11 @@ An Emacs web feeds client.
   (use-package elfeed
     :ensure t
     :defer t
+    :bind
+    (:map elfeed-search-mode-map
+          ("l" . elfeed-search-tag--star))
+    (:map elfeed-show-mode-map
+          ("l" . elfeed-show-tag--star))
     :hook (
            (elfeed-show-mode . (lambda () (setq-local shr-width 80)))
            )
@@ -2073,6 +2078,12 @@ An Emacs web feeds client.
     (elfeed-use-curl t)
     :config (setq-default word-wrap t)
     ;; (setq elfeed-log-level 'debug)
+    (defun elfeed-show-tag--star ()
+      (interactive)
+      (elfeed-show-tag 'star))
+    (defun elfeed-search-tag--star ()
+      (interactive)
+      (elfeed-search-toggle-all 'star))
     )
 #+END_SRC
 ** [[https://github.com/remyhonig/elfeed-org][elfeed-org]]:
