@@ -1442,6 +1442,15 @@ This is external to eglot, but placing here just because of the link.
     )
 #+END_SRC
 
+** gherkin:
+*** [[https://github.com/michaelklishin/cucumber.el][feature-mode]]:
+#+BEGIN_SRC emacs-lisp
+  (use-package feature-mode
+    :ensure t
+    :defer t
+    :mode "\\.spec\\'"
+    )
+#+END_SRC
 ** gnuplot:
 *** [[https://github.com/emacs-gnuplot/gnuplot][gnuplot]]:
 Required by =M-x org-plot/gnuplot=.
