@@ -1782,6 +1782,18 @@ See: https://blog.bitsandbobs.net/blog/emacs-markdown-live-preview/
     :ensure t
     :defer t)
 #+END_SRC
+** php:
+#+BEGIN_SRC emacs-lisp
+  (use-package php-mode
+    :ensure t
+    :defer t
+    :mode ("\\.php\\'" . php-mode)
+    :config
+    (progn
+      (add-hook 'php-mode-hook 'my-programming-defaults-config)
+      )
+    )
+#+END_SRC
 ** python:
 
 Historical Links:
