@@ -2306,6 +2306,24 @@ controlling my remote MPD servers.
 #+END_SRC
 * Reading:
 Packages around reading (eg. novels/epubs, Speed Reading, etc).
+** [[https://repo.or.cz/amread-mode.git][amread-mode]]:
+Speed reading by line or word.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package amread-mode
+    :ensure t
+    :commands (amread-mode)
+    :custom
+    (
+     (amread-scroll-style 'word)
+     (amread-voice-reader-language 'english)
+     (amread-word-speed 10.0)  ;; WPS eg. 300WPM = 5WPS.
+     )
+    :custom-face
+    (amread-highlight-face ((t (:background "red4" :foreground "white"))))
+    )
+#+END_SRC
+
 ** [[https://github.com/smythp/eloud][eloud]]:
 Emacs-based screen reader to read words when passing over them, or the whole
 buffer with ~M-<~ (=beginning-of-buffer=). Toggle with: ~M-x eloud-mode~.
