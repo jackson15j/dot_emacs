@@ -2474,6 +2474,18 @@ Vterm is a terminal with pretty good ncurses support and compliance.
     :config (setq vterm-max-scrollback 100000)
     )
 #+END_SRC
+* Typing:
+
+** [[https://github.com/parkouss/speed-type/][speed-type]]:
+
+Touch typing practice. Call: ~M-x speed-type-text~.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package speed-type
+    :ensure t
+    :defer t)
+#+END_SRC
+
 * Unsorted:
 ** [[https://github.com/abo-abo/hydra][hydra]]:
 Create visual menu's like what `magit` provides, but easily
