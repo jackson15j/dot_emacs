@@ -951,6 +951,16 @@ missing several days:
 #+END_EXAMPLE
 
 ** org-babel:
+*** org-babel config:
+#+BEGIN_SRC emacs-lisp
+  (use-package ob-core
+    :custom
+    (
+     (org-confirm-babel-evaluate . nil)
+     )
+    )
+#+END_SRC
+
 *** [[https://emacs.stackexchange.com/questions/20577/org-babel-load-all-languages-on-demand][Load (all) languages on-demand]]:
 Also see: [[https://orgmode.org/worg/org-contrib/babel/languages/index.html#configure][Org-Babel: Activate Languages]].
 
