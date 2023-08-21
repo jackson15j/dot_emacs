@@ -2366,6 +2366,16 @@ In ~spray-mode~ buffers, following commands are available:
 - ~spray-slower~ (~s~) decreases speed.
 - ~spray-quit~ (~q, <return>~) quit ~spray-mode~.
 
+** [[https://gitlab.com/wavexx/stem-reading-mode.el][stem-reading-mode]]:
+Highlight word stems in text buffers, thereby providing artificial fixation
+points to improve speed reading.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package stem-reading-mode
+    :ensure t
+    :defer t)
+#+END_SRC
+
 * Terminals:
 ** ansi-term:
 =ansi-term= is terminal emulator. I originally preferred it to
