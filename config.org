@@ -2017,8 +2017,20 @@ Testing out SQLFluff for linting.
 
 #+BEGIN_SRC emacs-lisp
   (use-package terraform-mode
+    :ensure-system-package
+    (
+     (terraform)
+     (terraform-ls)
+     )
     :ensure t
+    :hook (((terraform-mode terraform-ts-mode) . eglot-ensure))
     :config (setq terraform-format-on-save t)
+    ;; https://github.com/hashicorp/terraform-ls/blob/main/docs/USAGE.md
+    (with-eval-after-load 'eglot
+      (add-to-list 'eglot-server-programs
+                   `(terraform-mode . ,(eglot-alternatives
+                                        '(("terraform-ls" "serve")
+                                          ("terraform-lsp" "serve"))))))
     )
 #+END_SRC
 ** xml:
