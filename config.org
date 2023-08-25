@@ -996,6 +996,9 @@ Either:
   ;; the headings of an org file
   ;; https://github.com/theodorewiles/org-mind-map
   (use-package org-mind-map
+    ;; Switch to a fork due to org-mind-map waiting to be moved to new maintainers.
+    :vc (:url "https://github.com/lockywolf/org-mind-map.git"
+         :rev :newest)
     :init
     (require 'ox-org)
     :ensure t
