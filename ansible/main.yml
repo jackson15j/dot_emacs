@@ -41,30 +41,6 @@
         name:
           - emacs-git
 
-    - name: Install dependencies in .emacs
-      become: true
-      become_method: sudo
-      pacman:
-        name:
-          - aspell  # spell checking.
-          - aspell-en  # spell checking.
-          - html2text  # mu4e.
-          - mplayer  # djcb-popup notifications.
-          - libnotify  # djcb-popup notifications.
-          - mu  # mu4e. Pacman AUR.
-        state: latest
-
-    # FIXME: Invalid Tags name error + I'd rather move these to be inside the
-    # emacs config with `:ensure-system-package`.
-    #
-    # - name: Install Tern for Javascript completions
-    #   become: true
-    #   become_method: sudo
-    #   npm:
-    #     name:
-    #       - tern  # javascript completions in `tern-mode`.
-    #     global: yes
-    #     state: latest
 
     - name: Enable emacs service
       # https://docs.ansible.com/ansible/latest/modules/systemd_module.html
