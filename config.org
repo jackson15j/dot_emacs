@@ -570,7 +570,8 @@ magit - a pretty good git package with more features than the built in emacs
     :ensure t
     :bind (
        ("<f3>" . magit-status)
-       ("\C-c\C-s" . magit-status)
+       ("\C-ct" . magit-status)  ;; Alternative when on a touchbar Mac.
+       ("\C-c\C-s" . magit-status)  ;; Overridden by =org-schedule=.
        ("\C-cg" . vc-git-grep)
        ("\C-cb" . magit-blame))
     :config
