@@ -2044,6 +2044,14 @@ Testing out SQLFluff for linting.
                                           ("terraform-lsp" "serve"))))))
     )
 #+END_SRC
+** [[https://github.com/ananthakumaran/typescript.el][typescript]]:
+
+#+BEGIN_SRC emacs-lisp
+  (use-package typescript-mode
+    :ensure t
+    :ensure-system-package (typescript-language-server)
+    )
+#+END_SRC
 ** xml:
 *** Pretty print XML:
 - [[https://stackoverflow.com/questions/12492/pretty-printing-xml-files-on-emacs][SO: Pretty Printing XML files on Emacs]]. Picked the solution below so that I
