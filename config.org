@@ -2,6 +2,7 @@
 #+author: Craig Astill
 #+email: craig.astill@gmail.com
 #+OPTIONS: num:nil
+#+PROPERTY: header-args:mermaid :prologue "exec 2>&1" :epilogue ":" :pupeteer-config-file ~/.puppeteerrc
 * Dot Emacs
 My main ~.emacs~ file.
 
@@ -1104,6 +1105,16 @@ install: [[https://github.com/mermaid-js/mermaid-cli][=mermaid-cli=]]. Example t
   sequenceDiagram
    A-->B: Works!
 #+END_SRC
+
+*** Pre-Reqs:
+
+- Add to top of file and then =C-cC-c= to both store errors in the RESULT block
+  and to also ignore the puppeteer headless deprecation warning. NOTE: [[https://github.com/arnm/ob-mermaid/issues/21][Minor
+  spelling mistake in puppeteer for config #21]]:
+  #+BEGIN_SRC org
+    #+PROPERTY: header-args:mermaid :prologue "exec 2>&1" :epilogue ":" :pupeteer-config-file ~/.puppeteerrc
+  #+END_SRC
+- Add: ={"headless": "new"}= to: =~/.puppeteerrc=.
 
 *** [[https://github.com/abrochard/mermaid-mode][mermaid-mode]]:
 ~brew install mermaid-cli` falls over with: ~Error: mermaid-cli has been
