@@ -22,6 +22,16 @@ locally.
 *NOTE:* Hard-coded to ArchLinux and my own needs.
 
 * Core:
+** compliation
+
+#+BEGIN_SRC emacs-lisp
+  (use-package compile
+    :ensure t
+    :custom
+    (compilation-ask-about-save nil "Auto save before compiling.")
+    (compilation-scroll-output t "Scroll output and don't stop on errors.")
+    )
+#+END_SRC
 ** Debugging Emacs:
 #+BEGIN_SRC emacs-lisp
   (setq debug-on-error t)

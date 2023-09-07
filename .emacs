@@ -68,7 +68,6 @@
 '(flycheck-error-list-column-number ((t (:inherit font-lock-constant-face :background "blue"))))
 '(flycheck-warning ((t (:background "DarkBlue" :underline (:color "DarkOrange" :style wave)))))
 (setq calendar-week-start-day 1)
-(setq compilation-scroll-output 't)
 (menu-bar-mode -1)  ;; Disable Menu Bar
 (tool-bar-mode -1)  ;; Disable tool Bar
 (fset 'yes-or-no-p 'y-or-n-p)  ;; yes/no -> y/n
