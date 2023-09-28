@@ -803,6 +803,15 @@ Confluence Wiki. Export via: ~M-x org-ascii-export-as-ascii~ (~C-cC-etA~).
 
 #+END_SRC
 
+** load additional /(optional)/ literate configs:
+#+BEGIN_SRC emacs-lisp
+  (let () (dolist (dot_emacs '("~/org/config.org"
+                               ))
+            "Loading my extra emacs dot files if they exist."
+            (when (file-exists-p dot_emacs)
+              (message (concat "Loading external literate config: " dot_emacs))
+              (org-babel-load-file dot_emacs))))
+#+END_SRC
 ** [[https://github.com/astahlman/ob-async][ob-async]]:
 Add: ~:async~ to an org-babel code block to run async when called with:
 ~C-cC-c~.
