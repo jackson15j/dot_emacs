@@ -1090,16 +1090,34 @@ jypma/emacsconf2021/blob/master/presentation.org]].
 #+END_SRC
 ** todo keywords:
 
-Applying styles to TODO keywords in org files:
+Applying styles to TODO keywords in org files + allow multiple sequences.
+
+See:
+
+- [[info:org#Faces for TODO keywords][org#Faces for TODO keywords]].
+- [[info:org#Multiple sets in one file][org#Multiple sets in one file]].
+  - =C-S-<left>/<right>= to jump sub-sequences (=Ctrl-Shift-<left>/<right>=).
+
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keyword-faces
         '(
           ("TODO" . org-warning)
-          ("STARTED" . "yellow")
-          ("INPROGRESS" . "yellow")
-          ("BLOCKED" . (:foreground "white" :weight bold :background "red"))
+          ("FUTURE" . (:foreground "black" :weight bold :background "DarkOrange1"))
+          ("STARTED" . (:foreground "black" :background "gold1"))
+          ("INPROGRESS" . (:foreground "white" :background: "green4"))
+          ("BLOCKED" . (:foreground "white" :weight bold :background "red4"))
           ("CANCELED" . (:foreground "blue" :weight bold :strikethough t))
-          ("PARKED" . (:forground "dark grey"))
+          ("PARKED" . (:forground "DarkGrey"))
+          )
+        )
+  (setq org-todo-keywords
+        '(
+          (sequence "TODO" "|" "DONE")
+          (sequence "FUTURE" "STARTED" "INPROGRESS" "BLOCKED" "|")
+          (sequence "REPORT" "BUG" "KNOWNCAUSE" "|" "FIXED")
+          (sequence "|" "CANCELED")
+          (sequence "|" "PARKED")
+          (sequence "|" "DELEGATED")
           )
         )
 #+END_SRC
