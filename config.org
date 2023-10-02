@@ -3,6 +3,7 @@
 #+email: craig.astill@gmail.com
 #+OPTIONS: num:nil
 #+PROPERTY: header-args:mermaid :prologue "exec 2>&1" :epilogue ":" :pupeteer-config-file ~/.puppeteerrc
+#+STARTUP: show2levels
 * Dot Emacs
 My main ~.emacs~ file.
 
