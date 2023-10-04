@@ -1847,6 +1847,7 @@ See: https://blog.bitsandbobs.net/blog/emacs-markdown-live-preview/
 Need to run the [[https://github.com/felixfbecker/php-language-server][php-language-server]] for eglot to connect to:
 
 #+BEGIN_SRC shell
+  docker pull felixfbecker/php-language-server
   docker run --detach --rm -p2088:2088 --name php-language-server felixfbecker/php-language-server
 #+END_SRC
 
