@@ -364,13 +364,20 @@ dictionaries). See: http://www.emacswiki.org/emacs/InteractiveSpell#toc6
 #+BEGIN_SRC emacs-lisp
   (use-package ispell
     :ensure-system-package (aspell)
-    :config
-    (setq
-     ispell-program-name "aspell"
-     ispell-list-command "list"
-     )
+    :custom
+    (ispell-list-command "list")
+    (ispell-personal-dictionary "~/org/ispell_personal_dict")
+    (ispell-program-name "aspell")
+    (ispell-silently-savep t)  ;; No confirmation on saving to personal dictionary.
     )
 #+END_SRC
+
+*** Add word to personal dictionary:
+Either:
+
+- ~M-$ i~.
+- ~C-c $~ and then click =Save word= in GUI drop-down.
+
 *** Set local ispell dictionary to Welsh in Welsh files.
 Steps:
 - Pull welsh dictionary from; https://ftp.gnu.org/gnu/aspell/dict/cy/.
