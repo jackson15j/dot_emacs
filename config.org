@@ -2068,6 +2068,17 @@ a projects pipenv.
            )
     )
 #+END_SRC
+** sh/bash:
+#+BEGIN_SRC emacs-lisp
+  (use-package sh-script
+    :ensure t
+    :defer t
+    :hook (
+           (shell-script-mode . lsp)
+           (sh-mode . lsp)
+           )
+    )
+#+END_SRC
 ** sql:
 - Linter: [[https://github.com/sqlfluff/sqlfluff][Github: sqlfluff/sqlfluff]]
 

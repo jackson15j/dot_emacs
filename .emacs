@@ -445,20 +445,6 @@ so grabbed this code:
   )
 
 
-;; *****************************************************
-;; *****************************************************
-;; Shell script (bash)(built-in)(Major mode)
-;; *****************************************************
-;; *****************************************************
-(use-package sh-script
-  :ensure t
-  :defer t
-  :hook (
-         (shell-script-mode . lsp)
-         (sh-mode . lsp)
-         )
-  )
-
 
 (use-package ansible
   ; https://github.com/k1LoW/emacs-ansible
