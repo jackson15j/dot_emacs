@@ -1122,10 +1122,10 @@ See:
           ("TODO" . org-warning)
           ("FUTURE" . (:foreground "black" :weight bold :background "DarkOrange1"))
           ("STARTED" . (:foreground "black" :background "gold1"))
-          ("INPROGRESS" . (:foreground "white" :background: "green4"))
+          ("INPROGRESS" . (:foreground "white" :background "green4"))
           ("BLOCKED" . (:foreground "white" :weight bold :background "red4"))
-          ("CANCELED" . (:foreground "blue" :weight bold :strikethough t))
-          ("PARKED" . (:forground "DarkGrey"))
+          ("CANCELED" . (:foreground "blue" :weight bold :strike-through t))
+          ("PARKED" . (:foreground "DarkGrey"))
           )
         )
   (setq org-todo-keywords
