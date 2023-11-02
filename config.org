@@ -306,6 +306,11 @@ Highlight white-space (eg. tabs) in the buffer.
     )
 #+END_SRC
 ** flymake:
+*FIXME:* flymake: temp disable due to noise from legacy init mode:
+=(error "Can’t find a suitable init function")=.
+
+Doesn't appear when flymake is started by =eglot= in a mode that has an lsp.
+
 #+BEGIN_SRC emacs-lisp
   (use-package flymake
     :bind (:map flymake-mode-map
@@ -313,10 +318,10 @@ Highlight white-space (eg. tabs) in the buffer.
            ("C-c p" . flymake-show-project-diagnostics)
            ("C-c j" . flymake-goto-next-error)
         )
-    :hook (
-           (prog-mode . flymake-mode)
-           (text-mode . flymake-mode)
-           )
+  ;;  :hook (
+  ;;         (prog-mode . flymake-mode)
+  ;;         (text-mode . flymake-mode)
+  ;;         )
     :config
     (progn
      (set-face-attribute 'flymake-error nil :background "DarkRed")
