@@ -2246,27 +2246,28 @@ Configure the Elfeed RSS reader with an Orgmode file.
 #+END_SRC
 ** [[https://github.com/fasheng/elfeed-protocol/][elfeed-protocol]]:
 #+BEGIN_SRC emacs-lisp
-   (use-package elfeed-protocol
-     :after (elfeed elfeed-org)
-     :init
-     (setq
-      elfeed-protocol-update-unread-only t
-      )
-     (elfeed-protocol-enable)
-     :ensure t
-     :defer t)
-
-  (defadvice elfeed (after configure-elfeed-feeds activate)
-    "Make elfeed-org autotags rules work with elfeed-protocol."
-    (setq elfeed-protocol-tags elfeed-feeds)
-    ;; ~.authinfo.gpg~ contents: ~machine <ip/hostname> port <port> login <user> password <password>~.
-    (setq elfeed-feeds (list
-                        (list
-                         "fever+http://craig@192.168.0.98:8095"
-                         :api-url "http://craig@192.168.0.98:8095/api/fever.php"
-                         :use-authinfo t
-                         :autotags elfeed-protocol-tags
-                         )))
+  (use-package elfeed-protocol
+    :after (elfeed elfeed-org)
+    :init
+    (setq
+     ;; curl recommend
+     elfeed-use-curl t
+     elfeed-set-timeout 36000
+     elfeed-curl-extra-arguments '("--insecure") ;necessary for https without a trust certificate
+     ;; Setup Fever
+     elfeed-protocol-update-unread-only t
+     elfeed-protocol-fever-fetch-category-as-tag t
+     ;; ~.authinfo.gpg~ contents: ~machine <ip/hostname> port <port> login <user> password <password>~.
+     elfeed-protocol-feeds '(("fever+http://craig@192.168.0.98:8095"
+                              :api-url "http://craig@192.168.0.98:8095/api/fever.php"
+                              :use-authinfo t))
+     )
+    ;; enable elfeed-protocol
+    (elfeed-protocol-enable)
+    :ensure t
+    :defer t
+    )
+#+END_SRC
     )
 #+END_SRC
 ** [[https://github.com/karthink/elfeed-tube][elfeed-tube]]:
