@@ -2268,6 +2268,17 @@ Configure the Elfeed RSS reader with an Orgmode file.
     :defer t
     )
 #+END_SRC
+
+*** [[https://github.com/fasheng/elfeed-protocol#work-with-elfeed-summary][Work with =elfeed-summary=]]:
+#+BEGIN_SRC emacs-lisp
+  (defun elfeed-protocol-advice-rmh-elfeed-org-export-feed (headline)
+   "Advice for `rmh-elfeed-org-export-feed', add elfeed-protocol ID as suffix for each feed."
+    (let* ((url (car headline))
+           (proto-id (car (elfeed-protocol-feed-list))))
+      (when proto-id
+        (setcar headline (elfeed-protocol-format-subfeed-id proto-id url)))))
+  (advice-add 'rmh-elfeed-org-export-feed :before #'elfeed-protocol-advice-rmh-elfeed-org-export-feed)
+#+END_SRC
     )
 #+END_SRC
 ** [[https://github.com/karthink/elfeed-tube][elfeed-tube]]:
