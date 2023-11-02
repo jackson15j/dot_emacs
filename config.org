@@ -1908,7 +1908,7 @@ server (suggest: =pyright-langserver=).
 
 #+BEGIN_SRC emacs-lisp
   (use-package python
-    :ensure-system-package ((python) (pyright))
+    :ensure-system-package ((python3 . python) (pyright))
     :after eglot
     :ensure t
     :functions flycheck-mode
