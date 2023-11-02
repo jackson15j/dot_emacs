@@ -1772,27 +1772,17 @@ This will allow the following code block to run:
   ; `yarn config set prefix ~/.yarn`
   ; `npx -p node@14 yarn global add eslint`
   ; `M-x lsp-install-server <ret> eslint <ret>`
+
   (use-package js2-mode
     :ensure t
     :defer t
     :mode ("\\.js\\'" "\\.jsx\\'" "\\.mjs\\'")
-    :hook (
-           (js2-mode . lsp)
+;;    :hook (
            ;; (js2-mode . add-node-modules-path)
            ;; (js2-mode . prettier-js-mode)  ; runs prettier on save.
            ;; (js2-mode . prettier-mode)  ; runs prettier on save.
-           ; (js2-mode . lsp-treemacs-error-list-mode)
-           )
-    :config
-    (require 'dap-chrome)
-    (dap-chrome-setup)
-    (require 'dap-node)
-    (dap-node-setup)
-    (require 'dap-firefox)
-    (dap-node-setup)
-    (setq
-     lsp-eslint-auto-fix-on-save t
-     )
+;;           )
+;;    :config
     )
 
   ;; FIXME: need to update the path to my local node-modules for my project that
