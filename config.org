@@ -1746,6 +1746,21 @@ This will allow the following code block to run:
 #+RESULTS:
 : Current Time: 2023-06-30 14:35:27.486993 +0100 BST m=+0.000096251
 
+** [[https://github.com/davazp/graphql-mode][graphql-mode]]:
+#+BEGIN_SRC emacs-lisp
+  (use-package graphql-mode
+    :ensure t
+    :defer t
+    )
+#+END_SRC
+*** [[https://github.com/tkf/emacs-request][request]]:
+Dependency on GraphQL-mode to do requests.
+#+BEGIN_SRC emacs-lisp
+  (use-package request
+    :ensure t
+    :defer t
+    )
+#+END_SRC
 ** javascript:
 #+BEGIN_SRC emacs-lisp
   ;; https://github.com/codesuki/add-node-modules-path
