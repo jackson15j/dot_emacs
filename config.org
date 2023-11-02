@@ -2071,12 +2071,10 @@ a projects pipenv.
 ** sh/bash:
 #+BEGIN_SRC emacs-lisp
   (use-package sh-script
+    :ensure-system-package ((shellcheck) (bash-language-server))
     :ensure t
     :defer t
-    :hook (
-           (shell-script-mode . lsp)
-           (sh-mode . lsp)
-           )
+    ;; :hook (((shell-script-mode sh-mode bash-ts-mode) . eglot-ensure))
     )
 #+END_SRC
 ** sql:
