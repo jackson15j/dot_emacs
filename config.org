@@ -61,6 +61,42 @@ By default, Esup will profile ~user-init-file~. To profile a custom file, call
     (setq esup-depth 0)
     )
 #+END_SRC
+** [[https://joaotavora.github.io/eglot/][eglot]]:
+Eglot ([[https://github.com/joaotavora/eglot][Github: joaotavora/eglot]]) is the built-in, streamlined LSP (Language
+Server Protocol) client for emacs, to talk to LSP Servers with. it is the
+alternative to the external,feature-rich package: [[*LSP (Language Server Protocol):][lsp-mode]].
+
+NOTE: Currently transitioning over to ~eglot~ from: ~lsp-mode~, as part of
+trying to slim down config and use more built-ins.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package eglot
+    ;; TODO: Raise bug about how this `:after` call breaks `eglot` automatically
+    ;; running.
+    ;; :after (company-mode)
+    :hook (
+           (eglot-mode . global-company-mode)
+           (prog-mode . eglot-ensure)
+           )
+    :ensure t)
+#+END_SRC
+*** [[https://github.com/joaotavora/breadcrumb][breadcrumb]]:
+Breadcrumb is a mode that fell out of the wish for eglot Users to have the same
+breadcrumb as seen in ~lsp-ui~. See: [[https://github.com/joaotavora/eglot/discussions/988][Github: joaotavora/eglot - Breadcrumb
+feature (can eglot support headerline like lsp-mode does?) #988]].
+
+This is external to eglot, but placing here just because of the link.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package breadcrumb
+    :vc (:url "https://github.com/joaotavora/breadcrumb"
+         :rev :newest)
+    :ensure t
+    :config
+    (breadcrumb-mode)
+    )
+#+END_SRC
+
 ** eww:
 #+BEGIN_SRC emacs-lisp
   (use-package eww
@@ -1590,42 +1626,6 @@ Major mode for ~.env~ files.
   (use-package dotenv-mode
     :ensure t)
 #+END_SRC
-** [[https://joaotavora.github.io/eglot/][eglot]]:
-Eglot ([[https://github.com/joaotavora/eglot][Github: joaotavora/eglot]]) is the built-in, streamlined LSP (Language
-Server Protocol) client for emacs, to talk to LSP Servers with. it is the
-alternative to the external,feature-rich package: [[*LSP (Language Server Protocol):][lsp-mode]].
-
-NOTE: Currently transitioning over to ~eglot~ from: ~lsp-mode~, as part of
-trying to slim down config and use more built-ins.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package eglot
-    ;; TODO: Raise bug about how this `:after` call breaks `eglot` automatically
-    ;; running.
-    ;; :after (company-mode)
-    :hook (
-           (eglot-mode . global-company-mode)
-           (prog-mode . eglot-ensure)
-           )
-    :ensure t)
-#+END_SRC
-*** [[https://github.com/joaotavora/breadcrumb][breadcrumb]]:
-Breadcrumb is a mode that fell out of the wish for eglot Users to have the same
-breadcrumb as seen in ~lsp-ui~. See: [[https://github.com/joaotavora/eglot/discussions/988][Github: joaotavora/eglot - Breadcrumb
-feature (can eglot support headerline like lsp-mode does?) #988]].
-
-This is external to eglot, but placing here just because of the link.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package breadcrumb
-    :vc (:url "https://github.com/joaotavora/breadcrumb"
-         :rev :newest)
-    :ensure t
-    :config
-    (breadcrumb-mode)
-    )
-#+END_SRC
-
 ** gherkin:
 *** [[https://github.com/michaelklishin/cucumber.el][feature-mode]]:
 #+BEGIN_SRC emacs-lisp
