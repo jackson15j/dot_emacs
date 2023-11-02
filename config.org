@@ -2279,6 +2279,18 @@ Configure the Elfeed RSS reader with an Orgmode file.
         (setcar headline (elfeed-protocol-format-subfeed-id proto-id url)))))
   (advice-add 'rmh-elfeed-org-export-feed :before #'elfeed-protocol-advice-rmh-elfeed-org-export-feed)
 #+END_SRC
+** [[https://github.com/paulelms/elfeed-autotag][elfeed-autotag]]:
+
+Update old tags on config change with: ~M-x elfeed-apply-hooks-now~.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package elfeed-autotag
+    :after (elfeed elfeed-org elfeed-protocol)
+    :init
+    (setq elfeed-autotag-files '("~/org/personal/elfeed.org"))
+    (elfeed-autotag)
+    :ensure t
+    :defer t
     )
 #+END_SRC
 ** [[https://github.com/karthink/elfeed-tube][elfeed-tube]]:
