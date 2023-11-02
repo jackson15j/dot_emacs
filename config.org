@@ -1741,6 +1741,70 @@ This will allow the following code block to run:
 #+RESULTS:
 : Current Time: 2023-06-30 14:35:27.486993 +0100 BST m=+0.000096251
 
+** javascript:
+#+BEGIN_SRC emacs-lisp
+  ;; https://github.com/codesuki/add-node-modules-path
+  ;; (use-package add-node-modules-path
+  ;;   :ensure t
+  ;;   :defer t
+  ;;   )
+  ;; https://github.com/jscheid/prettier.el
+  ;; (use-package prettier
+  ;;   :ensure t
+  ;;   :defer t
+  ;;   )
+  ; https://github.com/prettier/prettier-emacs
+  ; Requires global prettier install: `npm install -g prettier`.
+  ;; (use-package prettier-js
+  ;;   :ensure t
+  ;;   :defer t
+  ;;   )
+  ; https://emacs.cafe/emacs/javascript/setup/2017/05/09/emacs-setup-javascript-2.html
+  ; https://emacs-lsp.github.io/lsp-mode/tutorials/reactjs-tutorial/ = ts-ls.
+  ; https://emacs-lsp.github.io/lsp-mode/page/lsp-eslint/
+  ; https://classic.yarnpkg.com/en/docs/cli/global
+  ; - move yarn global install path to home dir and then install eslint globally.
+  ; `yarn config set prefix ~/.yarn`
+  ; `npx -p node@14 yarn global add eslint`
+  ; `M-x lsp-install-server <ret> eslint <ret>`
+  (use-package js2-mode
+    :ensure t
+    :defer t
+    :mode ("\\.js\\'" "\\.jsx\\'" "\\.mjs\\'")
+    :hook (
+           (js2-mode . lsp)
+           ;; (js2-mode . add-node-modules-path)
+           ;; (js2-mode . prettier-js-mode)  ; runs prettier on save.
+           ;; (js2-mode . prettier-mode)  ; runs prettier on save.
+           ; (js2-mode . lsp-treemacs-error-list-mode)
+           )
+    :config
+    (require 'dap-chrome)
+    (dap-chrome-setup)
+    (require 'dap-node)
+    (dap-node-setup)
+    (require 'dap-firefox)
+    (dap-node-setup)
+    (setq
+     lsp-eslint-auto-fix-on-save t
+     )
+    )
+
+  ;; FIXME: need to update the path to my local node-modules for my project that
+  ;; is in a sub-directory of the repo.
+  ;; (use-package eslint-fix
+  ;;   ; https://github.com/codesuki/eslint-fix
+  ;;   :ensure t
+  ;;   :defer t
+  ;;   :hook (
+  ;;          (js-mode . selint-fix)
+  ;;          (js2-mode . selint-fix)
+  ;;          )
+  ;;   :init
+  ;;   (setq eslint-fix-executable "npx eslint")
+  ;; )
+
+#+END_SRC
 ** json:
 *** json-mode:
 #+BEGIN_SRC emacs-lisp
