@@ -1286,12 +1286,7 @@ See:
         )
   (setq org-todo-keywords
         '(
-          (sequence "TODO" "|" "DONE")
-          (sequence "FUTURE" "STARTED" "INPROGRESS" "BLOCKED" "|")
-          (sequence "REPORT" "BUG" "KNOWNCAUSE" "|" "FIXED")
-          (sequence "|" "CANCELED")
-          (sequence "|" "PARKED")
-          (sequence "|" "DELEGATED")
+          (sequence "TODO" "INPROGRESS" "BLOCKED" "|" "DONE" "CANCELED" "PARKED")
           )
         )
 #+END_SRC
