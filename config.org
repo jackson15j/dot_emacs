@@ -2537,8 +2537,8 @@ Alternative to [[*\[\[https://github.com/manojm321/elfeed-dashboard\]\[elfeed-da
     :ensure t
     :defer t)
 #+END_SRC
-# ** [[https://github.com/jeetelongname/elfeed-goodies][elfeed-goodies]]:
-# FIXME: Raise bug around missing Powerline version in melpa.
+** [[https://github.com/jeetelongname/elfeed-goodies][elfeed-goodies]]:
+FIXME: Raise bug around missing Powerline version in melpa.
 # #+BEGIN_SRC emacs-lisp
 #   (use-package elfeed-goodies
 #     :ensure t
@@ -2548,17 +2548,6 @@ Alternative to [[*\[\[https://github.com/manojm321/elfeed-dashboard\]\[elfeed-da
 #     ;; Fix: Pane splits vertically instead of horizontally.
 #     ;; https://github.com/jeetelongname/elfeed-goodies/issues/40
 #     ;;(setq elfeed-show-entry-switch 'pop-to-buffer)
-#     )
-# #+END_SRC
-# ** [[https://github.com/paulelms/elfeed-autotag][elfeed-autotag]]:
-# Easy auto-tagging for elfeed-protocol (and elfeed in general).
-# #+BEGIN_SRC emacs-lisp
-#   (use-package elfeed-autotag
-#     :ensure t
-#     :defer t
-#     :config
-#     (setq elfeed-autotag-files '("~/org/personal/elfeed.org"))
-#     (elfeed-autotag)
 #     )
 # #+END_SRC
 ** TODO Future elfeed packages to pull in:
