@@ -441,6 +441,10 @@ Simply put the following in your .emacs would do the trick.
 #+END_SRC
 ** mode-line:
 The gutter bar at the bottom of the emacs window/frame.
+
+#+BEGIN_SRC emacs-lisp
+  (setq column-number-mode t)
+#+END_SRC
 *** +[[https://github.com/Bruce-Connor/smart-mode-line][smart-mode-line]]+:
 smart mode line wraps up a lot of nice tweaks in one package.
 
