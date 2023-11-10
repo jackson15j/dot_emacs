@@ -2767,7 +2767,7 @@ Code from: https://github.com/jwalgran/dotfiles/blob/master/.emacs.d/config.el
     (add-hook 'ansi-term-hook (lambda () (global-hl-line-mode 0)))  ; http://stackoverflow.com/questions/9990370/how-to-disable-hl-line-feature-in-specified-mode
     )
 #+END_SRC
-** eshell:
+** eshell (builtin):
 Add the following programs to the list of programs that =eshell= won't complain
 about not being a proper terminal. This will move out of line-mode and into
 paging mode (eg. like scrolling through a man page on a real terminal). See:
@@ -2777,6 +2777,11 @@ paging mode (eg. like scrolling through a man page on a real terminal). See:
 
 *NOTE:* This will use =ansi-term= for those command calls, so can use:
  =C-xC-j=, and: =C-cC-k=, to jump in and out of editing mode.
+
+Bindings:
+
+- =C-p= / =C-n= to move up/down by line.
+- =C-cC-p= / =C-cC-n= to move up/down to each input/prompt.
 
 #+BEGIN_SRC emacs-lisp
   (use-package eshell
