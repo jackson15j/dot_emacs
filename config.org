@@ -1395,26 +1395,27 @@ system packages. Run:
     )
 #+END_SRC
 * Docker:
-** docker:
+** [[https://github.com/Silex/docker.el][docker]]:
 #+BEGIN_SRC emacs-lisp
   (use-package docker
     :ensure t
     :defer t
     :bind ("C-c d" . docker)
-    :config
-    ;; https://github.com/Silex/docker.el/issues/188
-    ;; Don't use vterm everywhere.
-    (setq
-     docker-run-async-with-buffer-function 'docker-run-async-with-buffer-shell
-     docker-container-columns '(
-                                (:name "Names" :width 40 :template "{{ json .Names }}" :sort nil :format nil)
-                                (:name "Status" :width 30 :template "{{ json .Status }}" :sort nil :format nil)
-                                (:name "Image" :width 40 :template "{{ json .Image }}" :sort nil :format nil)
-                                (:name "Id" :width 12 :template "{{ json .ID }}" :sort nil :format nil)
-                                (:name "Ports" :width 20 :template "{{ json .Ports }}" :sort nil :format nil)
-                                (:name "Command" :width 23 :template "{{ json .Command }}" :sort nil :format nil)
-                                (:name "Created" :width 23 :template "{{ json .CreatedAt }}" :sort nil :format (lambda (x) (format-time-string "%F %T" (date-to-time x))))
-                                )
+    :custom
+    (
+     ;; https://github.com/Silex/docker.el/issues/188
+     ;; Don't use vterm everywhere.
+     (docker-run-async-with-buffer-function 'docker-run-async-with-buffer-shell)
+     (docker-container-columns '(
+                                 (:name "Names" :width 40 :template "{{ json .Names }}" :sort nil :format nil)
+                                 (:name "Status" :width 30 :template "{{ json .Status }}" :sort nil :format nil)
+                                 (:name "Image" :width 40 :template "{{ json .Image }}" :sort nil :format nil)
+                                 (:name "Id" :width 12 :template "{{ json .ID }}" :sort nil :format nil)
+                                 (:name "Ports" :width 20 :template "{{ json .Ports }}" :sort nil :format nil)
+                                 (:name "Command" :width 23 :template "{{ json .Command }}" :sort nil :format nil)
+                                 (:name "Created" :width 23 :template "{{ json .CreatedAt }}" :sort nil :format (lambda (x) (format-time-string "%F %T" (date-to-time x))))
+                                 )
+                               )
      )
     )
 #+END_SRC
