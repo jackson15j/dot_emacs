@@ -1407,7 +1407,7 @@ system packages. Run:
     (setq
      docker-run-async-with-buffer-function 'docker-run-async-with-buffer-shell
      docker-container-columns '(
-                                (:name "Names" :width 30 :template "{{ json .Names }}" :sort nil :format nil)
+                                (:name "Names" :width 40 :template "{{ json .Names }}" :sort nil :format nil)
                                 (:name "Status" :width 30 :template "{{ json .Status }}" :sort nil :format nil)
                                 (:name "Image" :width 40 :template "{{ json .Image }}" :sort nil :format nil)
                                 (:name "Id" :width 12 :template "{{ json .ID }}" :sort nil :format nil)
@@ -2060,7 +2060,7 @@ docker.io/felixfbecker/php-language-server:latest
 What's Next?
   View summary of image vulnerabilities and recommendations → docker scout quickview felixfbecker/php-language-server
 WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
-1c5e0a2b9fd2e874dfcda642a1362e970add9602cc8972611728fc9582a5b3bd
+d25cc9de95553b001f2eb2562a248985fee004c548ae4509503b709c444bcd86
 :end:
 
 NOTE: On Mac's; eglot will not connect if it is set to =localhost=!
