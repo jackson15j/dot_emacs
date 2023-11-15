@@ -2415,6 +2415,7 @@ An Emacs web feeds client.
            )
     :custom
     (elfeed-use-curl t)
+    (elfeed-log-level 'debug)
     :config (setq-default word-wrap t)
     ;; (setq elfeed-log-level 'debug)
     (defun elfeed-show-tag--star ()
@@ -2460,6 +2461,11 @@ Configure the Elfeed RSS reader with an Orgmode file.
     (elfeed-protocol-enable)
     :ensure t
     :defer t
+    :custom
+    (
+     (elfeed-protocol-log-trace t)
+     (elfeed-protocol-fever-maxsize 10)
+     )
     )
 #+END_SRC
 
