@@ -2046,7 +2046,7 @@ Need to run the [[https://github.com/felixfbecker/php-language-server][php-langu
 #+BEGIN_SRC shell
   docker kill php-language-server
   docker pull felixfbecker/php-language-server
-  docker run --detach --rm -p2088:2088 --name php-language-server felixfbecker/php-language-server
+  docker run --detach -p2088:2088 --restart=always --name php-language-server felixfbecker/php-language-server
 #+END_SRC
 
 #+RESULTS:
@@ -2059,9 +2059,10 @@ Status: Image is up to date for felixfbecker/php-language-server:latest
 docker.io/felixfbecker/php-language-server:latest
 
 What's Next?
-  View summary of image vulnerabilities and recommendations → docker scout quickview felixfbecker/php-language-server
+  1. Sign in to your Docker account → docker login
+  2. View a summary of image vulnerabilities and recommendations → docker scout quickview felixfbecker/php-language-server
 WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
-d25cc9de95553b001f2eb2562a248985fee004c548ae4509503b709c444bcd86
+cb88710297b99c146c7d5a33c9e4dc71a18283122dde74b5bf8327f4112b2784
 :end:
 
 NOTE: On Mac's; eglot will not connect if it is set to =localhost=!
