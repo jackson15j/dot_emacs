@@ -65,8 +65,6 @@
 (global-auto-revert-mode t)
 (put 'downcase-region 'disabled nil)  ; allow downcase-region without the disabled feature warning.
 (put 'upcase-region 'disabled nil)  ; allow upcase-region without the disabled feature warning.
-'(flycheck-error-list-column-number ((t (:inherit font-lock-constant-face :background "blue"))))
-'(flycheck-warning ((t (:background "DarkBlue" :underline (:color "DarkOrange" :style wave)))))
 (setq calendar-week-start-day 1)
 (menu-bar-mode -1)  ;; Disable Menu Bar
 (tool-bar-mode -1)  ;; Disable tool Bar
@@ -220,58 +218,6 @@ so grabbed this code:
   (auto-fill-mode -1)
   )
 (add-hook 'lisp-interaction-mode-hook 'my-scratch-mode-config)
-
-;; *****************************************************
-;; *****************************************************
-;; General programming packages
-;; *****************************************************
-;; *****************************************************
-;; ========================
-;; Setup Flycheck (Code checking on the fly (replaces flymake)
-;; ========================
-(use-package flycheck                   ; On-the-fly syntax checking
-  :ensure t
-  :defer t
-  :bind (:map flycheck-mode-map
-         ("C-c e" . list-flycheck-errors)
-         ("C-c T f" . flycheck-mode)
-         ("C-c j" . flycheck-next-error)
-        )
-  ;; :init (global-flycheck-mode)
-  :config
-  (progn
-    (setq
-     flycheck-completion-system 'ido
-     flycheck-highlighting-mode 'lines
-     flycheck-display-errors-delay 0.0
-     flycheck-flake8-maximum-complexity 10
-     flycheck-flake8rc "setup.cfg"
-     flycheck-highlighting-mode (quote lines)
-     ;; Set the standard library to libc++ so that C++11 headers will work
-     flycheck-clang-standard-library "libc++"
-     )
-    (set-face-attribute 'flycheck-error nil :background "DarkRed")  ; dark red
-    (set-face-attribute 'flycheck-warning nil :background "DarkBlue")  ; dark blue
-    (set-face-attribute 'flycheck-info nil :background "DarkGreen")  ; dark green
-    ;; Use italic face for checker name
-    (set-face-attribute 'flycheck-error-list-checker-name nil :inherit 'italic)
-  )
-  :diminish flycheck-mode)
-(flycheck-mode flycheck-mode-line) ; Flycheck status
-
-;; ;; Chain modes after `lsp`.
-;; ;; https://rat.dev/flycheck/flycheck/issues/1762
-;; (defvar-local my/flycheck-local-cache nil)
-;; (defun my/flycheck-checker-get (fn checker property)
-;;   (or (alist-get property (alist-get checker my/flycheck-local-cache))
-;;       (funcall fn checker property)))
-;; (advice-add 'flycheck-checker-get :around 'my/flycheck-checker-get)
-;; (add-hook 'lsp-managed-mode-hook
-;;           (lambda ()
-;;             (when (derived-mode-p 'python-mode)
-;;               (setq my/flycheck-local-cache '((lsp . ((next-checkers . (python-pylint)))))))))
-
-
 
 
 
