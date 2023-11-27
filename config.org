@@ -214,6 +214,31 @@ This is external to eglot, but placing here just because of the link.
   (setq shr-external-rendering-functions
         '((pre . eww-tag-pre)))
 #+END_SRC
+** flymake:
+*FIXME:* flymake: temp disable due to noise from legacy init mode:
+=(error "Can’t find a suitable init function")=.
+
+Doesn't appear when flymake is started by =eglot= in a mode that has an lsp.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package flymake
+    :bind (:map flymake-mode-map
+           ("C-c e" . flymake-show-buffer-diagnostics)
+           ("C-c p" . flymake-show-project-diagnostics)
+           ("C-c j" . flymake-goto-next-error)
+        )
+  ;;  :hook (
+  ;;         (prog-mode . flymake-mode)
+  ;;         (text-mode . flymake-mode)
+  ;;         )
+    :config
+    (progn
+     (set-face-attribute 'flymake-error nil :background "DarkRed")
+     (set-face-attribute 'flymake-warning nil :background "DarkBlue")
+     (set-face-attribute 'flymake-note nil :background "DarkGreen")
+     )
+    )
+#+END_SRC
 ** General
 - Don't prompt to kill processes on exit.
 
@@ -343,48 +368,47 @@ Highlight white-space (eg. tabs) in the buffer.
     (setq whitespace-style (quote (face trailing tabs)))
     )
 #+END_SRC
-** Various Tweaks:
-#+BEGIN_SRC emacs-lisp
-  (global-auto-revert-mode t)
-  (put 'downcase-region 'disabled nil)  ; allow downcase-region without the disabled feature warning.
-  (put 'upcase-region 'disabled nil)  ; allow upcase-region without the disabled feature warning.
-  (setq calendar-week-start-day 1)
-  (menu-bar-mode -1)  ;; Disable Menu Bar
-  (tool-bar-mode -1)  ;; Disable tool Bar
-  (fset 'yes-or-no-p 'y-or-n-p)  ;; yes/no -> y/n
-  (load-theme 'wombat t)
-  ; (display-time)  ;; Time in modeline. Un-comment to enable.
-  (display-battery-mode t)  ;; Battery in modeline. Un-comment to enable.
-  (setq large-file-warning-threshold (* 40 1024 1024))  ;; large files shouting from 40MB's
+** mode-line:
+The gutter bar at the bottom of the emacs window/frame.
 
-  ;; http://pragmaticemacs.com/emacs/dired-human-readable-sizes-and-sort-by-size/
-  (setq dired-listing-switches "-alh")
+#+BEGIN_SRC emacs-lisp
+  (setq column-number-mode t)
+#+END_SRC
+*** +[[https://github.com/Bruce-Connor/smart-mode-line][smart-mode-line]]+:
+smart mode line wraps up a lot of nice tweaks in one package.
+
+*NOTE:* Trialling the stock mode-line for a bit to see if I can live without
+smart-mode-line.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package smart-mode-line
+    ;; :ensure t
+    :disabled t
+    :defer t
+    :init
+    (setq
+     sml/no-confirm-load-theme t
+     sml/theme 'dark
+     sml/mode-width `full
+     )
+    (sml/setup)
+    (column-number-mode t)
+    )
+#+END_SRC
+** Native Compilation:
+Don't load outdated byte code.
+#+BEGIN_SRC emacs-lisp
+  (setq load-prefer-newer t)
 #+END_SRC
 
-** flymake:
-*FIXME:* flymake: temp disable due to noise from legacy init mode:
-=(error "Can’t find a suitable init function")=.
-
-Doesn't appear when flymake is started by =eglot= in a mode that has an lsp.
-
+[[https://stackoverflow.com/questions/1217180/how-do-i-byte-compile-everything-in-my-emacs-d-directory][SO: How do I byte compile everything?]]
 #+BEGIN_SRC emacs-lisp
-  (use-package flymake
-    :bind (:map flymake-mode-map
-           ("C-c e" . flymake-show-buffer-diagnostics)
-           ("C-c p" . flymake-show-project-diagnostics)
-           ("C-c j" . flymake-goto-next-error)
-        )
-  ;;  :hook (
-  ;;         (prog-mode . flymake-mode)
-  ;;         (text-mode . flymake-mode)
-  ;;         )
-    :config
-    (progn
-     (set-face-attribute 'flymake-error nil :background "DarkRed")
-     (set-face-attribute 'flymake-warning nil :background "DarkBlue")
-     (set-face-attribute 'flymake-note nil :background "DarkGreen")
-     )
-    )
+  ;; (byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
+#+END_SRC
+
+Log but don't pop up Warnings buffer for all native compilation warnings.
+#+BEGIN_SRC emacs-lisp
+  (setq native-comp-async-report-warnings-errors 'silent)
 #+END_SRC
 ** Project management:
 I've used ~projectile~ for years, but giving ~project~ a go. Only ever used:
@@ -494,48 +518,6 @@ Simply put the following in your .emacs would do the trick.
     :config
     (exec-path-from-shell-initialize)
     )
-#+END_SRC
-** mode-line:
-The gutter bar at the bottom of the emacs window/frame.
-
-#+BEGIN_SRC emacs-lisp
-  (setq column-number-mode t)
-#+END_SRC
-*** +[[https://github.com/Bruce-Connor/smart-mode-line][smart-mode-line]]+:
-smart mode line wraps up a lot of nice tweaks in one package.
-
-*NOTE:* Trialling the stock mode-line for a bit to see if I can live without
-smart-mode-line.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package smart-mode-line
-    ;; :ensure t
-    :disabled t
-    :defer t
-    :init
-    (setq
-     sml/no-confirm-load-theme t
-     sml/theme 'dark
-     sml/mode-width `full
-     )
-    (sml/setup)
-    (column-number-mode t)
-    )
-#+END_SRC
-** Native Compilation:
-Don't load outdated byte code.
-#+BEGIN_SRC emacs-lisp
-  (setq load-prefer-newer t)
-#+END_SRC
-
-[[https://stackoverflow.com/questions/1217180/how-do-i-byte-compile-everything-in-my-emacs-d-directory][SO: How do I byte compile everything?]]
-#+BEGIN_SRC emacs-lisp
-  ;; (byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
-#+END_SRC
-
-Log but don't pop up Warnings buffer for all native compilation warnings.
-#+BEGIN_SRC emacs-lisp
-  (setq native-comp-async-report-warnings-errors 'silent)
 #+END_SRC
 ** Spell Checking:
 *** dictionary:
@@ -651,6 +633,24 @@ Automatically install tree-sitter grammars.
     (global-treesit-auto-mode)
     )
 #+END_SRC
+** Various Tweaks:
+#+BEGIN_SRC emacs-lisp
+  (global-auto-revert-mode t)
+  (put 'downcase-region 'disabled nil)  ; allow downcase-region without the disabled feature warning.
+  (put 'upcase-region 'disabled nil)  ; allow upcase-region without the disabled feature warning.
+  (setq calendar-week-start-day 1)
+  (menu-bar-mode -1)  ;; Disable Menu Bar
+  (tool-bar-mode -1)  ;; Disable tool Bar
+  (fset 'yes-or-no-p 'y-or-n-p)  ;; yes/no -> y/n
+  (load-theme 'wombat t)
+  ; (display-time)  ;; Time in modeline. Un-comment to enable.
+  (display-battery-mode t)  ;; Battery in modeline. Un-comment to enable.
+  (setq large-file-warning-threshold (* 40 1024 1024))  ;; large files shouting from 40MB's
+
+  ;; http://pragmaticemacs.com/emacs/dired-human-readable-sizes-and-sort-by-size/
+  (setq dired-listing-switches "-alh")
+#+END_SRC
+
 ** [[https://www.emacswiki.org/emacs/WindMove][windmove]]:
 Builtin method of moving between windows with (default) ~Shift+<arrow>~. See:
 [[https://pragmaticemacs.wordpress.com/2016/12/26/whizz-between-windows-with-windmove/][PragmaticEmacs: Whizz between windows with windmove]].
