@@ -2315,6 +2315,16 @@ interacting with LSP Servers in emacs.
 - https://github.com/emacs-lsp/lsp-mode
 - https://emacs-lsp.github.io/lsp-mode
 
+** LSP dependencies:
+Seeing LSP and other packages blowing up on this missing requirement.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package posframe
+    :ensure t
+    :defer t
+    )
+#+END_SRC
+
 *** LSP core:
 #+BEGIN_SRC emacs-lisp
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
