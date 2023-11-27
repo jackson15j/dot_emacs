@@ -2158,6 +2158,20 @@ for years, but moving back to using emacs built-ins.
   ;;             (when (derived-mode-p 'python-mode)
   ;;               (setq my/flycheck-local-cache '((lsp . ((next-checkers . (python-pylint)))))))))
 #+END_SRC
+** log4j:
+Log file highlighting
+
+#+BEGIN_SRC emacs-lisp
+  (use-package log4j-mode
+    :ensure t
+    :defer t
+    :mode "\\.log\\'"
+    )
+  '(log4j-font-lock-fatal-face ((t (:foreground "darkred" :weight bold))))
+  '(log4j-font-lock-info-face ((t (:foreground "ForestGreen"))))
+  '(log4j-font-lock-warn-face ((t (:foreground "orange"))))
+#+END_SRC
+
 ** LSP (Language Server Protocol):
 ~lsp-mode~ is the external, feature-rich version of: [[*\[\[https://joaotavora.github.io/eglot/\]\[eglot\]\]:][eglot]] (built-in), for
 interacting with LSP Servers in emacs.

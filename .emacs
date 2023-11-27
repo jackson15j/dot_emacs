@@ -275,22 +275,6 @@ FORMAT - .format to use."
 
 
 
-;; *****************************************************
-;; *****************************************************
-;; Log file highlighting
-;; *****************************************************
-;; *****************************************************
-(use-package log4j-mode
-  :ensure t
-  :defer t
-  :mode "\\.log\\'"
-  )
-'(log4j-font-lock-fatal-face ((t (:foreground "darkred" :weight bold))))
-'(log4j-font-lock-info-face ((t (:foreground "ForestGreen"))))
-'(log4j-font-lock-warn-face ((t (:foreground "orange"))))
-
-
-
 ;; ========================
 ;; Stackoverflow search (SOS)
 ;; ========================
