@@ -405,26 +405,6 @@ so grabbed this code:
 
 
 
-;; *****************************************************
-;; *****************************************************
-;; XML programming
-;; *****************************************************
-;; *****************************************************
-(use-package nxml-mode
-  :mode ("web.config$" . xml-mode)
-  :init
-  (progn
-    (add-hook 'nxml-mode-hook 'my-programming-defaults-config)
-    (add-hook 'nxml-mode-hook (lambda () (auto-fill-mode -1)))  ;; disables auto fill at column.
-    ;; http://www.nuxeo.com/blog/nxml-mode-tabs/
-    (add-hook 'nxml-mode-hook (lambda () (setq indent-tabs-mode nil)))
-    (setq
-     nxml-child-indent 4
-     )
-    )
-  )
-
-
 
 ;; *****************************************************
 ;; *****************************************************
