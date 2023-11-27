@@ -1520,16 +1520,22 @@ TODO:
   - Treesit mode is being picked up now but eglot is not enabled in the mode.
 - Build ~compile_commands.json~.
 
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
-  (add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
-  (add-to-list 'major-mode-remap-alist '(c-or-c++-mode . c-or-c++-ts-mode))
+See: [[https://clangd.llvm.org/installation.html#editor-plugins][Clangd Docs: Editor Plugins]].
 
+#+BEGIN_SRC emacs-lisp
   (use-package cc-mode
-    ;; https://emacs-lsp.github.io/lsp-mode/page/lsp-clangd/
-    :ensure t
-    :after (eglot)
-    )
+	;; https://emacs-lsp.github.io/lsp-mode/page/lsp-clangd/
+	:ensure-system-package (clangd)
+	:ensure t
+	:after (eglot)
+	:config
+	(add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
+	(add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
+	(add-to-list 'major-mode-remap-alist '(c-or-c++-mode . c-or-c++-ts-mode))
+	(with-eval-after-load 'eglot
+	  (add-to-list 'eglot-server-programs '((c++-mode c++-ts-mode c-mode c-ts-mode) "clangd"))
+	  )
+	)
 #+END_SRC
 *** cc-mode (historical):
 My very very old setup, long before LSP was a thing. Haven't used it in about a
