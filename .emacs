@@ -48,24 +48,6 @@
 (org-babel-load-file "~/config.org")
 
 
-;; ========================
-;; Finally; Load extra dot files (if they exist)
-;; ========================
-(make-directory "~/configs" t)
-(use-package cus-edit
-  :custom (custom-file "~/configs/emacs/custom_set_variables.el" "Moved custom-set-variables to it's own file")
-  )
-
-(let () (dolist (dot_emacs '("~/configs/emacs/custom_set_variables.el"
-                             "~/configs/emacs/private_dot_emacs.el"
-                             "~/configs/emacs/unstable_config_dot_emacs.el"
-                             "~/configs/emacs/work_specific_dot_emacs.el"))
-          "Loading my extra emacs dot files if they exist."
-          (when (file-exists-p dot_emacs)
-            (message (concat "Loading external dot file: " dot_emacs))
-            (load-file dot_emacs))))
-
-
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars)
 ;; End:
