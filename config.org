@@ -282,6 +282,7 @@ https://www.emacswiki.org/emacs/LineNumbers#h5o-1
            (conf-mode . 'display-line-numbers)
            (prog-mode . 'display-line-numbers)
            (text-mode . 'display-line-numbers)
+           (org-mode . (lambda () (display-line-numbers-mode -1)))
            )
     :custom-face
      (line-number ((t (:inherit (shadow default) :background "grey10"))))
