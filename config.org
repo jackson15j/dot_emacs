@@ -76,7 +76,9 @@ trying to slim down config and use more built-ins.
     ;; :after (company-mode)
     :hook (
            (eglot-mode . global-company-mode)
-           (prog-mode . eglot-ensure)
+           ;; NOTE: `prog-mode` covers too many non-lsp modes. Tired of constant
+           ;; errors, so going back to explicitly enabling eglot on each mode!
+           ;; (prog-mode . eglot-ensure)
            )
     :ensure t)
 #+END_SRC
@@ -1432,6 +1434,7 @@ system packages. Run:
     ;; :after (eglot)
     :hook
     (
+     ((dockerfile-mode dockerfile-ts-mode) . eglot-ensure)
      ((dockerfile-mode dockerfile-ts-mode) . (lambda () (set (make-local-variable 'compile-command) "docker build .")))
      )
     )
@@ -1508,8 +1511,7 @@ Rate completions by use.
   (use-package cmake-mode
     :ensure-system-package (cmake)
     :ensure t
-    ;; FIXME: Hook breaks the `ensure-system-package` call.
-    ;; :hook (cmake-mode . lsp)
+    :hook ((cmake-mode . eglot-ensure))
     )
 #+END_SRC
 ** cpp:
@@ -1524,18 +1526,19 @@ See: [[https://clangd.llvm.org/installation.html#editor-plugins][Clangd Docs: Ed
 
 #+BEGIN_SRC emacs-lisp
   (use-package cc-mode
-	;; https://emacs-lsp.github.io/lsp-mode/page/lsp-clangd/
-	:ensure-system-package (clangd)
-	:ensure t
-	:after (eglot)
-	:config
-	(add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
-	(add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
-	(add-to-list 'major-mode-remap-alist '(c-or-c++-mode . c-or-c++-ts-mode))
-	(with-eval-after-load 'eglot
-	  (add-to-list 'eglot-server-programs '((c++-mode c++-ts-mode c-mode c-ts-mode) "clangd"))
-	  )
-	)
+    ;; https://emacs-lsp.github.io/lsp-mode/page/lsp-clangd/
+    :ensure-system-package (clangd)
+    :ensure t
+    :after (eglot)
+    :hook (((c++-mode c++-ts-mode c-mode c-ts-mode) . eglot-ensure))
+    :config
+    (add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
+    (add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
+    (add-to-list 'major-mode-remap-alist '(c-or-c++-mode . c-or-c++-ts-mode))
+    (with-eval-after-load 'eglot
+      (add-to-list 'eglot-server-programs '((c++-mode c++-ts-mode c-mode c-ts-mode) "clangd"))
+      )
+    )
 #+END_SRC
 *** cc-mode (historical):
 My very very old setup, long before LSP was a thing. Haven't used it in about a
@@ -1709,6 +1712,7 @@ with supporting the new =go-ts-mode=.
       )
     :hook (
            ((go-mode go-ts-mode) . cas/go-config)
+           ((go-mode go-ts-mode) . eglot-ensure)
        )
     )
 #+END_SRC
@@ -1799,12 +1803,13 @@ Dependency on GraphQL-mode to do requests.
     :ensure t
     :defer t
     :mode ("\\.js\\'" "\\.jsx\\'" "\\.mjs\\'")
-;;    :hook (
+    :hook (
            ;; (js2-mode . add-node-modules-path)
            ;; (js2-mode . prettier-js-mode)  ; runs prettier on save.
            ;; (js2-mode . prettier-mode)  ; runs prettier on save.
-;;           )
-;;    :config
+           (js2-mode . eglot-ensure)
+           )
+  ;;    :config
     )
 
   ;; FIXME: need to update the path to my local node-modules for my project that
@@ -1945,7 +1950,7 @@ lsp-server for Makefile's.
     :hook ((makefile-mode . cas/make-mode-config))
     )
 #+END_SRC
-** markdown:
+[** markdown:
 *** [[https://github.com/jrblevin/markdown-mode][markdown-mode]]:
 NOTE:
 
@@ -1974,6 +1979,7 @@ Look at:
     ;; ~markdown~ in arch package manager.
     ;; :ensure-system-package (markdown)  ;; Required by ~M-x markdown-preview~.
     :ensure t
+    :ensure-system-package (marksman)
     :mode ("README\\.md\\'" . gfm-mode)
     ;; multimarkdown is in brew/yay, but not pulling down on arch??
     ;; :init (setq markdown-command "multimarkdown")
@@ -1982,7 +1988,10 @@ Look at:
            ("C-c C-a g" . convert-markdown-github-url-to-ref)
            ("C-c C-a s" . strip-a-ids-from-org-markdown-export)
            )
-    :hook ((markdown-mode . my-text-mode-config))
+    :hook (
+           (markdown-mode . my-text-mode-config)
+           (markdown-mode . eglot-ensure)
+           )
     )
 #+END_SRC
 *** [[https://github.com/skeeto/impatient-mode][impatient-mode]]:
@@ -2079,7 +2088,10 @@ NOTE: On Mac's; eglot will not connect if it is set to =localhost=!
     :ensure t
     :defer t
     :mode ("\\.php\\'" . php-mode)
-    :hook (php-mode-hook . my-programming-defaults-config)
+    :hook (
+           (php-mode-hook . my-programming-defaults-config)
+           (php-mode . eglot-ensure)
+           )
     ;; :custom
     ;; ;; See: https://2metz.fr/blog/configuring-emacs-eglot-lsp-with-docker-containers/
     ;; ;; for an example of eglot starting docker containers.
@@ -2118,6 +2130,7 @@ server (suggest: =pyright-langserver=).
         )
     :hook (
            (python-ts-mode . cas/python-config)
+           ((python-mode python-ts-mode) . eglot-ensure)
            )
     :config
     (setq
@@ -2278,7 +2291,7 @@ a projects pipenv.
     :ensure-system-package ((shellcheck) (bash-language-server))
     :ensure t
     :defer t
-    ;; :hook (((shell-script-mode sh-mode bash-ts-mode) . eglot-ensure))
+    :hook (((shell-script-mode sh-mode bash-ts-mode) . eglot-ensure))
     )
 #+END_SRC
 ** sql:
