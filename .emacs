@@ -274,23 +274,6 @@ FORMAT - .format to use."
 
 
 
-;; FIXME: appears to not exist anymore.
-;; ;; ========================
-;; ;; iRFC (Download & View RFC's)
-;; ;; ========================
-;; (use-package irfc
-;;   :ensure t
-;;   :defer t
-;;   :config
-;;   (progn
-;;     (setq
-;;      irfc-directory "~/Downloads/rfcs/"
-;;      irfc-assoc-mode t)
-;;     )
-;;   )
-
-
-
 ;; (make-directory "~/org/jira/" t)
 ;; (use-package org-jira
 ;;   :ensure t
