@@ -425,24 +425,6 @@ so grabbed this code:
   )
 
 
-;; *****************************************************
-;; *****************************************************
-;; Groovy programming
-;; *****************************************************
-;; *****************************************************
-(use-package groovy-mode
-  ; https://github.com/Groovy-Emacs-Modes/groovy-emacs-modes
-  :ensure t
-  :defer t
-  :mode (
-         ("\\.groovy\\'" . groovy-mode)
-         ("\\Jenkinsfile*\\'" . groovy-mode)
-         )
-  :config
-  (progn
-    (add-hook 'groovy-mode-hook 'my-programming-defaults-config)
-    )
-  )
 
 
 
