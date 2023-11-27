@@ -302,17 +302,6 @@ FORMAT - .format to use."
 ;;   )
 
 
-;; ========================
-;; md4rd (Reddit client)
-;; ========================
-;; https://github.com/ahungry/md4rd
-;; FIXME: uncomment once `Debugger entered--Lisp error: (void-variable hierarchy--make)` is fixed.
-;; (use-package md4rd
-;;   :ensure t
-;;   :defer t
-;;   )
-
-
 
 ;; (make-directory "~/org/jira/" t)
 ;; (use-package org-jira

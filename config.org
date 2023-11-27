@@ -3176,6 +3176,18 @@ buffer with ~M-<~ (=beginning-of-buffer=). Toggle with: ~M-x eloud-mode~.
     )
 #+END_SRC
 
+** [[https://github.com/ahungry/md4rd][md4rd]]:
+Reddit client. Guessing this is dead after the public API shutdown, but here is
+my original note: FIXME: uncomment once =Debugger entered--Lisp error:
+(void-variable hierarchy--make)= is fixed.
+
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package md4rd
+  ;;   :ensure t
+  ;;   :defer t
+  ;;   )
+#+END_SRC
+
 ** [[https://github.com/emacsmirror/spray][spray]]:
 Speed reading in a buffer by flashing each word in turn. Spritz clone for speed
 reading.
