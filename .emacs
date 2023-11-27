@@ -474,67 +474,6 @@ so grabbed this code:
   )
 
 
-
-;; *****************************************************
-;; *****************************************************
-;; C# IDE stuff
-;; *****************************************************
-;; *****************************************************
-; FIXME: keep getting: `Unable to activate package ‘csharp-mode’.` messages,
-; so disabling until I have time to re-implement with `lsp-mode`.
-
-;; (defun my-csharp-mode-syntax ()
-;;   "Hook for my tweaks to 'csharp-mode'."
-;;   (interactive)
-;;   ;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Indenting-switch-statements.html
-;;   ;; https://stackoverflow.com/questions/3954607/c-sharp-emacs-mode-questions-indentation-and-build#3956173
-;;   ;; http://kirste.userpage.fu-berlin.de/chemnet/use/info/cc-mode/cc-mode_6.html
-;;   ;; `C-cC-s` to see indent at point.
-;;   (c-set-offset `inline-open 0)  ; Stop brackets being indented further on a method.
-;;   )
-
-;; (use-package csharp-mode
-;;   ;; https://jamiecollinson.com/blog/my-emacs-config/#c-1
-;;   :ensure t
-;;   :defer t
-;;   :init
-;;   (add-hook 'csharp-mode-hook 'my-programming-defaults-config)
-;;   (add-hook 'csharp-mode-hook 'my-csharp-mode-syntax)
-;;   ;; https://stackoverflow.com/questions/4608679/can-i-change-emacs-default-compile-command
-;;   (add-hook 'csharp-mode-hook (lambda () (set (make-local-variable 'compile-command) "cd $(git rev-parse --show-toplevel) && dotnet run")))
-
-;;   (use-package omnisharp
-;;     ;; https://github.com/OmniSharp/omnisharp-emacs
-;;     ;; https://jamiecollinson.com/blog/my-emacs-config/#c-1
-;;     ;; https://www.tuicool.com/articles/22a2Ejb
-;;     ;; NOTE: Needs a project with a `.csproj` file to do completions. Done with:
-;;     ;; `dotnet new <project_type>`
-;;     ;; FIXME: Deferring since I don't have omnisharp installed. Currently not
-;;     ;; doing csharp. Should do a check of packages installed.
-;;     :defer t
-;;     :after (company)
-;;     :bind (:map omnisharp-command-map
-;;            ;; FIXME: Make these not global to C++ !!
-;;            ("C-c f" . 'omnisharp-run-code-action-refactoring)  ; Refactor/missing_imports/etc...
-;;            ("M-." . 'omnisharp-go-to-definition)
-;;            )
-;;     :config
-;;     (add-hook 'csharp-mode-hook 'omnisharp-mode)
-;;     (add-to-list 'company-backends 'company-omnisharp))
-
-;;   (use-package coverlay
-;;     ;; https://github.com/twada/coverlay.el
-;;     ;; Coverage from an LCOV file.
-;;     ;; Watch a file via: `M-x coverlay-watch-file /path/to/lcov-file`. or:
-;;     ;; `C-c C-l w`.
-;;     :ensure t
-;;     :defer t
-;;     :init
-;;     (setq coverlay:mark-tested-lines nil)
-;;     )
-;;   )
-
-
 ;; *****************************************************
 ;; *****************************************************
 ;; Java IDE stuff
