@@ -223,30 +223,6 @@ so grabbed this code:
 
 
 ;; ========================
-;; Github blog
-;; ========================
-(defun org-custom-link-img-follow (path)
-  "PATH to find custom linked images."
-  (org-open-file-with-emacs
-   (format "~/org/github_blog/images/%s" path)))
-
-(defun org-custom-link-img-export (path desc format)
-  "Rewrite custom linked images for export.
-PATH - path to images.
-DESC - Description to add as alt text..
-FORMAT - .format to use."
-  (cond
-   ((eq format 'html)
-    (format "<img src=\"http://jackson15j.github.io/%s\" alt=\"%s\"/>" path desc))))
-
-(require 'org)
-;; FIXME: `org-add-link-type` is deprecated. Replace with:
-;; `org-link-set-parameters`.
-(org-add-link-type "img" 'org-custom-link-img-follow 'org-custom-link-img-export)
-
-
-
-;; ========================
 ;; Finally; Load extra dot files (if they exist)
 ;; ========================
 (make-directory "~/configs" t)
