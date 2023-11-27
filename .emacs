@@ -274,18 +274,6 @@ FORMAT - .format to use."
 
 
 
-;; (make-directory "~/org/jira/" t)
-;; (use-package org-jira
-;;   :ensure t
-;;   :defer t
-;;   :config
-;;   (setq
-;;    jiralib-url "https://eigentech.atlassian.net/"
-;;    org-jira-working-dir "~/org/jira/"
-;;    )
-;;   )
-
-
 ;; ========================
 ;; Finally; Load extra dot files (if they exist)
 ;; ========================
