@@ -1828,6 +1828,50 @@ Dependency on GraphQL-mode to do requests.
     :defer t
     )
 #+END_SRC
+** java:
+
+#+BEGIN_SRC emacs-lisp
+(defun my-java-mode-syntax ()
+  "Hook for my tweaks to `java-mode`."
+  (interactive)
+  ;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Indenting-switch-statements.html
+  (c-set-offset 'case-label '+)  ; A "case" or "default" label.
+  (c-set-offset 'brace-list-entry '++)  ; Subsequent lines in an enum or static array list.
+  (c-set-offset `arglist-intro `+)  ; function fields on a new line.
+  )
+
+;; https://writequit.org/eos/eos-java.html
+;; https://github.com/dakrone/emacs-java-imports
+;; https://github.com/mopemope/meghanada-emacs
+(use-package meghanada
+  :ensure t
+  :defer t
+  :init
+  (add-hook 'java-mode-hook #'meghanada-mode)
+  (add-hook 'java-mode-hook 'flycheck-mode)
+  (add-hook 'java-mode-hook 'my-programming-defaults-config)
+  ;; Java warnings stop compilation scrolling, so let's always scroll.
+  (add-hook 'java-mode-hook (lambda() compilation-scroll-output t))
+  (add-hook 'java-mode-hook (lambda () compile-command "cd $(git rev-parse --show-toplevel) && mvn clean verify"))
+  (add-hook 'java-mode-hook 'my-java-mode-syntax)
+  )
+
+(use-package mvn
+  :ensure t
+  :defer t
+  :init
+  ;; Correctly colourise the compilation buffer for maven calls.
+  ;; https://github.com/apg/mvn-el
+  (ignore-errors
+    (require 'ansi-color)
+    (defun colorize-compilation-buffer ()
+      (when (eq major-mode 'compilation-mode)
+        (let ((inhibit-read-only t))
+          (if (boundp 'compilation-filter-start)
+              (ansi-color-apply-on-region compilation-filter-start (point))))))
+    (add-hook 'compilation-filter-hook 'colorize-compilation-buffer))
+  )
+#+END_SRC
 ** javascript:
 #+BEGIN_SRC emacs-lisp
   ;; https://github.com/codesuki/add-node-modules-path
