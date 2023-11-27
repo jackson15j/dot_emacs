@@ -371,16 +371,6 @@ so grabbed this code:
 
 
 
-;; *****************************************************
-;; *****************************************************
-;; HTML IDE stuff
-;; *****************************************************
-;; *****************************************************
-; https://emacs-lsp.github.io/lsp-mode/page/lsp-html/
-(add-hook 'html-mode-hook 'lsp)
-
-
-
 ;; http://cestlaz.github.io/posts/using-emacs-26-gcal/
 (use-package calfw
   :ensure t

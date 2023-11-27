@@ -1915,6 +1915,12 @@ Dependency on GraphQL-mode to do requests.
     )
   )
 #+END_SRC
+** html:
+#+BEGIN_SRC emacs-lisp
+  ; https://emacs-lsp.github.io/lsp-mode/page/lsp-html/
+  ;; (add-hook 'html-mode-hook 'lsp)
+#+END_SRC
+
 ** java:
 
 #+BEGIN_SRC emacs-lisp
