@@ -661,6 +661,111 @@ Builtin method of moving between windows with (default) ~Shift+<arrow>~. See:
     :config (windmove-default-keybindings)
     )
 #+END_SRC
+* Custom Functions:
+** go to column:
+#+BEGIN_SRC emacs-lisp
+  (defun go-to-column (column)
+    "GoTo column.
+  Was getting annoyed seeing errors that point to a COLUMN number;
+  so grabbed this code:
+  - http://emacsredux.com/blog/2013/07/09/go-to-column/"
+    (interactive "nColumn: ")
+    (move-to-column column t))
+  (global-set-key (kbd "M-g M-c") 'go-to-column)
+#+END_SRC
+
+** =prog-mode= defaults:
+#+BEGIN_SRC emacs-lisp
+  (defun my-programming-defaults-config ()
+    "All of my programming defaults  in one place."
+    (interactive)
+    (whitespace-mode)  ;; highlights whitespace.
+    (my_highlighted_words)  ;; highlights specific words in red & bold.
+    (fci-mode)  ;; adds fill column indicator.
+    ;; (auto-fill-mode nil)  ;; disables auto fill at column.
+    (setq indent-tabs-mode nil)  ;; spaces instead of tabs
+    (setq tab-width 4)  ;; 4 spaces per tab key press.
+
+    ;; TODO: raise a bug on which-function-mode breaking in python when opening a
+    ;; triple double-qoute (`"""`) docstring in a function and then emacs
+    ;; freezes. Replicated on work files with: `emacs -q`, but failed to
+    ;; replicate so far on a quickly mocked up file in /tmp/.
+    ;;
+    ;; (which-function-mode)  ;; Display current function in mode line. (http://emacsredux.com/blog/2014/04/05/which-function-mode/)
+    (my_highlighted_words)  ;; highlight specific words
+    (show-paren-mode 1)  ;; highlight matching brackets
+    (setq tags-revert-without-query t)
+    )
+  (add-hook 'prog-mode-hook 'my-programming-defaults-config)
+  ;; Don't line-wrap in html files.
+  ;; https://stackoverflow.com/questions/9294437/emacs-disable-wordwrapping-in-html-mode
+  (add-hook 'html-mode-hook (lambda () (auto-fill-mode -1)))
+#+END_SRC
+
+** revert all buffers:
+#+BEGIN_SRC emacs-lisp
+  (defun revert-all-buffers ()
+    "Refreshes all open buffers from their respective files."
+    (interactive)
+    (dolist (buf (buffer-list))
+      (with-current-buffer buf
+        (when (and (buffer-file-name) (file-exists-p (buffer-file-name)) (not (buffer-modified-p)))
+          (revert-buffer t t t) )))
+    (message "Refreshed open files.") )
+#+END_SRC
+
+** =scratch-mode= defaults:
+#+BEGIN_SRC emacs-lisp
+  (defun my-scratch-mode-config ()
+    "Disabling config for *scratch* buffer."
+    (interactive)
+    (fci-mode -1)
+    (auto-fill-mode -1)
+    )
+  (add-hook 'lisp-interaction-mode-hook 'my-scratch-mode-config)
+#+END_SRC
+
+** show non-ascii in occur buffer:
+Here’s a simple defun to show non-ascii characters of current buffer in an
+Occur buffer http://www.emacswiki.org/emacs/FindingNonAsciiCharacters
+
+#+BEGIN_SRC emacs-lisp
+  (defun occur-non-ascii ()
+    "Find any non-ascii characters in the current buffer."
+    (interactive)
+    (occur "[^[:ascii:]]"))
+#+END_SRC
+
+** =text-mode= defaults:
+#+BEGIN_SRC emacs-lisp
+  (defun my-text-mode-config ()
+    "All of my `text-mode` config in one place."
+    (interactive)
+    (whitespace-mode)  ;; highlights whitespace.
+    (my_highlighted_words)  ;; highlights specific words in red & bold.
+    (fci-mode)  ;; adds fill column indicator.
+    (auto-fill-mode)  ;; wraps at auto fill column.
+    (my_highlighted_words)  ;; highlight specific words
+    (setq indent-tabs-mode nil)  ;; spaces instead of tabs
+    )
+
+  (add-hook 'text-mode-hook 'my-text-mode-config)  ;; singular text-mode-hook
+  (add-hook 'conf-mode-hook 'my-text-mode-config)  ;; *.conf
+#+END_SRC
+
+** [[https://stackoverflow.com/questions/9688748/emacs-comment-uncomment-current-line][toggle comment region/line]]:
+#+BEGIN_SRC emacs-lisp
+  (defun comment-or-uncomment-region-or-line ()
+    "Un/Comments the region or the current line if there's no active region."
+    (interactive)
+    (let (beg end)
+      (if (region-active-p)
+          (setq beg (region-beginning) end (region-end))
+        (setq beg (line-beginning-position) end (line-end-position)))
+      (comment-or-uncomment-region beg end)))
+  (global-set-key (kbd "C-c '") 'comment-or-uncomment-region-or-line)
+#+END_SRC
+
 * Buffer/Window Management:
 ** Fill Column Indicator
 Fill Column is used to reflow text automatically & highlight margins, as well
