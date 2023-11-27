@@ -3141,6 +3141,19 @@ Speed reading by line or word.
     )
 #+END_SRC
 
+** [[https://github.com/astoff/devdocs.el][devdocs]]:
+#+BEGIN_SRC emacs-lisp
+  (use-package devdocs
+    :ensure t
+    :defer t
+    :hook (
+           (c-mode . (lambda () (setq-local devdocs-current-docs '("c"))))
+           (c++-mode . (lambda () (setq-local devdocs-current-docs '("cpp" "cmake~3.20"))))
+           (python-mode . (lambda () (setq-local devdocs-current-docs '("python~3.9" "django~3.2" "django_rest_framework"))))
+           )
+    )
+#+END_SRC
+
 ** [[https://github.com/smythp/eloud][eloud]]:
 Emacs-based screen reader to read words when passing over them, or the whole
 buffer with ~M-<~ (=beginning-of-buffer=). Toggle with: ~M-x eloud-mode~.

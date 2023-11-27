@@ -314,18 +314,6 @@ FORMAT - .format to use."
 
 
 
-(use-package devdocs
-  ; https://github.com/astoff/devdocs.el
-  :ensure t
-  :defer t
-  :hook (
-         (c-mode . (lambda () (setq-local devdocs-current-docs '("c"))))
-         (c++-mode . (lambda () (setq-local devdocs-current-docs '("cpp" "cmake~3.20"))))
-         (python-mode . (lambda () (setq-local devdocs-current-docs '("python~3.9" "django~3.2" "django_rest_framework"))))
-         )
-  )
-
-
 ;; (make-directory "~/org/jira/" t)
 ;; (use-package org-jira
 ;;   :ensure t
