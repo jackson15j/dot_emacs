@@ -51,57 +51,6 @@
 
 ;; *****************************************************
 ;; *****************************************************
-;; Various Tweaks (one-liners and minor package config).
-;; *****************************************************
-;; *****************************************************
-(global-auto-revert-mode t)
-(put 'downcase-region 'disabled nil)  ; allow downcase-region without the disabled feature warning.
-(put 'upcase-region 'disabled nil)  ; allow upcase-region without the disabled feature warning.
-(setq calendar-week-start-day 1)
-(menu-bar-mode -1)  ;; Disable Menu Bar
-(tool-bar-mode -1)  ;; Disable tool Bar
-(fset 'yes-or-no-p 'y-or-n-p)  ;; yes/no -> y/n
-(load-theme 'wombat t)
-; (display-time)  ;; Time in modeline. Un-comment to enable.
-(display-battery-mode t)  ;; Battery in modeline. Un-comment to enable.
-(setq large-file-warning-threshold (* 40 1024 1024))  ;; large files shouting from 40MB's
-
-;; backup files - https://www.emacswiki.org/emacs/BackupDirectory
-(setq
-   backup-by-copying t      ; don't clobber symlinks
-   backup-directory-alist
-    '(("." . "~/.emacs.d/.backups/"))    ; don't litter my fs tree
-   delete-old-versions t
-   kept-new-versions 6
-   kept-old-versions 2
-   version-control t)       ; use versioned backups
-(make-directory "~/.emacs.d/.backups/" t)
-;; https://emacs.stackexchange.com/questions/17210/how-to-place-all-auto-save-files-in-a-directory
-(setq auto-save-file-name-transforms
-      `(
-        ("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" "/tmp/\\2" t)
-        (".*" "~/.emacs.d/.auto-saves/" t)
-        )
-      )
-(make-directory "~/.emacs.d/.auto-saves/" t)
-;; Don't save lock files by files - https://www.emacswiki.org/emacs/LockFiles.
-(setq create-lockfiles nil)
-
-
-
-;; http://pragmaticemacs.com/emacs/dired-human-readable-sizes-and-sort-by-size/
-(setq dired-listing-switches "-alh")
-
-
-;; Allow `Alt+3` on a Mac to be `#`:
-;; https://stackoverflow.com/questions/1704119/carbon-emacs-re-enable-hash-key
-;; https://stackoverflow.com/questions/3977069/emacs-question-hash-key
-(global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
-(define-key isearch-mode-map (kbd "M-3") '(lambda () (interactive) (isearch-process-search-char ?\#)))
-
-
-;; *****************************************************
-;; *****************************************************
 ;; My custom functions
 ;; *****************************************************
 ;; *****************************************************
