@@ -221,34 +221,6 @@ so grabbed this code:
 
 
 
-;; http://cestlaz.github.io/posts/using-emacs-26-gcal/
-(use-package calfw
-  :ensure t
-  :defer t
-  :bind
-  (
-   ("<f8>" . cfw:open-org-calendar)
-   )
-  :config
-  (progn
-    (use-package calfw-gcal
-      ;; FIXME: 10year old package with deprecated `cl` requirement.
-      ;; TODO: replace for: https://github.com/myuhe/org-gcal.el.
-      :ensure t
-  :defer t)
-
-    (use-package calfw-ical
-      :ensure t
-  :defer t)
-
-    (use-package calfw-org
-      :ensure t
-  :defer t)
-    )
-  ;; FIXME: what does this do??
-  (setq cfw:org-overwrite-default-keybinding t)
-  )
-
 
 ;; ========================
 ;; Github blog

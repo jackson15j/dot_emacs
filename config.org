@@ -849,6 +849,40 @@ and more — in a fast and effective plain text system.
 *NOTE:* Broken apart org mode config via: [[https://github.com/jwiegley/use-package/issues/662][Github:
  jwiegley/use-package/issues/662 - Calling use-package multiple times on the
  same package #662]].
+
+** calfw (Calendar):
+See: http://cestlaz.github.io/posts/using-emacs-26-gcal/
+
+#+BEGIN_SRC emacs-lisp
+  (use-package calfw
+    :ensure t
+    :defer t
+    :after (org)
+    :bind
+    (
+     ("<f8>" . cfw:open-org-calendar)
+     )
+    :config
+    (progn
+      (use-package calfw-gcal
+        ;; FIXME: 10year old package with deprecated `cl` requirement.
+        ;; TODO: replace for: https://github.com/myuhe/org-gcal.el.
+        :ensure t
+    :defer t)
+
+      (use-package calfw-ical
+        :ensure t
+    :defer t)
+
+      (use-package calfw-org
+        :ensure t
+    :defer t)
+      )
+    ;; FIXME: what does this do??
+    (setq cfw:org-overwrite-default-keybinding t)
+    )
+#+END_SRC
+
 ** Core org-mode config:
 #+BEGIN_SRC emacs-lisp
   (use-package org
