@@ -314,11 +314,6 @@ FORMAT - .format to use."
 
 
 
-(use-package i3wm-config-mode
-  :ensure t
-  :defer t)
-
-
 (use-package devdocs
   ; https://github.com/astoff/devdocs.el
   :ensure t

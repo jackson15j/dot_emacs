@@ -2006,6 +2006,13 @@ Dependency on GraphQL-mode to do requests.
   ;; (add-hook 'html-mode-hook 'lsp)
 #+END_SRC
 
+** i3wm:
+#+BEGIN_SRC emacs-lisp
+  (use-package i3wm-config-mode
+    :ensure t
+    :defer t)
+#+END_SRC
+
 ** [[https://github.com/rasmus-toftdahl-olesen/iss-mode][iss (InnoSetup)]]:
 See: InnoSetup mode: https://jrsoftware.org/isinfo.php
 
