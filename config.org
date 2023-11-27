@@ -1716,12 +1716,13 @@ disabling until I have time to re-implement with `lsp-mode`.
 ** css:
 TODO: switch over to eglot!
 #+BEGIN_SRC emacs-lisp
-(use-package css-mode
-  ; https://emacs-lsp.github.io/lsp-mode/page/lsp-css/
-  :ensure t
-  :defer t
-  :hook (css-mode . lsp)
-  )
+  (use-package css-mode
+    ; https://emacs-lsp.github.io/lsp-mode/page/lsp-css/
+    :ensure t
+    :ensure-system-package (vscode-langservers-extracted)
+    :defer t
+    :hook ((css-mode css-ts-mode) . eglot-ensure)
+    )
 #+END_SRC
 
 ** debugging:
