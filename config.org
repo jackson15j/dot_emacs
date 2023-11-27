@@ -9,7 +9,7 @@
 My main ~.emacs~ file.
 
 *NOTE:* For built-in packages, check out the emacs manual via: ~C-h r~!
-** Ansible
+** Ansible:
 
 Install via [[http://docs.ansible.com/ansible/][ansible]] with the following command, which will prompt for sudo
 password (pacman package installation) due to the ~-K~ or ~--ask-become-pass~
@@ -22,6 +22,13 @@ You can add ~-i hosts~ if you want to run against remote hosts instead of
 locally.
 
 *NOTE:* Hard-coded to ArchLinux and my own needs.
+
+** Hooks:
+To unset a key binding: ~M-x global-unset-key~y
+
+To remove all hooks from a mode during testing, evaulate: ~(setq <mode-hook>
+nil)~.  As per:
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Hooks.html
 
 * Core:
 ** compliation
