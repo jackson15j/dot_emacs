@@ -1713,6 +1713,17 @@ disabling until I have time to re-implement with `lsp-mode`.
 ;;     )
 ;;   )
 #+END_SRC
+** css:
+TODO: switch over to eglot!
+#+BEGIN_SRC emacs-lisp
+(use-package css-mode
+  ; https://emacs-lsp.github.io/lsp-mode/page/lsp-css/
+  :ensure t
+  :defer t
+  :hook (css-mode . lsp)
+  )
+#+END_SRC
+
 ** debugging:
 *** [[https://github.com/realgud/realgud][realgud]]:
 #+BEGIN_SRC emacs-lisp

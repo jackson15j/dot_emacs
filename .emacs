@@ -378,12 +378,6 @@ so grabbed this code:
 ;; *****************************************************
 ; https://emacs-lsp.github.io/lsp-mode/page/lsp-html/
 (add-hook 'html-mode-hook 'lsp)
-(use-package css-mode
-  ; https://emacs-lsp.github.io/lsp-mode/page/lsp-css/
-  :ensure t
-  :defer t
-  :hook (css-mode . lsp)
-  )
 
 
 
