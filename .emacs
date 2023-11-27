@@ -290,16 +290,6 @@ FORMAT - .format to use."
 '(log4j-font-lock-warn-face ((t (:foreground "orange"))))
 
 
-;; *****************************************************
-;; *****************************************************
-;; pcap file support
-;; *****************************************************
-;; *****************************************************
-;; https://github.com/orgcandman/pcap-mode
-(use-package pcap-mode
-  :ensure t
-  :defer t)
-
 
 ;; ========================
 ;; Stackoverflow search (SOS)

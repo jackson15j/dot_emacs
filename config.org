@@ -2398,6 +2398,15 @@ See: https://blog.bitsandbobs.net/blog/emacs-markdown-live-preview/
     :ensure t
     :defer t)
 #+END_SRC
+** [[https://github.com/orgcandman/pcap-mode][pcap]]:
+pcap (wireshark) file support.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package pcap-mode
+    :ensure t
+    :defer t)
+#+END_SRC
+
 ** php:
 Need to run the [[https://github.com/felixfbecker/php-language-server][php-language-server]] for eglot to connect to:
 
