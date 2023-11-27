@@ -2472,6 +2472,16 @@ a projects pipenv.
            )
     )
 #+END_SRC
+** [[https://github.com/rust-lang/rust-mode][rust]]:
+#+BEGIN_SRC emacs-lisp
+(use-package rust-mode
+  :ensure t
+  :defer t
+  ; https://emacs-lsp.github.io/lsp-mode/page/lsp-rust/
+  :hook (rust-mode . lsp)
+  )
+#+END_SRC
+
 ** sh/bash:
 #+BEGIN_SRC emacs-lisp
   (use-package sh-script

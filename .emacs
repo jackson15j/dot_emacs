@@ -380,21 +380,6 @@ so grabbed this code:
 (add-hook 'html-mode-hook 'lsp)
 
 
-
-;; *****************************************************
-;; *****************************************************
-;; Rust Mode
-;; *****************************************************
-;; *****************************************************
-; https://github.com/rust-lang/rust-mode
-(use-package rust-mode
-  :ensure t
-  :defer t
-  ; https://emacs-lsp.github.io/lsp-mode/page/lsp-rust/
-  :hook (rust-mode . lsp)
-  )
-
-
 ;; *****************************************************
 ;; *****************************************************
 ;; PowerShell Mode
