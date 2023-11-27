@@ -2290,6 +2290,18 @@ NOTE: On Mac's; eglot will not connect if it is set to =localhost=!
     )
   ;;                   '(php-mode . ("docker" "run" "--rm" "--detach" "--name=php-language-server" "felixfbecker/php-language-server"))))
 #+END_SRC
+** [[https://github.com/jschaf/powershell.el][powershell]]:
+#+BEGIN_SRC emacs-lisp
+(use-package powershell
+  :ensure t
+  :defer t
+  :hook (
+         (powershell-mode . my-programming-defaults-config)
+         ; (powershell-mode . lsp) ;; No `Expand-Archive` on Arch pwsh, so cannot install `pwsh-ls` automatically.
+         )
+  )
+#+END_SRC
+
 ** python:
 
 Historical Links:

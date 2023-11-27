@@ -380,22 +380,6 @@ so grabbed this code:
 (add-hook 'html-mode-hook 'lsp)
 
 
-;; *****************************************************
-;; *****************************************************
-;; PowerShell Mode
-;; *****************************************************
-;; *****************************************************
-; https://github.com/jschaf/powershell.el
-(use-package powershell
-  :ensure t
-  :defer t
-  :hook (
-         (powershell-mode . my-programming-defaults-config)
-         ; (powershell-mode . lsp) ;; No `Expand-Archive` on Arch pwsh, so cannot install `pwsh-ls` automatically.
-         )
-  )
-
-
 
 ;; http://cestlaz.github.io/posts/using-emacs-26-gcal/
 (use-package calfw
