@@ -1469,6 +1469,36 @@ removing for: ~tramp-container~.
 *NOTE:* [[https://blog.phundrak.com/emacs-29-what-can-we-expect/#tramp-natively-supports-docker-podman-and-kubernetes][TRAMP natively supports Docker, Podman and Kubernetes]]. Need to look
  into how this will work in latest Emacs29 branch builds!!
 * Programming Languages:
+** ansible:
+#+BEGIN_SRC emacs-lisp
+(use-package ansible
+  ; https://github.com/k1LoW/emacs-ansible
+  :ensure t
+  :defer t
+  :config
+  (progn
+    (add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
+    )
+
+  (use-package ansible-doc
+    ; https://github.com/lunaryorn/ansible-doc.el
+    :ensure t
+  :defer t
+    :hook (yaml-mode . ansible-doc-mode)
+    )
+
+  (use-package company-ansible
+    ; https://github.com/krzysztof-magosa/company-ansible
+    :ensure t
+  :defer t
+    :after (company)
+    :config
+    (add-to-list 'company-backends 'company-ansible)
+    )
+
+  )
+#+END_SRC
+
 ** Completions:
 Code completions. This can be done with the built-in ~completion-at-point~
 (~C-M-i~), but using ~company-mode~ for a drop down at point.

@@ -426,36 +426,6 @@ so grabbed this code:
 
 
 
-
-
-(use-package ansible
-  ; https://github.com/k1LoW/emacs-ansible
-  :ensure t
-  :defer t
-  :config
-  (progn
-    (add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
-    )
-
-  (use-package ansible-doc
-    ; https://github.com/lunaryorn/ansible-doc.el
-    :ensure t
-  :defer t
-    :hook (yaml-mode . ansible-doc-mode)
-    )
-
-  (use-package company-ansible
-    ; https://github.com/krzysztof-magosa/company-ansible
-    :ensure t
-  :defer t
-    :after (company)
-    :config
-    (add-to-list 'company-backends 'company-ansible)
-    )
-
-  )
-
-
 ;; *****************************************************
 ;; *****************************************************
 ;; HTML IDE stuff
