@@ -1727,6 +1727,17 @@ Major mode for ~.env~ files.
   (use-package dotenv-mode
     :ensure t)
 #+END_SRC
+** erlang:
+ FIXME: erlang mode is throwing errors on start in latest emacs28!!
+
+ #+BEGIN_SRC emacs-lisp
+;; (use-package erlang
+;;   ;; (require 'erlang-start)
+;;   :ensure t
+;;  :defer t
+;;   )
+#+END_SRC
+
 ** gherkin:
 *** [[https://github.com/michaelklishin/cucumber.el][feature-mode]]:
 #+BEGIN_SRC emacs-lisp
