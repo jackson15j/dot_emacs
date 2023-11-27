@@ -274,18 +274,6 @@ FORMAT - .format to use."
 
 
 
-
-;; ========================
-;; Stackoverflow search (SOS)
-;; ========================
-;; FIXME: package doesn't exist any more?
-;; (use-package sos
-;;   :ensure t
-;;   :defer t
-;;   :bind (("<f5>" . sos))
-;;   )
-
-
 ;; FIXME: appears to not exist anymore.
 ;; ;; ========================
 ;; ;; iRFC (Download & View RFC's)

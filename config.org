@@ -3208,6 +3208,17 @@ In ~spray-mode~ buffers, following commands are available:
 - ~spray-slower~ (~s~) decreases speed.
 - ~spray-quit~ (~q, <return>~) quit ~spray-mode~.
 
+** sos (StackOverflow):
+Stackoverflow search. FIXME: package doesn't exist any more?
+
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package sos
+  ;;   :ensure t
+  ;;   :defer t
+  ;;   :bind (("<f5>" . sos))
+  ;;   )
+#+END_SRC
+
 ** [[https://gitlab.com/wavexx/stem-reading-mode.el][stem-reading-mode]]:
 Highlight word stems in text buffers, thereby providing artificial fixation
 points to improve speed reading.
