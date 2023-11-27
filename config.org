@@ -2477,8 +2477,7 @@ a projects pipenv.
 (use-package rust-mode
   :ensure t
   :defer t
-  ; https://emacs-lsp.github.io/lsp-mode/page/lsp-rust/
-  :hook (rust-mode . lsp)
+  :hook (rust-mode . eglot-ensure)
   )
 #+END_SRC
 
