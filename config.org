@@ -1725,6 +1725,13 @@ TODO: switch over to eglot!
     )
 #+END_SRC
 
+** csv:
+#+BEGIN_SRC emacs-lisp
+  (use-package csv-mode
+    :ensure t
+    :defer t)
+#+END_SRC
+
 ** debugging:
 *** DAP (lsp-mode):
 #+BEGIN_SRC emacs-lisp

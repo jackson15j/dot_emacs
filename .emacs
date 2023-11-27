@@ -314,10 +314,6 @@ FORMAT - .format to use."
 
 
 
-(use-package csv-mode
-  :ensure t
-  :defer t)
-
 (use-package i3wm-config-mode
   :ensure t
   :defer t)
