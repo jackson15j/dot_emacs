@@ -1726,6 +1726,45 @@ TODO: switch over to eglot!
 #+END_SRC
 
 ** debugging:
+*** DAP (lsp-mode):
+#+BEGIN_SRC emacs-lisp
+  (use-package dap-mode
+    :if (not (eq system-type 'windows-nt))  ;; FIXME: (void-function dap-ui-mode)
+    :ensure t
+    :defer t
+    :after (lsp hydra)
+    :bind (
+           ([f6] . dap-hydra)
+           ([f7] . 'dap-ui-repl)
+           )
+    :commands
+    (
+     dap-mode
+     dap-ui-mode
+     dap-tooltip-mode
+     dap-ui-controls-mode
+     )
+    :config
+    (setq
+    ;; NOTE: For Python. install: `debugpy` python package in the project!
+     dap-python-debugger 'debugpy   ;; The default: `ptvsd` is deprecated!
+     dap-ui-variable-length 1000  ;; https://github.com/emacs-lsp/dap-mode/issues/416 - don't truncate `locals` variables.
+     dap-internal-terminal 'dap-internal-terminal-shell  ;; Forgotten how to scroll `vterm` so using shell.
+     )
+    ;; https://www.reddit.com/r/emacs/comments/tckmb2/dapmode_breakpoints_not_showing_when_in_terminal/
+    (add-hook 'dap-stopped-hook
+              (lambda (arg) (call-interactively #'dap-hydra)))
+    )
+  ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
+  (with-eval-after-load 'dap-faces
+    (unless (display-graphic-p)
+      (set-face-background 'dap-ui-marker-face "color-166") ; An orange background for the line to execute
+      (set-face-attribute 'dap-ui-marker-face nil :inherit nil) ; Do not inherit other styles
+      (set-face-background 'dap-ui-pending-breakpoint-face "blue") ; Blue background for breakpoints line
+      (set-face-attribute 'dap-ui-verified-breakpoint-face nil :inherit 'dap-ui-pending-breakpoint-face)
+      )
+    )
+#+END_SRC
 *** [[https://github.com/realgud/realgud][realgud]]:
 #+BEGIN_SRC emacs-lisp
   (use-package realgud
@@ -2071,7 +2110,66 @@ Dependency on GraphQL-mode to do requests.
 ** LSP (Language Server Protocol):
 ~lsp-mode~ is the external, feature-rich version of: [[*\[\[https://joaotavora.github.io/eglot/\]\[eglot\]\]:][eglot]] (built-in), for
 interacting with LSP Servers in emacs.
+
+- https://github.com/emacs-lsp/lsp-mode
+- https://emacs-lsp.github.io/lsp-mode
+
 *** LSP core:
+#+BEGIN_SRC emacs-lisp
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "s-l")
+
+
+  (use-package lsp-mode
+    :ensure t
+    :defer t
+    :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+
+           ;; Python workflow:
+           ;; * `pipenv install --dev python-language-server[all]`.
+           ;; * Start pipenv: `C-cC-pa`.
+           ;; * Start lsp: `M-x lsp`.
+           (rust-mode . lsp)
+           ;; if you want which-key integration
+           (lsp-mode . lsp-enable-which-key-integration)
+           (lsp-mode . my-programming-defaults-config)
+           )
+    :commands lsp
+    :config
+    (setq
+     lsp-file-watch-threshold 20000
+     gc-cons-threshold 100000000
+     read-process-output-max (* 1024 1024 4)  ;; 4MB
+          )
+    )
+#+END_SRC
+*** LSP UI:
+#+BEGIN_SRC emacs-lisp
+  (use-package lsp-ui
+    ;; https://github.com/emacs-lsp/lsp-ui
+    :ensure t
+    :defer t
+    :after (lsp)
+    :commands (
+               lsp-ui-mode
+               lsp-ui-peek-mode
+               lsp-ui-sideline-mode
+               )
+    :bind (:map lsp-command-map
+           ([remap xref-find-definitions] . #'lsp-ui-peek-find-definitions)  ;; M-.
+           ([remap xref-find-references] . #'lsp-ui-peek-find-references)  ;; M-?
+           )
+    :config
+    (setq
+     lsp-ui-doc-show-with-cursor t
+     )
+    )
+#+END_SRC
+*** LSP Treemacs:
+#+BEGIN_SRC emacs-lisp
+  (use-package lsp-treemacs
+    :after (lsp))
+#+END_SRC
 *** LSP Python Extensions:
 **** [[https://github.com/fredcamps/lsp-jedi][lsp-jedi]]:
 I preferred [[https://jedi.readthedocs.io/en/latest/][jedi]] over [[https://github.com/python-rope/rope][rope]] for ease of setup and usage, but have moved away
