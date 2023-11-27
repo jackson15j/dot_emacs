@@ -2412,6 +2412,45 @@ See: https://blog.bitsandbobs.net/blog/emacs-markdown-live-preview/
     :ensure t
     :defer t)
 #+END_SRC
+** mscgen:
+=.mscgen= files are used to create diagrams from plaintext. These days I am
+using UML/mermaid.
+
+- http://www.mcternan.me.uk/mscgen/
+- https://emacs-fu.blogspot.com/2010/04/creating-custom-modes-easy-way-with.html
+
+#+BEGIN_SRC emacs-lisp
+  (define-generic-mode
+      'mscgen-mode                        ;; name of the mode to create
+    '("#")                           ;; comments start with '#'
+    '("label" "note" "width"
+      "textcolour" "linecolour" "textbgcolour")                     ;; some keywords
+    '(("=" . 'font-lock-operator)     ;; '=' is an operator
+      ("=>" . 'font-lock-operator)
+      ("->" . 'font-lock-operator)
+      (";" . 'font-lock-builtin)     ;; ';' is a a built-in
+      ("[" . 'font-lock-builtin)
+      ("]" . 'font-lock-builtin)
+      ("|" . 'font-lock-builtin)
+      )
+    '("\\.msc$")                      ;; files for which to activate this mode
+    nil                         ;; other functions to call
+    "A mode for mscgen files"            ;; doc string for this mode
+    )
+  (defun mscgen-compile-buffer-hook()
+    "Compile command to generate a PNG from the current mscgen buffer.
+
+  See: https://stackoverflow.com/questions/6138029/how-to-add-a-hook-to-only-run-in-a-particular-mode
+  for the use of the hook."
+    (compile (concat "mscgen -T png " buffer-file-name " && mscgen -T svg " buffer-file-name))
+    (message (concat "Generated PNG/SVG for: " buffer-file-name))
+    )
+  (add-hook 'mscgen-mode-hook 'my-programming-defaults-config)
+  (add-hook 'mscgen-mode-hook
+            (lambda ()
+              (add-hook 'after-save-hook 'mscgen-compile-buffer-hook nil 'make-it-local)))
+#+END_SRC
+
 ** [[https://github.com/orgcandman/pcap-mode][pcap]]:
 pcap (wireshark) file support.
 
