@@ -1960,6 +1960,19 @@ Dependency on GraphQL-mode to do requests.
   ;; (add-hook 'html-mode-hook 'lsp)
 #+END_SRC
 
+** [[https://github.com/rasmus-toftdahl-olesen/iss-mode][iss (InnoSetup)]]:
+See: InnoSetup mode: https://jrsoftware.org/isinfo.php
+
+#+BEGIN_SRC emacs-lisp
+  (use-package iss-mode
+    :mode "\\.iss\\'"
+    :ensure t
+    :defer t
+    :init
+    (setq iss-compiler-path "C:/Program Files (x86)/Inno Setup 6")
+    )
+#+END_SRC
+
 ** java:
 
 #+BEGIN_SRC emacs-lisp

@@ -323,17 +323,6 @@ FORMAT - .format to use."
   :defer t)
 
 
-(use-package iss-mode
-  ; https://github.com/rasmus-toftdahl-olesen/iss-mode
-  ; InnoSetup mode: https://jrsoftware.org/isinfo.php
-  :mode "\\.iss\\'"
-  :ensure t
-  :defer t
-  :init
-  (setq iss-compiler-path "C:/Program Files (x86)/Inno Setup 6")
-  )
-
-
 (use-package devdocs
   ; https://github.com/astoff/devdocs.el
   :ensure t
