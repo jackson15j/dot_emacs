@@ -3295,7 +3295,12 @@ Alternative to [[*\[\[https://github.com/manojm321/elfeed-dashboard\]\[elfeed-da
 #+BEGIN_SRC emacs-lisp
   (use-package elfeed-summary
     :ensure t
-    :defer t)
+    :defer t
+    :custom
+    (
+     elfeed-summary-default-filter ""
+     )
+    )
 #+END_SRC
 ** [[https://github.com/jeetelongname/elfeed-goodies][elfeed-goodies]]:
 FIXME: Raise bug around missing Powerline version in melpa.
