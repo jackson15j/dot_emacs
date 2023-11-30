@@ -3304,6 +3304,12 @@ Alternative to [[*\[\[https://github.com/manojm321/elfeed-dashboard\]\[elfeed-da
         ;; (group (:title . "All feeds") (:elements (query . :all)))
         (group (:title . "Searches")
                (:elements
+                (search (:filter . "+in-progress")
+                        (:title . "InProgress videos"))
+                (search (:filter . "+star")
+                        (:title . "Starred"))
+                (search (:filter . "+favourite")
+                        (:title . "Favourites"))
                 (search (:filter . "@1-days-ago +unread")
                         (:title . "Unread today"))
                 (search (:filter . "@7-days-ago +unread")
