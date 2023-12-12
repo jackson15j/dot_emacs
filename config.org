@@ -707,7 +707,7 @@ Builtin method of moving between windows with (default) ~Shift+<arrow>~. See:
     (interactive)
     (whitespace-mode)  ;; highlights whitespace.
     (my_highlighted_words)  ;; highlights specific words in red & bold.
-    (fci-mode)  ;; adds fill column indicator.
+    (display-fill-column-indicator-mode)  ;; adds fill column indicator.
     ;; (auto-fill-mode nil)  ;; disables auto fill at column.
     (setq indent-tabs-mode nil)  ;; spaces instead of tabs
     (setq tab-width 4)  ;; 4 spaces per tab key press.
@@ -745,7 +745,7 @@ Builtin method of moving between windows with (default) ~Shift+<arrow>~. See:
   (defun my-scratch-mode-config ()
     "Disabling config for *scratch* buffer."
     (interactive)
-    (fci-mode -1)
+    (display-fill-column-indicator-mode -1)
     (auto-fill-mode -1)
     )
   (add-hook 'lisp-interaction-mode-hook 'my-scratch-mode-config)
@@ -769,7 +769,7 @@ Occur buffer http://www.emacswiki.org/emacs/FindingNonAsciiCharacters
     (interactive)
     (whitespace-mode)  ;; highlights whitespace.
     (my_highlighted_words)  ;; highlights specific words in red & bold.
-    (fci-mode)  ;; adds fill column indicator.
+    (display-fill-column-indicator-mode)  ;; adds fill column indicator.
     (auto-fill-mode)  ;; wraps at auto fill column.
     (my_highlighted_words)  ;; highlight specific words
     (setq indent-tabs-mode nil)  ;; spaces instead of tabs
@@ -1476,7 +1476,7 @@ jypma/emacsconf2021/blob/master/presentation.org]].
 #+BEGIN_SRC emacs-lisp
   (defun my/presentation-setup ()
     (shell-command "dunstctl set-paused true")
-    (turn-off-fci-mode)
+    (turn-off-display-fill-column-indicator-mode)
     (flyspell-mode 0)
     (setq text-scale-mode-amount 3)
     (org-display-inline-images)
@@ -1490,7 +1490,7 @@ jypma/emacsconf2021/blob/master/presentation.org]].
 
   (defun my/presentation-end ()
     (shell-command "dunstctl set-paused false")
-    (turn-on-fci-mode)
+    (turn-on-display-fill-column-indicator-mode)
     (flyspell-mode 1)
     (text-scale-mode 0)
     (hide-mode-line-mode 0)
