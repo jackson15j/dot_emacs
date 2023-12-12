@@ -1398,13 +1398,14 @@ missing several days:
 Also see: [[https://orgmode.org/worg/org-contrib/babel/languages/index.html#configure][Org-Babel: Activate Languages]].
 
 #+BEGIN_SRC emacs-lisp
-(defadvice org-babel-execute-src-block (around load-language nil activate)
-  "Load language if needed"
-  (let ((language (org-element-property :language (org-element-at-point))))
-    (unless (cdr (assoc (intern language) org-babel-load-languages))
-      (add-to-list 'org-babel-load-languages (cons (intern language) t))
-      (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
-    ad-do-it))
+  (defun org-babel-execute-src-block--load-language (load-language nil activate)
+    "Load language if needed"
+    (let ((language (org-element-property :language (org-element-at-point))))
+      (unless (cdr (assoc (intern language) org-babel-load-languages))
+        (add-to-list 'org-babel-load-languages (cons (intern language) t))
+        (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
+      ad-do-it))
+  (advice-add 'org-babel-execute-src-block :around #'org-babel-src-block--load-language)
 #+END_SRC
 *** Redirect stderr to =:results= block:
 See: [[https://emacs.stackexchange.com/questions/75778/org-babel-redirect-stderr-c-option-requires-an-argument][StackOverflow: Org Bable Redirect stderr (-c option requires an argument)]].
@@ -3626,13 +3627,14 @@ Code from: https://github.com/jwalgran/dotfiles/blob/master/.emacs.d/config.el
               (ansi-term term-cmd)))))
 
       ;; Make ansi-term buffers close when you kill the shell process
-      (defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
+      (defun term-sentinel--my-advice-term-sentinel (proc msg)
         (if (memq (process-status proc) '(signal exit))
             (let ((buffer (process-buffer proc)))
               ad-do-it
               (kill-buffer buffer))
           ad-do-it))
-      (ad-activate 'term-sentinel))
+      (advice-add 'term-sentinel :around #'my-advice-term-sentinel)
+      )
 
     (add-hook 'ansi-term-hook (lambda () (global-hl-line-mode 0)))  ; http://stackoverflow.com/questions/9990370/how-to-disable-hl-line-feature-in-specified-mode
     )
