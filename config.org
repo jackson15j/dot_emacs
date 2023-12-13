@@ -3273,11 +3273,16 @@ If you want “live” captions and better MPV support:
   (use-package elfeed-tube-mpv
     :ensure-system-package (mpv)
     :ensure t
-    :bind (:map elfeed-show-mode-map
-                ("C-c C-f" . elfeed-tube-mpv-follow-mode)
-                ("C-c C-w" . elfeed-tube-mpv-where)
-                ("v" . elfeed-tube-mpv)
-                )
+    :bind (
+           (:map elfeed-show-mode-map
+                 ("C-c C-f" . elfeed-tube-mpv-follow-mode)
+                 ("C-c C-w" . elfeed-tube-mpv-where)
+                 ("v" . elfeed-tube-mpv)
+                 )
+           (:map elfeed-search-mode-map
+                 ("v" . elfeed-tube-mpv)
+                 )
+           )
     )
 #+END_SRC
 ** [[https://github.com/manojm321/elfeed-dashboard][elfeed-dashboard]]:
