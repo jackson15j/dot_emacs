@@ -3329,6 +3329,10 @@ Alternative to [[*\[\[https://github.com/manojm321/elfeed-dashboard\]\[elfeed-da
                  (:elements
                   (query . (and youtube solorpg))))
                 (group
+                 (:title . "Coffee")
+                 (:elements
+                  (query . (and youtube coffee))))
+                (group
                  (:title . "Documentaries")
                  (:elements
                   (query . (and youtube documentary))))
