@@ -68,6 +68,13 @@ By default, Esup will profile ~user-init-file~. To profile a custom file, call
     (setq esup-depth 0)
     )
 #+END_SRC
+** doc-view-mode:
+*** PDF support (install dependencies):
+#+BEGIN_SRC emacs-lisp
+  (use-package doc-view
+    :ensure-system-package ((ghostscript))
+    )
+#+END_SRC
 ** [[https://joaotavora.github.io/eglot/][eglot]]:
 Eglot ([[https://github.com/joaotavora/eglot][Github: joaotavora/eglot]]) is the built-in, streamlined LSP (Language
 Server Protocol) client for emacs, to talk to LSP Servers with. it is the
