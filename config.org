@@ -2764,13 +2764,15 @@ Need to run the [[https://github.com/felixfbecker/php-language-server][php-langu
 
 #+BEGIN_SRC shell
   docker kill php-language-server
+  docker rm php-language-server
   docker pull felixfbecker/php-language-server
   docker run --detach -p2088:2088 --restart=always --name php-language-server felixfbecker/php-language-server
 #+END_SRC
 
 #+RESULTS:
 :results:
-Error response from daemon: Cannot kill container: php-language-server: No such container: php-language-server
+Error response from daemon: Cannot kill container: php-language-server: Container 324c6a791b156af6e0750a66382e36b38382d08e1e8638b2a4f5199db1524f85 is not running
+php-language-server
 Using default tag: latest
 latest: Pulling from felixfbecker/php-language-server
 Digest: sha256:37f33344e6c683cac03a039c053c01d0cb006c3d7d671339ed638e1b22206b16
@@ -2781,7 +2783,7 @@ What's Next?
   1. Sign in to your Docker account → docker login
   2. View a summary of image vulnerabilities and recommendations → docker scout quickview felixfbecker/php-language-server
 WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
-cb88710297b99c146c7d5a33c9e4dc71a18283122dde74b5bf8327f4112b2784
+b9a761ffbf9a77c0fa4fbdbc390e7f43977f75338963d7285232766297d903c2
 :end:
 
 NOTE: On Mac's; eglot will not connect if it is set to =localhost=!
