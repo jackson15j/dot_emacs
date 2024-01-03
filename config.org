@@ -407,6 +407,18 @@ The gutter bar at the bottom of the emacs window/frame.
 #+BEGIN_SRC emacs-lisp
   (setq column-number-mode t)
 #+END_SRC
+
+*** Highlight active mode-line:
+See:
+
+- [[https://irreal.org/blog/?p=11874][Irreal: Marking The Active Window Redux]].
+- [[https://irreal.org/blog/?p=11880][Irreal: One Last Time With Marking THe Active Window]].
+
+#+BEGIN_SRC emacs-lisp
+  (set-face-attribute 'mode-line-active nil
+                      :foreground "black" :background "goldenrod" :box '(:line-width 1 :color "black"))
+#+END_SRC
+
 *** +[[https://github.com/Bruce-Connor/smart-mode-line][smart-mode-line]]+:
 smart mode line wraps up a lot of nice tweaks in one package.
 
