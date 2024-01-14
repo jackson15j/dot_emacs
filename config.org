@@ -2656,7 +2656,7 @@ lsp-server for Makefile's.
     :hook ((makefile-mode . cas/make-mode-config))
     )
 #+END_SRC
-[** markdown:
+** markdown:
 *** [[https://github.com/jrblevin/markdown-mode][markdown-mode]]:
 NOTE:
 
