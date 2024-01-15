@@ -3463,6 +3463,10 @@ controlling my remote MPD servers.
 #+BEGIN_SRC emacs-lisp
   (use-package mpdel
     :ensure t
+    :custom
+    (
+     (libmpdel-hostname "raudio-office.local")
+     )
     :config
     (setq libmpdel-profiles
      '(
