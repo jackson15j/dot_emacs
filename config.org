@@ -3447,6 +3447,10 @@ MPD references:
      ; "C-<f3>
      ("M-[ 1 ; 5 r" . mingus-vol-up)
      )
+    :custom
+    (
+     (mingus-mpd-host "raudio-office.local")
+     )
     )
 #+END_SRC
 ** [[https://github.com/mpdel/mpdel][mpdel]]:
