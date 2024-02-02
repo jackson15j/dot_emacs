@@ -3570,6 +3570,18 @@ Open =.epub= archive and then =M-x nov-mode=.
     )
 #+END_SRC
 
+** [[https://github.com/vedang/pdf-tools/][pdf-tools]]:
+Replacement for built-in =doc-view= + =ghostscript= dependency to view
+PDF's. Renders in memory, instead of storing images in an on-disk
+cache.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package pdf-tools
+    :ensure t
+    :config
+    (pdf-tools-install)
+    )
+#+END_SRC
 ** [[https://github.com/emacsmirror/spray][spray]]:
 Speed reading in a buffer by flashing each word in turn. Spritz clone for speed
 reading.
