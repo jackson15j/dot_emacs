@@ -3560,6 +3560,16 @@ my original note: FIXME: uncomment once =Debugger entered--Lisp error:
   ;;   )
 #+END_SRC
 
+** [[https://depp.brause.cc/nov.el][nov]] (ereader mode - epub):
+Open =.epub= archive and then =M-x nov-mode=.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package nov
+    :ensure t
+    :mode ("\\.epub\\'" . nov-mode)
+    )
+#+END_SRC
+
 ** [[https://github.com/emacsmirror/spray][spray]]:
 Speed reading in a buffer by flashing each word in turn. Spritz clone for speed
 reading.
