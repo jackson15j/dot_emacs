@@ -3567,6 +3567,8 @@ Open =.epub= archive and then =M-x nov-mode=.
   (use-package nov
     :ensure t
     :mode ("\\.epub\\'" . nov-mode)
+    :custom
+    (nov-save-place-file "~/org/personal/nov_history")
     )
 #+END_SRC
 
