@@ -68,6 +68,13 @@ By default, Esup will profile ~user-init-file~. To profile a custom file, call
     (setq esup-depth 0)
     )
 #+END_SRC
+** dired:
+#+BEGIN_SRC emacs-lisp
+  (use-package dired
+    :custom
+    (dired-async-mode t)
+    )
+#+END_SRC
 ** doc-view-mode:
 *** PDF support (install dependencies):
 #+BEGIN_SRC emacs-lisp
