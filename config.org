@@ -75,6 +75,16 @@ By default, Esup will profile ~user-init-file~. To profile a custom file, call
     (dired-async-mode t)
     )
 #+END_SRC
+
+*** Dired decompress and rename workflow:
+
+- Decompress archive(s):
+  - =Z= decompress to a folder named after archive.
+  - =! <RETURN>= to decompress to current folder.
+- Rename files/folders:
+  - =C-xC-q= (=M-x dired-toggle-read-only=) buffer editing.
+  - =C-cC-c= commit changes to disk.
+
 ** doc-view-mode:
 *** PDF support (install dependencies):
 #+BEGIN_SRC emacs-lisp
