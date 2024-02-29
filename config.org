@@ -3265,6 +3265,15 @@ Configure the Elfeed RSS reader with an Orgmode file.
     )
 #+END_SRC
 
+*** [[https://github.com/fasheng/elfeed-protocol#qa][How to fetch my older headlines in server?]]
+
+#+BEGIN_SRC emacs-lisp
+  (setq my-elfeed-update-timer
+	(run-at-time 15 15
+		     (lambda () (when (= elfeed-curl-queue-active 0)
+				  (elfeed-protocol-fever-update-older "fever+http://craig@192.168.0.98:8095")))))
+  (cancel-timer my-elfeed-update-timer)
+#+END_SRC
 *** [[https://github.com/fasheng/elfeed-protocol#work-with-elfeed-summary][Work with =elfeed-summary=]]:
 #+BEGIN_SRC emacs-lisp
   (defun elfeed-protocol-advice-rmh-elfeed-org-export-feed (headline)
