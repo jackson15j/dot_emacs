@@ -89,7 +89,7 @@ By default, Esup will profile ~user-init-file~. To profile a custom file, call
 *** PDF support (install dependencies):
 #+BEGIN_SRC emacs-lisp
   (use-package doc-view
-    :ensure-system-package ((ghostscript))
+    :ensure-system-package ((gs . ghostscript))
     )
 #+END_SRC
 ** [[https://joaotavora.github.io/eglot/][eglot]]:
