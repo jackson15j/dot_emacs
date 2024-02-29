@@ -3274,6 +3274,15 @@ Configure the Elfeed RSS reader with an Orgmode file.
 				  (elfeed-protocol-fever-update-older "fever+http://craig@192.168.0.98:8095")))))
   (cancel-timer my-elfeed-update-timer)
 #+END_SRC
+*** Nuclear fever update:
+#+BEGIN_SRC emacs-lisp
+  (defun elfeed-nuclear-update ()
+    (interactive)
+    (cl-loop for entry in (elfeed-search-selected)
+	     do (elfeed-untag-1 entry 'unread))
+    (elfeed-protocol-fever-reinit "http://craig@192.168.0.98:8095")
+    )
+#+END_SRC
 *** [[https://github.com/fasheng/elfeed-protocol#work-with-elfeed-summary][Work with =elfeed-summary=]]:
 #+BEGIN_SRC emacs-lisp
   (defun elfeed-protocol-advice-rmh-elfeed-org-export-feed (headline)
