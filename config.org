@@ -1431,7 +1431,10 @@ missing several days:
 #+END_SRC
 
 *** [[https://emacs.stackexchange.com/questions/20577/org-babel-load-all-languages-on-demand][Load (all) languages on-demand]]:
-Also see: [[https://orgmode.org/worg/org-contrib/babel/languages/index.html#configure][Org-Babel: Activate Languages]].
+Also see:
+
+- [[https://orgmode.org/worg/org-contrib/babel/languages/index.html#configure][Org-Babel: Activate Languages]].
+- [[https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-shell.html][Org-Babel: Shell Code Blocks in Babel]].
 
 #+BEGIN_SRC emacs-lisp
   (defun org-babel-execute-src-block--load-language (load-language nil activate)
