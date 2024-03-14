@@ -3855,6 +3855,7 @@ Search YouTube from emacs, play via mpv, download via yt-dlp.
     :ensure-system-package ((wget))
     :custom
     (yeetube-display-thumbnails nil)
+    (yeetube-results-limit 50)
     )
 #+END_SRC
 * Web:
