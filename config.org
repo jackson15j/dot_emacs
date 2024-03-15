@@ -73,6 +73,8 @@ By default, Esup will profile ~user-init-file~. To profile a custom file, call
   (use-package dired
     :custom
     (dired-async-mode t)
+    (dired-listing-switches "-alFh")
+    (dired-dwim-target t)  ;; Guess target for operations.
     )
 #+END_SRC
 
