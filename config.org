@@ -2930,6 +2930,14 @@ FIXME: bound to only python buffers (with =ruff= installed??).
     (python-check-command "ruff")
     )
 #+END_SRC
+**** pyright:
+***** [[https://github.com/renzmann/.emacs.d#pyright-error-links-in-compilation][Pyright error links in *compilation*]]:
+#+BEGIN_SRC emacs-lisp
+  (with-eval-after-load 'compile
+    (add-to-list 'compilation-error-regexp-alist-alist
+                 '(pyright "^[[:blank:]]+\\(.+\\):\\([0-9]+\\):\\([0-9]+\\).*$" 1 2 3))
+    (add-to-list 'compilation-error-regexp-alist 'pyright))
+#+END_SRC
 *** Package Management:
 **** conda:
 #+BEGIN_SRC emacs-lisp
@@ -3002,8 +3010,9 @@ location.
 *** Virtual Env Management:
 **** Global pyright use local venv + eglot:
 Configure global pyright to pick up project local venv. Starting
-eglot, will then call the correctly configured pyright (no need for
-=pyvenv-activate= then restart =eglot=).
+eglot, will then call the correctly configured pyright (Still need to
+=pyvenv-activate= then restart =eglot=, for the rest of emacs to be
+happy).
 
 - See:
   - [[https://robbmann.io/posts/emacs-eglot-pyrightconfig/][Robbmann: emacs-eglot-pyrightconfig]].
