@@ -2993,6 +2993,36 @@ location.
     )
 #+END_SRC
 *** Virtual Env Management:
+**** Global pyright use local venv + eglot:
+Configure global pyright to pick up project local venv. Starting
+eglot, will then call the correctly configured pyright (no need for
+=pyvenv-activate= then restart =eglot=).
+
+- See:
+  - [[https://robbmann.io/posts/emacs-eglot-pyrightconfig/][Robbmann: emacs-eglot-pyrightconfig]].
+  - [[https://github.com/renzmann/.emacs.d/blob/emacs-29/site-lisp/pyrightconfig.el][Github: renzmann/.emacs.d/emacs-29/pyrightconfig.el]].
+- ~M-x pyrightconfig-write </path/to/venv/>~.
+- ~M-x eglot~.
+
+#+BEGIN_SRC emacs-lisp
+  (defun pyrightconfig-write (virtualenv)
+    "Write a `pyrightconfig.json' file at the Git root of a project
+  with `venvPath' and `venv' set to the absolute path of
+  `virtualenv'.  When run interactively, prompts for a directory to
+  select."
+    (interactive "DEnv: ")
+    ;; Naming convention for venvPath matches the field for pyrightconfig.json
+    (let* ((venv-dir (tramp-file-local-name (file-truename virtualenv)))
+           (venv-file-name (directory-file-name venv-dir))
+           (venvPath (file-name-directory venv-file-name))
+           (venv (file-name-base venv-file-name))
+           (base-dir (vc-git-root default-directory))
+           (out-file (expand-file-name "pyrightconfig.json" base-dir))
+           (out-contents (json-encode (list :venvPath venvPath :venv venv))))
+      (with-temp-file out-file (insert out-contents))
+      (message (concat "Configured `" out-file "` to use environment `" venv-dir))))
+#+END_SRC
+
 **** [[https://github.com/pwalsh/pipenv.el][pipenv]]:
 The replacement to ~virtualenv~. Do ~C-cC-pa~ or ~M-x pipenv-activate~ to start
 a projects pipenv.
