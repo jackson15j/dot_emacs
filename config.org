@@ -2885,6 +2885,8 @@ server (suggest: =pyright-langserver=).
     (setq
      ;; See: https://github.com/renzmann/treesit-auto#keep-track-of-your-hooks
      python-ts-mode-hook python-mode-hook
+     ;; https://github.com/renzmann/.emacs.d/blob/emacs-29/README.org#python
+     python-check-command "ruff"
      )
     )
 #+END_SRC
