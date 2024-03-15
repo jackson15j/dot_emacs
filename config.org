@@ -2887,8 +2887,6 @@ server (suggest: =pyright-langserver=).
     (setq
      ;; See: https://github.com/renzmann/treesit-auto#keep-track-of-your-hooks
      python-ts-mode-hook python-mode-hook
-     ;; https://github.com/renzmann/.emacs.d/blob/emacs-29/README.org#python
-     python-check-command "ruff"
      )
     )
 #+END_SRC
@@ -2922,11 +2920,16 @@ save.
 **** [[https://github.com/erickgnavar/flymake-ruff][flymake-ruff]]:
 Mentioned as the [[https://beta.ruff.rs/docs/editor-integrations/#emacs-unofficial][Emacs Ruff integration]].
 FIXME: bound to only python buffers (with =ruff= installed??).
-# #+BEGIN_SRC emacs-lisp
-#   (use-package flymake-ruff
-#     :ensure t
-#     :hook (eglot-managed-mode . flymake-ruff-load))
-# #+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (use-package flymake-ruff
+    :ensure-system-package ((ruff))
+    :ensure t
+    :hook (eglot-managed-mode . flymake-ruff-load)
+    :custom
+    ;; https://github.com/renzmann/.emacs.d/blob/emacs-29/README.org#python
+    (python-check-command "ruff")
+    )
+#+END_SRC
 *** Package Management:
 **** conda:
 #+BEGIN_SRC emacs-lisp
