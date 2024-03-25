@@ -1392,34 +1392,12 @@ Add: ~:async~ to an org-babel code block to run async when called with:
 - Mark as done with ~C-cC-t~, which will log that ~DOEN~ and update the
   deadline to the next future point.
 
-Repeat every fortnight:
-#+BEGIN_EXAMPLE emacs-lisp
-  ,** TODO example every fortnight task
-  DEADLINE: <2022-08-01 Mon 09:00-09:15 +2w -3d>
-  :PROPERTIES:
-  :LAST_REPEAT: [2022-07-18 Mon 15:35]
-  :END:
-  - State "DONE"       from "TODO"       [2022-07-18 Mon 15:35]
-  - Above ~State~ line is added for each ~C-cC-t~ press!
-#+END_EXAMPLE
+Repeat:
 
-Repeat daily, but next iteration is after today, if marking as ~"DONE"~ after
-missing several days:
-#+BEGIN_EXAMPLE emacs-lisp
-  ,* TODO [#A] Habits                                        :PERSONAL:TRAINING:
-  SCHEDULED: <2023-02-11 Sat 09:00 .+1d>
-  :PROPERTIES:
-  :LAST_REPEAT: [2023-02-10 Fri 11:41]
-  :END:
-  - State "DONE"       from "TODO"       [2023-02-10 Fri 11:41]
-  - State "DONE"       from "TODO"       [2023-02-02 Thu 16:28]
-  - State "DONE"       from "TODO"       [2023-01-19 Thu 09:57]
-  - Note taken on [2023-01-19 Thu 00:13] \\
-    + [X] 5 min cycle
-    + [X] weights
-    + [X] Duolingo
-    + [X] typing
-#+END_EXAMPLE
+- every fortnight: put =+2w= into deadline/schedule datetime.
+- daily, but next iteration is after today, if marking as ~"DONE"~
+  after missing several days: put =.+1d= into deadline/schedule
+  datetime.
 
 ** org-babel:
 *** org-babel config:
