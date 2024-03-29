@@ -1417,14 +1417,13 @@ Also see:
 - [[https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-shell.html][Org-Babel: Shell Code Blocks in Babel]].
 
 #+BEGIN_SRC emacs-lisp
-  (defun org-babel-execute-src-block--load-language (load-language nil activate)
+  (defadvice org-babel-execute-src-block (around load-language nil activate)
     "Load language if needed"
     (let ((language (org-element-property :language (org-element-at-point))))
       (unless (cdr (assoc (intern language) org-babel-load-languages))
         (add-to-list 'org-babel-load-languages (cons (intern language) t))
         (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
       ad-do-it))
-  (advice-add 'org-babel-execute-src-block :around #'org-babel-src-block--load-language)
 #+END_SRC
 *** Redirect stderr to =:results= block:
 See: [[https://emacs.stackexchange.com/questions/75778/org-babel-redirect-stderr-c-option-requires-an-argument][StackOverflow: Org Bable Redirect stderr (-c option requires an argument)]].
