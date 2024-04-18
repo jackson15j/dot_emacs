@@ -1411,21 +1411,46 @@ Repeat:
     )
 #+END_SRC
 
+*** Initial [[https://orgmode.org/worg//org-contrib/babel/languages/index.html][babel core languages]] list:
+Items like shell language supports multiple shells, but using those
+shells does not work since the core is =ob-shell= not
+=ob-<sh|bash|dash|fish|zsh>=.
+
+#+BEGIN_SRC emacs-lisp
+  ;; active Babel languages
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '(
+     (awk . t)
+     (C . t)
+     (css . t)
+     (dot . t)
+     (emacs-lisp . t)
+     (gnuplot . t)
+     (makefile . t)
+     (plantuml . t)
+     (python . t)
+     (shell . t)
+     (sql . t)
+     (sqlite . t)
+     )
+   )
+#+END_SRC
 *** [[https://emacs.stackexchange.com/questions/20577/org-babel-load-all-languages-on-demand][Load (all) languages on-demand]]:
 Also see:
 
 - [[https://orgmode.org/worg/org-contrib/babel/languages/index.html#configure][Org-Babel: Activate Languages]].
 - [[https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-shell.html][Org-Babel: Shell Code Blocks in Babel]].
 
-#+BEGIN_SRC emacs-lisp
-  (defadvice org-babel-execute-src-block (around load-language nil activate)
-    "Load language if needed"
-    (let ((language (org-element-property :language (org-element-at-point))))
-      (unless (cdr (assoc (intern language) org-babel-load-languages))
-        (add-to-list 'org-babel-load-languages (cons (intern language) t))
-        (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
-      ad-do-it))
-#+END_SRC
+# #+BEGIN_SRC emacs-lisp
+#   (defadvice org-babel-execute-src-block (around load-language nil activate)
+#     "Load language if needed"
+#     (let ((language (org-element-property :language (org-element-at-point))))
+#       (unless (cdr (assoc (intern language) org-babel-load-languages))
+#         (add-to-list 'org-babel-load-languages (cons (intern language) t))
+#         (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
+#       ad-do-it))
+# #+END_SRC
 *** Redirect stderr to =:results= block:
 See: [[https://emacs.stackexchange.com/questions/75778/org-babel-redirect-stderr-c-option-requires-an-argument][StackOverflow: Org Bable Redirect stderr (-c option requires an argument)]].
 
@@ -1652,6 +1677,9 @@ with 9.0.3 #288]]. Installing via =npm= globally instead.
   (use-package ob-mermaid
     :ensure-system-package (mmdc . "npm install -g @mermaid-js/mermaid-cli")
     :ensure t
+    :config
+    (add-to-list 'org-babel-load-languages '(mermaid . t))
+    (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
     )
 #+END_SRC
 
@@ -1705,9 +1733,6 @@ system packages. Run:
      plantuml-jar-path "~/org/plantuml.jar"
      plantuml-default-exec-mode 'jar
      )
-    (org-babel-do-load-languages
-     'org-babel-load-languages
-     '((plantuml . t)))
     )
 #+END_SRC
 * Docker:
@@ -2232,7 +2257,12 @@ Typical workflow might be:
 *** [[https://github.com/pope/ob-go][ob-go]]:
 Go support in org-code blocks.
 #+BEGIN_SRC emacs-lisp
-  (use-package ob-go :ensure t)
+  (use-package ob-go
+    :ensure t
+    :config
+    (add-to-list 'org-babel-load-languages '(go . t))
+    (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
+    )
 #+END_SRC
 
 This will allow the following code block to run:
@@ -3918,9 +3948,8 @@ Eg. Run (~C-cC-c~) the following code block.
     :ensure t
     :after (restclient)
     :config
-      (org-babel-do-load-languages
-       'org-babel-load-languages
-       '((restclient . t)))
+    (add-to-list 'org-babel-load-languages '(restclient . t))
+    (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
     )
 #+END_SRC
 * Links:
