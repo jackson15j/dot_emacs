@@ -3566,6 +3566,7 @@ controlling my remote MPD servers.
        ("RAudio-Office server" "raudio-office.local" 6600 ipv4)
        ("RAudio-Office2 server" "raudio-office2.local" 6600 ipv4)
        ("Volumio-Office server" "volumio-office.local" 6600 ipv4)
+       ("Volumio-Kitchen server" "volumio-kitchen.local" 6600 ipv4)
        )
      )
     (mpdel-mode)
