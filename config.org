@@ -1106,8 +1106,6 @@ See: http://cestlaz.github.io/posts/using-emacs-26-gcal/
 #+END_SRC
 
 ** Core org-mode config:
-- Enable =org-habit= in agenda view: [[info:org#Tracking your habits][org#Tracking your habits]].
-
 #+BEGIN_SRC emacs-lisp
   (use-package org
     ;; NOTE: ~ox-confluence~ from ~org-contrib~ never worked well, compared to
@@ -1175,7 +1173,6 @@ See: http://cestlaz.github.io/posts/using-emacs-26-gcal/
      org-link-file-path-type 'relative
      org-use-tag-inheritance nil  ;; Don't show un-tagged sub-headings when there is a tag on a high-level.
      )
-    (add-to-list 'org-modules 'org-habit)
   )
 #+END_SRC
 ** Capture/Reminders:
@@ -1390,7 +1387,8 @@ Add: ~:async~ to an org-babel code block to run async when called with:
     )
 #+END_SRC
 
-*** [[https://orgmode.org/org.html#Repeated-tasks][Repeated tasks]]:
+*** [[https://orgmode.org/org.html#Repeated-tasks][Repeated tasks]] / [[info:org#Tracking your habits][org#Tracking your habits]]:
+- Enable =org-habit= in agenda view: [[info:org#Tracking your habits][org#Tracking your habits]].
 - Tag repeated tasks with a deadline (~C-cC-d~).
 - Add the repeat [and reminder] value.
 - Mark as done with ~C-cC-t~, which will log that ~DOEN~ and update the
@@ -1402,6 +1400,19 @@ Repeat:
 - daily, but next iteration is after today, if marking as ~"DONE"~
   after missing several days: put =.+1d= into deadline/schedule
   datetime.
+
+See: [[https://sachachua.com/blog/2012/05/org-mode-and-habits/][Sachachua: Org-mode and habits]].
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org
+    :custom
+    (org-habit-graph-column 60)  ;; 40
+    (org-habit-preceding-days 30)  ;; 21
+    (org-habit-show-all-today t)
+    :config
+    (add-to-list 'org-modules 'org-habit)
+    )
+#+END_SRC
 
 ** org-babel:
 *** org-babel config:
