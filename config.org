@@ -1106,6 +1106,8 @@ See: http://cestlaz.github.io/posts/using-emacs-26-gcal/
 #+END_SRC
 
 ** Core org-mode config:
+- Enable =org-habit= in agenda view: [[info:org#Tracking your habits][org#Tracking your habits]].
+
 #+BEGIN_SRC emacs-lisp
   (use-package org
     ;; NOTE: ~ox-confluence~ from ~org-contrib~ never worked well, compared to
@@ -1173,6 +1175,7 @@ See: http://cestlaz.github.io/posts/using-emacs-26-gcal/
      org-link-file-path-type 'relative
      org-use-tag-inheritance nil  ;; Don't show un-tagged sub-headings when there is a tag on a high-level.
      )
+    (add-to-list 'org-modules 'org-habit)
   )
 #+END_SRC
 ** Capture/Reminders:
