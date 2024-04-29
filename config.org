@@ -1414,6 +1414,12 @@ See: [[https://sachachua.com/blog/2012/05/org-mode-and-habits/][Sachachua: Org-m
     )
 #+END_SRC
 
+Eval Org-modules. See: [[https://sachachua.com/dotemacs/index.html#modules][Sachachua: dotemacs#modules]]:
+
+#+BEGIN_SRC emacs-lisp
+  (eval-after-load 'org
+    '(org-load-modules-maybe t))
+#+END_SRC
 ** org-babel:
 *** org-babel config:
 #+BEGIN_SRC emacs-lisp
