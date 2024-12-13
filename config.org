@@ -709,7 +709,7 @@ Automatically install tree-sitter grammars.
   (load-theme 'wombat t)
   ; (display-time)  ;; Time in modeline. Un-comment to enable.
   (display-battery-mode t)  ;; Battery in modeline. Un-comment to enable.
-  (setq large-file-warning-threshold (* 40 1024 1024))  ;; large files shouting from 40MB's
+  (setq large-file-warning-threshold (* 1024 1024 1024))  ;; large files shouting from 1GB.
 
   ;; http://pragmaticemacs.com/emacs/dired-human-readable-sizes-and-sort-by-size/
   (setq dired-listing-switches "-alh")
