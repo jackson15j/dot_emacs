@@ -1253,6 +1253,37 @@ Confluence Wiki. Export via: ~M-x org-ascii-export-as-ascii~ (~C-cC-etA~).
   (org-add-link-type "img" 'org-custom-link-img-follow 'org-custom-link-img-export)
 #+END_SRC
 
+*** Export to Epub (ox-epub):
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ox-epub
+    :ensure t)
+#+END_SRC
+
+**** Usage:
+
+Hit ~C-c C-e E e~ to publish the current buffer to an EPUB.
+
+There are some required export options that need to be set. These are
+
+- ~UID~: a unique id of the document, otherwise known as uri, may be a url
+- ~DATE~: the date of the document, for valid values see https://www.w3.org/TR/NOTE-datetime
+- ~AUTHOR~: the document author or editor, the creator in the EPUB spec
+- ~TITLE~: the document title
+
+Furthermore there are some properties which are optional:
+
+- ~Subject~: the subject matter of the book
+- ~Description~: a description of the book
+- ~Publisher~: the publisher of the book
+- ~License~: the rights associated with this book, the copyright notice and further rights may be included in this option.
+- ~EPUBCOVER~: the cover image to use for the export
+- ~EPUBSTYLE~: the CSS file to use for the export, this is set by default but can be set on a per document basis
+
+The only other option that is exported:
+
+- ~LANGUAGE~: the language of the book, this is to be interpreted according to RFC3066 or it’s succeeding documents https://www.ietf.org/rfc/rfc3066.txt, no other interpretations are allowed according to the EPUB spec.
+
 ** load additional /(optional)/ literate configs:
 #+BEGIN_SRC emacs-lisp
   (let () (dolist (dot_emacs '("~/org/config.org"
