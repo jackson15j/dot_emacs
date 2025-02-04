@@ -9,7 +9,9 @@
 My main ~.emacs~ file.
 
 *NOTE:* For built-in packages, check out the emacs manual via: ~C-h r~!
-** Ansible:
+
+** Emacs init file discovery:
+*** Ansible:
 
 Install via [[http://docs.ansible.com/ansible/][ansible]] with the following command, which will prompt for sudo
 password (pacman package installation) due to the ~-K~ or ~--ask-become-pass~
@@ -22,6 +24,24 @@ You can add ~-i hosts~ if you want to run against remote hosts instead of
 locally.
 
 *NOTE:* Hard-coded to ArchLinux and my own needs.
+
+*** Windows:
+
+- [[https://www.gnu.org/software/emacs/manual/html_node/efaq-w32/Location-of-init-file.html][GNU: Where do I put my init file?]]:
+  - *Either:* ~c:\<init.el>~
+  - *Or:* ~c:\Users\<user>\AppData\Roaming\<init.el>~ - for Work laptops with locked down ~C:~ drives!!
+  - *Ignore:* Registry key editing.
+  - *NOTE:* May need to run ~CMD~ as Administrator.
+
+#+BEGIN_EXAMPLE bat
+  C:\Windows\System32>mklink c:\.emacs c:\src\org\dot_emacs\.emacs
+  symbolic link created for c:\.emacs <<===>> c:\src\org\dot_emacs\.emacs
+
+  C:\Windows\System32>mklink c:\config.org c:\src\org\dot_emacs\config.org
+  symbolic link created for c:\config.org <<===>> c:\src\org\dot_emacs\config.org
+
+  C:\Windows\System32>
+#+END_EXAMPLE
 
 ** Hooks:
 To unset a key binding: ~M-x global-unset-key~y
