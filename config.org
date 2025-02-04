@@ -111,6 +111,7 @@ By default, Esup will profile ~user-init-file~. To profile a custom file, call
 *** PDF support (install dependencies):
 #+BEGIN_SRC emacs-lisp
   (use-package doc-view
+    :if (not (eq system-type 'windows-nt))  ;; FIXME!
     :ensure-system-package ((gs . ghostscript))
     )
 #+END_SRC
@@ -144,6 +145,8 @@ This is external to eglot, but placing here just because of the link.
 
 #+BEGIN_SRC emacs-lisp
   (use-package breadcrumb
+    ;; TODO: This also needs a v30 check, since ~:vc~ is not in v29.4!!
+    :if (not (eq system-type 'windows-nt))  ;; FIXME!
     :vc (:url "https://github.com/joaotavora/breadcrumb"
          :rev :newest)
     :ensure t
