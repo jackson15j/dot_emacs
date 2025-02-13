@@ -2741,6 +2741,14 @@ for a similar problem on NixOS.
                            ;; finished analysis (instead of `lsp`).
                            (lsp-deferred))))
 #+END_SRC
+** lua:
+#+BEGIN_SRC emacs-lisp
+  (use-package lua-mode
+    :ensure t
+    :defer t
+    :hook (lua-mode . eglot-ensure)
+    )
+#+END_SRC
 ** [[https://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/progmodes/make-mode.el][make-mode]] (built-in):
 FIXME: remove the =eglot-ensure= hook on =prog-mode=, since there is no
 lsp-server for Makefile's.
