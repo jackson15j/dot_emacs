@@ -1553,36 +1553,38 @@ Either:
   ;;   )
 #+END_SRC
 
-** [[https://github.com/theodorewiles/org-mind-map][org-mindmap]]:
-#+BEGIN_SRC emacs-lisp
-  ;; This is an Emacs package that creates graphviz directed graphs from
-  ;; the headings of an org file
-  ;; https://github.com/theodorewiles/org-mind-map
-  (use-package org-mind-map
-    ;; Switch to a fork due to org-mind-map waiting to be moved to new maintainers.
-    :vc (:url "https://github.com/lockywolf/org-mind-map.git"
-         :rev :newest)
-    :init
-    (require 'ox-org)
-    :ensure t
-    :ensure-system-package (gvgen . graphviz)
-    :config
-    (setq org-mind-map-default-graph-attribs
-          '(("autosize" . "false")
-            ("size" . "9,12")
-            ("resolution" . "200")
-            ("nodesep" . "0.75")
-            ("overlap" . "false")
-            ("spline" . "true")
-            ("rankdir" . "LR")))
-    ;; (setq org-mind-map-engine "dot")       ; Default. Directed Graph
-    ;; (setq org-mind-map-engine "neato")  ; Undirected Spring Graph
-    ;; (setq org-mind-map-engine "twopi")  ; Radial Layout
-    ;; (setq org-mind-map-engine "fdp")    ; Undirected Spring Force-Directed
-    (setq org-mind-map-engine "sfdp")   ; Multiscale version of fdp for the layout of large graphs
-    ;; (setq org-mind-map-engine "circo")  ; Circular Layout
-    )
-#+END_SRC
+** [[https://github.com/theodorewiles/org-mind-map][org-mindmap]] (dead):
+Lockywolf is no longer on Github, so just commenting this all out!
+
+# #+BEGIN_SRC emacs-lisp
+#   ;; This is an Emacs package that creates graphviz directed graphs from
+#   ;; the headings of an org file
+#   ;; https://github.com/theodorewiles/org-mind-map
+#   (use-package org-mind-map
+#     ;; Switch to a fork due to org-mind-map waiting to be moved to new maintainers.
+#     :vc (:url "https://github.com/lockywolf/org-mind-map.git"
+#          :rev :newest)
+#     :init
+#     (require 'ox-org)
+#     :ensure t
+#     :ensure-system-package (gvgen . graphviz)
+#     :config
+#     (setq org-mind-map-default-graph-attribs
+#           '(("autosize" . "false")
+#             ("size" . "9,12")
+#             ("resolution" . "200")
+#             ("nodesep" . "0.75")
+#             ("overlap" . "false")
+#             ("spline" . "true")
+#             ("rankdir" . "LR")))
+#     ;; (setq org-mind-map-engine "dot")       ; Default. Directed Graph
+#     ;; (setq org-mind-map-engine "neato")  ; Undirected Spring Graph
+#     ;; (setq org-mind-map-engine "twopi")  ; Radial Layout
+#     ;; (setq org-mind-map-engine "fdp")    ; Undirected Spring Force-Directed
+#     (setq org-mind-map-engine "sfdp")   ; Multiscale version of fdp for the layout of large graphs
+#     ;; (setq org-mind-map-engine "circo")  ; Circular Layout
+#     )
+# #+END_SRC
 ** [[https://github.com/takaxp/org-tree-slide][org-tree-slide]]:
 Modern Org Presentation solution.
 
