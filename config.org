@@ -5,6 +5,8 @@
 #+PROPERTY: header-args:mermaid :prologue "exec 2>&1" :epilogue ":" :pupeteer-config-file ~/.puppeteerrc
 #+PROPERTY: header-args:shell :prologue "exec 2>&1" :epilogue ":" :results drawer :async
 #+STARTUP: overview
+*NOTE:* GPG Certificate errors?? Try: ~M-x package-refresh-contents~
+ and restart!!
 * Dot Emacs
 My main ~.emacs~ file.
 
