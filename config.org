@@ -3802,6 +3802,46 @@ points to improve speed reading.
     :defer t)
 #+END_SRC
 
+* SoloRPG:
+See: [[https://howardabrams.com/hamacs/ha-aux-apps.html#orge75ad23][Howard Abrams: RPG DM config]].
+
+** [[https://codeberg.org/howardabrams/emacs-rpgtk][emacs-rpgtk]]:
+This project supplies a collection of functions in Emacs Lisp to allow
+developers to craft RPG-inspired programs, with a focus on Solo RPGs
+played in Org-formatted files.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rpgtk
+    :vc (:url "https://codeberg.org/howardabrams/emacs-rpgtk"
+         :rev :newest)
+    :ensure t
+    )
+#+END_SRC
+
+** [[https://gitlab.com/howardabrams/emacs-rpgdm][emacs-rpgdm]]:
+
+Dungeon Master Support in Emacs
+
+*TODO:* Set ~tables~ location!!
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rpgdm
+    :vc (:url "https://gitlab.com/howardabrams/emacs-rpgdm"
+         :rev :newest)
+    :ensure t
+    )
+#+END_SRC
+
+** [[https://gitlab.com/howardabrams/emacs-ironsworn][emacs-ironsworn]]:
+
+#+BEGIN_SRC emacs-lisp
+  (use-package rpgdm-ironsworn
+    :vc (:url "https://gitlab.com/howardabrams/emacs-ironsworn"
+         :rev :newest)
+    :ensure t
+    )
+#+END_SRC
+
 * Terminals:
 ** ansi-term:
 =ansi-term= is terminal emulator. I originally preferred it to
@@ -4049,6 +4089,7 @@ Configs that look good enough to go back and maybe learn/steal from:
 - https://github.com/meatcar/emacs.d
 - https://github.com/jakebox/jake-emacs
 - https://github.com/jypma/emacs.d
+- [[https://howardabrams.com/hamacs/][Howard Abrams config]]
 ** Packages to try:
 - https://github.com/seagle0128/doom-modeline
 - https://github.com/emacsorphanage/anzu
