@@ -1352,6 +1352,18 @@ Add: ~:async~ to an org-babel code block to run async when called with:
                                    nil  ;; settings
                                    ("/tmp/org_agenda_review.html" "/tmp/org_agenda_review.ics" "/tmp/org_agenda_review.txt")  ;; ~org-store-agenda-views~ output file
                                    )
+                                  ;; Getting Things Done
+                                  ("g" "GTD - Getting Things Done"
+                                   (
+                                    (agenda "")
+                                    (tags "NEXT" ((org-agenda-overriding-header "\nNext = actionable!!  Complete these!! ~:NEXT:~")))
+                                    (tags "CHASE|DELEGATE" ((org-agenda-overriding-header "\nChase down these people!! ~:CHASE:DELEGATE:~")))
+                                    (tags "READ|REVIEW|WATCH" ((org-agenda-overriding-header "\nBooks/Links I need to read/review/watch!! ~:READ:REVIEW:WATCH:~")))
+                                    (tags-todo "-CHASE-DELEGATE-NEXT-READ-REVIEW-WATCH" ((org-agenda-overriding-header "\nGeneral TODO's: What is the Next Action?  What does Done look like?")))
+                                    )
+                                   nil  ;; settings
+                                   ("/tmp/org_agenda_review.html" "/tmp/org_agenda_review.ics" "/tmp/org_agenda_review.txt")  ;; ~org-store-agenda-views~ output file
+                                   )
                                   ;; https://fortelabs.com/blog/para/
                                   ("p" "PARA Personal (Project Area Resources Archive) Agenda Review"
                                    (
