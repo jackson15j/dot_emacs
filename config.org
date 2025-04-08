@@ -90,6 +90,10 @@ By default, Esup will profile ~user-init-file~. To profile a custom file, call
     (setq esup-depth 0)
     )
 #+END_SRC
+** diary:
+#+BEGIN _SRC emacs-lisp
+  (setq diary-file "~/org/diary")
+#+END_SRC
 ** dired:
 #+BEGIN_SRC emacs-lisp
   (use-package dired
