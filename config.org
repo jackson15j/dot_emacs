@@ -3849,11 +3849,11 @@ Dungeon Master Support in Emacs
 *FIXME:* Actually load when I have tables for it to pull in.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package rpgdm-ironsworn
-    :vc (:url "https://gitlab.com/howardabrams/emacs-ironsworn"
-         :rev :newest)
-    ;:ensure t
-    )
+  ;; (use-package rpgdm-ironsworn
+  ;;   :vc (:url "https://gitlab.com/howardabrams/emacs-ironsworn"
+  ;;        :rev :newest)
+  ;;   ;:ensure t
+  ;;   )
 #+END_SRC
 
 * Terminals:
