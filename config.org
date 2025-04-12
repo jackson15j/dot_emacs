@@ -1196,6 +1196,7 @@ See: http://cestlaz.github.io/posts/using-emacs-26-gcal/
     ;; ;; Explicit requires from the `org-contrib` package.
     ;; (require 'ox-confluence)  ;; FIXME: wrong type arguments error!
     (setq
+     org-insert-heading-respect-content t  ;; C-return creates new heading after content instead of next line.
      org-link-file-path-type 'relative
      org-use-tag-inheritance nil  ;; Don't show un-tagged sub-headings when there is a tag on a high-level.
      )
