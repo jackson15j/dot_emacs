@@ -1361,6 +1361,7 @@ Add: ~:async~ to an org-babel code block to run async when called with:
                                   ("g" "GTD - Getting Things Done"
                                    (
                                     (agenda "")
+                                    (tags "QUICK" ((org-agenda-overriding-header "\nQuick = 5min tasks!!  Fill in the gaps!! ~:QUICK:~")))
                                     (tags "NEXT" ((org-agenda-overriding-header "\nNext = actionable!!  Complete these!! ~:NEXT:~")))
                                     (tags "CHASE|DELEGATE" ((org-agenda-overriding-header "\nChase down these people!! ~:CHASE:DELEGATE:~")))
                                     (tags "READ|REVIEW|WATCH" ((org-agenda-overriding-header "\nBooks/Links I need to read/review/watch!! ~:READ:REVIEW:WATCH:~")))
