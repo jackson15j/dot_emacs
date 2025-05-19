@@ -870,8 +870,8 @@ the column fill to be a double pipe. See unicode table.
     (progn
       (setq-default fci-rule-column 79)
       (setq fci-rule-character ?\u2016)
-      ;; automatically wrap to 79 characters.
-      (setq-default fill-column 79)
+      ;; automatically wrap to 100 (Less pedantic about enforcing classic terminal widths) ~79~ characters.
+      (setq-default fill-column 100)
       (setq-default git-commit-fill-column 79))
   )
 #+END_SRC
