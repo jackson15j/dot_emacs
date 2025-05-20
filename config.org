@@ -1344,6 +1344,21 @@ Add: ~:async~ to an org-babel code block to run async when called with:
 - https://github.com/gjstein/emacs.d/blob/master/config/gs-org-agenda.el
 
 #+BEGIN_SRC emacs-lisp
+  (defun my-clocktable-write (&rest args)
+  "Custom clocktable writer.
+  es the default writer but shifts the first column right."
+  ;; https://emacs.stackexchange.com/questions/42329/how-to-choose-the-order-of-clocktable-columns
+  ;; https://stackoverflow.com/questions/53653616/add-comment-column-to-emacs-org-mode-clock-table/53684091#53684091
+  ;;
+  ;; FIXME: When using =:scope agenda= the file is in column1 and Properties are
+  ;; in column2, so this moves the first, not 2nd (effort) column.
+  (apply #'org-clocktable-write-default args)
+  (save-excursion
+    (forward-char) ;; move into the first table field
+    (org-table-move-column-right)
+    (org-table-move-column-right)
+    ))
+
   (use-package org
     :config
     (setq
