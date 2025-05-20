@@ -1461,7 +1461,7 @@ Add: ~:async~ to an org-babel code block to run async when called with:
                                   )
      org-src-fontify-natively t
      ;; https://cachestocaches.com/2016/9/my-workflow-org-agenda/
-     org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIMESTAMP_IA"
+     org-columns-default-format "%50ITEM(Task) %5Effort(Est){:} %10CLOCKSUM %16TIMESTAMP_IA"
      ;; org-columns-default-format "%60ITEM %CATEGORY %TODO %TAGS %CLOCKSUM{:} %5Effort(Est){:} "  ;; C-cC-xC-c in an Agenda view.
      org-agenda-compact-blocks t  ;; Compact agenda. Same as setting: `org-agenda-block-separator nil`.
      org-agenda-include-diary t
