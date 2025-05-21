@@ -856,6 +856,40 @@ Occur buffer http://www.emacswiki.org/emacs/FindingNonAsciiCharacters
   (global-set-key (kbd "C-c '") 'comment-or-uncomment-region-or-line)
 #+END_SRC
 
+** Clean up dumped open browser tabs:
+- Expose all open tabs:
+  - [[https://superuser.com/questions/117754/is-there-a-way-to-copy-urls-from-all-open-tabs-in-a-google-chrome-or-other-brow][Chrome]]: =chrome://inspect/#pages=
+- Copy & paste into an org buffer.
+- Remove any initial Groups.
+- go to first description and run macro.
+  - =C-u<number>M-x <macro>= to run X times.
+
+Before:
+#+BEGIN_EXAMPLE
+  .NET 9 - Goodbye sln!
+  https://bartwullems.blogspot.com/2025/03/net-9-goodbye-sln.html
+
+  🚀 Getting Started | LazyVim
+  https://www.lazyvim.org/
+
+  A 10x Faster TypeScript - TypeScript
+  https://devblogs.microsoft.com/typescript/typescript-native-port/
+#+END_EXAMPLE
+
+After:
+#+BEGIN_EXAMPLE
+  ,** [[https://bartwullems.blogspot.com/2025/03/net-9-goodbye-sln.html][.NET 9 - Goodbye sln!]]
+  ,** [[https://www.lazyvim.org/][🚀 Getting Started | LazyVim]]
+  ,** [[https://devblogs.microsoft.com/typescript/typescript-native-port/][A 10x Faster TypeScript - TypeScript]]
+#+END_EXAMPLE
+
+Macro:
+#+BEGIN_SRC emacs-lisp
+  (defalias 'my-clean-up-chrome-open-tabs-dumped-list
+     (kmacro "C-k <kp-delete> * * SPC [ [ C-e ] [ C-y ] ] <down> <kp-delete>"))
+#+END_SRC
+
+*NOTE:* Created from a [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Basic-Keyboard-Macro.html][keyboard macro]] then [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Save-Keyboard-Macro.html][named and saved]].
 * Buffer/Window Management:
 ** Fill Column Indicator
 Fill Column is used to reflow text automatically & highlight margins, as well
