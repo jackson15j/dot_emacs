@@ -1049,6 +1049,8 @@ magit - a pretty good git package with more features than the built in emacs
        (stashes . hide)
        (unpulled . show)
        (unpushed . show)
+       (unstaged . show)
+       (untracked . show)
        (pullreqs . show)
        ))
     )
