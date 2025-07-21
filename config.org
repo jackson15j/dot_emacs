@@ -1855,6 +1855,10 @@ system packages. Run:
   sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 #+END_SRC
 
+#+BEGIN_SRC shell :results silent
+  docker run -d --name plantuml-server -p 8099:8080 plantuml/plantuml-server:jetty
+#+END_SRC
+
 #+BEGIN_SRC emacs-lisp
   (defun plantuml-compile-buffer-hook()
     "Compile command to generate a PNG from the current plantuml buffer."
@@ -1883,14 +1887,15 @@ system packages. Run:
     (setq
      ;; Use plantuml server, once: ~(setq plantuml-default-exec-mode 'server)~.
      ;; https://hub.docker.com/r/plantuml/plantuml-server
-     ;; docker run -d -p 8099:8080 plantuml/plantuml-server:jetty
-     ;; plantuml-server-url "http://localhost:8099"
+     ;; docker run -d --name plantuml-server -p 8099:8080 plantuml/plantuml-server:jetty
+     plantuml-default-exec-mode 'server
+     plantuml-server-url "http://localhost:8099"
 
-     ;; See: following issue for inability to use PlantUML server in org-babel:
-     ;; https://github.com/skuro/plantuml-mode/issues/165
-     org-plantuml-jar-path "~/org/plantuml.jar"
-     plantuml-jar-path "~/org/plantuml.jar"
-     plantuml-default-exec-mode 'jar
+     ;; ;; See: following issue for inability to use PlantUML server in org-babel:
+     ;; ;; https://github.com/skuro/plantuml-mode/issues/165
+     ;; org-plantuml-jar-path "~/org/plantuml.jar"
+     ;; plantuml-jar-path "~/org/plantuml.jar"
+     ;; plantuml-default-exec-mode 'jar
      )
     )
 #+END_SRC
