@@ -4061,7 +4061,9 @@ Vterm is a terminal with pretty good ncurses support and compliance.
     :ensure t
     :after (cmake-mode)
     :init (setq vterm-always-compile-module t)
-    :config (setq vterm-max-scrollback 100000)
+    :custom
+    (vterm-max-scrollback 100000)
+    :hook (vterm-mode . compilation-shell-minor-mode)
     )
 #+END_SRC
 * Typing:
