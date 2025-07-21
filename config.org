@@ -2834,6 +2834,23 @@ for a similar problem on NixOS.
                            ;; finished analysis (instead of `lsp`).
                            (lsp-deferred))))
 #+END_SRC
+*** [[https://github.com/manateelazycat/lsp-bridge][LSP Bridge]] (SSH/DevContainers):
+Used to connect to LSP Servers in remote systems for lsp-mode.
+
+BROKEN: Requires:
+
+- Python packages.
+- No byte compiling.
+- Expects =straight= to install, since it's not in melpa.
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package lsp-bridge
+  ;;   :vc (:url "https://github.com/manateelazycat/lsp-bridge.git"
+  ;;        :rev :newest)
+  ;;   :ensure t
+  ;;   :config
+  ;;   (global-lsp-bridge-mode)
+  ;;   )
+#+END_SRC
 ** lua:
 #+BEGIN_SRC emacs-lisp
   (use-package lua-mode
