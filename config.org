@@ -1824,6 +1824,8 @@ disabled because it installs a pre-built copy of Chromium!~.
 Which is mentioned in the Closed:WontFix issue: [[https://github.com/mermaid-js/mermaid-cli/issues/288][update brew formula to work
 with 9.0.3 #288]]. Installing via =npm= globally instead.
 
+- =C-cC-b= in a mermaid code edit buffer to generate preview.
+
 #+BEGIN_SRC emacs-lisp
   (use-package mermaid-mode
     :ensure-system-package (mmdc . "npm install -g @mermaid-js/mermaid-cli")
