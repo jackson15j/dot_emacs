@@ -2316,7 +2316,11 @@ TODO: switch over to eglot!
 Alternative to =dap-mode= that uses all built-ins to interact with
 per-language debuggers installed on the Host.
 
-eg. GoLang: https://dev.to/dorneanu/mastering-golang-debugging-in-emacs-34p7.
+eg. GoLang:
+
+- https://dev.to/dorneanu/mastering-golang-debugging-in-emacs-34p7.
+- [[https://github.com/svaante/dape/issues/109][Github: svaante/dape - Debug go program via tramp #109]] via ssh
+  configured host + ssh tunnel to route to delve on remote system.
 
 #+BEGIN_SRC emacs-lisp
   (use-package dape
