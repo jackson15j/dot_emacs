@@ -2450,6 +2450,17 @@ Requires ~go~, ~gopls~ & ~delve~ to be installed. See:
 - https://emacs-lsp.github.io/lsp-mode/page/lsp-gopls/
 - https://github.com/go-delve/delve/tree/master/Documentation/installation
 
+  #+BEGIN_SRC sh
+    # On macOS make sure you also install the command line developer tools:
+    xcode-select --install
+    # If you didn't enable Developer Mode using Xcode you will be asked to
+    # authorize the debugger every time you use it. To enable Developer Mode
+    # and only have to authorize once per session use:
+    sudo /usr/sbin/DevToolsSecurity -enable
+    # You might also need to add your user to the developer group:
+    sudo dscl . append /Groups/_developer GroupMembership $(whoami)
+  #+END_SRC
+
 Also see: [[https://github.com/dominikh/go-mode.el/issues/396][Add optional support for tree-sitter #396]], which is tracking issues
 with supporting the new =go-ts-mode=.
 
