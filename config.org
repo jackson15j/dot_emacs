@@ -2444,10 +2444,11 @@ Go config links:
 - https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins.
 
 *** [[https://github.com/dominikh/go-mode.el][go-mode]]:
-Requires ~go~ & ~gopls~ to be installed. See:
+Requires ~go~, ~gopls~ & ~delve~ to be installed. See:
 
 - https://github.com/golang/tools/tree/master/gopls
 - https://emacs-lsp.github.io/lsp-mode/page/lsp-gopls/
+- https://github.com/go-delve/delve/tree/master/Documentation/installation
 
 Also see: [[https://github.com/dominikh/go-mode.el/issues/396][Add optional support for tree-sitter #396]], which is tracking issues
 with supporting the new =go-ts-mode=.
