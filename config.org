@@ -2454,7 +2454,7 @@ with supporting the new =go-ts-mode=.
 
 #+BEGIN_SRC emacs-lisp
   (use-package go-mode
-    :ensure-system-package (go gopls delve)
+    :ensure-system-package ((go) (gopls) (dlv . delve))
     :ensure t
     :after eglot
     :functions flycheck-mode
