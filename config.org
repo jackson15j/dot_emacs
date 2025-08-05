@@ -2316,6 +2316,8 @@ TODO: switch over to eglot!
 Alternative to =dap-mode= that uses all built-ins to interact with
 per-language debuggers installed on the Host.
 
+eg. GoLang: https://dev.to/dorneanu/mastering-golang-debugging-in-emacs-34p7.
+
 #+BEGIN_SRC emacs-lisp
   (use-package dape
     :ensure t
@@ -2442,6 +2444,7 @@ Go config links:
 - https://honnef.co/articles/writing-go-in-emacs/ &
   https://honnef.co/articles/writing-go-in-emacs-cont./.
 - https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins.
+- https://dev.to/dorneanu/mastering-golang-debugging-in-emacs-34p7.
 
 *** [[https://github.com/dominikh/go-mode.el][go-mode]]:
 Requires ~go~, ~gopls~ & ~delve~ to be installed. See:
