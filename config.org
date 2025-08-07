@@ -1111,9 +1111,12 @@ with PR's to do code reviews (comments, diff view, approvals, etc).
   (use-package code-review
     :ensure t
     :defer t
-    :after (magit)
+    :after (magit forge)
+    ;; pull maintained fork
+    :vc (:url "https://github.com/doomelpa/code-review.git" :rev :newest)
     :config
     (setq
+     code-review-auth-login-marker 'forge
      code-review-bitbucket-host "bitbucket.eigen.live/rest/api/1.0"
      code-review-gitlab-host "gitlab.eigen.live/api"
      code-review-gitlab-graphql-host "gitlab.eigen.live/api"
