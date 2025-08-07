@@ -120,6 +120,14 @@ By default, Esup will profile ~user-init-file~. To profile a custom file, call
     :ensure-system-package ((gs . ghostscript))
     )
 #+END_SRC
+** editorconfig-mode ([[https://editorconfig.org/][EditorConfig]]):
+#+BEGIN_SRC emacs-lisp
+  (use-package editorconfig
+    :custom
+    (editorconfig-mode t)
+    )
+#+END_SRC
+
 ** [[https://joaotavora.github.io/eglot/][eglot]]:
 Eglot ([[https://github.com/joaotavora/eglot][Github: joaotavora/eglot]]) is the built-in, streamlined LSP (Language
 Server Protocol) client for emacs, to talk to LSP Servers with. it is the
