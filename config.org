@@ -2357,7 +2357,7 @@ eg. GoLang:
     ;; (setq dape-info-hide-mode-line nil)
 
     ;; Pulse source line (performance hit)
-    ;; (add-hook 'dape-display-source-hook 'pulse-momentary-highlight-one-line)
+    (add-hook 'dape-display-source-hook 'pulse-momentary-highlight-one-line)
 
     ;; Showing inlay hints
     (setq dape-inlay-hints t)
