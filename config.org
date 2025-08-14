@@ -1060,6 +1060,7 @@ magit - a pretty good git package with more features than the built in emacs
        (unstaged . show)
        (untracked . show)
        (pullreqs . show)
+       (issues . show)
        ))
     )
 #+END_SRC
