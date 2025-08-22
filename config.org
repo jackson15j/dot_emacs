@@ -3860,8 +3860,13 @@ controlling my remote MPD servers.
   - ~SPC~ Play/Pause toggle.
 
 #+BEGIN_SRC emacs-lisp
+  (use-package libmpdel
+    :ensure t
+    )
+
   (use-package mpdel
     :ensure t
+    :after (libmpdel)
     :custom
     (
      (libmpdel-hostname "raudio-office.local")
