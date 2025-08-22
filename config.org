@@ -4271,7 +4271,11 @@ Search YouTube from emacs, play via mpv, download via yt-dlp.
     )
 #+END_SRC
 * Web:
-** [[https://github.com/pashky/restclient.el][restclient]]:
+** [[https://github.com/emacsorphanage/restclient][restclient]]:
+Switched over to: [[https://github.com/emacsorphanage/restclient][Github: emacsorphanage/restclient]], since: [[https://github.com/pashky/restclient.el][Github:
+pashky/restclient]] has been abandoned but not handed over. See: [[https://github.com/emacsorphanage/restclient/issues/1][Github:
+emacsorphanage/restclient issue #1]].
+
 Run up a rest client in emacs to quickly test APIs. See:
 
 - http://emacsrocks.com/e15.html
@@ -4287,6 +4291,7 @@ Eg. Run (~C-cC-c~) the following in an empty buffer with restclient-mode on:
 #+BEGIN_SRC emacs-lisp
   (use-package restclient
     :ensure t
+    :vc (:url "https://github.com/emacsorphanage/restclient" :rev :newest)
     :defer t
     :mode ("\\.restclient\\'" . restclient-mode)
     )
