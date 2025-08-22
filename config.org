@@ -311,7 +311,6 @@ Doesn't appear when flymake is started by =eglot= in a mode that has an lsp.
 
   #+BEGIN_SRC emacs-lisp
     (setq confirm-kill-processes nil)
-    (setq-default tab-width 4)
   #+END_SRC
 
 - Global defaults:
