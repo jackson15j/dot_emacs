@@ -1375,16 +1375,25 @@ The only other option that is exported:
               (org-babel-load-file dot_emacs))))
 #+END_SRC
 ** Triple backticks create org code block:
-
 #+BEGIN_SRC emacs-lisp
   (defvar dig-my-grave/templates-alist/org-mode
-    '(("Bash" . "#+begin_src bash :results scalar replace :exports both :tangle yes\n#+end_src")
+    '(("Bash" . "#+BEGIN_SRC bash :results scalar replace :exports both :tangle yes\n#+END_SRC")
+      ("C#" . "#+BEGIN_SRC csharp\n#+END_SRC")
       ("Blockquote" . tempel-insert-blockquote_block)
       ("Details and Summary" . "#+begin_details\n#+begin_summary\n\n#+end_summary\n#+end_details")
-      ("Emacs Lisp" . "#+begin_src emacs-lisp\n#+end_src")
+      ("Emacs Lisp" . "#+BEGIN_SRC emacs-lisp\n#+END_SRC")
+      ("Golang" . "#+BEGIN_SRC golang\n#+END_SRC")
+      ("Javascript" . "#+BEGIN_SRC javascript\n#+END_SRC")
+      ("JSON" . "#+BEGIN_EXAMPLE json\n#+END_EXAMPLE")
       ("Org Structure" . org-insert-structure-template)
-      ("Plant UML" . "#+begin_src plantuml\n@startuml\n!theme amiga\n\n@enduml\n#+end_src")
-      ("Ruby" . "#+begin_src ruby\n#+end_src")
+      ("Plant UML" . "#+BEGIN_SRC plantuml\n@startuml\n!theme amiga\n\n@enduml\n#+END_SRC")
+      ("Mermaid" . "#+BEGIN_SRC mermaid\n#+END_SRC")
+      ("Python" . "#+BEGIN_SRC python\n#+END_SRC")
+      ("Restclient" . "#+BEGIN_SRC restclient :results silent\n#+END_SRC")
+      ("Ruby" . "#+BEGIN_SRC ruby\n#+END_SRC")
+      ("Text" . "#+BEGIN_EXAMPLE text\n#+END_EXAMPLE")
+      ("Shell" . "#+BEGIN_SRC shell :results scalar replace :exports both :tangle yes\n#+END_SRC")
+      ("SQL" . "#+BEGIN_SRC sql\n#+END_SRC")
       ("Update" . tempel-insert-update_block))
     "A list of `cons' cells with `car' as the label and `cdr' as
    the value that we'll insert.  Used as the collection for the
