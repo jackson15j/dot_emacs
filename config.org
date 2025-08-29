@@ -2447,6 +2447,49 @@ See:
   (use-package dape
     :config
     (add-to-list 'dape-configs
+                 ;; https://dev.to/dorneanu/mastering-golang-debugging-in-emacs-34p7
+                 ;; Profile 1: Launch application and start DAP server
+                 `(go-debug-locally
+                  modes (go-mode go-ts-mode)
+                  command "dlv"
+                  ;; Debug port != Application port.
+                  command-args ("dap" "--listen" "127.0.0.1::autoport")
+                  command-cwd default-directory
+                  host "127.0.0.1"
+                  port :autoport
+                  :request "launch"
+                  :mode "debug"
+                  :type "go"
+                  :showLog "true"
+                  :program default-directory
+                  ))
+
+    (add-to-list 'dape-configs
+                 ;; Profile 2: Attach to external debugger eg. `make debug`
+                 `(go-debug-remote
+                  modes (go-mode go-ts-mode)
+                  command "dlv"
+                  port 50000
+                  :request "attach"  ;; this will run "dlv attach ..."
+                  :mode "remote"     ;; connect to a running debugger session
+                  :type "go"
+                  ))
+
+    (add-to-list 'dape-configs
+                 ;; Profile 3: Attach to debugger in docker container eg. `make debug`
+                 `(go-debug-docker
+                  modes (go-mode go-ts-mode)
+                  command "dlv"
+                  port 50000
+                  :request "attach"  ;; this will run "dlv attach ..."
+                  :mode "remote"     ;; connect to a running debugger session
+                  :type "go"
+                  ;; https://github.com/emacs-lsp/dap-mode/blob/b97756665709bea37b9ffe262c5fa9196f1b4577/docs/page/configuration.md?plain=1#L622
+                  ;; Set `from` as absolute path to repo root and map to code root in container.
+                  :substitutePath (vector (ht ("from" (funcall dape-cwd-fn)) ("to" "/app")))
+                  ))
+
+    (add-to-list 'dape-configs
                  `(go-debug-testcase-locally
                    modes (go-mode go-ts-mode)
                    ensure dape-ensure-command
