@@ -2450,25 +2450,28 @@ See:
 - https://www.snamellit.com/blog/dape/
 
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'dape-configs
-               `(js-ts-debug-locally
-                 modes (js-mode js-ts-mode typescript-mode typescript-ts-mode)
-                 host "localhost"
-                 port :autoport
-                 command "node"
-                 command-cwd ,(file-name-concat gnus-home-directory "Downloads/js-debug/")
-                 command-args ("src/dapDebugServer.js" :autoport)
-                 :type "pwa-node"
-                 :request "launch"
-                 :cwd dape-cwd-fn
-                 :outputCapture "console"
-                 :program dape-buffer-default
-                 :sourceMapRenames t
-                 :pauseForSourceMap nil
-                 :enableContentValidation t
-                 :autoAttachChildProcesses t
-                 :console "internalConsole"
-                 :killBehavior "forceful"))
+  (use-package dape
+    :config
+    (add-to-list 'dape-configs
+                 `(js-ts-debug-locally
+                   modes (js-mode js-ts-mode typescript-mode typescript-ts-mode)
+                   host "localhost"
+                   port :autoport
+                   command "node"
+                   command-cwd ,(file-name-concat gnus-home-directory "Downloads/js-debug/")
+                   command-args ("src/dapDebugServer.js" :autoport)
+                   :type "pwa-node"
+                   :request "launch"
+                   :cwd dape-cwd-fn
+                   :outputCapture "console"
+                   :program dape-buffer-default
+                   :sourceMapRenames t
+                   :pauseForSourceMap nil
+                   :enableContentValidation t
+                   :autoAttachChildProcesses t
+                   :console "internalConsole"
+                   :killBehavior "forceful"))
+    )
 #+END_SRC
 
 *** [[https://github.com/realgud/realgud][realgud]]:
