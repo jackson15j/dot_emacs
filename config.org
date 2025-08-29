@@ -2455,6 +2455,10 @@ See:
                   ;; Debug port != Application port.
                   command-args ("dap" "--listen" "127.0.0.1::autoport")
                   command-cwd default-directory
+                  ;; TODO: Do I want to run compiler before debugging?
+                  ;; Also, the hook that kills the compilation buffer,
+                  ;; still leaves the buffers split.
+                  ;;compile "go build"
                   host "127.0.0.1"
                   port :autoport
                   :request "launch"
