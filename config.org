@@ -1441,7 +1441,7 @@ The only other option that is exported:
   (defvar dig-my-grave/templates-alist/org-mode
     '(("Bash" . "#+BEGIN_SRC bash :results scalar replace :exports both :tangle yes\n#+END_SRC")
       ("C#" . "#+BEGIN_SRC csharp\n#+END_SRC")
-      ("Blockquote" . tempel-insert-blockquote_block)
+      ("Blockquote" . "#+BEGIN_QUOTE\n#+END_QUOTE")
       ("Details and Summary" . "#+begin_details\n#+begin_summary\n\n#+end_summary\n#+end_details")
       ("Emacs Lisp" . "#+BEGIN_SRC emacs-lisp\n#+END_SRC")
       ("Golang" . "#+BEGIN_SRC golang\n#+END_SRC")
