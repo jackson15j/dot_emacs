@@ -398,6 +398,10 @@ Doesn't appear when flymake is started by =eglot= in a mode that has an lsp.
 - Highlights:
   #+BEGIN_SRC emacs-lisp
     (global-hl-line-mode 1)  ;; horizontal highlighted line on cursor.
+
+    ;; Highlight current line in the line number column/fringe
+    (set-face-attribute 'line-number-current-line nil :background "goldenrod" :foreground "black")
+
     ;; http://www.emacswiki.org/emacs/EmacsNiftyTricks
     ;; http://emacs-fu.blogspot.com/2008/12/highlighting-todo-fixme-and-friends.html
     (defun my_highlighted_words ()
