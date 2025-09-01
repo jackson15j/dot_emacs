@@ -2450,6 +2450,25 @@ Alternative to =dap-mode= that uses all built-ins to interact with
 per-language debuggers installed on the Host.
 
 #+BEGIN_SRC emacs-lisp
+  ;; Changing Modeline colours when debugging. Based off:
+  ;; https://amitp.blogspot.com/2025/04/emacs-per-project-colors.html.
+  ;; TODO: Set for the =project-current=, so it's maintained when
+  ;; jumping to other files during debugging.
+  (defun my-debug-modeline ()
+    "Set mode line color based on current buffer's project"
+    (interactive)
+    (face-remap-add-relative 'tab-line-tab-current :background "red" :foreground "white")
+    (face-remap-add-relative 'mode-line-active :background "red" :foreground "white")
+    (face-remap-add-relative 'line-number-current-line :background "red" :foreground "white")
+    )
+  (defun my-normal-modeline ()
+    "Set mode line color based on current buffer's project"
+    (interactive)
+    (face-remap-add-relative 'tab-line-tab-current :background "goldenrod" :foreground "black")
+    (face-remap-add-relative 'mode-line-active :foreground "black" :background "goldenrod")
+    (face-remap-add-relative 'line-number-current-line :background "goldenrod" :foreground "black")
+    )
+
   (use-package dape
     :ensure t
     :preface
@@ -2479,7 +2498,14 @@ per-language debuggers installed on the Host.
     (setq dape-inlay-hints t)
 
     ;; Save buffers on startup, useful for interpreted languages
-    (add-hook 'dape-start-hook (lambda () (save-some-buffers t t)))
+    ;; (add-hook 'dape-start-hook (lambda () (save-some-buffers t t)))
+    (add-hook 'dape-start-hook #'my-debug-modeline)
+    ;; FIXME: This hook isn't called on: `dape-quit` so adding an
+    ;; advice.
+    ;; (add-hook 'dape-stopped-hook #'my-normal-modeline)
+    (defadvice dape-quit (after after-dape-quit)
+      (my-normal-modeline))
+    (ad-activate 'dape-quit)
 
     ;; Kill compile buffer on build success
     ;; (add-hook 'dape-compile-hook 'kill-buffer)
