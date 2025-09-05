@@ -1707,6 +1707,7 @@ Add: ~:async~ to an org-babel code block to run async when called with:
      org-agenda-include-diary t
      org-agenda-tags-column 100  ;; Stop tags rendering off the right of the buffer.
      org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done)  ;; Hide `DONE` lines from Agenda view.
+     org-complete-tags-always-offer-all-agenda-tags t
      org-clock-persist t  ;; Save clock on emacs exit.
      org-clock-report-include-clocking-task t  ;; Include current open clock task in reports.
      )
