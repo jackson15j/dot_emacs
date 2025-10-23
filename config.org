@@ -3422,6 +3422,14 @@ See: https://blog.bitsandbobs.net/blog/emacs-markdown-live-preview/
     :ensure t
     :defer t)
 #+END_SRC
+** mise:
+*** [[https://mise.jdx.dev/ide-integration.html#traditional-shims-way][Configure paths]]:
+#+BEGIN_SRC emacs-lisp
+  ;; CLI tools installed by Mise
+  ;; See: https://www.emacswiki.org/emacs/ExecPath
+  (setenv "PATH" (concat (getenv "PATH") ":" (expand-file-name gnus-home-directory) ".local/share/mise/shims"))
+  (setq exec-path (append exec-path '(concat (expand-file-name gnus-home-directory) ".local/share/mise/shims"))))
+#+END_SRC
 ** [[https://github.com/orgcandman/pcap-mode][pcap]]:
 pcap (wireshark) file support.
 
