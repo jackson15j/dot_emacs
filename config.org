@@ -3430,6 +3430,15 @@ See: https://blog.bitsandbobs.net/blog/emacs-markdown-live-preview/
   (setenv "PATH" (concat (getenv "PATH") ":" (expand-file-name gnus-home-directory) ".local/share/mise/shims"))
   (setq exec-path (append exec-path '(concat (expand-file-name gnus-home-directory) ".local/share/mise/shims"))))
 #+END_SRC
+*** [[https://github.com/eki3z/mise.el][mise]] project awareness:
+#+BEGIN_SRC emacs-lisp
+  (use-package mise
+    :ensure t
+    :hook (
+           (after-init . global-mise-mode)
+           )
+    )
+#+END_SRC
 ** [[https://github.com/orgcandman/pcap-mode][pcap]]:
 pcap (wireshark) file support.
 
