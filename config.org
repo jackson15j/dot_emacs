@@ -3428,7 +3428,7 @@ See: https://blog.bitsandbobs.net/blog/emacs-markdown-live-preview/
   ;; CLI tools installed by Mise
   ;; See: https://www.emacswiki.org/emacs/ExecPath
   (setenv "PATH" (concat (getenv "PATH") ":" (expand-file-name gnus-home-directory) ".local/share/mise/shims"))
-  (setq exec-path (append exec-path '(concat (expand-file-name gnus-home-directory) ".local/share/mise/shims"))))
+  (setq exec-path (append exec-path '(concat (expand-file-name gnus-home-directory) ".local/share/mise/shims")))
 #+END_SRC
 *** [[https://github.com/eki3z/mise.el][mise]] project awareness:
 #+BEGIN_SRC emacs-lisp
