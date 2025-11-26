@@ -4485,6 +4485,31 @@ Code from: https://github.com/jwalgran/dotfiles/blob/master/.emacs.d/config.el
     (add-hook 'ansi-term-hook (lambda () (global-hl-line-mode 0)))  ; http://stackoverflow.com/questions/9990370/how-to-disable-hl-line-feature-in-specified-mode
     )
 #+END_SRC
+** [[https://codeberg.org/akib/emacs-eat][eat]]:
+To setup shell integration for GNU Bash, put the following at the end
+of your `.bashrc':
+
+#+BEGIN_EXAMPLE shell
+  #+begin_src sh [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && source "$EAT_SHELL_INTEGRATION_DIR/bash" #+end_src sh
+#+END_EXAMPLE
+
+For Zsh, put the following in your `.zshrc':
+
+#+BEGIN_EXAMPLE shell
+  #+begin_src sh [ -n "$EAT_SHELL_INTEGRATION_DIR" ] && source "$EAT_SHELL_INTEGRATION_DIR/zsh" #+end_src sh
+#+END_EXAMPLE
+
+#+BEGIN_SRC emacs-lisp
+  (use-package eat
+    :ensure t
+    :hook
+    (
+     ;; Run eat in eshell
+     (eat-eshell-mode . eshell-load-hook)
+     (eat-eshell-visual-command-mode . eshell-load-hook)
+     )
+    )
+#+END_SRC
 ** eshell (builtin):
 Add the following programs to the list of programs that =eshell= won't complain
 about not being a proper terminal. This will move out of line-mode and into
