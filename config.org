@@ -2037,8 +2037,15 @@ with 9.0.3 #288]]. Installing via =npm= globally instead.
 
 #+BEGIN_SRC emacs-lisp
   (use-package mermaid-mode
-    :ensure-system-package (mmdc . "npm install -g @mermaid-js/mermaid-cli")
+    ;; :ensure-system-package (mmdc . "npm install -g @mermaid-js/mermaid-cli")
     :ensure t
+    :config
+    (setq
+     ;; Use docker instead of the above global node package.
+     ;; https://github.com/abrochard/mermaid-mode#mermaid-cli-in-docker
+     mermaid-mmdc-location "docker"
+     mermaid-flags "run --rm -v /tmp:/tmp ghcr.io/mermaid-js/mermaid-cli/mermaid-cli"
+     )
     )
 #+END_SRC
 
@@ -2047,7 +2054,12 @@ with 9.0.3 #288]]. Installing via =npm= globally instead.
   (use-package ob-mermaid
     :ensure-system-package (mmdc . "npm install -g @mermaid-js/mermaid-cli")
     :ensure t
+    :after (mermaid-mode)
     :config
+    (setq ob-mermaid-cli-path "mmdc")
+    ;; TODO: figure out how to pass tempfile into docker!
+    ;; See: https://github.com/arnm/ob-mermaid/issues/24
+    ;; (setq ob-mermaid-cli-path "docker run --rm -v /tmp:/tmp ghcr.io/mermaid-js/mermaid-cli/mermaid-cli")
     (add-to-list 'org-babel-load-languages '(mermaid . t))
     (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
     )
