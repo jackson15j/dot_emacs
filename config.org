@@ -1052,11 +1052,13 @@ Give Presentations with Org Mode (Questions)]].
     (treemacs-project-follow-mode t)
     )
 #+END_SRC
-*** tremacs-icons-dired:
+*** tremacs-icons-dired (disabled):
+Disabled, since I don't like the additional padding around each row +
+middle placement of the icons.
 #+BEGIN_SRC emacs-lisp
-  (use-package treemacs-icons-dired
-    :hook (dired-mode . treemacs-icons-dired-enable-once)
-    :ensure t)
+  ;; (use-package treemacs-icons-dired
+  ;;   :hook (dired-mode . treemacs-icons-dired-enable-once)
+  ;;   :ensure t)
 #+END_SRC
 *** treemacs-magit:
 #+BEGIN_SRC emacs-lisp
@@ -2165,8 +2167,9 @@ system packages. Run:
     )
 #+END_SRC
 ** Kubernetes:
+*** [[https://kubernetes-el.github.io/kubernetes-el/][kubernetes-el]]:
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package kubernetes
+  (;; use-package kubernetes
   ;;   ;; https://kubernetes-el.github.io/kubernetes-el/
   ;;   :ensure t
   ;;   :defer t
@@ -2182,6 +2185,13 @@ system packages. Run:
   ;;        (move-to-column col)
   ;;        (set-window-start (selected-window) window-start-line)))
   ;; )
+#+END_SRC
+*** [[https://github.com/jinnovation/kele.el][kele]]:
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package kele
+  ;;   :ensure t
+  ;;   :config
+  ;;   (kele-mode 1))
 #+END_SRC
 ** tramp-container (built-in):
 Tramp into a docker container with: ~C-x C-f /docker:[user@]container:/path/to/file~
