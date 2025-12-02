@@ -2169,7 +2169,7 @@ system packages. Run:
 ** Kubernetes:
 *** [[https://kubernetes-el.github.io/kubernetes-el/][kubernetes-el]]:
 #+BEGIN_SRC emacs-lisp
-  (;; use-package kubernetes
+  ;; ( use-package kubernetes
   ;;   ;; https://kubernetes-el.github.io/kubernetes-el/
   ;;   :ensure t
   ;;   :defer t
