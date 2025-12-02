@@ -4703,6 +4703,8 @@ Eg. Run (~C-cC-c~) the following in an empty buffer with restclient-mode on:
     :vc (:url "https://github.com/emacsorphanage/restclient" :rev :newest)
     :defer t
     :mode ("\\.restclient\\'" . restclient-mode)
+    :config
+    (setq restclient-enable-eval t)
     )
 #+END_SRC
 ** [[;; From https://github.com/alf/ob-restclient.el][ob-restclient]]:
