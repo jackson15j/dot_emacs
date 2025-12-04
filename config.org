@@ -61,6 +61,7 @@ https://www.gnu.org/software/emacs/manual/html_node/emacs/Hooks.html
     :custom
     (compilation-ask-about-save nil "Auto save before compiling.")
     (compilation-scroll-output t "Scroll output and don't stop on errors.")
+    (process-adaptive-read-buffering nil "Don't buffer command output in compilation window - keep up with rapidly noisy commands")
     )
 #+END_SRC
 ** Debugging Emacs:
