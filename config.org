@@ -3869,7 +3869,7 @@ Testing out SQLFluff for linting.
       ;; http://www.nuxeo.com/blog/nxml-mode-tabs/
       (add-hook 'nxml-mode-hook (lambda () (setq indent-tabs-mode nil)))
       (setq
-       nxml-child-indent 4
+       nxml-child-indent 2
        )
       )
     )
