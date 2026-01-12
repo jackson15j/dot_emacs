@@ -1201,8 +1201,6 @@ magit - a pretty good git package with more features than the built in emacs
        (unpushed . show)
        (unstaged . show)
        (untracked . show)
-       (pullreqs . show)
-       (issues . show)
        ))
     )
 #+END_SRC
@@ -1245,6 +1243,9 @@ my old ~magithub~ config.
     :if (not (eq system-type 'windows-nt))  ;; FIXME: Needs `cc` compiler defined.
     :ensure t
     :after (magit)
+    :config
+    (add-to-list 'magit-section-initial-visibility-alist '(issues . show))
+    (add-to-list 'magit-section-initial-visibility-alist '(pullreqs . show))
     )
     #+END_SRC
 ** [[https://github.com/wandersoncferreira/code-review][code-review]]:
