@@ -1245,10 +1245,6 @@ my old ~magithub~ config.
     :if (not (eq system-type 'windows-nt))  ;; FIXME: Needs `cc` compiler defined.
     :ensure t
     :after (magit)
-    :config
-    (add-to-list 'forge-alist '("git-scm.clinithink.com:2009" "git-scm.clinithink.com/api/v4" "git-scm.clinithink.com" forge-gitlab-repository))
-    (add-to-list 'forge-alist '("bitbucket.eigen.live" "bitbucket.eigen.live/rest/api/1.0" "bitbucket.eigen.live" forge-bitbucket-repository))
-    (add-to-list 'forge-alist '("gitlab.eigen.live" "gitlab.eigen.live/api/v4" "gitlab.eigen.live" forge-gitlab-repository))
     )
     #+END_SRC
 ** [[https://github.com/wandersoncferreira/code-review][code-review]]:
