@@ -3464,6 +3464,14 @@ See: https://blog.bitsandbobs.net/blog/emacs-markdown-live-preview/
     :ensure t
     :defer t)
 #+END_SRC
+*** [[https://github.com/larstvei/ox-gfm][ox-gfm]] (export):
+I'm not a fan of: =M-x org-md-export-as-markdown=, since it adds a
+load of space around sections and bullet points.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ox-gfm
+    :ensure t)
+#+END_SRC
 ** mise:
 *** [[https://mise.jdx.dev/ide-integration.html#traditional-shims-way][Configure paths]]:
 #+BEGIN_SRC emacs-lisp
