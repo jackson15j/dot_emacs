@@ -2047,7 +2047,7 @@ with 9.0.3 #288]]. Installing via =npm= globally instead.
      ;; Use docker instead of the above global node package.
      ;; https://github.com/abrochard/mermaid-mode#mermaid-cli-in-docker
      mermaid-mmdc-location "docker"
-     mermaid-flags "run --rm -v /tmp:/tmp ghcr.io/mermaid-js/mermaid-cli/mermaid-cli"
+     mermaid-flags "run --rm -v /tmp:/tmp ghcr.io/mermaid-js/mermaid-cli/mermaid-cli -w 1920"
      )
     )
 #+END_SRC
