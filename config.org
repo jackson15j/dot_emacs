@@ -1278,6 +1278,9 @@ package).
 magit - a pretty good git package with more features than the built in emacs
 "vc" package.
 
+See: [[*Advice to force =pipe= instead of =pty= on Mac for a x10 speed up:][Advice to force =pipe= instead of =pty= on Mac for a
+x10 speed up]] for =magit-process-connection-type pipe= on Mac/Darwin!
+
 #+BEGIN_SRC emacs-lisp
   (use-package magit
     :ensure t
@@ -1300,6 +1303,8 @@ magit - a pretty good git package with more features than the built in emacs
        (unstaged . show)
        (untracked . show)
        ))
+    ;; NOTE: pty is for key entry, but is ~x10 slower on Mac/Darwin
+    (setq magit-process-connection-type nil)
     )
 #+END_SRC
 
