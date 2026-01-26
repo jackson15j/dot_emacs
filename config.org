@@ -1016,6 +1016,104 @@ This code runs a command and prints out the hooks to =*Messages*=:
                      `(advice-remove ,(car adform) ,(nth 2 adform)))
                    adlist))))
 #+END_SRC
+** Advice to force =pipe= instead of =pty= on Mac for a x10 speed up:
+
+- [[https://www.reddit.com/r/emacs/comments/1qlnde7/comment/o1fq5lj/][r/emacs: emacs linux vs macos]]
+- [[https://irreal.org/blog/?p=13567][Emacs: Emacs Performance on macOS]]
+
+#+BEGIN_QUOTE
+This is largely the fault of some bad defaults on MacOS.
+
+For starters, the default size of a pty buffer on MacOS is a pitiful
+1024 bytes. This means that any processes started in emacs via
+=start-process= with =process-connection-type= set to =pty= are going
+to be extremely slow: on my machine, this is on the order of
+10x. Basically any elisp that interacts with things outside emacs
+calls this function (magit, dired, compilation-mode, eglot, etc) so
+this is the root of a lot of performance woes. You can fix this on an
+ad-hoc basis adding the following advice to functions that call
+=start-process=:
+
+#+BEGIN_SRC emacs-lisp
+  (defun start-process@use-pipe (fn &rest args)
+      ;; checkdoc-params: (fn args)
+      "Advice to ensure that `start-process' uses a pipe rather than
+  a pty for the compilation command. This increases performance on OSX
+  by a factor of 10, as the default pty size is a pitiful 1024 bytes."
+      (let ((process-connection-type nil))
+        (apply fn args)))
+#+END_SRC
+
+For =magit=, you can avoid using this hack by just setting
+=magit-process-connection-type= to =nil=.
+
+The performance of =git= itself on MacOS also leaves a lot to be
+desired. This is a combination of spotlight indexing causing large
+branch switches to be slower, and some more bad defaults. Disabling
+spotlight indexing in git repos and setting =core.fswatch= to =true=
+in my git config sped things up quite a bit, but there's further
+performance tuning that I haven't looked into deeply
+
+...
+
+Q. Just out of curiosity, why is =setq process-connection-type nil=
+not sufficient?
+
+A. This does work, but isn't as fine-grained as adding advice on a
+per-case basis. In particular, this will break =tramp= integration for
+things that sloppily call =start-process= without checking if the
+command they will call is located on a remote machine.
+
+...
+
+emacs-plus has a patch to bypass the 1024 pty buffer limit
+
+https://github.com/d12frosted/homebrew-emacs-plus/tree/master/community/patches/aggressive-read-buffering
+
+...
+
+
+In addition to the other good recommendations, I always suggest to
+review macOS default settings:
+
+#+BEGIN_EXAMPLE shell
+  # "Set a blazingly fast keyboard repeat rate, "
+  defaults write NSGlobalDomain KeyRepeat -int 1
+  # "Set a shorter Delay until key repeat"
+  defaults write NSGlobalDomain InitialKeyRepeat -int 9
+  # Log out or reboot after
+#+END_EXAMPLE
+
+That sets the keyboard rate beyond what's possible in System Settings
+UI and greatly reduces the latency, navigating and typing in Emacs
+noticeably gets faster. You have to remember though never to change
+these values in the System Settings UI.
+
+Additionally you may want to:
+
+#+BEGIN_EXAMPLE shell
+  # Disable long-press accents
+  defaults write -g ApplePressAndHoldEnabled -bool false
+
+  # Increase the Dock show/hide speed
+  defaults write com.apple.dock autohide -bool true
+  defaults write com.apple.dock autohide-time-modifier -float 0.5
+  killall Dock
+  # 'Are you sure you want to open this application?'
+  defaults write com.apple.LaunchServices LSQuarantine -bool false
+#+END_EXAMPLE
+#+END_QUOTE
+
+
+#+BEGIN_SRC emacs-lisp
+  (defun start-process@use-pipe (fn &rest args)
+      ;; checkdoc-params: (fn args)
+      "Advice to ensure that `start-process' uses a pipe rather than
+  a pty for the compilation command. This increases performance on OSX
+  by a factor of 10, as the default pty size is a pitiful 1024 bytes."
+      (let ((process-connection-type nil))
+        (apply fn args)))
+#+END_SRC
 * Buffer/Window Management:
 ** Fill Column Indicator
 Fill Column is used to reflow text automatically & highlight margins, as well
