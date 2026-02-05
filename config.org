@@ -1732,9 +1732,9 @@ Add: ~:async~ to an org-babel code block to run async when called with:
                                   ;; Getting Things Done
                                   ("g" "GTD - Getting Things Done"
                                    (
+                                    (tags "NEXT" ((org-agenda-overriding-header "Next = actionable!!  Complete these!! Max <=3 ~:NEXT:~")))
                                     (agenda "")
                                     (tags "QUICK" ((org-agenda-overriding-header "\nQuick = 5min tasks!!  Fill in the gaps!! ~:QUICK:~")))
-                                    (tags "NEXT" ((org-agenda-overriding-header "\nNext = actionable!!  Complete these!! ~:NEXT:~")))
                                     (tags "CHASE|DELEGATE" ((org-agenda-overriding-header "\nChase down these people!! ~:CHASE:DELEGATE:~")))
                                     (tags "READ|REVIEW|WATCH" ((org-agenda-overriding-header "\nBooks/Links I need to read/review/watch!! ~:READ:REVIEW:WATCH:~")))
                                     (tags-todo "-CHASE-DELEGATE-NEXT-READ-REVIEW-WATCH" ((org-agenda-overriding-header "\nGeneral TODO's: What is the Next Action?  What does Done look like?")))
