@@ -2141,6 +2141,10 @@ with 9.0.3 #288]]. Installing via =npm= globally instead.
 
 - =C-cC-b= in a mermaid code edit buffer to generate preview.
 
+#+BEGIN_SRC shell
+  docker pull ghcr.io/mermaid-js/mermaid-cli/mermaid-cli
+#+END_SRC
+
 #+BEGIN_SRC emacs-lisp
   (use-package mermaid-mode
     ;; :ensure-system-package (mmdc . "npm install -g @mermaid-js/mermaid-cli")
