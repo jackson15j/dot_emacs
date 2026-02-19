@@ -4793,6 +4793,7 @@ Search YouTube from emacs, play via mpv, download via yt-dlp.
     :custom
     (yeetube-display-thumbnails nil)
     (yeetube-results-limit 50)
+    (yeetube-mpv-video-quality 1080)
     )
 #+END_SRC
 * Web:
