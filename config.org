@@ -53,7 +53,7 @@ nil)~.  As per:
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Hooks.html
 
 * Core:
-** compliation
+** compilation
 
 #+BEGIN_SRC emacs-lisp
   (use-package compile
@@ -1034,7 +1034,7 @@ this is the root of a lot of performance woes. You can fix this on an
 ad-hoc basis adding the following advice to functions that call
 =start-process=:
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_EXAMPLE emacs-lisp
   (defun start-process@use-pipe (fn &rest args)
       ;; checkdoc-params: (fn args)
       "Advice to ensure that `start-process' uses a pipe rather than
@@ -1042,7 +1042,7 @@ ad-hoc basis adding the following advice to functions that call
   by a factor of 10, as the default pty size is a pitiful 1024 bytes."
       (let ((process-connection-type nil))
         (apply fn args)))
-#+END_SRC
+#+END_EXAMPLE
 
 For =magit=, you can avoid using this hack by just setting
 =magit-process-connection-type= to =nil=.
