@@ -1349,6 +1349,7 @@ my old ~magithub~ config.
     :config
     (add-to-list 'magit-section-initial-visibility-alist '(issues . show))
     (add-to-list 'magit-section-initial-visibility-alist '(pullreqs . show))
+    (add-to-list 'magit-section-initial-visibility-alist '(discussions . show))
     )
     #+END_SRC
 ** [[https://github.com/wandersoncferreira/code-review][code-review]]:
