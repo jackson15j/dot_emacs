@@ -1114,6 +1114,25 @@ Additionally you may want to:
       (let ((process-connection-type nil))
         (apply fn args)))
 #+END_SRC
+** Convert markdown to org:
+#+BEGIN_SRC emacs-lisp
+  (defun my-md-to-org-region (start end)
+    "Convert region from markdown to org
+  http://yummymelon.com/devnull/converting-a-markdown-region-to-org-revisited.html"
+    (interactive "r")
+    (shell-command-on-region start end "pandoc -f markdown -t org" t t))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (defun my-md-to-org-region-docker (start end)
+    "Convert region from markdown to org
+  http://yummymelon.com/devnull/converting-a-markdown-region-to-org-revisited.html"
+    (interactive "r")
+    (shell-command-on-region
+     start end
+     "docker run --rm -i pandoc/core:latest -f markdown -t org"
+     t t))
+#+END_SRC
 * Buffer/Window Management:
 ** Fill Column Indicator
 Fill Column is used to reflow text automatically & highlight margins, as well
