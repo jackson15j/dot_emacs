@@ -2071,6 +2071,8 @@ normal dash list, which will be injected as sub-headings.
 *NOTE:* Requires my hacked changes to work with docker pandoc. See:
 [[https://github.com/alphapapa/org-web-tools/issues/14][Github: alphapapa/org-web-tools: defvar pandoc command #14]].
 
+*NOTE:* Need to =M-x load-file= to reload changes to a package.
+
 #+BEGIN_SRC emacs-lisp
   (use-package org-web-tools
     :ensure t
