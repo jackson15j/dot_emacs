@@ -731,6 +731,7 @@ dictionaries). See: http://www.emacswiki.org/emacs/InteractiveSpell#toc6
     (ispell-personal-dictionary "~/org/ispell_personal_dict")
     (ispell-program-name "aspell")
     (ispell-silently-savep t)  ;; No confirmation on saving to personal dictionary.
+    (ispell-dictionary "en_GB")
     )
 #+END_SRC
 
