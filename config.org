@@ -1629,6 +1629,28 @@ The only other option that is exported:
 
 - ~LANGUAGE~: the language of the book, this is to be interpreted according to RFC3066 or it’s succeeding documents https://www.ietf.org/rfc/rfc3066.txt, no other interpretations are allowed according to the EPUB spec.
 
+*** Fix markdown format from: =M-x org-md-export-as-markdown=
+
+#+BEGIN_EXAMPLE emacs-lisp
+  (with-eval-after-load 'ox-md
+    ;; Custom headline export
+    (defun my-org-md-headline (headline contents info)
+      "Custom headline export for Markdown to reduce extra newlines."
+      (let ((level (org-export-get-relative-level headline info))
+            (text (org-export-data (org-element-property :title headline) info)))
+        (concat (make-string level ?#) " " text "\n\n" contents)))
+
+    ;; Remove extra newlines at start and end
+    (defun my-org-md-final-output-cleanup (output backend _info)
+      "Remove extra newlines at the start and end of Markdown export."
+      (if (eq backend 'md)
+          (string-trim output) ;; Trim spaces at the start and end of the document
+        output))
+
+    ;; Apply the customizations
+    (advice-add 'org-md-headline :override #'my-org-md-headline)
+    (add-to-list 'org-export-filter-final-output-functions #'my-org-md-final-output-cleanup))
+#+END_EXAMPLE
 ** load additional /(optional)/ literate configs:
 #+BEGIN_SRC emacs-lisp
   (let () (dolist (dot_emacs '("~/org/config.org"
