@@ -1766,6 +1766,18 @@ Add: ~:async~ to an org-babel code block to run async when called with:
                                     ) ;; settings
                                    ("/tmp/org_agenda_gtd.html" "/tmp/org_agenda_gtd.ics" "/tmp/org_agenda_gtd.txt")  ;; ~org-store-agenda-views~ output file
                                    )
+                                  ;; Getting Things Done - Today only
+                                  ("b" "GTD - Getting Things Done - Today only"
+                                   (
+                                    (tags "NEXT" ((org-agenda-overriding-header "Next = actionable!!  Complete these!! Max <=3 ~:NEXT:~")))
+                                    (agenda "")
+                                    )
+                                   (
+                                    (org-agenda-span 1)
+                                    (org-agenda-start-day "today")
+                                    ) ;; settings
+                                   ("/tmp/org_agenda_gtd_today.html" "/tmp/org_agenda_gtd_today.ics" "/tmp/org_agenda_gtd_today.txt")  ;; ~org-store-agenda-views~ output file
+                                   )
                                   ;; https://fortelabs.com/blog/para/
                                   ("p" "PARA Personal (Project Area Resources Archive) Agenda Review"
                                    (
