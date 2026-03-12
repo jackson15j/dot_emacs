@@ -3981,8 +3981,6 @@ a projects pipenv.
 *** [[https://github.com/yoshinari-nomura/scad-ts-mode][scad-ts-mode]]:
 - =C-cC-c= open in OpenSCAD.
 
-*TODO:* Completions + Tab completion.
-
 #+BEGIN_SRC emacs-lisp
   (use-package scad-ts-mode
     :ensure t
@@ -4002,8 +4000,12 @@ a projects pipenv.
     ;; (add-hook 'scad-ts-mode-hook #'electric-pair-local-mode)
     (add-hook 'scad-ts-mode-hook #'electric-indent-local-mode)
     (add-hook 'scad-ts-mode-hook #'whitespace-mode)
+    ;; eglot
     (add-to-list 'eglot-server-programs
                  '(scad-ts-mode . ("~/.cargo/bin/openscad-lsp" "--stdio")))
+    ;; tree-sitter
+    (add-to-list 'auto-mode-alist '("\\.scad\\'" . scad-ts-mode))
+    (add-to-list 'major-mode-remap-alist '(scad-mode . scad-ts-mode))
     ;; org-babel
     (add-to-list 'org-src-lang-modes '("scad" . scad-ts))
     (setq org-babel-default-header-args:scad
