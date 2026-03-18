@@ -3981,38 +3981,38 @@ a projects pipenv.
 *** [[https://github.com/yoshinari-nomura/scad-ts-mode][scad-ts-mode]]:
 - =C-cC-c= open in OpenSCAD.
 
-#+BEGIN_SRC emacs-lisp
-  (use-package scad-ts-mode
-    :ensure t
-    ;; TODO: How to run these in series, since `cargo` is dependant on `rust/rustup` ??
-    ;; :ensure-system-package ((rust) (rustup) (openscad-lsp .  "cargo install openscad-lsp"))
-    ;; https://github.com/Leathong/openscad-LSP/issues/54
-    :ensure-system-package ((cargo-binstall) (openscad-lsp .  "cargo-binstall -y --disable-telemetry openscad-lsp"))
-    :after treesit
-    :mode "\\.scad\\'"
-    :init
-    (scad-ts-mode-install-language-grammar)
-    (setq scad-ts-indent-offset 2)
-    :config
-    (setq scad-ts-command "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD")
-    ;; Optional
-    (add-hook 'scad-ts-mode-hook #'eglot-ensure)
-    ;; (add-hook 'scad-ts-mode-hook #'electric-pair-local-mode)
-    (add-hook 'scad-ts-mode-hook #'electric-indent-local-mode)
-    (add-hook 'scad-ts-mode-hook #'whitespace-mode)
-    ;; eglot
-    (add-to-list 'eglot-server-programs
-                 '(scad-ts-mode . ("~/.cargo/bin/openscad-lsp" "--stdio")))
-    ;; tree-sitter
-    (add-to-list 'auto-mode-alist '("\\.scad\\'" . scad-ts-mode))
-    (add-to-list 'major-mode-remap-alist '(scad-mode . scad-ts-mode))
-    ;; org-babel
-    (add-to-list 'org-src-lang-modes '("scad" . scad-ts))
-    (setq org-babel-default-header-args:scad
-          '((:results . "file")
-            (:exports . "code")))
-    )
-#+END_SRC
+# #+BEGIN_SRC emacs-lisp
+#   (use-package scad-ts-mode
+#     :ensure t
+#     ;; TODO: How to run these in series, since `cargo` is dependant on `rust/rustup` ??
+#     ;; :ensure-system-package ((rust) (rustup) (openscad-lsp .  "cargo install openscad-lsp"))
+#     ;; https://github.com/Leathong/openscad-LSP/issues/54
+#     :ensure-system-package ((cargo-binstall) (openscad-lsp .  "cargo-binstall -y --disable-telemetry openscad-lsp"))
+#     :after treesit
+#     :mode "\\.scad\\'"
+#     :init
+#     (scad-ts-mode-install-language-grammar)
+#     (setq scad-ts-indent-offset 2)
+#     :config
+#     (setq scad-ts-command "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD")
+#     ;; Optional
+#     (add-hook 'scad-ts-mode-hook #'eglot-ensure)
+#     ;; (add-hook 'scad-ts-mode-hook #'electric-pair-local-mode)
+#     (add-hook 'scad-ts-mode-hook #'electric-indent-local-mode)
+#     (add-hook 'scad-ts-mode-hook #'whitespace-mode)
+#     ;; eglot
+#     (add-to-list 'eglot-server-programs
+#                  '(scad-ts-mode . ("~/.cargo/bin/openscad-lsp" "--stdio")))
+#     ;; tree-sitter
+#     (add-to-list 'auto-mode-alist '("\\.scad\\'" . scad-ts-mode))
+#     (add-to-list 'major-mode-remap-alist '(scad-mode . scad-ts-mode))
+#     ;; org-babel
+#     (add-to-list 'org-src-lang-modes '("scad" . scad-ts))
+#     (setq org-babel-default-header-args:scad
+#           '((:results . "file")
+#             (:exports . "code")))
+#     )
+# #+END_SRC
 
 ** sh/bash:
 #+BEGIN_SRC emacs-lisp
