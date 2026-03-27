@@ -2041,6 +2041,24 @@ Lockywolf is no longer on Github, so just commenting this all out!
 #     ;; (setq org-mind-map-engine "circo")  ; Circular Layout
 #     )
 # #+END_SRC
+** [[https://github.com/alphapapa/org-web-tools][org-web-tools]]:
+Download sites from file/region of headings full of links.
+
+Suggest calling =M-x org-web-tools-convert-links-to-page-entries= on a
+normal dash list, which will be injected as sub-headings.
+
+*NOTE:* Requires my hacked changes to work with docker pandoc. See:
+[[https://github.com/alphapapa/org-web-tools/issues/14][Github: alphapapa/org-web-tools: defvar pandoc command #14]].
+
+*NOTE:* Need to =M-x load-file= to reload changes to a package.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-web-tools
+    :ensure t
+    :custom
+    (org-web-tools--pandoc-no-wrap-option "--wrap=none")
+    )
+#+END_SRC
 ** [[https://github.com/takaxp/org-tree-slide][org-tree-slide]]:
 Modern Org Presentation solution.
 
@@ -2095,24 +2113,6 @@ jypma/emacsconf2021/blob/master/presentation.org]].
     (org-tree-slide-deactivate-message "Presentation ended.")
     (org-tree-slide-header t)
     (org-image-actual-width nil)
-    )
-#+END_SRC
-** [[https://github.com/alphapapa/org-web-tools][org-web-tools]]:
-Download sites from file/region of headings full of links.
-
-Suggest calling =M-x org-web-tools-convert-links-to-page-entries= on a
-normal dash list, which will be injected as sub-headings.
-
-*NOTE:* Requires my hacked changes to work with docker pandoc. See:
-[[https://github.com/alphapapa/org-web-tools/issues/14][Github: alphapapa/org-web-tools: defvar pandoc command #14]].
-
-*NOTE:* Need to =M-x load-file= to reload changes to a package.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package org-web-tools
-    :ensure t
-    :custom
-    (org-web-tools--pandoc-no-wrap-option "--wrap=none")
     )
 #+END_SRC
 ** todo keywords:
