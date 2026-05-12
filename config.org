@@ -1927,6 +1927,15 @@ Eval Org-modules. See: [[https://sachachua.com/dotemacs/index.html#modules][Sach
   (eval-after-load 'org
     '(org-load-modules-maybe t))
 #+END_SRC
+*** Org Agenda in side-window:
+[[https://stebalien.com/blog/emacs-side-windows/][Stebalien: Taming Org-Mode With Side Windows]] to create a buffer in a
+dedicated side-window.
+
+#+BEGIN_SRC emacs-lisp
+  (setf (alist-get (rx bos "*Org Agenda*" eos) display-buffer-alist nil nil #'equal)
+        '(display-buffer-in-side-window (side . top) (dedicated . t)
+                                        (window-height . fit-window-to-buffer)))
+#+END_SRC
 ** org-babel:
 *** org-babel config:
 #+BEGIN_SRC emacs-lisp
