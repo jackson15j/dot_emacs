@@ -4611,6 +4611,11 @@ Open =.epub= archive and then =M-x nov-mode=.
     )
 #+END_SRC
 
+** [[https://github.com/krisbalintona/pdf-meta-edit][pdf-meta-edit]]:
+#+BEGIN_SRC emacs-lisp
+  (use-package pdf-meta-edit
+    :ensure t)
+#+END_SRC
 ** [[https://github.com/vedang/pdf-tools/][pdf-tools]]:
 Replacement for built-in =doc-view= + =ghostscript= dependency to view
 PDF's. Renders in memory, instead of storing images in an on-disk
