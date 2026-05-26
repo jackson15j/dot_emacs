@@ -1,0 +1,255 @@
+#+title: My minimal Agenda Export Literate Emacs Config
+#+author: Craig Astill
+#+email: craig.astill@gmail.com
+#+OPTIONS: num:nil
+#+PROPERTY: header-args:mermaid :prologue "exec 2>&1" :epilogue ":" :pupeteer-config-file ~/.puppeteerrc
+#+PROPERTY: header-args:shell :prologue "exec 2>&1" :epilogue ":" :results drawer :async
+#+STARTUP: overview
+* config
+** Shell command to run:
+#+EXAMPLE_SRC shell
+  emacs -Q --batch --eval '(org-babel-load-file "~/org/dot_emacs/agenda_export_config.org")'
+#+EXAMPLE_SRC
+** org-agenda:
+*** Pre-reqs:
+# #+BEGIN_SRC emacs-lisp
+#   ;;;;;; .emacs --- emacs dot file.
+#   ;;; Commentary:
+#   ;; http://www.lunaryorn.com/2015/01/06/my-emacs-configuration-with-use-package.html
+#   ;; https://github.com/lunaryorn/.emacs.d/blob/master/init.el
+
+#   ;;; Code:
+
+#   ;; *****************************************************
+#   ;; *****************************************************
+#   ;; use-package, melpa and debugging bootstrapping.
+#   ;; *****************************************************
+#   ;; *****************************************************
+
+#   ;; Elisp file paths
+#   ;; http://www.emacswiki.org/emacs/InstallingPackages
+#   ;; http://xahlee.org/emacs/emacs_installing_packages.html
+#   ; (add-to-list 'load-path "~/.emacs.d/elpa/")
+#   ;; http://stackoverflow.com/questions/221365/emacs-lisp-how-to-add-a-folder-and-all-its-first-level-sub-folders-to-the-load
+#   (make-directory "/tmp/.emacs.d/elpa" t)
+
+#   (let* ((my-emacsd-dir "/tmp/.emacs.d/elpa/")
+#          (default-directory my-emacsd-dir)
+#          (orig-load-path load-path))
+#     (setq load-path (cons my-emacsd-dir nil))
+#     (normal-top-level-add-subdirs-to-load-path)
+#     (nconc load-path orig-load-path))
+
+#   (require 'package)
+#   (setq package-eanable-at-startup nil)
+#   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+#   (add-to-list 'package-archives '("elpa" .  "https://elpa.gnu.org/packages/" ) t)
+#   (package-initialize)
+#   ;; Follow symlinks. NOTE: `~/config.org` is a symlink!!
+#   (setq vc-follow-symlinks t)
+
+#   (use-package system-packages
+#   ;; `use-package` is a built-in in emacs29, but need to install
+#   ;; `system-packages` for `use-package-ensure-system-package` built-in to work.
+#     :ensure t
+#   )
+
+#   ;; Local Variables:
+#   ;; byte-compile-warnings: (not free-vars)
+#   ;; End:
+#   (provide '.emacs)
+#   ;;; .emacs ends here
+# #+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (use-package htmlize
+    :ensure t)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org
+    :ensure t
+    :init
+    (progn
+      (setq
+       org-directory "~/org/"
+       org-agenda-files (apply 'append
+                               (mapcar
+                                (lambda (directory)
+  				(directory-files-recursively
+  				 directory org-agenda-file-regexp))
+                                '("~/org/")))
+       )
+      )
+    )
+#+END_SRC
+
+*** Custom Agenda views:
+- https://www.orgmode.org/manual/Custom-Agenda-Views.html
+- https://redgreenrepeat.com/2021/04/09/org-mode-agenda-getting-started-scheduled-items-and-todos/
+- http://www.cachestocaches.com/2016/9/my-workflow-org-agenda/#the-agenda
+- https://github.com/gjstein/emacs.d/blob/master/config/gs-org-agenda.el
+
+#+BEGIN_SRC emacs-lisp
+  (defun my-clocktable-write (&rest args)
+  "Custom clocktable writer.
+  es the default writer but shifts the first column right."
+  ;; https://emacs.stackexchange.com/questions/42329/how-to-choose-the-order-of-clocktable-columns
+  ;; https://stackoverflow.com/questions/53653616/add-comment-column-to-emacs-org-mode-clock-table/53684091#53684091
+  ;;
+  ;; FIXME: When using =:scope agenda= the file is in column1 and Properties are
+  ;; in column2, so this moves the first, not 2nd (effort) column.
+  (apply #'org-clocktable-write-default args)
+  (save-excursion
+    (forward-char) ;; move into the first table field
+    (org-table-move-column-right)
+    (org-table-move-column-right)
+    ))
+
+  (use-package org
+    :config
+    (setq
+     org-agenda-custom-commands '(
+                                  ;; Keep tags but hide `DONE` tasks: https://orgmode.org/manual/Matching-tags-and-properties.html
+                                  ("r" "Agenda Review"
+                                   (
+                                    (agenda "")
+                                    (tags "ACTION" ((org-agenda-overriding-header "\nItems I need to action!! ~:ACTION:~")))
+                                    (tags "CHASE" ((org-agenda-overriding-header "\nChase down these people!! ~:CHASE:~")))
+                                    (tags "INVESTIGATE|INVESTIGATION" ((org-agenda-overriding-header "\nInvestigation tasks!! ~:INVESTIGATE:INVESTIGATION:~")))
+                                    (tags "REVIEW|WIKI" ((org-agenda-overriding-header "\nDump this into Confluence!! ~:REVIEW:WIKI:~")))
+                                    (tags "READ|WATCH" ((org-agenda-overriding-header "Books/Links I need to read/WATCH!! ~:READ:WATCH:~")))
+                                    (tags "TRAINING" ((org-agenda-overriding-header "Current/Future training tasks ~:TRAINING:~")))
+                                    (tags "ADMIN" ((org-agenda-overriding-header "Admin tasks ~:ADMIN:~")))
+                                    (tags-todo "-ACTION-ADMIN-CHASE-READ-REVIEW-TRAINING-WATCH-WIKI" ((org-agenda-overriding-header "\nGeneral TODO's")))
+                                    )
+                                   nil  ;; settings
+                                   ("/tmp/org_agenda_review.html" "/tmp/org_agenda_review.txt")  ;; ~org-store-agenda-views~ output file
+                                   )
+                                  ;; Getting Things Done
+                                  ("g" "GTD - Getting Things Done"
+                                   (
+                                    (tags "NEXT" ((org-agenda-overriding-header "Next = actionable!!  Complete these!! Max <=3 ~:NEXT:~")))
+                                    (agenda "")
+                                    (tags "QUICK" ((org-agenda-overriding-header "\nQuick = 5min tasks!!  Fill in the gaps!! ~:QUICK:~")))
+                                    (tags "CHASE|DELEGATE" ((org-agenda-overriding-header "\nChase down these people!! ~:CHASE:DELEGATE:~")))
+                                    (tags "READ|REVIEW|WATCH" ((org-agenda-overriding-header "\nBooks/Links I need to read/review/watch!! ~:READ:REVIEW:WATCH:~")))
+                                    (tags-todo "-CHASE-DELEGATE-NEXT-READ-REVIEW-WATCH" ((org-agenda-overriding-header "\nGeneral TODO's: What is the Next Action?  What does Done look like?")))
+                                    )
+                                   (
+                                    (org-agenda-span 8)
+                                    (org-agenda-start-day "today")
+                                    ) ;; settings
+                                   ("/tmp/org_agenda_gtd.html" "/tmp/org_agenda_gtd.txt")  ;; ~org-store-agenda-views~ output file
+                                   )
+                                  ;; Getting Things Done - Today only
+                                  ("b" "GTD - Getting Things Done - Today only"
+                                   (
+                                    (tags "NEXT" ((org-agenda-overriding-header "Next = actionable!!  Complete these!! Max <=3 ~:NEXT:~")))
+                                    (agenda "")
+                                    )
+                                   (
+                                    (org-agenda-span 1)
+                                    (org-agenda-start-day "today")
+                                    ) ;; settings
+                                   ("/tmp/org_agenda_gtd_today.html" "/tmp/org_agenda_gtd_today.txt")  ;; ~org-store-agenda-views~ output file
+                                   )
+                                  ;; https://fortelabs.com/blog/para/
+                                  ("p" "PARA Personal (Project Area Resources Archive) Agenda Review"
+                                   (
+                                    (agenda "" ((org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/"))))
+                                    (tags "ACTION|CHASE|INVESTIGATE|INVESTIGATION|TRAVEL" ((org-agenda-overriding-header "\nProject: \"a series of tasks linked to a goal, with a deadline.\"  ~:ACTION:CHASE:INVESTIGATE:INVESTIGATION:~") (org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/"))))
+                                    (tags-todo "-ACTION-ADMIN-CHASE-EMACS-PERSONAL-READ-REVIEW-TRAINING-TRAVEL-WATCH-WIKI-WORKFLOW-STYLE=\"habit\"-SCHEDULED>=\"<now>\"-DEADLINE>=\"<now>\"" ((org-agenda-overriding-header "Project: (Tag to remove non-urgent TODO's out of this list!!)") (org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/"))))
+                                    (tags "ADMIN|REVIEW|WIKI|WORKFLOW-STYLE=\"habit\"" ((org-agenda-overriding-header "\nAreas: \"a sphere of activity with a standard to be maintained over time.\"  ~:ADMIN:REVIEW:WIKI:WORKFLOW:~") (org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/"))))
+                                    (tags "EMACS|PERSONAL-STYLE=\"habit\"|READ|TRAINING-STYLE=\"habit\"|WATCH|UNSORTED" ((org-agenda-overriding-header "\nResource: \"a topic or theme of ongoing interest.\"  ~:EMACS:PERSONAL:READ:TRAINING:WATCH:UNSORTED:~") (org-agenda-files (list "~/org/" "~/org/personal/" "~/org/programming_notes/"))))
+                                    )
+                                   nil  ;; settings
+                                   ;; See: https://orgmode.org/manual/Exporting-Agenda-Views.html
+                                   ;; ~M-x org-store-agenda-views~ outputs all files for all views.
+                                   ;; Script export: ~emacs --batch -l ~/.emacs --eval '(org-store-agenda-views)'~
+                                   ("/tmp/org_agenda_para.html" "/tmp/org_agenda_para.txt")
+                                   )
+                                  ("w" "PARA Work (Project Area Resources Archive) Agenda Review"
+                                   (
+                                    (agenda "" ((org-agenda-files (directory-files-recursively "~/org/work/" org-agenda-file-regexp))))
+                                    (tags "ACTION|CHASE|INVESTIGATE|INVESTIGATION|TRAVEL" ((org-agenda-overriding-header "\nProject: \"a series of tasks linked to a goal, with a deadline.\"  ~:ACTION:CHASE:INVESTIGATE:INVESTIGATION:~") (org-agenda-files (directory-files-recursively "~/org/work/" org-agenda-file-regexp))))
+                                    (tags-todo "-ACTION-ADMIN-CHASE-EMACS-PERSONAL-READ-REVIEW-TRAINING-TRAVEL-WATCH-WIKI-WORKFLOW" ((org-agenda-overriding-header "Project: (Tag to remove non-urgent TODO's out of this list!!)") (org-agenda-files (directory-files-recursively "~/org/work/" org-agenda-file-regexp))))
+                                    (tags "ADMIN|REVIEW|WIKI|WORKFLOW" ((org-agenda-overriding-header "\nAreas: \"a sphere of activity with a standard to be maintained over time.\"  ~:ADMIN:REVIEW:WIKI:WORKFLOW:~") (org-agenda-files (directory-files-recursively "~/org/work/" org-agenda-file-regexp))))
+                                    (tags "READ|TRAINING|WATCH|UNSORTED" ((org-agenda-overriding-header "\nResource: \"a topic or theme of ongoing interest.\"  ~:READ:TRAINING:WATCH:UNSORTED:~") (org-agenda-files (directory-files-recursively "~/org/work/" org-agenda-file-regexp))))
+                                    )
+                                   nil  ;; settings
+                                   ;; See: https://orgmode.org/manual/Exporting-Agenda-Views.html
+                                   ;; ~M-x org-store-agenda-views~ outputs all files for all views.
+                                   ;; Script export: ~emacs --batch -l ~/.emacs --eval '(org-store-agenda-views)'~
+                                   ("/tmp/org_agenda_para.html" "/tmp/org_agenda_para.txt")
+                                   )
+                                  ("d" "Agenda for Today (Compact view for Exporting to displays)"
+                                   (
+                                    (agenda)
+                                    (tags "ACTION|CHASE|INVESTIGATE|INVESTIGATION|TRAVEL" ((org-agenda-overriding-header "Project: \"a series of tasks linked to a goal, with a deadline.\"  ~:ACTION:CHASE:INVESTIGATE:INVESTIGATION:~")))
+                                    )
+                                   (
+                                    (org-agenda-span 1)
+                                    (org-agenda-use-time-grid nil)
+                                    )
+                                   ("/tmp/org_agenda_today.html" "/tmp/org_agenda_today.txt")
+                                   )
+                                  ("i" "Personal agenda for last 2 weeks"
+                                   (
+                                    (agenda "")
+                                    )
+                                   (
+                                    (org-agenda-span 15)
+                                    (org-agenda-start-day "-14d")
+                                    (org-agenda-skip-function-global nil)
+                                    )
+                                   )
+                                  ("y" "Personal agenda for month"
+                                   (
+                                    (agenda "")
+                                    )
+                                   (
+                                    (org-agenda-span 'month)
+                                    (org-agenda-skip-function-global nil)
+                                    )
+                                   )
+                                  ("o" "Work agenda for last 2 weeks (1-2-1 Reviews)"
+                                   (
+                                    (agenda "" ((org-agenda-files (directory-files-recursively "~/org/work/" org-agenda-file-regexp))))
+                                    )
+                                   (
+                                    (org-agenda-span 15)
+                                    (org-agenda-start-day "-14d")
+                                    (org-agenda-skip-function-global nil)
+                                    )
+                                   )
+                                  ("u" "Work Month view"
+                                   (
+                                    (agenda "" ((org-agenda-files (directory-files-recursively "~/org/work/" org-agenda-file-regexp))))
+                                    )
+                                   (
+                                    (org-agenda-span 'month)
+                                    (org-agenda-skip-function-global nil)
+                                    )
+                                   )
+                                  )
+     org-src-fontify-natively t
+     ;; https://cachestocaches.com/2016/9/my-workflow-org-agenda/
+     org-columns-default-format "%50ITEM(Task) %5Effort(Est){:} %10CLOCKSUM %16TIMESTAMP_IA"
+     ;; org-columns-default-format "%60ITEM %CATEGORY %TODO %TAGS %CLOCKSUM{:} %5Effort(Est){:} "  ;; C-cC-xC-c in an Agenda view.
+     org-agenda-compact-blocks t  ;; Compact agenda. Same as setting: `org-agenda-block-separator nil`.
+     org-agenda-include-diary t
+     org-agenda-tags-column 100  ;; Stop tags rendering off the right of the buffer.
+     org-agenda-skip-function-global '(org-agenda-skip-entry-if 'todo 'done)  ;; Hide `DONE` lines from Agenda view.
+     org-complete-tags-always-offer-all-agenda-tags t
+     org-clock-persist t  ;; Save clock on emacs exit.
+     org-clock-report-include-clocking-task t  ;; Include current open clock task in reports.
+     )
+    )
+#+END_SRC
+* [[https://orgmode.org/manual/Exporting-Agenda-Views.html][Agenda Export]]:
+#+BEGIN_SRC emacs-lisp
+  (org-batch-store-agenda-views)
+  (message "Check: /tmp/org_agenda_* ...")
+  (message "Agendas: %s" (directory-files-recursively "/tmp" "org_agenda"))
+#+END_SRC
