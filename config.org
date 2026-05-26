@@ -4634,8 +4634,17 @@ Open =.epub= archive and then =M-x nov-mode=.
 
 ** [[https://github.com/krisbalintona/pdf-meta-edit][pdf-meta-edit]]:
 #+BEGIN_SRC emacs-lisp
+  ; (shell-command "alias pdftk='docker run --rm --volume \"$(pwd)\":/work pdftk/pdftk:latest'")
+  ; (shell-command "shopt -s expand_aliases")
+
   (use-package pdf-meta-edit
-    :ensure t)
+    :ensure t
+    )
+
+  ;  (defun my-pdftk-command ()
+  ;    (interactive)
+  ;    (let pdf-meta-edit-command (concat "docker run --rm -v \"$(pwd)\":/work/ pdftk/pdftk:latest /work/" (buffer-name (current-buffer))))
+  ;    )
 #+END_SRC
 ** [[https://github.com/vedang/pdf-tools/][pdf-tools]]:
 Replacement for built-in =doc-view= + =ghostscript= dependency to view
