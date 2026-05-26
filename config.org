@@ -3687,6 +3687,8 @@ load of space around sections and bullet points.
 #+BEGIN_SRC emacs-lisp
   (use-package mise
     :ensure t
+    :custom
+    (mise-update-on-eshell-directory-change t)
     :hook (
            (after-init . global-mise-mode)
            )
