@@ -1770,7 +1770,7 @@ Add: ~:async~ to an org-babel code block to run async when called with:
                                     (tags-todo "-ACTION-ADMIN-CHASE-READ-REVIEW-TRAINING-WATCH-WIKI" ((org-agenda-overriding-header "\nGeneral TODO's")))
                                     )
                                    nil  ;; settings
-                                   ("/tmp/org_agenda_review.html" "/tmp/org_agenda_review.ics" "/tmp/org_agenda_review.txt")  ;; ~org-store-agenda-views~ output file
+                                   ("/tmp/org_agenda_review.html" "/tmp/org_agenda_review.txt")  ;; ~org-store-agenda-views~ output file
                                    )
                                   ;; Getting Things Done
                                   ("g" "GTD - Getting Things Done"
@@ -1786,7 +1786,7 @@ Add: ~:async~ to an org-babel code block to run async when called with:
                                     (org-agenda-span 8)
                                     (org-agenda-start-day "today")
                                     ) ;; settings
-                                   ("/tmp/org_agenda_gtd.html" "/tmp/org_agenda_gtd.ics" "/tmp/org_agenda_gtd.txt")  ;; ~org-store-agenda-views~ output file
+                                   ("/tmp/org_agenda_gtd.html" "/tmp/org_agenda_gtd.txt")  ;; ~org-store-agenda-views~ output file
                                    )
                                   ;; Getting Things Done - Today only
                                   ("b" "GTD - Getting Things Done - Today only"
@@ -1798,7 +1798,7 @@ Add: ~:async~ to an org-babel code block to run async when called with:
                                     (org-agenda-span 1)
                                     (org-agenda-start-day "today")
                                     ) ;; settings
-                                   ("/tmp/org_agenda_gtd_today.html" "/tmp/org_agenda_gtd_today.ics" "/tmp/org_agenda_gtd_today.txt")  ;; ~org-store-agenda-views~ output file
+                                   ("/tmp/org_agenda_gtd_today.html" "/tmp/org_agenda_gtd_today.txt")  ;; ~org-store-agenda-views~ output file
                                    )
                                   ;; https://fortelabs.com/blog/para/
                                   ("p" "PARA Personal (Project Area Resources Archive) Agenda Review"
@@ -1813,7 +1813,7 @@ Add: ~:async~ to an org-babel code block to run async when called with:
                                    ;; See: https://orgmode.org/manual/Exporting-Agenda-Views.html
                                    ;; ~M-x org-store-agenda-views~ outputs all files for all views.
                                    ;; Script export: ~emacs --batch -l ~/.emacs --eval '(org-store-agenda-views)'~
-                                   ("/tmp/org_agenda_para.html" "/tmp/org_agenda_para.ics" "/tmp/org_agenda_para.txt")
+                                   ("/tmp/org_agenda_para.html" "/tmp/org_agenda_para.txt")
                                    )
                                   ("w" "PARA Work (Project Area Resources Archive) Agenda Review"
                                    (
@@ -1827,7 +1827,7 @@ Add: ~:async~ to an org-babel code block to run async when called with:
                                    ;; See: https://orgmode.org/manual/Exporting-Agenda-Views.html
                                    ;; ~M-x org-store-agenda-views~ outputs all files for all views.
                                    ;; Script export: ~emacs --batch -l ~/.emacs --eval '(org-store-agenda-views)'~
-                                   ("/tmp/org_agenda_para.html" "/tmp/org_agenda_para.ics" "/tmp/org_agenda_para.txt")
+                                   ("/tmp/org_agenda_para.html" "/tmp/org_agenda_para.txt")
                                    )
                                   ("d" "Agenda for Today (Compact view for Exporting to displays)"
                                    (
@@ -1838,7 +1838,7 @@ Add: ~:async~ to an org-babel code block to run async when called with:
                                     (org-agenda-span 1)
                                     (org-agenda-use-time-grid nil)
                                     )
-                                   ("/tmp/org_agenda_today.html" "/tmp/org_agenda_today.ics" "/tmp/org_agenda_today.txt")
+                                   ("/tmp/org_agenda_today.html" "/tmp/org_agenda_today.txt")
                                    )
                                   ("i" "Personal agenda for last 2 weeks"
                                    (
