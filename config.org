@@ -1403,6 +1403,10 @@ with PR's to do code reviews (comments, diff view, approvals, etc).
 #+END_SRC
 
 ** [[https://github.com/anegg0/linear-emacs][linear]]:
+- =M-x linear-emacs-list-issues= - pull down current state to local
+  org file.
+- State changes are auto pushed back to linear.
+
 #+BEGIN_SRC emacs-lisp
   (defun my/linear-load-api-key-from-auth-source ()
     "Load Linear API key from auth-source."
