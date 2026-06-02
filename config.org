@@ -175,6 +175,8 @@ This is external to eglot, but placing here just because of the link.
     ;; a real browser.
     :config
     (setq eww-bookmarks-directory "~/org/personal/")
+    :custom
+    (eww-auto-rename-buffer 'title)
     ;; (progn
     ;;   (setq
     ;;    browse-url-browser-function (quote eww-browse-url)
