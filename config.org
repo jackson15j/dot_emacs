@@ -1435,10 +1435,17 @@ with PR's to do code reviews (comments, diff view, approvals, etc).
     (setq linear-emacs-org-file-path (expand-file-name "work/confused/linear.org" org-directory))
 
     ;; Optional: Customize state mapping (see Status Mapping section below)
-    ;; (setq linear-emacs-issues-state-mapping
-    ;;       '(("Todo" . "TODO")
-    ;;         ("In Progress" . "DOING")
-    ;;         ("Done" . "DONE")))
+    (setq linear-emacs-issues-state-mapping
+          '(
+            ("Triage" . "TRIAGE")
+            ("Backlog" . "BACKLOG")
+            ("Todo" . "TODO")
+            ("In Progress" . "IN-PROGRESS")
+            ("In Review" . "IN-REVIEW")
+            ("Blocked" . "BLOCKED")
+            ;; ("Done" . "DONE")
+            )
+          )
 
     ;; Auto-enable sync when linear.org is opened
     (defun my/enable-linear-org-sync ()
