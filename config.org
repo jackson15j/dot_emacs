@@ -1402,6 +1402,63 @@ with PR's to do code reviews (comments, diff view, approvals, etc).
     )
 #+END_SRC
 
+** [[https://github.com/anegg0/linear-emacs][linear]]:
+#+BEGIN_SRC emacs-lisp
+  (defun my/linear-load-api-key-from-auth-source ()
+    "Load Linear API key from auth-source."
+    (interactive)
+    (require 'auth-source)
+    (let* ((auth-info (auth-source-search :host "api.linear.app" :user "apikey" :max 1))
+           (secret (when auth-info
+                     (funcall (plist-get (car auth-info) :secret)))))
+      (if secret
+          (progn
+            (setq linear-emacs-api-key secret)
+            (message "Successfully loaded Linear API key from auth-source"))
+        (message "Failed to retrieve Linear API key from auth-source"))))
+
+  (use-package linear-emacs
+    :ensure t
+    :after org
+    :vc (:url "https://github.com/anegg0/linear-emacs.git" :rev :newest)
+    :commands (linear-emacs-list-issues
+               linear-emacs-new-issue
+               linear-emacs-enable-org-sync)
+    :config
+    ;; Load API key from environment or auth-source
+    (my/linear-load-api-key-from-auth-source)
+
+    ;; Optional: Set default team
+    (setq linear-emacs-default-team-id "COE")
+
+    ;; Optional: Customize org file location
+    (setq linear-emacs-org-file-path (expand-file-name "work/confused/linear.org" org-directory))
+
+    ;; Optional: Customize state mapping (see Status Mapping section below)
+    ;; (setq linear-emacs-issues-state-mapping
+    ;;       '(("Todo" . "TODO")
+    ;;         ("In Progress" . "DOING")
+    ;;         ("Done" . "DONE")))
+
+    ;; Auto-enable sync when linear.org is opened
+    (defun my/enable-linear-org-sync ()
+      "Enable Linear-org synchronization when linear.org is opened."
+      (when (and buffer-file-name
+                 (string-match-p "linear\\.org$" buffer-file-name))
+        (linear-emacs-enable-org-sync)
+        (message "Linear-org synchronization enabled for this buffer")))
+
+    (add-hook 'find-file-hook #'my/enable-linear-org-sync)
+
+    ;; Enable sync for org-after-todo-state-change-hook
+    (add-hook 'org-after-todo-state-change-hook
+              (lambda ()
+                (when (and buffer-file-name
+                           (string-match-p "linear\\.org$" buffer-file-name)
+                           (fboundp 'linear-emacs-sync-org-to-linear))
+                  (linear-emacs-sync-org-to-linear))))
+    )
+#+END_SRC
 * [[https://orgmode.org][org-mode]]:
 A GNU Emacs major mode for keeping notes, authoring documents, computational
 notebooks, literate programming, maintaining to-do lists, planning projects,
