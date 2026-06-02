@@ -2210,6 +2210,9 @@ See:
           ("FUTURE" . (:foreground "black" :weight bold :background "DarkOrange1"))
           ("STARTED" . (:foreground "black" :background "gold1"))
           ("INPROGRESS" . (:foreground "white" :background "green4"))
+          ("IN-PROGRESS" . (:foreground "white" :background "green4"))
+          ("IN-REVIEW" . (:foreground "white" :background "green4"))
+          ("TRIAGE" . (:foreground "white" :weight bold :background "red4"))
           ("BLOCKED" . (:foreground "white" :weight bold :background "red4"))
           ("CANCELED" . (:foreground "blue" :weight bold :strike-through t))
           ("PARKED" . (:foreground "DarkGrey"))
@@ -2218,6 +2221,7 @@ See:
   (setq org-todo-keywords
         '(
           (sequence "TODO" "INPROGRESS" "BLOCKED" "|" "DONE" "CANCELED" "PARKED")
+          (sequence "TRIAGE" "BACKLOG" "TODO" "IN-PROGRESS" "IN-REVIEW" "BLOCKED" "|" "DONE" "CANCELED")  ;; Linear states
           )
         )
 #+END_SRC
