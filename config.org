@@ -4957,7 +4957,6 @@ Vterm is a terminal with pretty good ncurses support and compliance.
     )
 #+END_SRC
 * Typing:
-
 ** [[https://github.com/parkouss/speed-type/][speed-type]]:
 
 Touch typing practice. Call: ~M-x speed-type-text~.
@@ -4968,15 +4967,17 @@ Touch typing practice. Call: ~M-x speed-type-text~.
     :defer t)
 #+END_SRC
 
-
 ** [[https://github.com/jpablobr/emacs-monkeytype][monkeytype]]:
 Emacs Monkeytype is a typing game/tutor inspired by monkeytype.com but for
 Emacs.
 
 - ~M-x monkeytype-<buffer|region>~.
 - ~M-x monkeytype-stop~ or =C-cC-cs=.
+- ~M-x monkeytype-resume~ or =C-cC-cr=.
 
 #+BEGIN_SRC emacs-lisp
+  (make-directory "~/.monkeytype/" t)
+
   (use-package monkeytype
     :ensure t
     :defer t
