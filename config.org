@@ -4964,7 +4964,10 @@ Touch typing practice. Call: ~M-x speed-type-text~.
 #+BEGIN_SRC emacs-lisp
   (use-package speed-type
     :ensure t
-    :defer t)
+    :defer t
+    :custom
+    (speed-type-directory "~/org/personal/speed-type")
+    )
 #+END_SRC
 
 ** [[https://github.com/jpablobr/emacs-monkeytype][monkeytype]]:
