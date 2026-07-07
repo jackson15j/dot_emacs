@@ -1136,6 +1136,23 @@ Additionally you may want to:
      "docker run --rm -i pandoc/core:latest -f markdown -t org"
      t t))
 #+END_SRC
+** Mac clipboard interaction from terminal emacs:
+#+BEGIN_SRC emacs-lisp
+  (when (and (not (display-graphic-p))
+             (eq system-type 'darwin))
+    (setq interprogram-cut-function
+          (lambda (text &optional _push)
+            (let ((process-connection-type nil))
+              (let ((proc (start-process "pbcopy" nil "pbcopy")))
+                (process-send-string proc text)
+                (process-send-eof proc)))))
+
+    (setq interprogram-paste-function
+          (lambda ()
+            (let ((clip (shell-command-to-string "pbpaste")))
+              (unless (string= clip (car kill-ring))
+                clip)))))
+#+END_SRC
 * Buffer/Window Management:
 ** Fill Column Indicator
 Fill Column is used to reflow text automatically & highlight margins, as well
