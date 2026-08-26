@@ -844,7 +844,7 @@ Builtin method of moving between windows with (default) ~Shift+<arrow>~. See:
 
 ** =prog-mode= defaults:
 #+BEGIN_SRC emacs-lisp
-  (defun my-programming-defaults-config ()
+  (defun my/programming-defaults-config ()
     "All of my programming defaults  in one place."
     (interactive)
     (whitespace-mode)  ;; highlights whitespace.
@@ -864,7 +864,7 @@ Builtin method of moving between windows with (default) ~Shift+<arrow>~. See:
     (show-paren-mode 1)  ;; highlight matching brackets
     (setq tags-revert-without-query t)
     )
-  (add-hook 'prog-mode-hook 'my-programming-defaults-config)
+  (add-hook 'prog-mode-hook 'my/programming-defaults-config)
   ;; Don't line-wrap in html files.
   ;; https://stackoverflow.com/questions/9294437/emacs-disable-wordwrapping-in-html-mode
   (add-hook 'html-mode-hook (lambda () (auto-fill-mode -1)))
@@ -884,13 +884,13 @@ Builtin method of moving between windows with (default) ~Shift+<arrow>~. See:
 
 ** =scratch-mode= defaults:
 #+BEGIN_SRC emacs-lisp
-  (defun my-scratch-mode-config ()
+  (defun my/scratch-mode-config ()
     "Disabling config for *scratch* buffer."
     (interactive)
     (display-fill-column-indicator-mode -1)
     (auto-fill-mode -1)
     )
-  (add-hook 'lisp-interaction-mode-hook 'my-scratch-mode-config)
+  (add-hook 'lisp-interaction-mode-hook 'my/scratch-mode-config)
 #+END_SRC
 
 ** show non-ascii in occur buffer:
@@ -906,7 +906,7 @@ Occur buffer http://www.emacswiki.org/emacs/FindingNonAsciiCharacters
 
 ** =text-mode= defaults:
 #+BEGIN_SRC emacs-lisp
-  (defun my-text-mode-config ()
+  (defun my/text-mode-config ()
     "All of my `text-mode` config in one place."
     (interactive)
     (whitespace-mode)  ;; highlights whitespace.
@@ -917,8 +917,8 @@ Occur buffer http://www.emacswiki.org/emacs/FindingNonAsciiCharacters
     (setq indent-tabs-mode nil)  ;; spaces instead of tabs
     )
 
-  (add-hook 'text-mode-hook 'my-text-mode-config)  ;; singular text-mode-hook
-  (add-hook 'conf-mode-hook 'my-text-mode-config)  ;; *.conf
+  (add-hook 'text-mode-hook 'my/text-mode-config)  ;; singular text-mode-hook
+  (add-hook 'conf-mode-hook 'my/text-mode-config)  ;; *.conf
 #+END_SRC
 
 ** [[https://stackoverflow.com/questions/9688748/emacs-comment-uncomment-current-line][toggle comment region/line]]:
@@ -963,7 +963,7 @@ After:
 
 Macro:
 #+BEGIN_SRC emacs-lisp
-  (defalias 'my-clean-up-chrome-open-tabs-dumped-list
+  (defalias 'my/clean-up-chrome-open-tabs-dumped-list
      (kmacro "C-k <kp-delete> * * SPC [ [ C-e ] [ C-y ] ] <down> <kp-delete>"))
 #+END_SRC
 
@@ -1120,7 +1120,7 @@ Additionally you may want to:
 #+END_SRC
 ** Convert markdown to org:
 #+BEGIN_SRC emacs-lisp
-  (defun my-md-to-org-region (start end)
+  (defun my/md-to-org-region (start end)
     "Convert region from markdown to org
   http://yummymelon.com/devnull/converting-a-markdown-region-to-org-revisited.html"
     (interactive "r")
@@ -1128,7 +1128,7 @@ Additionally you may want to:
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-  (defun my-md-to-org-region-docker (start end)
+  (defun my/md-to-org-region-docker (start end)
     "Convert region from markdown to org
   http://yummymelon.com/devnull/converting-a-markdown-region-to-org-revisited.html"
     (interactive "r")
@@ -1722,22 +1722,22 @@ The only other option that is exported:
 #+BEGIN_EXAMPLE emacs-lisp
   (with-eval-after-load 'ox-md
     ;; Custom headline export
-    (defun my-org-md-headline (headline contents info)
+    (defun my/org-md-headline (headline contents info)
       "Custom headline export for Markdown to reduce extra newlines."
       (let ((level (org-export-get-relative-level headline info))
             (text (org-export-data (org-element-property :title headline) info)))
         (concat (make-string level ?#) " " text "\n\n" contents)))
 
     ;; Remove extra newlines at start and end
-    (defun my-org-md-final-output-cleanup (output backend _info)
+    (defun my/org-md-final-output-cleanup (output backend _info)
       "Remove extra newlines at the start and end of Markdown export."
       (if (eq backend 'md)
           (string-trim output) ;; Trim spaces at the start and end of the document
         output))
 
     ;; Apply the customizations
-    (advice-add 'org-md-headline :override #'my-org-md-headline)
-    (add-to-list 'org-export-filter-final-output-functions #'my-org-md-final-output-cleanup))
+    (advice-add 'org-md-headline :override #'my/org-md-headline)
+    (add-to-list 'org-export-filter-final-output-functions #'my/org-md-final-output-cleanup))
 #+END_EXAMPLE
 ** load additional /(optional)/ literate configs:
 #+BEGIN_SRC emacs-lisp
@@ -1825,7 +1825,7 @@ Add: ~:async~ to an org-babel code block to run async when called with:
 - https://github.com/gjstein/emacs.d/blob/master/config/gs-org-agenda.el
 
 #+BEGIN_SRC emacs-lisp
-  (defun my-clocktable-write (&rest args)
+  (defun my/clocktable-write (&rest args)
   "Custom clocktable writer.
   es the default writer but shifts the first column right."
   ;; https://emacs.stackexchange.com/questions/42329/how-to-choose-the-order-of-clocktable-columns
@@ -2283,7 +2283,7 @@ using UML/mermaid.
     (compile (concat "mscgen -T png " buffer-file-name " && mscgen -T svg " buffer-file-name))
     (message (concat "Generated PNG/SVG for: " buffer-file-name))
     )
-  (add-hook 'mscgen-mode-hook 'my-programming-defaults-config)
+  (add-hook 'mscgen-mode-hook 'my/programming-defaults-config)
   (add-hook 'mscgen-mode-hook
             (lambda ()
               (add-hook 'after-save-hook 'mscgen-compile-buffer-hook nil 'make-it-local)))
@@ -2387,7 +2387,7 @@ system packages. Run:
     :mode "\\.plantuml\\'"
     :hook
     (
-     (plantuml-mode . my-programming-defaults-config)
+     (plantuml-mode . my/programming-defaults-config)
      (plantuml-mode . (lambda () (add-hook 'after-save-hook 'plantuml-compile-buffer-hook nil 'make-it-local)))
      )
     :init
@@ -2639,7 +2639,7 @@ decade.
   ;;     ;; g++-4.9 -g3 -Wall -std=c++11 -stdlib=libc++ -lc++ *.cpp
   ;;     ;; clang++ -g3 -Wall -std=c++11 -stdlib=libc++ -lc++ *.cpp
   ;;     (add-to-list 'smart-compile-alist '("\\.[Cc]+[Pp]*\\'" . "clang++ -g3 -Wall -std=c++11 -stdlib=libc++ -lc++ -o %n.out *.cpp"))
-  ;;     (add-hook 'c-mode-common-hook 'my-programming-defaults-config)
+  ;;     (add-hook 'c-mode-common-hook 'my/programming-defaults-config)
   ;;     (setq c-basic-offset 4)  ;; http://emacswiki.org/emacs/IndentingC
   ;;     (setq c-default-style "linux")  ;; http://cc-mode.sourceforge.net/html-manual/Built_002din-Styles.html#Built_002din-Styles
   ;;     ;; FIXME: Either bound this to `*compilation*` window only, so it stops
@@ -2710,7 +2710,7 @@ FIXME: keep getting: `Unable to activate package ‘csharp-mode’.` messages, s
 disabling until I have time to re-implement with `lsp-mode`.
 
 #+BEGIN_SRC emacs-lisp
-  (defun my-csharp-mode-syntax ()
+  (defun my/csharp-mode-syntax ()
     "Hook for my tweaks to 'csharp-mode'."
     (interactive)
     ;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Indenting-switch-statements.html
@@ -2725,8 +2725,8 @@ disabling until I have time to re-implement with `lsp-mode`.
     :ensure t
     :defer t
     :init
-    (add-hook 'csharp-mode-hook 'my-programming-defaults-config)
-    (add-hook 'csharp-mode-hook 'my-csharp-mode-syntax)
+    (add-hook 'csharp-mode-hook 'my/programming-defaults-config)
+    (add-hook 'csharp-mode-hook 'my/csharp-mode-syntax)
     ;; https://stackoverflow.com/questions/4608679/can-i-change-emacs-default-compile-command
     (add-hook 'csharp-mode-hook (lambda () (set (make-local-variable 'compile-command) "cd $(git rev-parse --show-toplevel) && dotnet run")))
 
@@ -2837,14 +2837,14 @@ per-language debuggers installed on the Host.
   ;; https://amitp.blogspot.com/2025/04/emacs-per-project-colors.html.
   ;; TODO: Set for the =project-current=, so it's maintained when
   ;; jumping to other files during debugging.
-  (defun my-debug-modeline ()
+  (defun my/debug-modeline ()
     "Set mode line color based on current buffer's project"
     (interactive)
     (face-remap-add-relative 'tab-line-tab-current :background "red" :foreground "white")
     (face-remap-add-relative 'mode-line-active :background "red" :foreground "white")
     (face-remap-add-relative 'line-number-current-line :background "red" :foreground "white")
     )
-  (defun my-normal-modeline ()
+  (defun my/normal-modeline ()
     "Set mode line color based on current buffer's project"
     (interactive)
     (face-remap-add-relative 'tab-line-tab-current :background "goldenrod" :foreground "black")
@@ -2864,7 +2864,7 @@ per-language debuggers installed on the Host.
     ;; Load breakpoints on startup
     (after-init . dape-breakpoint-load)
     ;; Red modeline when debugging.
-    (dape-start . my-debug-modeline)
+    (dape-start . my/debug-modeline)
     ;; Pulse source line (performance hit)
     (dape-display-source . pulse-momentary-highlight-one-line)
     :config
@@ -2872,7 +2872,7 @@ per-language debuggers installed on the Host.
     (dape-breakpoint-global-mode)
     (setq dape-inlay-hints t)
     ;; TODO: fix so that red modeline is undone when in a different buffer on quit.
-    (advice-add 'dape-quit :after #'my-normal-modeline)
+    (advice-add 'dape-quit :after #'my/normal-modeline)
     )
 
   ;; Enable repeat mode for more ergonomic `dape' use
@@ -3021,7 +3021,7 @@ Major mode for ~.env~ files.
 #+END_SRC
 ** elisp:
 #+BEGIN_SRC emacs-lisp
-(add-hook 'emacs-lisp-mode-hook 'my-programming-defaults-config)
+(add-hook 'emacs-lisp-mode-hook 'my/programming-defaults-config)
 ;; code from: http://www.emacswiki.org/emacs/EmacsLispMode
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
@@ -3209,7 +3209,7 @@ Dependency on GraphQL-mode to do requests.
          )
   :config
   (progn
-    (add-hook 'groovy-mode-hook 'my-programming-defaults-config)
+    (add-hook 'groovy-mode-hook 'my/programming-defaults-config)
     )
   )
 #+END_SRC
@@ -3242,7 +3242,7 @@ See: InnoSetup mode: https://jrsoftware.org/isinfo.php
 ** java:
 
 #+BEGIN_SRC emacs-lisp
-(defun my-java-mode-syntax ()
+(defun my/java-mode-syntax ()
   "Hook for my tweaks to `java-mode`."
   (interactive)
   ;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Indenting-switch-statements.html
@@ -3260,11 +3260,11 @@ See: InnoSetup mode: https://jrsoftware.org/isinfo.php
   :init
   (add-hook 'java-mode-hook #'meghanada-mode)
   (add-hook 'java-mode-hook 'flycheck-mode)
-  (add-hook 'java-mode-hook 'my-programming-defaults-config)
+  (add-hook 'java-mode-hook 'my/programming-defaults-config)
   ;; Java warnings stop compilation scrolling, so let's always scroll.
   (add-hook 'java-mode-hook (lambda() compilation-scroll-output t))
   (add-hook 'java-mode-hook (lambda () compile-command "cd $(git rev-parse --show-toplevel) && mvn clean verify"))
-  (add-hook 'java-mode-hook 'my-java-mode-syntax)
+  (add-hook 'java-mode-hook 'my/java-mode-syntax)
   )
 
 (use-package mvn
@@ -3346,7 +3346,7 @@ See: InnoSetup mode: https://jrsoftware.org/isinfo.php
     :defer t
     :mode ("\\.json\\'" . json-mode)
     :hook (
-           (json-mode . my-programming-defaults-config)
+           (json-mode . my/programming-defaults-config)
            (json-mode . (lambda () (auto-fill-mode -1)))  ;; disables auto fill at column.
            (json-mode . (lambda () (setq js-indent-level 2)))
            )
@@ -3497,7 +3497,7 @@ Seeing LSP and other packages blowing up on this missing requirement.
            (rust-mode . lsp)
            ;; if you want which-key integration
            (lsp-mode . lsp-enable-which-key-integration)
-           (lsp-mode . my-programming-defaults-config)
+           (lsp-mode . my/programming-defaults-config)
            )
     :commands lsp
     :config
@@ -3670,7 +3670,7 @@ Look at:
            ("C-c C-a s" . strip-a-ids-from-org-markdown-export)
            )
     :hook (
-           (markdown-mode . my-text-mode-config)
+           (markdown-mode . my/text-mode-config)
            (markdown-mode . eglot-ensure)
            )
     )
@@ -3687,7 +3687,7 @@ browser.
     :defer t
     )
 #+END_SRC
-*** my-markdown-preview:
+*** my/markdown-preview:
 ~http-start~ doesn't blow up when port is in use, so this ends up
 sending the impatient-mode generated URL to whatever service is already
 running on the default port of 8080.
@@ -3695,7 +3695,7 @@ running on the default port of 8080.
 See: https://blog.bitsandbobs.net/blog/emacs-markdown-live-preview/
 
 #+BEGIN_SRC emacs-lisp
-  (defun my-markdown-filter (buffer)
+  (defun my/markdown-filter (buffer)
     "Function to allow `impatient-mode` to preview markdown.  Usage:
 
   ,* `M-x httpd-start`
@@ -3712,14 +3712,14 @@ See: https://blog.bitsandbobs.net/blog/emacs-markdown-live-preview/
      (current-buffer)))
 
 
-  (defun my-markdown-preview ()
+  (defun my/markdown-preview ()
     "Preview markdown."
     (interactive)
     (unless (process-status "httpd")
       (setq httpd-port 8088)
       (httpd-start))
     (impatient-mode)
-    (imp-set-user-filter 'my-markdown-filter)
+    (imp-set-user-filter 'my/markdown-filter)
     (imp-visit-buffer))
 #+END_SRC
 *** html-to-markdown:
@@ -3824,7 +3824,7 @@ NOTE: On Mac's; eglot will not connect if it is set to =localhost=!
     :defer t
     :mode ("\\.php\\'" . php-mode)
     :hook (
-           (php-mode-hook . my-programming-defaults-config)
+           (php-mode-hook . my/programming-defaults-config)
            (php-mode . eglot-ensure)
            )
     ;; :custom
@@ -3844,7 +3844,7 @@ NOTE: On Mac's; eglot will not connect if it is set to =localhost=!
   :ensure t
   :defer t
   :hook (
-         (powershell-mode . my-programming-defaults-config)
+         (powershell-mode . my/programming-defaults-config)
          ; (powershell-mode . lsp) ;; No `Expand-Archive` on Arch pwsh, so cannot install `pwsh-ls` automatically.
          )
   )
@@ -4200,7 +4200,7 @@ Testing out SQLFluff for linting.
            )
     :init
     (progn
-      (add-hook 'nxml-mode-hook 'my-programming-defaults-config)
+      (add-hook 'nxml-mode-hook 'my/programming-defaults-config)
       (add-hook 'nxml-mode-hook (lambda () (auto-fill-mode -1)))  ;; disables auto fill at column.
       ;; http://www.nuxeo.com/blog/nxml-mode-tabs/
       (add-hook 'nxml-mode-hook (lambda () (setq indent-tabs-mode nil)))
@@ -4353,11 +4353,11 @@ Configure the Elfeed RSS reader with an Orgmode file.
 *** [[https://github.com/fasheng/elfeed-protocol#qa][How to fetch my older headlines in server?]]
 
 #+BEGIN_SRC emacs-lisp
-  (setq my-elfeed-update-timer
+  (setq my/elfeed-update-timer
 	(run-at-time 15 15
 		     (lambda () (when (= elfeed-curl-queue-active 0)
 				  (elfeed-protocol-fever-update-older "fever+http://craig@192.168.0.98:8095")))))
-  (cancel-timer my-elfeed-update-timer)
+  (cancel-timer my/elfeed-update-timer)
 #+END_SRC
 *** Nuclear fever update:
 #+BEGIN_SRC emacs-lisp
@@ -4711,7 +4711,7 @@ Open =.epub= archive and then =M-x nov-mode=.
     :ensure t
     )
 
-  ;  (defun my-pdftk-command ()
+  ;  (defun my/pdftk-command ()
   ;    (interactive)
   ;    (let pdf-meta-edit-command (concat "docker run --rm -v \"$(pwd)\":/work/ pdftk/pdftk:latest /work/" (buffer-name (current-buffer))))
   ;    )
@@ -4871,13 +4871,13 @@ Code from: https://github.com/jwalgran/dotfiles/blob/master/.emacs.d/config.el
               (ansi-term term-cmd)))))
 
       ;; Make ansi-term buffers close when you kill the shell process
-      (defun term-sentinel--my-advice-term-sentinel (proc msg)
+      (defun term-sentinel--my/advice-term-sentinel (proc msg)
         (if (memq (process-status proc) '(signal exit))
             (let ((buffer (process-buffer proc)))
               ad-do-it
               (kill-buffer buffer))
           ad-do-it))
-      (advice-add 'term-sentinel :around #'my-advice-term-sentinel)
+      (advice-add 'term-sentinel :around #'my/advice-term-sentinel)
       )
 
     (add-hook 'ansi-term-hook (lambda () (global-hl-line-mode 0)))  ; http://stackoverflow.com/questions/9990370/how-to-disable-hl-line-feature-in-specified-mode
