@@ -2869,25 +2869,7 @@ per-language debuggers installed on the Host.
     :config
     ;; Turn on global bindings for setting breakpoints with mouse
     (dape-breakpoint-global-mode)
-
-    ;; Info buffers to the right
-    ;; (setq dape-buffer-window-arrangement 'right)
-
-    ;; Info buffers like gud (gdb-mi)
-    ;; (setq dape-buffer-window-arrangement 'gud)
-    ;; (setq dape-info-hide-mode-line nil)
-
-    ;; Showing inlay hints
     (setq dape-inlay-hints t)
-
-    ;; Save buffers on startup, useful for interpreted languages
-    ;; (add-hook 'dape-start-hook (lambda () (save-some-buffers t t)))
-
-    ;; Kill compile buffer on build success
-    ;; (add-hook 'dape-compile-hook 'kill-buffer)
-
-    ;; Projectile users
-    ;; (setq dape-cwd-function 'projectile-project-root)
     ;; TODO: fix so that red modeline is undone when in a different buffer on quit.
     (advice-add 'dape-quit :after #'my-normal-modeline)
     )
