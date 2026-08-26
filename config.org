@@ -2882,18 +2882,14 @@ per-language debuggers installed on the Host.
 
     ;; Save buffers on startup, useful for interpreted languages
     ;; (add-hook 'dape-start-hook (lambda () (save-some-buffers t t)))
-    ;; FIXME: This hook isn't called on: `dape-quit` so adding an
-    ;; advice.
-    ;; (add-hook 'dape-stopped-hook #'my-normal-modeline)
-    (defadvice dape-quit (after after-dape-quit)
-      (my-normal-modeline))
-    (ad-activate 'dape-quit)
 
     ;; Kill compile buffer on build success
     ;; (add-hook 'dape-compile-hook 'kill-buffer)
 
     ;; Projectile users
     ;; (setq dape-cwd-function 'projectile-project-root)
+    ;; TODO: fix so that red modeline is undone when in a different buffer on quit.
+    (advice-add 'dape-quit :after #'my-normal-modeline)
     )
 
   ;; Enable repeat mode for more ergonomic `dape' use
