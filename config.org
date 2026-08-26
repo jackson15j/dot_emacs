@@ -3944,8 +3944,9 @@ FIXME: bound to only python buffers (with =ruff= installed??).
     ;; laptop when I don't touch conda.
     (use-package conda
       :after (python-mode)
-      :ensure t
-      :defer t
+      :disabled
+      ;; :ensure t
+      ;; :defer t
       :config
       ;; https://github.com/necaris/conda.el/issues/107 - stopped working with
       ;;conda 4.13.0
