@@ -2862,6 +2862,10 @@ per-language debuggers installed on the Host.
     (kill-emacs . dape-breakpoint-save)
     ;; Load breakpoints on startup
     (after-init . dape-breakpoint-load)
+    ;; Red modeline when debugging.
+    (dape-start . my-debug-modeline)
+    ;; Pulse source line (performance hit)
+    (dape-display-source . pulse-momentary-highlight-one-line)
     :config
     ;; Turn on global bindings for setting breakpoints with mouse
     (dape-breakpoint-global-mode)
@@ -2873,15 +2877,11 @@ per-language debuggers installed on the Host.
     ;; (setq dape-buffer-window-arrangement 'gud)
     ;; (setq dape-info-hide-mode-line nil)
 
-    ;; Pulse source line (performance hit)
-    (add-hook 'dape-display-source-hook 'pulse-momentary-highlight-one-line)
-
     ;; Showing inlay hints
     (setq dape-inlay-hints t)
 
     ;; Save buffers on startup, useful for interpreted languages
     ;; (add-hook 'dape-start-hook (lambda () (save-some-buffers t t)))
-    (add-hook 'dape-start-hook #'my-debug-modeline)
     ;; FIXME: This hook isn't called on: `dape-quit` so adding an
     ;; advice.
     ;; (add-hook 'dape-stopped-hook #'my-normal-modeline)
