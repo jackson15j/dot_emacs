@@ -3772,7 +3772,9 @@ version.
 *** [[https://github.com/eki3z/mise.el][mise]] project awareness:
 #+BEGIN_SRC emacs-lisp
   (use-package mise
-    :ensure t
+    :disabled t
+    ;; TODO: update for emacs31
+    ;; :ensure t
     :custom
     (mise-update-on-eshell-directory-change t)
     :hook (
@@ -4782,7 +4784,9 @@ played in Org-formatted files.
   (use-package rpgtk
     :vc (:url "https://codeberg.org/howardabrams/emacs-rpgtk"
          :rev :newest)
-    :ensure t
+    ;; TODO: update for emacs31
+    ;; :ensure t
+    :disabled t
     )
 #+END_SRC
 
@@ -4796,7 +4800,9 @@ Dungeon Master Support in Emacs
   (use-package rpgdm
     :vc (:url "https://gitlab.com/howardabrams/emacs-rpgdm"
          :rev :newest)
-    :ensure t
+    ;; TODO: update for emacs31
+    ;; :ensure t
+    :disabled t
     )
 #+END_SRC
 
