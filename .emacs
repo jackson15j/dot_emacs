@@ -1,4 +1,4 @@
-;;;;;; .emacs --- emacs dot file.
+;;;;;; .emacs --- emacs dot file.  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;; http://www.lunaryorn.com/2015/01/06/my-emacs-configuration-with-use-package.html
 ;; https://github.com/lunaryorn/.emacs.d/blob/master/init.el
