@@ -38,10 +38,31 @@
 ;; `system-packages` for `use-package-ensure-system-package` built-in to work.
   :ensure t
 )
+
+;; https://sachachua.com/blog/2026/04/org-mode-tangle-emacs-config-snippets-to-different-files-and-add-boilerplate/
+;; NOTE: had to manually delete the tangled `*.el` when there was no changes to regenerate the file.
+;;;###autoload
+(defun my/sacha-org-babel-post-tangle-insert-lexical-binding ()
+  "Insert an Elisp file header into the file just tangled into this buffer."
+  (interactive)
+  (when-let* ((file (buffer-file-name))
+              ((equal (file-name-extension file) "el")))
+    (goto-char (point-min))
+    (unless (looking-at-p ";;;")
+      (insert (format ";;; %s.el --- Tangled from Org -*- lexical-binding: t -*-\n\n"
+                      (file-name-base file)))
+      (save-buffer))))
+
+(use-package org
+  :ensure t
+  :hook (org-babel-post-tangle . my/sacha-org-babel-post-tangle-insert-lexical-binding)
+  )
+
+
 ;; Run config from an org file.
 ;; https://himmallright.gitlab.io/post/org-babel-setup/
+(set-default-toplevel-value 'lexical-binding t) ; Emacs 31
 (org-babel-load-file "~/config.org")
-
 
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars)
