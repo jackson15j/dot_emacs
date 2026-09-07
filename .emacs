@@ -39,6 +39,17 @@
   :ensure t
 )
 
+;; [[https://github.com/dholm/benchmark-init-el][benchmark-init]] - Benchmark emacs initialisation:
+;; Then after load completes:
+;; - `M-x benchmark-init/show-durations-tabulated`
+;; - `M-x benchmark-init/show-durations-tree`
+(use-package benchmark-init
+  :ensure t
+  :config
+  ;; To disable collection of benchmark data after init is done.
+  (add-hook 'after-init-hook 'benchmark-init/deactivate))
+
+
 ;; https://sachachua.com/blog/2026/04/org-mode-tangle-emacs-config-snippets-to-different-files-and-add-boilerplate/
 ;; NOTE: had to manually delete the tangled `*.el` when there was no changes to regenerate the file.
 ;;;###autoload
