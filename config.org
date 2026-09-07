@@ -4420,6 +4420,7 @@ If you want “live” captions and better MPV support:
   (use-package elfeed-tube-mpv
     :ensure-system-package (mpv)
     :ensure t
+    :defer t
     :bind (
            (:map elfeed-show-mode-map
                  ("C-c C-f" . elfeed-tube-mpv-follow-mode)
