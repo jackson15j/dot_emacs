@@ -278,7 +278,8 @@ TODO:
     "See: https://github.com/andreasjansson/language-detection.el.
   DOM - web dom."
     (with-temp-buffer
-      (shr-generic dom)
+      (let (shr--link-targets)   ; don't leak ids collected inside this throwaway buffer
+        (shr-generic dom))
       (let ((mode (eww-buffer-auto-detect-mode)))
         (when mode
           (eww-fontify-buffer mode)))
