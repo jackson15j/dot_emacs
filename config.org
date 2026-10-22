@@ -1190,6 +1190,7 @@ Give Presentations with Org Mode (Questions)]].
     :defer t
     :custom
     (treemacs-project-follow-mode t)
+    (treemacs-collapse-dirs 0)  ;; Avoid nil response debugger errros on nested no-file dirs in non-project buffers.
     )
 #+END_SRC
 *** tremacs-icons-dired (disabled):
