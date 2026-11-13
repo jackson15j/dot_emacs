@@ -795,10 +795,11 @@ Automatically install tree-sitter grammars.
   (use-package treesit-auto
     :ensure t
     :demand t
+    :custom
+    (treesit-auto-install t)
     :config
-    (setq
-     treesit-auto-install t
-     )
+    (treesit-auto-add-to-auto-mode-alist 'all)
+    ;; (treesit-auto-add-to-auto-mode-alist '(awk bash c c-sharp cmake commonlisp cpp css dockerfile gitcommit go gomod gowork html javascript json lua make markdown org php python rust sql toml tsx typesript yaml))  ;; M-x describe-variable treesit-auto-langs
     (global-treesit-auto-mode)
     )
 #+END_SRC
