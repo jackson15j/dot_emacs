@@ -789,12 +789,13 @@ layout. Seems to hook into =desktop-save= to restore on restarts.
 ** Treesit:
 Treesit uses the tree-sitter grammars to provide faces/fontifying/structures to
 text by an AST instead of a regex (ie. fast, accurate, works during editing).
-*** [[https://github.com/renzmann/treesit-auto][treesit-auto]]:
+*** [[https://github.com/renzmann/treesit-auto][treesit-auto]] (disabled):
 Automatically install tree-sitter grammars.
 
 #+BEGIN_SRC emacs-lisp
   (use-package treesit-auto
     :ensure t
+    :disabled t  ; FIXME: treesit-auto takes multiple seconds to lookup languages. Delays new magit/tabbar/treemacs buffers!!
     :demand t
     :custom
     (treesit-auto-install t)
