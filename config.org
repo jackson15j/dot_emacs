@@ -1384,6 +1384,10 @@ Issues/PR's.
 Replacement for [[https://github.com/vermiculus/magithub][magithub]], which works with Gitlab/Github. See old commits for
 my old ~magithub~ config.
 
+*TODO:* investigate PAT-less access for situations where PAT's are not
+allowed to be created. See: [[https://github.com/magit/forge/discussions/544][Github: magit/forge - auth-source for
+gh-cli token #544]].
+
 #+BEGIN_SRC emacs-lisp
   (use-package forge
     ;; https://www.reddit.com/r/emacs/comments/fe165f/pinentry_problems_in_osx/
