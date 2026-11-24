@@ -176,6 +176,7 @@ This is external to eglot, but placing here just because of the link.
     :config
     (setq eww-bookmarks-directory "~/org/personal/")
     :custom
+    (browse-url-browser-function 'eww)
     ;; ;; NOTE: when using eww, `M-x browse-url-default-[<os>]-browser`, for Web Browser.
     ;; ;; NOTE: Following can be undone with: `(setopt browse-url-browser-function 'eww)`:
     ;; (browse-url-browser-function (quote browse-url-default-browser))  ; Use system default browser instead of eww.
