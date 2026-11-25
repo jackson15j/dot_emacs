@@ -1411,43 +1411,44 @@ Requires: =git config --global/--local github.user <username>=
   ;; =============================================================================
   ;; use gh-cli as auth-source for forge to workaround forbidden PAT access to organization
   ;; -----------------------------------------------------------------------------
+  (use-package auth-source-ghcli
+    :ensure nil
+    :after ((auth-source))
+    :demand t
+    :init
+    (defun auth-source-ghcli--token (hostname username)
+      (with-temp-buffer
+        (let ((args (append (list "auth" "token" "--hostname" hostname)
+                            (and (not (string-empty-p username))
+                                 (list "--user" username)))))
+          (when (zerop (apply #'call-process "gh" nil '(t nil) nil args))
+            (let ((token (string-trim (buffer-string))))
+              (unless (string-empty-p token) token))))))
 
-  (require 'auth-source)
-  (require 'cl-lib)
-  (require 'eieio)
+    (cl-defun auth-source-ghcli-search (&rest spec
+                                              &key backend type host user
+                                              &allow-other-keys)
+      (cl-assert (or (null type) (eq type (oref backend type))))
+      (when-let* ((hostname (string-remove-prefix "api." (or host "")))
+                  (ident (split-string (or user "") "\\^"))
+                  ((equal (cadr ident) "forge"))
+                  (token (auth-source-ghcli--token hostname (car ident))))
+        (list (list :host hostname :user (car ident) :secret token))))
 
-  (defun auth-source-ghcli--token (hostname username)
-    (with-temp-buffer
-      (let ((args (append (list "auth" "token" "--hostname" hostname)
-                          (and (not (string-empty-p username))
-                               (list "--user" username)))))
-        (when (zerop (apply #'call-process "gh" nil '(t nil) nil args))
-          (let ((token (string-trim (buffer-string))))
-            (unless (string-empty-p token) token))))))
+    (defvar auth-source-ghcli-backend
+      (auth-source-backend :source "." :type 'gh-cli
+                           :search-function #'auth-source-ghcli-search))
 
-  (cl-defun auth-source-ghcli-search (&rest spec
-                                      &key backend type host user
-                                      &allow-other-keys)
-    (cl-assert (or (null type) (eq type (oref backend type))))
-    (when-let* ((hostname (string-remove-prefix "api." (or host "")))
-                (ident (split-string (or user "") "\\^"))
-                ((equal (cadr ident) "forge"))
-                (token (auth-source-ghcli--token hostname (car ident))))
-      (list (list :host hostname :user (car ident) :secret token))))
+    (defun auth-source-ghcli-backend-parse (entry)
+      (when (eq entry 'gh-cli)
+        (auth-source-backend-parse-parameters entry auth-source-ghcli-backend)))
 
-  (defvar auth-source-ghcli-backend
-    (auth-source-backend :source "." :type 'gh-cli
-                         :search-function #'auth-source-ghcli-search))
-
-  (defun auth-source-ghcli-backend-parse (entry)
-    (when (eq entry 'gh-cli)
-      (auth-source-backend-parse-parameters entry auth-source-ghcli-backend)))
-
-  (add-hook 'auth-source-backend-parser-functions #'auth-source-ghcli-backend-parse)
-
-  (provide 'auth-source-ghcli)
-
-  (add-to-list 'auth-sources 'gh-cli)
+    (provide 'auth-source-ghcli)
+    :hook
+    ((auth-source-backend-parser-functions . auth-source-ghcli-backend-parse))
+    :config
+    (add-to-list 'auth-sources 'gh-cli)
+    )
 #+END_SRC
 ** [[https://github.com/wandersoncferreira/code-review][code-review]]:
 Code Review is a package that builds on top of Magit, but supports interacting
